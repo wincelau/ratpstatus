@@ -251,7 +251,7 @@ function get_infos($nbMinutes, $disruptions, $metro) {
 <div id="container">
 <div id="header">
 <h1><a href="<?php echo date_format((new DateTime($dateStart))->modify('-1 day'), "Ymd"); ?>.html"><</a> Statut du trafic RATP du <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?> <a href="<?php echo date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd"); ?>.html">></a></h1>
-<div class="hline"><?php for($i = 0; $i <= 1260; $i = $i + 60): ?><div class="ih"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", intval($i / 60) + 5) ?>h</small><?php endif; ?></div><?php endfor; ?></div>
+<div class="hline"><?php for($i = 0; $i <= 1260; $i = $i + 60): ?><div class="ih"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h</small><?php endif; ?></div><?php endfor; ?></div>
 </div>
 <div id="lignes">
 <?php for($j = 1; $j <= 14; $j++): ?>
