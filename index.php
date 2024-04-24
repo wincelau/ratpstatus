@@ -167,8 +167,14 @@ function get_infos($nbMinutes, $disruptions, $metro) {
     .ligne {
         margin-bottom: 5px;
     }
+    .ligne:after {
+        content:" ";
+        display:block;
+        clear:both;
+    }
     .logo {
-        display: inline-block; position: -webkit-sticky; position:sticky; left:0; background-color: white; z-index: 101; padding-left: 5px; background-color: rgba(255, 255, 255, .5);
+        display: block; position:sticky; left:0; background-color: white; z-index: 101; padding-left: 5px; background-color: rgba(255, 255, 255, .5);
+        float:left;
     }
     .logo img {
         width: 30px;
@@ -178,7 +184,8 @@ function get_infos($nbMinutes, $disruptions, $metro) {
         background-color: #000 !important;
     }
     .i {
-        display: inline-block;
+        display: block;
+        float:left;
         height: 30px;
         width: 1px;
         opacity: 0.85;
@@ -190,18 +197,27 @@ function get_infos($nbMinutes, $disruptions, $metro) {
     .i1h {
         border-right: 1px solid #fff;
     }
-    .item_header {
-        display: inline-block;
+    .hline {
+        margin-top: 30px; padding-left: 40px;
+        margin-bottom: 4px;
+    }
+    .hline:after {
+        content:" ";
+        display:block;
+        clear:both;
+    }
+    .ih {
+        float:left;
         height: 14px;
         color: grey;
         width: 66px;
         position:relative;
         margin-bottom: 5px;
     }
-    .item_header:last-child {
+    .ih:last-child {
         width: 0;
     }
-    .item_header small {
+    .ih small {
         position: absolute;left: -8px; top: 0; font-size: 11px; font-family: monospace;
     }
     .bloque {
@@ -234,16 +250,14 @@ function get_infos($nbMinutes, $disruptions, $metro) {
 <body>
 <div id="container">
 <div id="header">
-<h1><a style="" href="<?php echo date_format((new DateTime($dateStart))->modify('-1 day'), "Ymd"); ?>.html"><</a> Statut du trafic RATP du <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?> <a href="<?php echo date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd"); ?>.html">></a></h1>
-<div style="margin-top: 30px;">
-<div style="display:inline-block; width: 40px;"></div><?php for($i = 0; $i <= 1260; $i = $i + 60): ?><div class="item_header"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", intval($i / 60) + 5) ?>h</small><?php endif; ?></div><?php endfor; ?>
-</div>
+<h1><a href="<?php echo date_format((new DateTime($dateStart))->modify('-1 day'), "Ymd"); ?>.html"><</a> Statut du trafic RATP du <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?> <a href="<?php echo date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd"); ?>.html">></a></h1>
+<div class="hline"><?php for($i = 0; $i <= 1260; $i = $i + 60): ?><div class="ih"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", intval($i / 60) + 5) ?>h</small><?php endif; ?></div><?php endfor; ?></div>
 </div>
 <div id="lignes">
 <?php for($j = 1; $j <= 14; $j++): ?>
-<div class="ligne"><div class="logo"><img src="https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-<?php echo $j; ?>.svg" /></div><!--
---><?php for($i = 1; $i <= 1260; $i++): ?><a class="i <?php echo get_color_class($i, $disruptions, $j) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?>" title="<?php echo sprintf("%02d", intval($i / 60) + 5) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?> - <?php echo get_infos($i, $disruptions, $j) ?>"></a><!--
---><?php endfor; ?></div>
+<div class="ligne"><div class="logo"><img src="https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-<?php echo $j; ?>.svg" /></div>
+<?php for($i = 1; $i <= 1260; $i++): ?><a class="i <?php echo get_color_class($i, $disruptions, $j) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?>" title="<?php echo sprintf("%02d", intval($i / 60) + 5) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?> - <?php echo get_infos($i, $disruptions, $j) ?>"></a>
+<?php endfor; ?></div>
 <?php endfor; ?>
 </div>
 </div>
