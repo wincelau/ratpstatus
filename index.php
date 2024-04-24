@@ -109,7 +109,7 @@ function get_color($nbMinutes, $disruptions, $metro) {
 }
 
 function get_infos($nbMinutes, $disruptions, $metro) {
-    $datePage = new DateTime($_GET['date'] ? $_GET['date'].' 05:00:00' : date('Y-m-d H:i:s'));
+    $datePage = new DateTime(isset($_GET['date']) ? $_GET['date'].' 05:00:00' : date('Y-m-d H:i:s'));
     $datePage->modify('-3 hours');
     $dateStart = $datePage->format('Ymd').'T050000';
     $dateStartObject = new DateTime($dateStart);
