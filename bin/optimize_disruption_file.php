@@ -32,7 +32,9 @@ foreach($json->disruptions as $indexDisruption => $disruption) {
     }
     foreach($disruption->applicationPeriods as $indexPeriod => $period) {
         $dateBegin = new DateTime($period->begin);
+        $dateBegin->modify('-1 hour');
         $dateEnd = new DateTime($period->end);
+        $dateEnd->modify('+1 hour');
         if($dateFile > $dateBegin && $dateFile < $dateEnd) {
             continue;
         }
@@ -62,9 +64,6 @@ foreach($json->lines as $indexLine => $line) {
         }
     }
     $line->impactedObjects = array_values($line->impactedObjects);
-    if(!count($line->impactedObjects)) {
-        unset($json->lines[$indexLine]);
-    }
 }
 
 $json->lines = array_values($json->lines);
