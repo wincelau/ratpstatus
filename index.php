@@ -175,12 +175,12 @@ function get_infos($nbMinutes, $disruptions, $metro) {
 <div style="width: 1423px; margin: 0 auto;">
 <div style="display:inline-block; width: 35px; position:relative;"></div><?php for($i = 0; $i <= 1260; $i++): ?><div class="item_header" style="<?php if($i % 10 == 0): ?>margin-right: 1px;<?php endif; ?>"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", intval($i / 60) + 5) ?>h</small><?php endif; ?></div><?php endfor; ?>
 <?php for($j = 1; $j <= 14; $j++): ?>
-  <div style="margin-bottom: 10px;">
+  <div style="margin-bottom: 5px;">
     <img src="https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-<?php echo $j; ?>.svg" width="30" style="margin-right: 5px;" /><!--
 --><?php for($i = 1; $i <= 1260; $i++): ?><a class="item" title="<?php echo sprintf("%02d", intval($i / 60) + 5) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?> - <?php echo get_infos($i, $disruptions, $j) ?>" style="<?php if($i % 60 == 0): ?>border-right: 1px solid #fff;<?php elseif($i % 10 == 0): ?>border-right: 1px solid #def2ca;<?php endif; ?> background-color: <?php echo get_color($i, $disruptions, $j) ?>;"></a><!--
 --><?php endfor; ?></div>
 <?php endfor; ?>
-<div style="margin-top: 4px;">
+<div>
 <div style="display:inline-block; width: 35px; position:relative;"></div><?php for($i = 0; $i <= 1260; $i++): ?><div class="item_header" style="<?php if($i % 10 == 0): ?>margin-right: 1px;<?php endif; ?>"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", intval($i / 60) + 5) ?>h</small><?php endif; ?></div><?php endfor; ?>
 </div>
 </div>
