@@ -213,6 +213,15 @@ function get_infos($nbMinutes, $disruptions, $metro) {
     .ok {
         background-color: #b6df8c;
     }
+    .ligne > .ok+.e {
+        background-color: #65b613 !important;
+    }
+    .ligne > .bloque+.e {
+        background-color: #a00 !important;
+    }
+    .ligne > .perturbe+.e {
+        background-color: #d47006 !important;
+    }
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
