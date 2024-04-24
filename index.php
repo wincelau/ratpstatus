@@ -256,7 +256,7 @@ function get_infos($nbMinutes, $disruptions, $metro) {
 <div id="lignes">
 <?php for($j = 1; $j <= 14; $j++): ?>
 <div class="ligne"><div class="logo"><img src="https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-<?php echo $j; ?>.svg" /></div>
-<?php for($i = 1; $i <= 1260; $i++): ?><a class="i <?php echo get_color_class($i, $disruptions, $j) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?>" title="<?php echo sprintf("%02d", intval($i / 60) + 5) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?> - <?php echo get_infos($i, $disruptions, $j) ?>"></a>
+<?php for($i = 1; $i <= 1260; $i++): ?><a class="i <?php echo get_color_class($i, $disruptions, $j) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?>" title="<?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?> - <?php echo get_infos($i, $disruptions, $j) ?>"></a>
 <?php endfor; ?></div>
 <?php endfor; ?>
 </div>
