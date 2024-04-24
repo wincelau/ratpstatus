@@ -74,7 +74,7 @@ foreach(scandir('datas') as $file) {
   $currentDisruptions = [];
 }
 
-function get_color($nbMinutes, $disruptions, $metro) {
+function get_color_class($nbMinutes, $disruptions, $metro) {
     $datePage = new DateTime(isset($_GET['date']) ? $_GET['date'].' 05:00:00' : date('Y-m-d H:i:s'));
     $datePage->modify('-3 hours');
     $dateStart = $datePage->format('Ymd').'T050000';
@@ -83,29 +83,28 @@ function get_color($nbMinutes, $disruptions, $metro) {
     $now = new DateTime();
     $severity = null;
     if($dateStartObject->format('YmdHis') > $now->format('YmdHis')) {
-      return "#e2e2e2";
+        return null;
     }
     $dateCurrent = $dateStartObject->format('Ymd\THis');
     foreach($disruptions as $disruption) {
-      if(!preg_match('/Métro '.$metro.'[^0-9]+/', $disruption->title)) {
-          continue;
-      }
+        if(!preg_match('/Métro '.$metro.'[^0-9]+/', $disruption->title)) {
+            continue;
+        }
 
-      foreach($disruption->applicationPeriods as $period) {
-          if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "PERTURBATION" && $severity != "BLOQUANTE") {
-
-            $severity = $disruption->severity;
-          }
-      }
+        foreach($disruption->applicationPeriods as $period) {
+            if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "PERTURBATION" && $severity != "BLOQUANTE") {
+                $severity = $disruption->severity;
+            }
+        }
     }
 
     if($severity && $severity == 'BLOQUANTE') {
-        return '#f32626';
+        return 'bloque';
     } elseif($severity) {
-        return 'orange';
+        return 'perturbe';
     }
 
-    return "#b6df8c";
+    return "ok";
 }
 
 function get_infos($nbMinutes, $disruptions, $metro) {
@@ -138,7 +137,7 @@ function get_infos($nbMinutes, $disruptions, $metro) {
         return $message;
     }
 
-    return "Rien à signaler";
+    return "OK";
 }
 ?>
 <!DOCTYPE html>
@@ -165,24 +164,31 @@ function get_infos($nbMinutes, $disruptions, $metro) {
     #header h1 a{
         text-decoration: none; color: grey;
     }
-    .bloc_ligne {
+    .ligne {
         margin-bottom: 5px;
     }
-    .bloc_ligne_logo {
+    .logo {
         display: inline-block; position: -webkit-sticky; position:sticky; left:0; background-color: white; z-index: 101; padding-left: 5px; background-color: rgba(255, 255, 255, .5);
     }
-    .bloc_ligne_logo img {
+    .logo img {
         width: 30px;
         margin-right: 5px;
     }
-    .item:hover {
+    .i:hover {
         background-color: #000 !important;
     }
-    .bloc_ligne_item {
+    .i {
         display: inline-block;
         height: 30px;
         width: 1px;
         opacity: 0.85;
+        background-color: #e2e2e2;
+    }
+    .i10m {
+        border-right: 1px solid #def2ca;
+    }
+    .i1h {
+        border-right: 1px solid #fff;
     }
     .item_header {
         display: inline-block;
@@ -198,6 +204,15 @@ function get_infos($nbMinutes, $disruptions, $metro) {
     .item_header small {
         position: absolute;left: -8px; top: 0; font-size: 11px; font-family: monospace;
     }
+    .bloque {
+        background-color: #f32626;
+    }
+    .perturbe {
+        background-color: orange;
+    }
+    .ok {
+        background-color: #b6df8c;
+    }
 </style>
 </head>
 <body>
@@ -210,8 +225,8 @@ function get_infos($nbMinutes, $disruptions, $metro) {
 </div>
 <div id="lignes">
 <?php for($j = 1; $j <= 14; $j++): ?>
-<div class="bloc_ligne"><div class="bloc_ligne_logo"><img src="https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-<?php echo $j; ?>.svg" /></div><!--
---><?php for($i = 1; $i <= 1260; $i++): ?><a class="bloc_ligne_item" title="<?php echo sprintf("%02d", intval($i / 60) + 5) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?> - <?php echo get_infos($i, $disruptions, $j) ?>" style="<?php if($i % 60 == 0): ?>border-right: 1px solid #fff;<?php elseif($i % 10 == 0): ?>border-right: 1px solid #def2ca;<?php endif; ?> background-color: <?php echo get_color($i, $disruptions, $j) ?>;"></a><!--
+<div class="ligne"><div class="logo"><img src="https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-<?php echo $j; ?>.svg" /></div><!--
+--><?php for($i = 1; $i <= 1260; $i++): ?><a class="i <?php echo get_color_class($i, $disruptions, $j) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?>" title="<?php echo sprintf("%02d", intval($i / 60) + 5) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?> - <?php echo get_infos($i, $disruptions, $j) ?>"></a><!--
 --><?php endfor; ?></div>
 <?php endfor; ?>
 </div>
