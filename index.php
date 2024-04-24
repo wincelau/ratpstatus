@@ -150,10 +150,35 @@ function get_infos($nbMinutes, $disruptions, $metro) {
 
 <title>Statut du trafic RATP du <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?></title>
 <style>
-    .item:hover {
-      background-color: #000 !important;
+    body {
+        margin:0; padding: 0;
     }
-    .item {
+    #container {
+        width: 1428px; margin: 0 auto;
+    }
+    #header {
+        position:sticky; top: 0; margin: 0; padding-top: 5px; background: white; z-index: 102;
+    }
+    #header h1 {
+        display: inline-block; white-space: nowrap; margin-top: 17px; top: 0;position: fixed; left: 50%; transform: translate(-50%,-50%) !important; font-weight: normal; text-align: center; color: grey; font-size: 14px; font-family: monospace; text-transform: uppercase;
+    }
+    #header h1 a{
+        text-decoration: none; color: grey;
+    }
+    .bloc_ligne {
+        margin-bottom: 5px;
+    }
+    .bloc_ligne_logo {
+        display: inline-block; position: -webkit-sticky; position:sticky; left:0; background-color: white; z-index: 101; padding-left: 5px; background-color: rgba(255, 255, 255, .5);
+    }
+    .bloc_ligne_logo img {
+        width: 30px;
+        margin-right: 5px;
+    }
+    .item:hover {
+        background-color: #000 !important;
+    }
+    .bloc_ligne_item {
         display: inline-block;
         height: 30px;
         width: 1px;
@@ -163,29 +188,33 @@ function get_infos($nbMinutes, $disruptions, $metro) {
         display: inline-block;
         height: 14px;
         color: grey;
-        width: 1px;
+        width: 66px;
         position:relative;
         margin-bottom: 5px;
     }
+    .item_header:last-child {
+        width: 0;
+    }
     .item_header small {
-        position: absolute;left: -5px; top: 0; font-size: 11px; font-family: monospace;
+        position: absolute;left: -8px; top: 0; font-size: 11px; font-family: monospace;
     }
 </style>
 </head>
-<body style="margin:0; padding: 0;">
-    <div style="width: 1428px; margin: 0 auto;">
-        <div style="position:sticky; top: 0; margin: 0; padding-top: 5px; background: white; z-index: 102;">
-            <h1 style="display: inline-block; white-space: nowrap; margin-top: 17px; top: 0;position: fixed; left: 50%; transform: translate(-50%,-50%) !important; font-weight: normal; text-align: center; color: grey; font-size: 14px; font-family: monospace; text-transform: uppercase;"><a style="text-decoration: none; color: grey;" href="<?php echo date_format((new DateTime($dateStart))->modify('-1 day'), "Ymd"); ?>.html"><</a> Statut du trafic RATP du <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?> <a style="text-decoration: none; color: grey;" href="<?php echo date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd"); ?>.html">></a></h1>
-            <div style="margin-top: 30px;">
-            <div style="display:inline-block; width: 40px;"></div><?php for($i = 0; $i <= 1260; $i++): ?><div class="item_header" style="<?php if($i % 10 == 0): ?>margin-right: 1px;<?php endif; ?>"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", intval($i / 60) + 5) ?>h</small><?php endif; ?></div><?php endfor; ?>
-            </div>
-        </div>
+<body>
+<div id="container">
+<div id="header">
+<h1><a style="" href="<?php echo date_format((new DateTime($dateStart))->modify('-1 day'), "Ymd"); ?>.html"><</a> Statut du trafic RATP du <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?> <a href="<?php echo date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd"); ?>.html">></a></h1>
+<div style="margin-top: 30px;">
+<div style="display:inline-block; width: 40px;"></div><?php for($i = 0; $i <= 1260; $i = $i + 60): ?><div class="item_header"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", intval($i / 60) + 5) ?>h</small><?php endif; ?></div><?php endfor; ?>
+</div>
+</div>
+<div id="lignes">
 <?php for($j = 1; $j <= 14; $j++): ?>
-  <div style="margin-bottom: 5px; position: relative;">
-    <div style="display: inline-block; position: -webkit-sticky; position:sticky; left:0; background-color: white; z-index: 101; padding-left: 5px;"><img src="https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-<?php echo $j; ?>.svg" width="30" style="margin-right: 5px;" /></div><!--
---><?php for($i = 1; $i <= 1260; $i++): ?><a class="item" title="<?php echo sprintf("%02d", intval($i / 60) + 5) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?> - <?php echo get_infos($i, $disruptions, $j) ?>" style="<?php if($i % 60 == 0): ?>border-right: 1px solid #fff;<?php elseif($i % 10 == 0): ?>border-right: 1px solid #def2ca;<?php endif; ?> background-color: <?php echo get_color($i, $disruptions, $j) ?>;"></a><!--
+<div class="bloc_ligne"><div class="bloc_ligne_logo"><img src="https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-<?php echo $j; ?>.svg" /></div><!--
+--><?php for($i = 1; $i <= 1260; $i++): ?><a class="bloc_ligne_item" title="<?php echo sprintf("%02d", intval($i / 60) + 5) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?> - <?php echo get_infos($i, $disruptions, $j) ?>" style="<?php if($i % 60 == 0): ?>border-right: 1px solid #fff;<?php elseif($i % 10 == 0): ?>border-right: 1px solid #def2ca;<?php endif; ?> background-color: <?php echo get_color($i, $disruptions, $j) ?>;"></a><!--
 --><?php endfor; ?></div>
 <?php endfor; ?>
+</div>
 </div>
 </body>
 </html>
