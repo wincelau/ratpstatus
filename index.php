@@ -83,7 +83,7 @@ function get_color_class($nbMinutes, $disruptions, $metro) {
     $now = new DateTime();
     $severity = null;
     if($dateStartObject->format('YmdHis') > $now->format('YmdHis')) {
-        return null;
+        return 'e';
     }
     $dateCurrent = $dateStartObject->format('Ymd\THis');
     foreach($disruptions as $disruption) {
@@ -214,6 +214,13 @@ function get_infos($nbMinutes, $disruptions, $metro) {
         background-color: #b6df8c;
     }
 </style>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if(document.querySelector('.ligne .e')) {
+            window.scrollTo({ left: document.querySelector('.ligne .e').offsetLeft });
+        }
+    })
+</script>
 </head>
 <body>
 <div id="container">
