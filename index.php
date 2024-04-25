@@ -4,6 +4,12 @@ date_default_timezone_set('Europe/Paris');
 if(isset($argv[1]) && $argv[1]) {
     $_GET['date'] = $argv[1];
 }
+if(isset($argv[2]) && $argv[2]) {
+    $_GET['mode'] = $argv[2];
+}
+
+$mode = isset($_GET['mode']) ? $_GET['mode'] : 'metro';
+
 $datePage = new DateTime(isset($_GET['date']) ? $_GET['date'].' 05:00:00' : date('Y-m-d H:i:s'));
 $datePage->modify('-3 hours');
 $dateStart = $datePage->format('Ymd').'T050000';
@@ -154,36 +160,58 @@ function get_infos($nbMinutes, $disruptions, $ligne) {
     return "OK";
 }
 
+$baseUrlLogo = "https://www.ratp.fr/sites/default/files/lines-assets/picto";
+
 $lignes = [
-"Métro 1" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-1.svg",
-"Métro 2" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-2.svg",
-"Métro 3" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-3.svg",
-"Métro 3B" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-3b.svg",
-"Métro 4" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-4.svg",
-"Métro 5" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-5.svg",
-"Métro 6" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-6.svg",
-"Métro 7" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-7.svg",
-"Métro 7B" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-7b.svg",
-"Métro 8" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-8.svg",
-"Métro 9" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-9.svg",
-"Métro 10" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-10.svg",
-"Métro 11" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-11.svg",
-"Métro 12" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-12.svg",
-"Métro 13" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-13.svg",
-"Métro 14" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-14.svg",
-"Ligne A" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/rer/picto_rer_ligne-a.svg",
-"Ligne B" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/rer/picto_rer_ligne-b.svg",
-"Ligne C" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/rer/picto_rer_ligne-c.svg",
-"Ligne D" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/rer/picto_rer_ligne-d.svg",
-"Ligne E" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/rer/picto_rer_ligne-e.svg",
-"Ligne H" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-h.svg",
-"Ligne J" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-j.svg",
-"Ligne K" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-k.svg",
-"Ligne L" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-l.svg",
-"Ligne N" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-n.svg",
-"Ligne P" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-p.svg",
-"Ligne R" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-r.svg",
-"Ligne U" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-u.svg",
+    "metros" => [
+        "Métro 1" => "metro/picto_metro_ligne-1.svg",
+        "Métro 2" => $baseUrlLogo."/metro/picto_metro_ligne-2.svg",
+        "Métro 3" => $baseUrlLogo."/metro/picto_metro_ligne-3.svg",
+        "Métro 3B" => $baseUrlLogo."/metro/picto_metro_ligne-3b.svg",
+        "Métro 4" => $baseUrlLogo."/metro/picto_metro_ligne-4.svg",
+        "Métro 5" => $baseUrlLogo."/metro/picto_metro_ligne-5.svg",
+        "Métro 6" => $baseUrlLogo."/metro/picto_metro_ligne-6.svg",
+        "Métro 7" => $baseUrlLogo."/metro/picto_metro_ligne-7.svg",
+        "Métro 7B" => $baseUrlLogo."/metro/picto_metro_ligne-7b.svg",
+        "Métro 8" => $baseUrlLogo."/metro/picto_metro_ligne-8.svg",
+        "Métro 9" => $baseUrlLogo."/metro/picto_metro_ligne-9.svg",
+        "Métro 10" => $baseUrlLogo."/metro/picto_metro_ligne-10.svg",
+        "Métro 11" => $baseUrlLogo."/metro/picto_metro_ligne-11.svg",
+        "Métro 12" => $baseUrlLogo."/metro/picto_metro_ligne-12.svg",
+        "Métro 13" => $baseUrlLogo."/metro/picto_metro_ligne-13.svg",
+        "Métro 14" => $baseUrlLogo."/metro/picto_metro_ligne-14.svg",
+    ],
+    "trains" => [
+        "Ligne A" => $baseUrlLogo."/rer/picto_rer_ligne-a.svg",
+        "Ligne B" => $baseUrlLogo."/rer/picto_rer_ligne-b.svg",
+        "Ligne C" => $baseUrlLogo."/rer/picto_rer_ligne-c.svg",
+        "Ligne D" => $baseUrlLogo."/rer/picto_rer_ligne-d.svg",
+        "Ligne E" => $baseUrlLogo."/rer/picto_rer_ligne-e.svg",
+        "Ligne H" => $baseUrlLogo."/sncf/picto_sncf_ligne-h.svg",
+        "Ligne J" => $baseUrlLogo."/sncf/picto_sncf_ligne-j.svg",
+        "Ligne K" => $baseUrlLogo."/sncf/picto_sncf_ligne-k.svg",
+        "Ligne L" => $baseUrlLogo."/sncf/picto_sncf_ligne-l.svg",
+        "Ligne N" => $baseUrlLogo."/sncf/picto_sncf_ligne-n.svg",
+        "Ligne P" => $baseUrlLogo."/sncf/picto_sncf_ligne-p.svg",
+        "Ligne R" => $baseUrlLogo."/sncf/picto_sncf_ligne-r.svg",
+        "Ligne U" => $baseUrlLogo."/sncf/picto_sncf_ligne-u.svg",
+    ],
+    "tramways" => [
+        "Tramway T1" => $baseUrlLogo."/tram/picto_tram_ligne-t1.svg",
+        "Tramway T2" => $baseUrlLogo."/tram/picto_tram_ligne-t2.svg",
+        "Tramway T3a" => $baseUrlLogo."/tram/picto_tram_ligne-t3a.svg",
+        "Tramway T3b" => $baseUrlLogo."/tram/picto_tram_ligne-t3b.svg",
+        "Tramway T4" => $baseUrlLogo."/tram/picto_tram_ligne-t4.svg",
+        "Tramway T5" => $baseUrlLogo."/tram/picto_tram_ligne-t5.svg",
+        "Tramway T6" => $baseUrlLogo."/tram/picto_tram_ligne-t6.svg",
+        "Tramway T7" => $baseUrlLogo."/tram/picto_tram_ligne-t7.svg",
+        "Tramway T8" => $baseUrlLogo."/tram/picto_tram_ligne-t8.svg",
+        "Tramway T9" => $baseUrlLogo."/tram/picto_tram_ligne-t9.svg",
+        "Tramway T10" => $baseUrlLogo."/tram/picto_tram_ligne-t10.svg",
+        "Tramway T11" => $baseUrlLogo."/tram/picto_tram_ligne-t11.svg",
+        "Tramway T12" => $baseUrlLogo."/tram/picto_tram_ligne-t12.svg",
+        "Tramway T13" => $baseUrlLogo."/tram/picto_tram_ligne-t13.svg",
+    ]
 ]
 ?>
 <!DOCTYPE html>
@@ -209,6 +237,20 @@ $lignes = [
     }
     #header h1 a{
         text-decoration: none; color: grey;
+    }
+    #header #nav_mode {
+        display: inline-block;
+        top: 43px; position: fixed;
+        left: 50%; transform: translate(-50%,-50%) !important;
+        width: 100%;
+        text-align: center;
+    }
+    #header #nav_mode a {
+        font-size: 14px; text-transform: uppercase; color: grey; font-family: monospace;
+    }
+    #header #nav_mode a:not(:first-child):not(:last-child) {
+        margin-right: 30px;
+        margin-left: 30px;
     }
     .ligne {
         margin-bottom: 5px;
@@ -244,7 +286,7 @@ $lignes = [
         border-left: 1px solid #fff;
     }
     .hline {
-        margin-top: 30px; padding-left: 40px;
+        margin-top: 60px; padding-left: 40px;
         margin-bottom: 4px;
     }
     .hline:after {
@@ -296,11 +338,12 @@ $lignes = [
 <body>
 <div id="container">
 <div id="header">
-<h1><a href="<?php echo date_format((new DateTime($dateStart))->modify('-1 day'), "Ymd"); ?>.html"><</a> Statut du trafic RATP du <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?> <a href="<?php echo date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd"); ?>.html">></a></h1>
+<h1><a href="<?php echo date_format((new DateTime($dateStart))->modify('-1 day'), "Ymd"); ?>.html"><</a> Statut du trafic du <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?> <a href="<?php echo date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd"); ?>.html">></a></h1>
+<div id="nav_mode"><?php foreach($lignes as $m => $ligne): ?><a style="<?php if($mode == $m): ?>font-weight: bold;<?php endif; ?>" href="<?php echo (new DateTime($dateStart))->format('Ymd') ?>/<?php echo $m ?>.html"><?php echo $m ?></a><?php endforeach; ?></div>
 <div class="hline"><?php for($i = 0; $i <= 1260; $i = $i + 60): ?><div class="ih"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h</small><?php endif; ?></div><?php endfor; ?></div>
 </div>
 <div id="lignes">
-<?php foreach($lignes as $ligne => $logo): ?>
+<?php foreach($lignes[$mode] as $ligne => $logo): ?>
 <div class="ligne"><div class="logo"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /></div>
 <?php for($i = 0; $i < 1260; $i = $i + 2): ?><a class="i <?php echo get_color_class($i, $disruptions, $ligne) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?>" title="<?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?> - <?php echo get_infos($i, $disruptions, $ligne) ?>"></a>
 <?php endfor; ?></div>
