@@ -24,9 +24,18 @@ foreach(scandir('datas') as $file) {
   }
   $datas = json_decode(file_get_contents('datas/'.$file));
   foreach($datas->disruptions as $disruption) {
-      if(preg_match('/- modifications horaires$/', $disruption->title)) {
+      if(preg_match('/modifications horaires/', $disruption->title)) {
           $disruption->cause = 'INFORMATION';
       }
+
+      if(preg_match('/Modification de desserte/', $disruption->title)) {
+          $disruption->cause = 'INFORMATION';
+      }
+
+      if(preg_match('/train court/', $disruption->title)) {
+          $disruption->cause = 'INFORMATION';
+      }
+
       //$disruption->id = preg_replace('/^[a-z0-9]+-/', '', $disruption->id);
       if(isset($disruptions[$disruption->id])) {
           $disruptions[$disruption->id] = $disruption;
@@ -90,6 +99,9 @@ function get_color_class($nbMinutes, $disruptions, $ligne) {
         if(!preg_match('/'.$ligne.'[^0-9A-Z]+/', $disruption->title)) {
             continue;
         }
+        if($disruption->severity == 'INFORMATION') {
+            continue;
+        }
 
         foreach($disruption->applicationPeriods as $period) {
             if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "PERTURBATION" && $severity != "BLOQUANTE") {
@@ -124,7 +136,9 @@ function get_infos($nbMinutes, $disruptions, $ligne) {
       if(!preg_match('/'.$ligne.'[^0-9A-Z]+/', $disruption->title)) {
           continue;
       }
-
+      if($disruption->severity == 'INFORMATION') {
+          continue;
+      }
       foreach($disruption->applicationPeriods as $period) {
           if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "PERTURBATION") {
 
