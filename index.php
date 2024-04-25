@@ -164,7 +164,7 @@ $baseUrlLogo = "https://www.ratp.fr/sites/default/files/lines-assets/picto";
 
 $lignes = [
     "metros" => [
-        "Métro 1" => "metro/picto_metro_ligne-1.svg",
+        "Métro 1" => $baseUrlLogo."metro/picto_metro_ligne-1.svg",
         "Métro 2" => $baseUrlLogo."/metro/picto_metro_ligne-2.svg",
         "Métro 3" => $baseUrlLogo."/metro/picto_metro_ligne-3.svg",
         "Métro 3B" => $baseUrlLogo."/metro/picto_metro_ligne-3b.svg",
@@ -339,7 +339,7 @@ $lignes = [
 <div id="container">
 <div id="header">
 <h1><a href="<?php echo date_format((new DateTime($dateStart))->modify('-1 day'), "Ymd"); ?>.html"><</a> Statut du trafic du <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?> <a href="<?php echo date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd"); ?>.html">></a></h1>
-<div id="nav_mode"><?php foreach($lignes as $m => $ligne): ?><a style="<?php if($mode == $m): ?>font-weight: bold;<?php endif; ?>" href="<?php echo (new DateTime($dateStart))->format('Ymd') ?>/<?php echo $m ?>.html"><?php echo $m ?></a><?php endforeach; ?></div>
+<div id="nav_mode"><?php foreach($lignes as $m => $ligne): ?><a style="<?php if($mode == $m): ?>font-weight: bold;<?php endif; ?>" href="<?php echo $m ?>.html"><?php echo $m ?></a><?php endforeach; ?></div>
 <div class="hline"><?php for($i = 0; $i <= 1260; $i = $i + 60): ?><div class="ih"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h</small><?php endif; ?></div><?php endfor; ?></div>
 </div>
 <div id="lignes">
