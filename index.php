@@ -24,6 +24,9 @@ foreach(scandir('datas') as $file) {
   }
   $datas = json_decode(file_get_contents('datas/'.$file));
   foreach($datas->disruptions as $disruption) {
+      if(preg_match('/- modifications horaires$/', $disruption->title)) {
+          $disruption->cause = 'INFORMATION';
+      }
       //$disruption->id = preg_replace('/^[a-z0-9]+-/', '', $disruption->id);
       if(isset($disruptions[$disruption->id])) {
           $disruptions[$disruption->id] = $disruption;
