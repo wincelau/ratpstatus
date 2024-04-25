@@ -258,7 +258,7 @@ $lignes = [
         margin-left: 30px;
     }
     #header a#lien_refresh {
-        position:fixed; right: 14px; top: 2px; display: inline-block; color: grey; text-decoration: none; font-family: monospace; font-size: 21px;
+        position:fixed; right: 14px; top: 1px; display: inline-block; color: grey; text-decoration: none; font-family: monospace; font-size: 20px;
     }
     .ligne {
         margin-bottom: 5px;
