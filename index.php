@@ -271,7 +271,7 @@ $lignes = [
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         if(document.querySelector('.ligne .e')) {
-            window.scrollTo({ left: document.querySelector('.ligne .e').offsetLeft });
+            window.scrollTo({ left: document.querySelector('.ligne .e').offsetLeft - 100 });
         }
     })
 </script>
