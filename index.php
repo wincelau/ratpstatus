@@ -21,14 +21,11 @@ $disruptions = [];
 $previousDisruptions = [];
 $currentDisruptions = [];
 
-foreach(scandir('datas') as $file) {
-  if(!is_file('datas/'.$file)) {
+foreach(scandir('datas/json') as $file) {
+  if(!is_file('datas/json/'.$file)) {
       continue;
   }
-  if(!preg_match('/optimized/', $file)) {
-      continue;
-  }
-  $datas = json_decode(file_get_contents('datas/'.$file));
+  $datas = json_decode(file_get_contents('datas/json/'.$file));
   foreach($datas->disruptions as $disruption) {
       if(preg_match('/modifications horaires/', $disruption->title)) {
           $disruption->cause = 'INFORMATION';
@@ -233,14 +230,14 @@ $lignes = [
         position:sticky; top: 0; margin: 0; padding-top: 5px; background: white; z-index: 102;
     }
     #header h1 {
-        display: inline-block; white-space: nowrap; margin-top: 17px; top: 0;position: fixed; left: 50%; transform: translate(-50%,-50%) !important; font-weight: normal; text-align: center; color: grey; font-size: 14px; font-family: monospace; text-transform: uppercase;
+        display: inline-block; white-space: nowrap; margin-top: 18px; top: 0;position: fixed; left: 50%; transform: translate(-50%,-50%) !important; font-weight: normal; text-align: center; color: grey; font-size: 14px; font-family: monospace; text-transform: uppercase;
     }
     #header h1 a{
         text-decoration: none; color: grey;
     }
     #header #nav_mode {
         display: inline-block;
-        top: 43px;
+        top: 44px;
         position: fixed;
         left: 50%; transform: translate(-50%,-50%) !important;
         width: 100%;
