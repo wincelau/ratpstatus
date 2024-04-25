@@ -164,7 +164,7 @@ $baseUrlLogo = "https://www.ratp.fr/sites/default/files/lines-assets/picto";
 
 $lignes = [
     "metros" => [
-        "Métro 1" => $baseUrlLogo."metro/picto_metro_ligne-1.svg",
+        "Métro 1" => $baseUrlLogo."/metro/picto_metro_ligne-1.svg",
         "Métro 2" => $baseUrlLogo."/metro/picto_metro_ligne-2.svg",
         "Métro 3" => $baseUrlLogo."/metro/picto_metro_ligne-3.svg",
         "Métro 3B" => $baseUrlLogo."/metro/picto_metro_ligne-3b.svg",
