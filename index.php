@@ -346,7 +346,7 @@ $lignes = [
 <body>
 <div id="container">
 <div id="header">
-<a id="lien_refresh" href="" onclick="location.reload(); return false;">↻</a>
+<a id="lien_refresh" href="" onclick="location.reload(); return false;">⟳</a>
 <h1><a href="/<?php echo date_format((new DateTime($dateStart))->modify('-1 day'), "Ymd"); ?>/<?php echo $mode ?>.html"><</a> Statut du trafic du <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?> <a href="/<?php echo date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd"); ?>/<?php echo $mode ?>.html">></a></h1>
 <div id="nav_mode"><?php foreach($lignes as $m => $ligne): ?><a style="<?php if($mode == $m): ?>font-weight: bold;<?php endif; ?>" href="/<?php echo (new DateTime($dateStart))->format('Ymd') ?>/<?php echo $m ?>.html"><?php echo $modesLibelle[$m] ?></a><?php endforeach; ?></div>
 <div class="hline"><?php for($i = 0; $i <= 1260; $i = $i + 60): ?><div class="ih"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h</small><?php endif; ?></div><?php endfor; ?></div>
