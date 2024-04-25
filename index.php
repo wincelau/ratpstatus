@@ -42,9 +42,6 @@ foreach(scandir('datas') as $file) {
           continue;
       }
 
-      if(!preg_match('/Métro /', $disruption->title)) {
-          continue;
-      }
       $isLine = false;
       foreach($datas->lines as $line) {
           foreach($line->impactedObjects as $object) {
@@ -74,7 +71,7 @@ foreach(scandir('datas') as $file) {
   $currentDisruptions = [];
 }
 
-function get_color_class($nbMinutes, $disruptions, $metro) {
+function get_color_class($nbMinutes, $disruptions, $ligne) {
     $datePage = new DateTime(isset($_GET['date']) ? $_GET['date'].' 05:00:00' : date('Y-m-d H:i:s'));
     $datePage->modify('-3 hours');
     $dateStart = $datePage->format('Ymd').'T050000';
@@ -87,7 +84,7 @@ function get_color_class($nbMinutes, $disruptions, $metro) {
     }
     $dateCurrent = $dateStartObject->format('Ymd\THis');
     foreach($disruptions as $disruption) {
-        if(!preg_match('/Métro '.$metro.'[^0-9]+/', $disruption->title)) {
+        if(!preg_match('/'.$ligne.'[^0-9A-Z]+/', $disruption->title)) {
             continue;
         }
 
@@ -107,7 +104,7 @@ function get_color_class($nbMinutes, $disruptions, $metro) {
     return "ok";
 }
 
-function get_infos($nbMinutes, $disruptions, $metro) {
+function get_infos($nbMinutes, $disruptions, $ligne) {
     $datePage = new DateTime(isset($_GET['date']) ? $_GET['date'].' 05:00:00' : date('Y-m-d H:i:s'));
     $datePage->modify('-3 hours');
     $dateStart = $datePage->format('Ymd').'T050000';
@@ -121,24 +118,56 @@ function get_infos($nbMinutes, $disruptions, $metro) {
     }
     $dateCurrent = $dateStartObject->format('Ymd\THis');
     foreach($disruptions as $disruption) {
-      if(!preg_match('/Métro '.$metro.'[^0-9]+/', $disruption->title)) {
+      if(!preg_match('/'.$ligne.'[^0-9A-Z]+/', $disruption->title)) {
           continue;
       }
 
       foreach($disruption->applicationPeriods as $period) {
           if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "PERTURBATION") {
 
-            $message .= $disruption->title."\n\n".$disruption->message."\n\n".$disruption->id." - ".$disruption->severity."\n\n-----\n\n";
+            $message .= $disruption->title." (".$disruption->id." - ".$disruption->severity.")\n";
           }
       }
     }
 
     if($message) {
-        return $message;
+        return strip_tags($message);
     }
 
     return "OK";
 }
+
+$lignes = [
+"Métro 1" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-1.svg",
+"Métro 2" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-2.svg",
+"Métro 3" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-3.svg",
+"Métro 3B" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-3b.svg",
+"Métro 4" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-4.svg",
+"Métro 5" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-5.svg",
+"Métro 6" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-6.svg",
+"Métro 7" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-7.svg",
+"Métro 7B" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-7b.svg",
+"Métro 8" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-8.svg",
+"Métro 9" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-9.svg",
+"Métro 10" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-10.svg",
+"Métro 11" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-11.svg",
+"Métro 12" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-12.svg",
+"Métro 13" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-13.svg",
+"Métro 14" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-14.svg",
+"Ligne A" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/rer/picto_rer_ligne-a.svg",
+"Ligne B" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/rer/picto_rer_ligne-b.svg",
+"Ligne C" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/rer/picto_rer_ligne-c.svg",
+"Ligne D" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/rer/picto_rer_ligne-d.svg",
+"Ligne E" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/rer/picto_rer_ligne-e.svg",
+"Ligne H" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-h.svg",
+"Ligne J" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-j.svg",
+"Ligne K" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-k.svg",
+"Ligne L" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-l.svg",
+"Ligne N" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-n.svg",
+"Ligne P" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-p.svg",
+"Ligne R" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-r.svg",
+"Ligne U" => "https://www.ratp.fr/sites/default/files/lines-assets/picto/sncf/picto_sncf_ligne-u.svg",
+]
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
@@ -187,15 +216,15 @@ function get_infos($nbMinutes, $disruptions, $metro) {
         display: block;
         float:left;
         height: 30px;
-        width: 1px;
+        width: 2px;
         opacity: 0.85;
         background-color: #e2e2e2;
     }
     .i10m {
-        border-right: 1px solid #def2ca;
+        border-left: 1px solid #def2ca;
     }
     .i1h {
-        border-right: 1px solid #fff;
+        border-left: 1px solid #fff;
     }
     .hline {
         margin-top: 30px; padding-left: 40px;
@@ -254,11 +283,11 @@ function get_infos($nbMinutes, $disruptions, $metro) {
 <div class="hline"><?php for($i = 0; $i <= 1260; $i = $i + 60): ?><div class="ih"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h</small><?php endif; ?></div><?php endfor; ?></div>
 </div>
 <div id="lignes">
-<?php for($j = 1; $j <= 14; $j++): ?>
-<div class="ligne"><div class="logo"><img src="https://www.ratp.fr/sites/default/files/lines-assets/picto/metro/picto_metro_ligne-<?php echo $j; ?>.svg" /></div>
-<?php for($i = 1; $i <= 1260; $i++): ?><a class="i <?php echo get_color_class($i, $disruptions, $j) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?>" title="<?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?> - <?php echo get_infos($i, $disruptions, $j) ?>"></a>
+<?php foreach($lignes as $ligne => $logo): ?>
+<div class="ligne"><div class="logo"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /></div>
+<?php for($i = 0; $i < 1260; $i = $i + 2): ?><a class="i <?php echo get_color_class($i, $disruptions, $ligne) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?>" title="<?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?> - <?php echo get_infos($i, $disruptions, $ligne) ?>"></a>
 <?php endfor; ?></div>
-<?php endfor; ?>
+<?php endforeach; ?>
 </div>
 </div>
 </body>
