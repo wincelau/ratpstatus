@@ -161,7 +161,7 @@ function get_infos($nbMinutes, $disruptions, $ligne) {
 }
 
 $baseUrlLogo = "https://www.ratp.fr/sites/default/files/lines-assets/picto";
-$modesLibelle = ["metros" => "🚇 Métros", "trains" => "🚆 RER et Transiliens", "tramways" => "🚈 Tramways"];
+$modesLibelle = ["metros" => "Ⓜ️ Métros", "trains" => "🚆 RER/Trains", "tramways" => "🚈 Tramways"];
 $lignes = [
     "metros" => [
         "Métro 1" => $baseUrlLogo."/metro/picto_metro_ligne-1.svg",
