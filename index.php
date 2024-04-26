@@ -235,7 +235,7 @@ $isToday = date_format((new DateTime($dateStart)), "Ymd") == date_format((new Da
 </head>
 <body>
 <div id="container">
-<div id="header">
+<header role="banner" id="header">
 <a id="lien_infos" href="https://github.com/wincelau/ratpstatus">
     <span aria-hidden="true">?</span>
     <span class="visually-hidden">Informations sur le projet</span>
@@ -257,18 +257,24 @@ $isToday = date_format((new DateTime($dateStart)), "Ymd") == date_format((new Da
 </h1>
 <div id="nav_mode"><?php foreach($lignes as $m => $ligne): ?><a style="<?php if($mode == $m): ?>font-weight: bold;<?php endif; ?>" href="/<?php if(!$isToday): ?><?php echo (new DateTime($dateStart))->format('Ymd') ?>/<?php endif; ?><?php echo $m ?>.html"><?php echo $modesLibelle[$m] ?></a><?php endforeach; ?></div>
 <div class="hline"><?php for($i = 0; $i <= 1260; $i = $i + 60): ?><div class="ih"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h</small><?php endif; ?></div><?php endfor; ?></div>
-</div>
-<div id="lignes">
+</header>
+<main role="main" id="lignes">
 <?php foreach($lignes[$mode] as $ligne => $logo): ?>
 <div class="ligne"><div class="logo"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /></div>
 <?php for($i = 0; $i < 1260; $i = $i + 2): ?><a class="i <?php echo get_color_class($i, $disruptions, $ligne) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?>" title="<?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?> - <?php echo get_infos($i, $disruptions, $ligne) ?>"></a>
 <?php endfor; ?></div>
 <?php endforeach; ?>
 </div>
+<<<<<<< HEAD
 </div>
     <p id="legende"><span class="ok"></span> Rien à signaler <span class="perturbe" style="margin-left: 20px;"></span> Perturbation <span class="bloque" style="background: red; margin-left: 20px;"></span> Blocage / Interruption</p>
     <p id="footer">
         Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a> <small>(récupérées toutes le 2 minutes)</small><br /><br />
         Projet publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>) initié par <a href="https://piaille.fr/@winy">winy</a></p>
+=======
+<p id="legende"><span class="ok"></span> Rien à signaler <span class="perturbe" style="margin-left: 20px;"></span> Perturbation <span class="bloque" style="background: red; margin-left: 20px;"></span> Blocage / Interruption</p>
+</main>
+<footer role="contentinfo"><p id="footer">Projet publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>) initié par <a href="https://piaille.fr/@winy">winy</a></p></footer>
+>>>>>>> e69cd26 (fix(a11y): Ajout d'éléments structurants au gabarit (header, main, footer) avec role (=landmark zone))
 </body>
 </html>
