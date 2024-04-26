@@ -132,7 +132,7 @@ function get_infos($nbMinutes, $disruptions, $ligne) {
     $message = null;
     //echo $dateStartObject->format('YmdHis')."\n";
     if($dateStartObject->format('YmdHis') > $now->format('YmdHis')) {
-      return "À venir";
+      return null;
     }
     $dateCurrent = $dateStartObject->format('Ymd\THis');
     foreach($disruptions as $disruption) {
@@ -144,10 +144,10 @@ function get_infos($nbMinutes, $disruptions, $ligne) {
       }
       foreach($disruption->applicationPeriods as $period) {
           if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "PERTURBATION") {
-            if($message) {
+            if(!$message) {
                 $message .= "\n";
             }
-            $message .= $disruption->title." - ".$disruption->id." - ".$disruption->severity."\n";
+            $message .= "\n".$disruption->id."\n";
           }
       }
     }
@@ -156,7 +156,7 @@ function get_infos($nbMinutes, $disruptions, $ligne) {
         return strip_tags($message);
     }
 
-    return "OK";
+    return "\n\nRien à signaler";
 }
 
 $baseUrlLogo = "/images/lignes/";
@@ -215,7 +215,14 @@ $lignes = [
 
 $tomorowIsToday = date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd") == date_format((new DateTime()), "Ymd");
 $isToday = date_format((new DateTime($dateStart)), "Ymd") == date_format((new DateTime()), "Ymd");
+$disruptions_message = [];
+foreach($disruptions as $disruption) {
+    $disruptions_message[$disruption->id] = "# ".$disruption->title."\n\n".str_replace('"', '', html_entity_decode(strip_tags($disruption->message)));
+}
+
 ?>
+
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
 <head>
@@ -230,6 +237,22 @@ $isToday = date_format((new DateTime($dateStart)), "Ymd") == date_format((new Da
         if(document.querySelector('.ligne .e')) {
             window.scrollTo({ left: document.querySelector('.ligne .e').offsetLeft - window.innerWidth + 66 });
         }
+        document.querySelector('#lignes').addEventListener('mouseover', function(e) {
+            if(e.target.title) {
+                e.target.dataset.title = e.target.title;
+                for(const disruptionId of e.target.title.split("\n")) {
+                    if(disruptionId && disruptions[disruptionId]) {
+                        e.target.title = e.target.title.replace(disruptionId, disruptions[disruptionId]);
+                    }
+                }
+            }
+        })
+        document.querySelector('#lignes').addEventListener('mouseout', function(e) {
+            if(e.target.title) {
+                e.target.title = e.target.dataset.title
+                e.target.dataset.title = null
+            }
+        })
     })
 </script>
 </head>
@@ -245,14 +268,18 @@ $isToday = date_format((new DateTime($dateStart)), "Ymd") == date_format((new Da
 <div id="lignes">
 <?php foreach($lignes[$mode] as $ligne => $logo): ?>
 <div class="ligne"><div class="logo"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /></div>
-<?php for($i = 0; $i < 1260; $i = $i + 2): ?><a class="i <?php echo get_color_class($i, $disruptions, $ligne) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?>" title="<?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?> - <?php echo get_infos($i, $disruptions, $ligne) ?>"></a>
+<?php for($i = 0; $i < 1260; $i = $i + 2): ?><a class="i <?php echo get_color_class($i, $disruptions, $ligne) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?>" title="<?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?><?php echo get_infos($i, $disruptions, $ligne) ?>"></a>
 <?php endfor; ?></div>
 <?php endforeach; ?>
 </div>
 </div>
-    <p id="legende"><span class="ok"></span> Rien à signaler <span class="perturbe" style="margin-left: 20px;"></span> Perturbation <span class="bloque" style="background: red; margin-left: 20px;"></span> Blocage / Interruption</p>
-    <p id="footer">
-        Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a> <small>(récupérées toutes le 2 minutes)</small><br /><br />
-        Projet publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>) initié par <a href="https://piaille.fr/@winy">winy</a></p>
+<p id="legende"><span class="ok"></span> Rien à signaler <span class="perturbe" style="margin-left: 20px;"></span> Perturbation <span class="bloque" style="background: red; margin-left: 20px;"></span> Blocage / Interruption</p>
+<p id="footer">
+Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a> <small>(récupérées toutes le 2 minutes)</small><br /><br />
+Projet publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>) initié par <a href="https://piaille.fr/@winy">winy</a>
+</p>
+<script>
+const disruptions=<?php echo json_encode($disruptions_message, JSON_UNESCAPED_UNICODE); ?>;
+</script>
 </body>
 </html>
