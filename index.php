@@ -222,8 +222,9 @@ $isToday = date_format((new DateTime($dateStart)), "Ymd") == date_format((new Da
 
 <meta charset="utf-8">
 <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, target-densitydpi=device-dpi">
-<link rel="stylesheet" href="/css/style.css">
 <title>Suivi du trafic des <?php echo $modesLibelle[$mode] ?> du <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?> - RATP Status</title>
+<meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
+<link rel="stylesheet" href="/css/style.css">
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         if(document.querySelector('.ligne .e')) {
