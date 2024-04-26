@@ -6,6 +6,4 @@ L'état du trafic est récupéré toutes les 2 minutes environ.
 
 Il utilise les données open data mise à disposition sur https://prim.iledefrance-mobilites.fr/
 
-Le code source est libre sous licence AGPL-3.0
-
-Le nom de domaine `ratpstatus.fr` n'est pas géré par la RATP.
+Le code source est libre sous licence AGPL-3.0.
