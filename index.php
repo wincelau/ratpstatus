@@ -244,6 +244,6 @@ $lignes = [
 <?php endforeach; ?>
 </div>
 </div>
-<p style="font-family: monospace; font-size: 13px; color: #aeaeae; text-align: center;">Publié sous licence libre AGPL-3.0. (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>) initié par <a href="https://piaille.fr/@winy">winy</a></p>
+<p id="footer">Projet publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>) initié par <a href="https://piaille.fr/@winy">winy</a></p>
 </body>
 </html>
