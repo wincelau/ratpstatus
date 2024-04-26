@@ -8,6 +8,6 @@ curl -H "apiKey: $APIKEY" https://prim.iledefrance-mobilites.fr/marketplace/disr
 php bin/optimize_disruption_file.php $filebrut > $fileoptimized
 git pull
 git add $fileoptimized
-git commit $fileoptimized -m "New disruption file"
+git commit $fileoptimized -m "Récupération du dernier fichier disruption.json"
 git push
 gzip datas/jsonbrut/*.json &

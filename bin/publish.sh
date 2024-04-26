@@ -14,5 +14,5 @@ ln -fs $currentdate/metros.html static/index.html
 git add static/index.html
 git add static/$currentdate
 
-git commit static/index.html static/$currentdate datas/json -m "Mise à jour des données"
+git commit static/index.html static/$currentdate -m "Publication des pages html statique pour $currentdate"
 git push
