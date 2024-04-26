@@ -143,7 +143,7 @@ function get_infos($nbMinutes, $disruptions, $ligne) {
           continue;
       }
       foreach($disruption->applicationPeriods as $period) {
-          if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "PERTURBATION") {
+          if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && ($disruption->cause == "PERTURBATION" || $disruption->cause == "TRAVAUX")) {
 
             $message .= $disruption->title." (".$disruption->id." - ".$disruption->severity.")\n";
           }
@@ -157,57 +157,57 @@ function get_infos($nbMinutes, $disruptions, $ligne) {
     return "OK";
 }
 
-$baseUrlLogo = "https://www.ratp.fr/sites/default/files/lines-assets/picto";
+$baseUrlLogo = "/images/lignes/";
 $modesLibelle = ["metros" => "Ⓜ️ Métros", "trains" => "🚆 RER/Trains", "tramways" => "🚈 Tramways"];
 $lignes = [
     "metros" => [
-        "Métro 1" => $baseUrlLogo."/metro/picto_metro_ligne-1.svg",
-        "Métro 2" => $baseUrlLogo."/metro/picto_metro_ligne-2.svg",
-        "Métro 3" => $baseUrlLogo."/metro/picto_metro_ligne-3.svg",
-        "Métro 3B" => $baseUrlLogo."/metro/picto_metro_ligne-3b.svg",
-        "Métro 4" => $baseUrlLogo."/metro/picto_metro_ligne-4.svg",
-        "Métro 5" => $baseUrlLogo."/metro/picto_metro_ligne-5.svg",
-        "Métro 6" => $baseUrlLogo."/metro/picto_metro_ligne-6.svg",
-        "Métro 7" => $baseUrlLogo."/metro/picto_metro_ligne-7.svg",
-        "Métro 7B" => $baseUrlLogo."/metro/picto_metro_ligne-7b.svg",
-        "Métro 8" => $baseUrlLogo."/metro/picto_metro_ligne-8.svg",
-        "Métro 9" => $baseUrlLogo."/metro/picto_metro_ligne-9.svg",
-        "Métro 10" => $baseUrlLogo."/metro/picto_metro_ligne-10.svg",
-        "Métro 11" => $baseUrlLogo."/metro/picto_metro_ligne-11.svg",
-        "Métro 12" => $baseUrlLogo."/metro/picto_metro_ligne-12.svg",
-        "Métro 13" => $baseUrlLogo."/metro/picto_metro_ligne-13.svg",
-        "Métro 14" => $baseUrlLogo."/metro/picto_metro_ligne-14.svg",
+        "Métro 1" => $baseUrlLogo."/1.svg",
+        "Métro 2" => $baseUrlLogo."/2.svg",
+        "Métro 3" => $baseUrlLogo."/3.svg",
+        "Métro 3B" => $baseUrlLogo."/3b.svg",
+        "Métro 4" => $baseUrlLogo."/4.svg",
+        "Métro 5" => $baseUrlLogo."/5.svg",
+        "Métro 6" => $baseUrlLogo."/6.svg",
+        "Métro 7" => $baseUrlLogo."/7.svg",
+        "Métro 7B" => $baseUrlLogo."/7b.svg",
+        "Métro 8" => $baseUrlLogo."/8.svg",
+        "Métro 9" => $baseUrlLogo."/9.svg",
+        "Métro 10" => $baseUrlLogo."/10.svg",
+        "Métro 11" => $baseUrlLogo."/11.svg",
+        "Métro 12" => $baseUrlLogo."/12.svg",
+        "Métro 13" => $baseUrlLogo."/13.svg",
+        "Métro 14" => $baseUrlLogo."/14.svg",
     ],
     "trains" => [
-        "Ligne A" => $baseUrlLogo."/rer/picto_rer_ligne-a.svg",
-        "Ligne B" => $baseUrlLogo."/rer/picto_rer_ligne-b.svg",
-        "Ligne C" => $baseUrlLogo."/rer/picto_rer_ligne-c.svg",
-        "Ligne D" => $baseUrlLogo."/rer/picto_rer_ligne-d.svg",
-        "Ligne E" => $baseUrlLogo."/rer/picto_rer_ligne-e.svg",
-        "Ligne H" => $baseUrlLogo."/sncf/picto_sncf_ligne-h.svg",
-        "Ligne J" => $baseUrlLogo."/sncf/picto_sncf_ligne-j.svg",
-        "Ligne K" => $baseUrlLogo."/sncf/picto_sncf_ligne-k.svg",
-        "Ligne L" => $baseUrlLogo."/sncf/picto_sncf_ligne-l.svg",
-        "Ligne N" => $baseUrlLogo."/sncf/picto_sncf_ligne-n.svg",
-        "Ligne P" => $baseUrlLogo."/sncf/picto_sncf_ligne-p.svg",
-        "Ligne R" => $baseUrlLogo."/sncf/picto_sncf_ligne-r.svg",
-        "Ligne U" => $baseUrlLogo."/sncf/picto_sncf_ligne-u.svg",
+        "Ligne A" => $baseUrlLogo."/a.svg",
+        "Ligne B" => $baseUrlLogo."/b.svg",
+        "Ligne C" => $baseUrlLogo."/c.svg",
+        "Ligne D" => $baseUrlLogo."/d.svg",
+        "Ligne E" => $baseUrlLogo."/e.svg",
+        "Ligne H" => $baseUrlLogo."/h.svg",
+        "Ligne J" => $baseUrlLogo."/j.svg",
+        "Ligne K" => $baseUrlLogo."/k.svg",
+        "Ligne L" => $baseUrlLogo."/l.svg",
+        "Ligne N" => $baseUrlLogo."/n.svg",
+        "Ligne P" => $baseUrlLogo."/p.svg",
+        "Ligne R" => $baseUrlLogo."/r.svg",
+        "Ligne U" => $baseUrlLogo."/u.svg",
     ],
     "tramways" => [
-        "Tramway T1" => $baseUrlLogo."/tram/picto_tram_ligne-t1.svg",
-        "Tramway T2" => $baseUrlLogo."/tram/picto_tram_ligne-t2.svg",
-        "Tramway T3a" => $baseUrlLogo."/tram/picto_tram_ligne-t3a.svg",
-        "Tramway T3b" => $baseUrlLogo."/tram/picto_tram_ligne-t3b.svg",
-        "Tramway T4" => $baseUrlLogo."/tram/picto_tram_ligne-t4.svg",
-        "Tramway T5" => $baseUrlLogo."/tram/picto_tram_ligne-t5.svg",
-        "Tramway T6" => $baseUrlLogo."/tram/picto_tram_ligne-t6.svg",
-        "Tramway T7" => $baseUrlLogo."/tram/picto_tram_ligne-t7.svg",
-        "Tramway T8" => $baseUrlLogo."/tram/picto_tram_ligne-t8.svg",
-        "Tramway T9" => $baseUrlLogo."/tram/picto_tram_ligne-t9.svg",
-        "Tramway T10" => $baseUrlLogo."/tram/picto_tram_ligne-t10.svg",
-        "Tramway T11" => $baseUrlLogo."/tram/picto_tram_ligne-t11.svg",
-        "Tramway T12" => $baseUrlLogo."/tram/picto_tram_ligne-t12.svg",
-        "Tramway T13" => $baseUrlLogo."/tram/picto_tram_ligne-t13.svg",
+        "Tramway T1" => $baseUrlLogo."/t1.svg",
+        "Tramway T2" => $baseUrlLogo."/t2.svg",
+        "Tramway T3a" => $baseUrlLogo."/t3a.svg",
+        "Tramway T3b" => $baseUrlLogo."/t3b.svg",
+        "Tramway T4" => $baseUrlLogo."/t4.svg",
+        "Tramway T5" => $baseUrlLogo."/t5.svg",
+        "Tramway T6" => $baseUrlLogo."/t6.svg",
+        "Tramway T7" => $baseUrlLogo."/t7.svg",
+        "Tramway T8" => $baseUrlLogo."/t8.svg",
+        "Tramway T9" => $baseUrlLogo."/t9.svg",
+        "Tramway T10" => $baseUrlLogo."/t10.svg",
+        "Tramway T11" => $baseUrlLogo."/t11.svg",
+        "Tramway T12" => $baseUrlLogo."/t12.svg",
+        "Tramway T13" => $baseUrlLogo."/t13.svg",
     ]
 ]
 ?>
@@ -244,5 +244,6 @@ $lignes = [
 <?php endforeach; ?>
 </div>
 </div>
+<p>Publié sous licence AGPL V3 : https://github.com/wincelau/ratpstatus développé par winy</p>
 </body>
 </html>
