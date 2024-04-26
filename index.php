@@ -235,7 +235,7 @@ $isToday = date_format((new DateTime($dateStart)), "Ymd") == date_format((new Da
 <body>
 <div id="container">
 <div id="header">
-<a id="lien_infos" href="https://github.com/wincelau/ratpstatus">i</a>
+<a id="lien_infos" href="https://github.com/wincelau/ratpstatus">?</a>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">↻</a>
 <h1><a style="<?php if((new DateTime($dateStart))->modify('-1 day') < new DateTime('2024-04-23')): ?>visibility: hidden;<?php endif; ?>" href="/<?php echo date_format((new DateTime($dateStart))->modify('-1 day'), "Ymd"); ?>/<?php echo $mode ?>.html"><</a> Suivi trafic du <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?> <a style="<?php if((new DateTime($dateStart))->modify('+1 day') > new DateTime()): ?>visibility: hidden;<?php endif; ?>" href="/<?php if(!$tomorowIsToday): ?><?php echo date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd"); ?>/<?php endif; ?><?php echo $mode ?>.html">></a></h1>
 <div id="nav_mode"><?php foreach($lignes as $m => $ligne): ?><a style="<?php if($mode == $m): ?>font-weight: bold;<?php endif; ?>" href="/<?php if(!$isToday): ?><?php echo (new DateTime($dateStart))->format('Ymd') ?>/<?php endif; ?><?php echo $m ?>.html"><?php echo $modesLibelle[$m] ?></a><?php endforeach; ?></div>
