@@ -212,7 +212,7 @@ $lignes = [
 ];
 
 $tomorowIsToday = date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd") == date_format((new DateTime()), "Ymd");
-$sToday = date_format((new DateTime($dateStart)), "Ymd") == date_format((new DateTime()), "Ymd");
+$isToday = date_format((new DateTime($dateStart)), "Ymd") == date_format((new DateTime()), "Ymd");
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
