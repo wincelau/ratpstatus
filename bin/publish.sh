@@ -1,6 +1,11 @@
 #!/bin/bash
 
 currentdate=$(date +%Y%m%d --date="-3 hours")
+
+if test $1; then
+    currentdate=$1
+fi
+
 git pull
 
 mkdir static/$currentdate 2> /dev/null
