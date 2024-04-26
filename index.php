@@ -265,16 +265,16 @@ $isToday = date_format((new DateTime($dateStart)), "Ymd") == date_format((new Da
 <?php endfor; ?></div>
 <?php endforeach; ?>
 </div>
-<<<<<<< HEAD
 </div>
     <p id="legende"><span class="ok"></span> Rien à signaler <span class="perturbe" style="margin-left: 20px;"></span> Perturbation <span class="bloque" style="background: red; margin-left: 20px;"></span> Blocage / Interruption</p>
-    <p id="footer">
-        Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a> <small>(récupérées toutes le 2 minutes)</small><br /><br />
-        Projet publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>) initié par <a href="https://piaille.fr/@winy">winy</a></p>
-=======
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="perturbe" style="margin-left: 20px;"></span> Perturbation <span class="bloque" style="background: red; margin-left: 20px;"></span> Blocage / Interruption</p>
 </main>
-<footer role="contentinfo"><p id="footer">Projet publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>) initié par <a href="https://piaille.fr/@winy">winy</a></p></footer>
->>>>>>> e69cd26 (fix(a11y): Ajout d'éléments structurants au gabarit (header, main, footer) avec role (=landmark zone))
+<footer role="contentinfo" id="footer">
+    <p>
+        Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a> <small>(récupérées toutes le 2 minutes)</small>
+    </p>
+    <p>
+        Projet publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>) initié par <a href="https://piaille.fr/@winy">winy</a></p>
+    </p>
+</footer>
 </body>
 </html>
