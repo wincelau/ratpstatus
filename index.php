@@ -237,7 +237,11 @@ $isToday = date_format((new DateTime($dateStart)), "Ymd") == date_format((new Da
 <div id="container">
 <header role="banner" id="header">
 <a id="lien_infos" href="https://github.com/wincelau/ratpstatus">
+<<<<<<< HEAD
     <span aria-hidden="true">?</span>
+=======
+    <span aria-hidden="true">i</span>
+>>>>>>> 5c3cbc9dd91370d220fa23ac89d381e30a1716f7
     <span class="visually-hidden">Informations sur le projet</span>
 </a>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">
@@ -266,7 +270,7 @@ $isToday = date_format((new DateTime($dateStart)), "Ymd") == date_format((new Da
 <?php endforeach; ?>
 </div>
 </div>
-    <p id="legende"><span class="ok"></span> Rien à signaler <span class="perturbe" style="margin-left: 20px;"></span> Perturbation <span class="bloque" style="background: red; margin-left: 20px;"></span> Blocage / Interruption</p>
+<p id="legende"><span class="ok"></span> Rien à signaler <span class="perturbe" style="margin-left: 20px;"></span> Perturbation <span class="bloque" style="background: red; margin-left: 20px;"></span> Blocage / Interruption</p>
 </main>
 <footer role="contentinfo" id="footer">
     <p>
