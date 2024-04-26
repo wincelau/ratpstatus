@@ -144,8 +144,10 @@ function get_infos($nbMinutes, $disruptions, $ligne) {
       }
       foreach($disruption->applicationPeriods as $period) {
           if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "PERTURBATION") {
-
-            $message .= $disruption->title." (".$disruption->id." - ".$disruption->severity.")\n";
+            if($message) {
+                $message .= "\n";
+            }
+            $message .= $disruption->title." - ".$disruption->id." - ".$disruption->severity."\n";
           }
       }
     }
