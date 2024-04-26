@@ -244,6 +244,6 @@ $lignes = [
 <?php endforeach; ?>
 </div>
 </div>
-<p>Publié sous licence AGPL V3 : https://github.com/wincelau/ratpstatus développé par winy</p>
+<p style="font-family: monospace; font-size: 13px; color: #aeaeae; text-align: center;">Publié sous licence libre AGPL-3.0. (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>) initié par <a href="https://piaille.fr/@winy">winy</a></p>
 </body>
 </html>
