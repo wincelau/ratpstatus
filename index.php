@@ -239,21 +239,44 @@ foreach($disruptions as $disruption) {
         }
         document.querySelector('#lignes').addEventListener('mouseover', function(e) {
             if(e.target.title) {
-                e.target.dataset.title = e.target.title;
-                for(const disruptionId of e.target.title.split("\n")) {
-                    if(disruptionId && disruptions[disruptionId]) {
-                        e.target.title = e.target.title.replace(disruptionId, disruptions[disruptionId]);
-                    }
-                }
+                replaceMessage(e.target);
             }
         })
         document.querySelector('#lignes').addEventListener('mouseout', function(e) {
             if(e.target.title) {
                 e.target.title = e.target.dataset.title
-                e.target.dataset.title = null
+                delete e.target.dataset.title
+            }
+        })
+        document.querySelector('#lignes').addEventListener('click', function(e) {
+            if(e.target.title) {
+                replaceMessage(e.target);
+
+                modal.innerText = e.target.title
+                modal.showModal()
+            }
+        })
+        const modal = document.getElementById('tooltipModal')
+        modal.addEventListener('click', function(event) {
+            modal.close();
+        });
+        modal.addEventListener('close', function(event) {
+            const item = document.querySelector('[data-title]')
+            if(item && item.title) {
+                item.title = item.dataset.title
+                delete item.dataset.title
             }
         })
     })
+
+    function replaceMessage(item) {
+        item.dataset.title = item.title;
+        for(const disruptionId of item.title.split("\n")) {
+            if(disruptionId && disruptions[disruptionId]) {
+                item.title = item.title.replace(disruptionId, disruptions[disruptionId]);
+            }
+        }
+    }
 </script>
 </head>
 <body>
@@ -281,5 +304,6 @@ Projet publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau
 <script>
 const disruptions=<?php echo json_encode($disruptions_message, JSON_UNESCAPED_UNICODE); ?>;
 </script>
+<dialog id="tooltipModal"></dialog>
 </body>
 </html>
