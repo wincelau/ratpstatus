@@ -25,6 +25,7 @@ foreach(scandir('datas/json') as $file) {
   if(!is_file('datas/json/'.$file)) {
       continue;
   }
+  $dateFile = preg_replace("/^([0-9]{8})/", '\1T', preg_replace("/_.*.json/", "", $file));
   $datas = json_decode(file_get_contents('datas/json/'.$file));
   foreach($datas->disruptions as $disruption) {
       if(preg_match('/modifications horaires/', $disruption->title)) {
@@ -38,8 +39,6 @@ foreach(scandir('datas/json') as $file) {
       if(preg_match('/train court/', $disruption->title)) {
           $disruption->cause = 'INFORMATION';
       }
-
-      //$disruption->id = preg_replace('/^[a-z0-9]+-/', '', $disruption->id);
       if(isset($disruptions[$disruption->id])) {
           $disruptions[$disruption->id] = $disruption;
           $currentDisruptions[$disruption->id] = $disruption;
@@ -77,7 +76,6 @@ foreach(scandir('datas/json') as $file) {
       $currentDisruptions[$disruption->id] = $disruption;
   }
   foreach($previousDisruptions as $previousDisruption) {
-      $dateFile = preg_replace("/^([0-9]{8})/", '\1T', str_replace("_disruptions.json", "", $file));
       if(!isset($currentDisruptions[$previousDisruption->id]) && $disruptions[$previousDisruption->id]->applicationPeriods[0]->end > $dateFile) {
           $disruptions[$previousDisruption->id]->applicationPeriods[0]->end = $dateFile;
       }
