@@ -20,6 +20,9 @@ ln -fs $todaydate/tramways.html static/tramways.html
 ln -fs $todaydate/trains.html static/trains.html
 ln -fs metros.html static/index.html
 
+git add static/metros.html
+git add static/tramways.html
+git add static/trains.html
 git add static/index.html
 git add static/$currentdate
 
