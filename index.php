@@ -96,6 +96,7 @@ function get_color_class($nbMinutes, $disruptions, $ligne) {
         return 'e';
     }
     $dateCurrent = $dateStartObject->format('Ymd\THis');
+    $hasTravaux = false;
     foreach($disruptions as $disruption) {
         if(!preg_match('/'.$ligne.'[^0-9A-Z]+/', $disruption->title)) {
             continue;
@@ -103,8 +104,10 @@ function get_color_class($nbMinutes, $disruptions, $ligne) {
         if($disruption->severity == 'INFORMATION') {
             continue;
         }
-
         foreach($disruption->applicationPeriods as $period) {
+            if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "TRAVAUX" && $disruption->severity == "BLOQUANTE") {
+                $hasTravaux = true;
+            }
             if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "PERTURBATION" && $severity != "BLOQUANTE") {
                 $severity = $disruption->severity;
             }
@@ -115,6 +118,8 @@ function get_color_class($nbMinutes, $disruptions, $ligne) {
         return 'bloque';
     } elseif($severity) {
         return 'perturbe';
+    } elseif($hasTravaux) {
+        return 'travaux';
     }
 
     return "ok";
@@ -141,7 +146,7 @@ function get_infos($nbMinutes, $disruptions, $ligne) {
           continue;
       }
       foreach($disruption->applicationPeriods as $period) {
-          if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "PERTURBATION") {
+          if($dateCurrent >= $period->begin && $dateCurrent <= $period->end) {
             if(!$message) {
                 $message .= "\n";
             }
@@ -294,7 +299,7 @@ foreach($disruptions as $disruption) {
 <?php endforeach; ?>
 </div>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="perturbe" style="margin-left: 20px;"></span> Perturbation <span class="bloque" style="background: red; margin-left: 20px;"></span> Blocage / Interruption</p>
+<p id="legende"><span class="ok"></span> Rien à signaler <span class="perturbe" style="margin-left: 20px;"></span> Perturbation <span class="bloque" style="margin-left: 20px;"></span> Blocage / Interruption <span class="travaux" style="margin-left: 20px;"></span> Travaux</p>
 <p id="footer">
 Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a> <small>(récupérées toutes le 2 minutes)</small><br /><br />
 Projet publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>) initié par <a href="https://piaille.fr/@winy">winy</a>
