@@ -279,7 +279,7 @@ foreach($disruptions as $disruption) {
 </head>
 <body>
 <div id="container">
-<div id="header">
+<header role="banner" id="header">
 <a id="lien_infos" href="https://github.com/wincelau/ratpstatus">
     <span aria-hidden="true">?</span>
     <span class="visually-hidden">Informations sur le projet</span>
@@ -302,7 +302,8 @@ foreach($disruptions as $disruption) {
 </h1>
 <div id="nav_mode"><?php foreach($lignes as $m => $ligne): ?><a style="<?php if($mode == $m): ?>font-weight: bold;<?php endif; ?>" href="/<?php if(!$isToday): ?><?php echo (new DateTime($dateStart))->format('Ymd') ?>/<?php endif; ?><?php echo $m ?>.html"><?php echo $modesLibelle[$m] ?></a><?php endforeach; ?></div>
 <div class="hline"><?php for($i = 0; $i <= 1260; $i = $i + 60): ?><div class="ih"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h</small><?php endif; ?></div><?php endfor; ?></div>
-</div>
+</header>
+<main role="main" id="lignes">
 <div id="lignes">
 <?php foreach($lignes[$mode] as $ligne => $logo): ?>
 <div class="ligne"><div class="logo"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /></div>
@@ -312,10 +313,13 @@ foreach($disruptions as $disruption) {
 </div>
 </div>
 <p id="legende"><span class="ok"></span> Rien à signaler <span class="perturbe" style="margin-left: 20px;"></span> Perturbation <span class="bloque" style="background: red; margin-left: 20px;"></span> Blocage / Interruption</p>
-<p id="footer">
+</main>
+<footer role="contentinfo" id="footer">
+<p>
 Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a> <small>(récupérées toutes le 2 minutes)</small><br /><br />
 Projet publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>) initié par <a href="https://piaille.fr/@winy">winy</a>
 </p>
+</footer>
 <script>
 const disruptions=<?php echo json_encode($disruptions_message, JSON_UNESCAPED_UNICODE); ?>;
 </script>
