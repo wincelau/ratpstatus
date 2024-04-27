@@ -26,5 +26,5 @@ git add static/trains.html
 git add static/index.html
 git add static/$currentdate
 
-git commit static/index.html static/$currentdate -m "Publication des pages html statique pour $currentdate"
+git commit static/metros.html static/tramways.html static/trains.html static/index.html static/$currentdate -m "Publication des pages html statique pour $currentdate"
 git push
