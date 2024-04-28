@@ -26,6 +26,12 @@ foreach(scandir('datas/json') as $file) {
       continue;
   }
   $dateFile = preg_replace("/^([0-9]{8})/", '\1T', preg_replace("/_.*.json/", "", $file));
+  if($dateFile < $dateStart) {
+      continue;
+  }
+  if($dateFile > $dateEnd) {
+      continue;
+  }
   $datas = json_decode(file_get_contents('datas/json/'.$file));
   foreach($datas->disruptions as $disruption) {
       if(preg_match('/(modifications horaires|horaires modifiés)/', $disruption->title)) {
@@ -47,17 +53,6 @@ foreach(scandir('datas/json') as $file) {
       if(isset($disruptions[$disruption->id])) {
           $disruptions[$disruption->id] = $disruption;
           $currentDisruptions[$disruption->id] = $disruption;
-          continue;
-      }
-      $isInPeriod = false;
-      foreach($disruption->applicationPeriods as $period) {
-          if($dateStart >= $period->begin || $dateEnd >= $period->begin) {
-              $isInPeriod = true;
-              break;
-          }
-      }
-
-      if(!$isInPeriod) {
           continue;
       }
 
