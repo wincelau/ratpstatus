@@ -155,7 +155,7 @@ function get_infos($nbMinutes, $disruptions, $ligne) {
             if(!$message) {
                 $message .= "\n";
             }
-            $message .= "\n".$disruption->id."\n";
+            $message .= "\n%".$disruption->id."%\n";
           }
       }
     }
@@ -224,8 +224,18 @@ $lignes = [
 $tomorowIsToday = date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd") == date_format((new DateTime()), "Ymd");
 $isToday = date_format((new DateTime($dateStart)), "Ymd") == date_format((new DateTime()), "Ymd");
 $disruptions_message = [];
+$disruptions_doublons = [];
 foreach($disruptions as $disruption) {
+    $key = $disruption->title.$disruption->cause.preg_replace("/[\-_,]*/", "", $disruption->message).$disruption->severity.$disruption->applicationPeriods[0]->begin;
+    if(isset($disruptions_doublons[$key]) && $disruption->lastUpdate < $disruptions_doublons[$key]->lastUpdate) {
+        continue;
+    }
+    if(isset($disruptions_doublons[$key]) && $disruption->lastUpdate > $disruptions_doublons[$key]->lastUpdate) {
+        $disruptions_message[$disruptions_doublons[$key]->id] = "\n";
+    }
+
     $disruptions_message[$disruption->id] = "# ".$disruption->title."\n\n".str_replace('"', '', html_entity_decode(strip_tags($disruption->message)));
+    $disruptions_doublons[$key] = $disruption;
 }
 
 ?>
@@ -279,11 +289,15 @@ foreach($disruptions as $disruption) {
 
     function replaceMessage(item) {
         item.dataset.title = item.title;
-        for(const disruptionId of item.title.split("\n")) {
-            if(disruptionId && disruptions[disruptionId]) {
-                item.title = item.title.replace(disruptionId, disruptions[disruptionId]);
+        for(let disruptionId of item.title.split("\n")) {
+            if(disruptionId.match(/^%/)) {
+                disruptionId=disruptionId.replace(/%/g, '')
+                if(disruptionId && disruptions[disruptionId]) {
+                    item.title = item.title.replace('%'+disruptionId+'%', disruptions[disruptionId])
+                }
             }
         }
+        item.title = item.title.replace(/\n\n\n/g, '')
     }
 </script>
 </head>
