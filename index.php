@@ -28,16 +28,16 @@ foreach(scandir('datas/json') as $file) {
   $dateFile = preg_replace("/^([0-9]{8})/", '\1T', preg_replace("/_.*.json/", "", $file));
   $datas = json_decode(file_get_contents('datas/json/'.$file));
   foreach($datas->disruptions as $disruption) {
-      if(preg_match('/modifications horaires/', $disruption->title)) {
-          $disruption->cause = 'INFORMATION';
+      if(preg_match('/(modifications horaires|horaires modifiés)/', $disruption->title)) {
+          $disruption->severity = 'INFORMATION';
       }
 
       if(preg_match('/Modification de desserte/', $disruption->title)) {
-          $disruption->cause = 'INFORMATION';
+          $disruption->severity = 'INFORMATION';
       }
 
       if(preg_match('/train court/', $disruption->title)) {
-          $disruption->cause = 'INFORMATION';
+          $disruption->severity = 'INFORMATION';
       }
       if(isset($disruptions[$disruption->id])) {
           $disruptions[$disruption->id] = $disruption;
