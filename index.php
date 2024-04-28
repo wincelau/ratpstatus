@@ -98,7 +98,7 @@ function get_color_class($nbMinutes, $disruptions, $ligne) {
     $dateCurrent = $dateStartObject->format('Ymd\THis');
     $hasTravaux = false;
     foreach($disruptions as $disruption) {
-        if(!preg_match('/'.$ligne.'[^0-9A-Z]+/', $disruption->title)) {
+        if(!preg_match('/(^| )'.$ligne.'[^0-9A-Z]+/', $disruption->title)) {
             continue;
         }
         if($disruption->severity == 'INFORMATION') {
@@ -199,20 +199,20 @@ $lignes = [
         "Ligne U" => $baseUrlLogo."/u.svg",
     ],
     "tramways" => [
-        "Tramway T1" => $baseUrlLogo."/t1.svg",
-        "Tramway T2" => $baseUrlLogo."/t2.svg",
-        "Tramway T3a" => $baseUrlLogo."/t3a.svg",
-        "Tramway T3b" => $baseUrlLogo."/t3b.svg",
-        "Tramway T4" => $baseUrlLogo."/t4.svg",
-        "Tramway T5" => $baseUrlLogo."/t5.svg",
-        "Tramway T6" => $baseUrlLogo."/t6.svg",
-        "Tramway T7" => $baseUrlLogo."/t7.svg",
-        "Tramway T8" => $baseUrlLogo."/t8.svg",
-        "Tramway T9" => $baseUrlLogo."/t9.svg",
-        "Tramway T10" => $baseUrlLogo."/t10.svg",
-        "Tramway T11" => $baseUrlLogo."/t11.svg",
-        "Tramway T12" => $baseUrlLogo."/t12.svg",
-        "Tramway T13" => $baseUrlLogo."/t13.svg",
+        "T1" => $baseUrlLogo."/t1.svg",
+        "T2" => $baseUrlLogo."/t2.svg",
+        "T3A" => $baseUrlLogo."/t3a.svg",
+        "T3B" => $baseUrlLogo."/t3b.svg",
+        "T4" => $baseUrlLogo."/t4.svg",
+        "T5" => $baseUrlLogo."/t5.svg",
+        "T6" => $baseUrlLogo."/t6.svg",
+        "T7" => $baseUrlLogo."/t7.svg",
+        "T8" => $baseUrlLogo."/t8.svg",
+        "T9" => $baseUrlLogo."/t9.svg",
+        "T10" => $baseUrlLogo."/t10.svg",
+        "T11" => $baseUrlLogo."/t11.svg",
+        "T12" => $baseUrlLogo."/t12.svg",
+        "T13" => $baseUrlLogo."/t13.svg",
     ]
 ];
 
