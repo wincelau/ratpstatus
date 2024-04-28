@@ -39,6 +39,11 @@ foreach(scandir('datas/json') as $file) {
       if(preg_match('/train court/', $disruption->title)) {
           $disruption->severity = 'INFORMATION';
       }
+
+      if($disruption->cause == "TRAVAUX" && $disruption->severity == "PERTURBEE" && preg_match('/Ligne D/', $disruption->title)) {
+           $disruption->severity = 'INFORMATION';
+      }
+
       if(isset($disruptions[$disruption->id])) {
           $disruptions[$disruption->id] = $disruption;
           $currentDisruptions[$disruption->id] = $disruption;
