@@ -110,8 +110,8 @@ function get_color_class($nbMinutes, $disruptions, $ligne) {
             continue;
         }
         foreach($disruption->applicationPeriods as $period) {
-            if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "TRAVAUX" && $disruption->severity == "BLOQUANTE") {
-                $hasTravaux = true;
+            if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "TRAVAUX") {
+                $hasTravaux = $disruption->severity;
             }
             if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "PERTURBATION" && $severity != "BLOQUANTE") {
                 $severity = $disruption->severity;
