@@ -1,0 +1,42 @@
+<?php
+
+class File
+{
+    protected $data = null;
+    protected $filename = null;
+    protected $distruptions = [];
+
+    public function __construct($filename) {
+        $this->filename = $filename;
+        $this->data = json_decode(file_get_contents(__DIR__.'/../datas/json/'.$filename));
+        foreach($this->data->disruptions as $dataDistruption) {
+            foreach($this->data->lines as $line) {
+                foreach($line->impactedObjects as $object) {
+                    if($object->type != "line") {
+                      continue;
+                    }
+                    if(in_array($dataDistruption->id, $object->disruptionIds)) {
+                        $dataDistruption->lines[] = $line->mode." ".$line->name;
+                    }
+                }
+            }
+            $disruption = new Disruption($dataDistruption);
+            if($disruption->isToExclude()) {
+                continue;
+            }
+            $this->distruptions[$dataDistruption->id] = $disruption;
+        }
+    }
+
+    public function getDate() {
+
+        return new DateTime(preg_replace("/^([0-9]{8})/", '\1T', preg_replace("/_.*.json/", "", $this->filename)));
+    }
+
+    public function getDistruptions() {
+
+        return $this->distruptions;
+    }
+
+
+}
