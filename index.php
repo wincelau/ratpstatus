@@ -318,6 +318,7 @@ foreach($disruptions as $disruption) {
 Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a> <small>(récupérées toutes le 2 minutes)</small><br /><br />
 Projet publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>) initié par <a href="https://piaille.fr/@winy">winy</a>
 </p>
+<p>Ce site n'est pas un site officiel de la <a href="https://ratp.fr/">RATP</a></p>
 <script>
 const disruptions=<?php echo json_encode($disruptions_message, JSON_UNESCAPED_UNICODE); ?>;
 </script>
