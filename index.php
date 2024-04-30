@@ -253,7 +253,7 @@ function url($url) {
 
 <meta charset="utf-8">
 <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, target-densitydpi=device-dpi">
-<title>Suivi du trafic des <?php echo $modesLibelle[$mode] ?> du <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?> - RATP Status</title>
+<title><?php echo strip_tags($modesLibelle[$mode]) ?> le <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?> - Suivi de l'état du trafic - RATP Status</title>
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="stylesheet" href="/css/style.css?202404300341">
 <script>
