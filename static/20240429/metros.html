@@ -1,68 +1,12 @@
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
 <head>
-
 <meta charset="utf-8">
 <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, target-densitydpi=device-dpi">
 <title>Ⓜ️ Métros le 29/04/2024 - Suivi de l'état du trafic - RATP Status</title>
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="stylesheet" href="/css/style.css?202404300341">
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        if(document.querySelector('.ligne .e')) {
-            window.scrollTo({ left: document.querySelector('.ligne .e').offsetLeft - window.innerWidth + 66 });
-        }
-        document.querySelector('#lignes').addEventListener('mouseover', function(e) {
-            if(e.target.title) {
-                replaceMessage(e.target);
-            }
-        })
-        document.querySelector('#lignes').addEventListener('mouseout', function(e) {
-            if(e.target.title) {
-                e.target.title = e.target.dataset.title
-                delete e.target.dataset.title
-            }
-        })
-        document.querySelector('#lignes').addEventListener('click', function(e) {
-            if(e.target.title) {
-                replaceMessage(e.target);
-
-                modal.innerText = e.target.title
-                modal.showModal()
-            }
-        })
-        const modal = document.getElementById('tooltipModal')
-        modal.addEventListener('click', function(event) {
-            modal.close();
-        });
-        const modalHelp = document.getElementById('helpModal')
-        modalHelp.addEventListener('click', function(event) {
-            modalHelp.close();
-        });
-        modal.addEventListener('close', function(event) {
-            const item = document.querySelector('[data-title]')
-            if(item && item.title) {
-                item.title = item.dataset.title
-                delete item.dataset.title
-            }
-        })
-    })
-
-    function replaceMessage(item) {
-        item.dataset.title = item.title;
-        for(let disruptionId of item.title.split("\n")) {
-            if(disruptionId.match(/^%/)) {
-                disruptionId=disruptionId.replace(/%/g, '')
-                if(disruptionId && disruptions[disruptionId]) {
-                    item.title = item.title.replace('%'+disruptionId+'%', disruptions[disruptionId])
-                }
-            }
-        }
-        item.title = item.title.replace(/\n\n\n/g, '')
-    }
-</script>
+<script src="/js/main.js"></script>
 </head>
 <body>
 <div id="container">
@@ -32004,23 +31948,15 @@ const disruptions={"c3a79df0-0448-11ef-a614-0a58a9feac02":"# Métro 14 : Travaux
 <dialog id="helpModal">
     <h3>Aide et informations</h3>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France</p>
-
     <p>L'état du trafic est récupéré toutes les 2 minutes à partir du 23 avril 2024.</p>
-
     <p>Chaque bloc répresente une durée de 2 minutes, les couleurs ont la signification suivante :<br /><br />
         <span class="ok"></span> Rien à signaler<br />
         <span class="perturbe"></span> Perturbation<br />
         <span class="bloque"></span> Blocage / Interruption<br />
         <span class="travaux"></span> Travaux
     </p>
-
-    <p>
-        Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>.
-    </p>
-
-    <p>
-        Le projet initié par <a href="https://piaille.fr/@winy">winy</a> est publié sous licence libre AGPL-3.0 : <a href="https://github.com/wincelau/ratpstatus">https://github.com/wincelau/ratpstatus</a>
-    </p>
+    <p>Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>.</p>
+    <p>Le projet initié par <a href="https://piaille.fr/@winy">winy</a> est publié sous licence libre AGPL-3.0 : <a href="https://github.com/wincelau/ratpstatus">https://github.com/wincelau/ratpstatus</a></p>
 </dialog>
 </body>
 </html>
