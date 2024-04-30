@@ -276,7 +276,7 @@ function url($url) {
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
     <?php endif; ?>
-    <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?>
+    <span class="<?php if($isToday):?>strong<?php endif;?>"><?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?></span>
     <?php if((new DateTime($dateStart))->modify('+1 day') > (new DateTime())->modify('+2 hour')): ?>
     <a class="disabled">➡️</a>
     <?php else: ?>
