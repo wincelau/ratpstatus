@@ -233,6 +233,17 @@ foreach($disruptions as $disruption) {
     $disruptions_doublons[$key] = $disruption;
 }
 
+function url($url) {
+    if(!is_null($_SERVER['argv'])) {
+
+        return $url;
+    }
+
+    preg_match('|/?([^/]*)/([^/]*).html|', $url, $matches);
+
+    return "?".http_build_query(['date' => $matches[1], 'mode' => $matches[2]]);
+}
+
 ?>
 
 
@@ -309,17 +320,17 @@ foreach($disruptions as $disruption) {
 </a>
 <h1>Suivi de l'état du trafic</h1>
 <h2>
-    <a style="<?php if((new DateTime($dateStart))->modify('-1 day') < new DateTime('2024-04-23')): ?>visibility: hidden;<?php endif; ?>" href="/<?php echo date_format((new DateTime($dateStart))->modify('-1 day'), "Ymd"); ?>/<?php echo $mode ?>.html">
+    <a style="<?php if((new DateTime($dateStart))->modify('-1 day') < new DateTime('2024-04-23')): ?>visibility: hidden;<?php endif; ?>" href="<?php echo url("/".date_format((new DateTime($dateStart))->modify('-1 day'), "Ymd")."/".$mode.".html") ?>">
         <span aria-hidden="true">⬅️</span>
         <span class="visually-hidden">Jour précédent</span>
     </a>
     <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?>
-    <a style="<?php if((new DateTime($dateStart))->modify('+1 day') > (new DateTime())->modify('+2 hour')): ?>visibility: hidden;<?php endif; ?>" href="/<?php if(!$tomorowIsToday): ?><?php echo date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd"); ?>/<?php endif; ?><?php echo $mode ?>.html">
+    <a style="<?php if((new DateTime($dateStart))->modify('+1 day') > (new DateTime())->modify('+2 hour')): ?>visibility: hidden;<?php endif; ?>" href="<?php echo url("/".((!$tomorowIsToday) ? date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd")."/" : null).$mode.".html") ?>">
         <span aria-hidden="true">➡️</span>
         <span class="visually-hidden">Jour suivant</span>
     </a>
 </h2>
-<div id="nav_mode"><?php foreach($lignes as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="/<?php if(!$isToday): ?><?php echo (new DateTime($dateStart))->format('Ymd') ?>/<?php endif; ?><?php echo $m ?>.html"><?php echo $modesLibelle[$m] ?></a><?php endforeach; ?></div>
+<nav id="nav_mode"><?php foreach($lignes as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="<?php echo url("/".((!$isToday) ? (new DateTime($dateStart))->format('Ymd')."/" : null).$m.".html") ?>"><?php echo $modesLibelle[$m] ?></a><?php endforeach; ?></nav>
 <div class="hline"><?php for($i = 0; $i <= 1260; $i = $i + 60): ?><div class="ih"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h</small><?php endif; ?></div><?php endfor; ?></div>
 </header>
 <main role="main">
