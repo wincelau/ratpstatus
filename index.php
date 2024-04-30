@@ -26,33 +26,33 @@ foreach(scandir('datas/json') as $file) {
       continue;
   }
   $dateFile = preg_replace("/^([0-9]{8})/", '\1T', preg_replace("/_.*.json/", "", $file));
+  if($dateFile < $dateStart) {
+      continue;
+  }
+  if($dateFile > $dateEnd) {
+      continue;
+  }
   $datas = json_decode(file_get_contents('datas/json/'.$file));
   foreach($datas->disruptions as $disruption) {
-      if(preg_match('/modifications horaires/', $disruption->title)) {
-          $disruption->cause = 'INFORMATION';
+      if(preg_match('/(modifications horaires|horaires modifiés)/', $disruption->title)) {
+          $disruption->severity = 'INFORMATION';
       }
 
       if(preg_match('/Modification de desserte/', $disruption->title)) {
-          $disruption->cause = 'INFORMATION';
+          $disruption->severity = 'INFORMATION';
       }
 
       if(preg_match('/train court/', $disruption->title)) {
-          $disruption->cause = 'INFORMATION';
+          $disruption->severity = 'INFORMATION';
       }
+
+      if($disruption->cause == "TRAVAUX" && $disruption->severity == "PERTURBEE" && preg_match('/Ligne D/', $disruption->title)) {
+           $disruption->severity = 'INFORMATION';
+      }
+
       if(isset($disruptions[$disruption->id])) {
           $disruptions[$disruption->id] = $disruption;
           $currentDisruptions[$disruption->id] = $disruption;
-          continue;
-      }
-      $isInPeriod = false;
-      foreach($disruption->applicationPeriods as $period) {
-          if($dateStart >= $period->begin || $dateEnd >= $period->begin) {
-              $isInPeriod = true;
-              break;
-          }
-      }
-
-      if(!$isInPeriod) {
           continue;
       }
 
@@ -96,15 +96,18 @@ function get_color_class($nbMinutes, $disruptions, $ligne) {
         return 'e';
     }
     $dateCurrent = $dateStartObject->format('Ymd\THis');
+    $hasTravaux = false;
     foreach($disruptions as $disruption) {
-        if(!preg_match('/'.$ligne.'[^0-9A-Z]+/', $disruption->title)) {
+        if(!preg_match('/(^| )'.$ligne.'[^0-9A-Z]+/', $disruption->title)) {
             continue;
         }
         if($disruption->severity == 'INFORMATION') {
             continue;
         }
-
         foreach($disruption->applicationPeriods as $period) {
+            if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "TRAVAUX") {
+                $hasTravaux = $disruption->severity;
+            }
             if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "PERTURBATION" && $severity != "BLOQUANTE") {
                 $severity = $disruption->severity;
             }
@@ -115,6 +118,8 @@ function get_color_class($nbMinutes, $disruptions, $ligne) {
         return 'bloque';
     } elseif($severity) {
         return 'perturbe';
+    } elseif($hasTravaux) {
+        return 'travaux';
     }
 
     return "ok";
@@ -141,11 +146,11 @@ function get_infos($nbMinutes, $disruptions, $ligne) {
           continue;
       }
       foreach($disruption->applicationPeriods as $period) {
-          if($dateCurrent >= $period->begin && $dateCurrent <= $period->end && $disruption->cause == "PERTURBATION") {
+          if($dateCurrent >= $period->begin && $dateCurrent <= $period->end) {
             if(!$message) {
                 $message .= "\n";
             }
-            $message .= "\n".$disruption->id."\n";
+            $message .= "\n%".$disruption->id."%\n";
           }
       }
     }
@@ -194,28 +199,38 @@ $lignes = [
         "Ligne U" => $baseUrlLogo."/u.svg",
     ],
     "tramways" => [
-        "Tramway T1" => $baseUrlLogo."/t1.svg",
-        "Tramway T2" => $baseUrlLogo."/t2.svg",
-        "Tramway T3a" => $baseUrlLogo."/t3a.svg",
-        "Tramway T3b" => $baseUrlLogo."/t3b.svg",
-        "Tramway T4" => $baseUrlLogo."/t4.svg",
-        "Tramway T5" => $baseUrlLogo."/t5.svg",
-        "Tramway T6" => $baseUrlLogo."/t6.svg",
-        "Tramway T7" => $baseUrlLogo."/t7.svg",
-        "Tramway T8" => $baseUrlLogo."/t8.svg",
-        "Tramway T9" => $baseUrlLogo."/t9.svg",
-        "Tramway T10" => $baseUrlLogo."/t10.svg",
-        "Tramway T11" => $baseUrlLogo."/t11.svg",
-        "Tramway T12" => $baseUrlLogo."/t12.svg",
-        "Tramway T13" => $baseUrlLogo."/t13.svg",
+        "T1" => $baseUrlLogo."/t1.svg",
+        "T2" => $baseUrlLogo."/t2.svg",
+        "T3A" => $baseUrlLogo."/t3a.svg",
+        "T3B" => $baseUrlLogo."/t3b.svg",
+        "T4" => $baseUrlLogo."/t4.svg",
+        "T5" => $baseUrlLogo."/t5.svg",
+        "T6" => $baseUrlLogo."/t6.svg",
+        "T7" => $baseUrlLogo."/t7.svg",
+        "T8" => $baseUrlLogo."/t8.svg",
+        "T9" => $baseUrlLogo."/t9.svg",
+        "T10" => $baseUrlLogo."/t10.svg",
+        "T11" => $baseUrlLogo."/t11.svg",
+        "T12" => $baseUrlLogo."/t12.svg",
+        "T13" => $baseUrlLogo."/t13.svg",
     ]
 ];
 
 $tomorowIsToday = date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd") == date_format((new DateTime()), "Ymd");
 $isToday = date_format((new DateTime($dateStart)), "Ymd") == date_format((new DateTime()), "Ymd");
 $disruptions_message = [];
+$disruptions_doublons = [];
 foreach($disruptions as $disruption) {
+    $key = $disruption->title.$disruption->cause.preg_replace("/[\-_,]*/", "", $disruption->message).$disruption->severity.$disruption->applicationPeriods[0]->begin;
+    if(isset($disruptions_doublons[$key]) && $disruption->lastUpdate < $disruptions_doublons[$key]->lastUpdate) {
+        continue;
+    }
+    if(isset($disruptions_doublons[$key]) && $disruption->lastUpdate > $disruptions_doublons[$key]->lastUpdate) {
+        $disruptions_message[$disruptions_doublons[$key]->id] = "\n";
+    }
+
     $disruptions_message[$disruption->id] = "# ".$disruption->title."\n\n".str_replace('"', '', html_entity_decode(strip_tags($disruption->message)));
+    $disruptions_doublons[$key] = $disruption;
 }
 
 ?>
@@ -269,11 +284,15 @@ foreach($disruptions as $disruption) {
 
     function replaceMessage(item) {
         item.dataset.title = item.title;
-        for(const disruptionId of item.title.split("\n")) {
-            if(disruptionId && disruptions[disruptionId]) {
-                item.title = item.title.replace(disruptionId, disruptions[disruptionId]);
+        for(let disruptionId of item.title.split("\n")) {
+            if(disruptionId.match(/^%/)) {
+                disruptionId=disruptionId.replace(/%/g, '')
+                if(disruptionId && disruptions[disruptionId]) {
+                    item.title = item.title.replace('%'+disruptionId+'%', disruptions[disruptionId])
+                }
             }
         }
+        item.title = item.title.replace(/\n\n\n/g, '')
     }
 </script>
 </head>
@@ -312,7 +331,7 @@ foreach($disruptions as $disruption) {
 <?php endforeach; ?>
 </div>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="perturbe" style="margin-left: 20px;"></span> Perturbation <span class="bloque" style="background: red; margin-left: 20px;"></span> Blocage / Interruption</p>
+<p id="legende"><span class="ok"></span> Rien à signaler <span class="perturbe" style="margin-left: 20px;"></span> Perturbation <span class="bloque" style="margin-left: 20px;"></span> Blocage / Interruption <span class="travaux" style="margin-left: 20px;"></span> Travaux</p>
 </main>
 <footer role="contentinfo" id="footer">
 <p>
