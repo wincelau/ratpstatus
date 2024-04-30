@@ -258,9 +258,9 @@ function url($url) {
 <body>
 <div id="container">
 <header role="banner" id="header">
-<a id="lien_infos" onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus">
+<a id="lien_infos" onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">
     <span aria-hidden="true">?</span>
-    <span class="visually-hidden">Informations sur le projet</span>
+    <span class="visually-hidden">Aide et informations</span>
 </a>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">
     <span aria-hidden="true">🔃</span>
@@ -268,15 +268,23 @@ function url($url) {
 </a>
 <h1>Suivi de l'état du trafic</h1>
 <h2>
-    <a style="<?php if((new DateTime($dateStart))->modify('-1 day') < new DateTime('2024-04-23')): ?>visibility: hidden;<?php endif; ?>" href="<?php echo url("/".date_format((new DateTime($dateStart))->modify('-1 day'), "Ymd")."/".$mode.".html") ?>">
+    <?php if((new DateTime($dateStart))->modify('-1 day') < new DateTime('2024-04-23')): ?>
+    <a class="disabled">⬅️</a>
+    <?php else: ?>
+    <a title="Voir le jour précédent" href="<?php echo url("/".date_format((new DateTime($dateStart))->modify('-1 day'), "Ymd")."/".$mode.".html") ?>">
         <span aria-hidden="true">⬅️</span>
-        <span class="visually-hidden">Jour précédent</span>
+        <span class="visually-hidden">Voir le jour précédent</span>
     </a>
-    <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?>
-    <a style="<?php if((new DateTime($dateStart))->modify('+1 day') > (new DateTime())->modify('+2 hour')): ?>visibility: hidden;<?php endif; ?>" href="<?php echo url("/".((!$tomorowIsToday) ? date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd")."/" : null).$mode.".html") ?>">
+    <?php endif; ?>
+    <span class="<?php if($isToday):?>strong<?php endif;?>"><?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?></span>
+    <?php if((new DateTime($dateStart))->modify('+1 day') > (new DateTime())->modify('+2 hour')): ?>
+    <a class="disabled">➡️</a>
+    <?php else: ?>
+    <a title="Voir le jour suivant" style="" href="<?php echo url("/".((!$tomorowIsToday) ? date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd")."/" : null).$mode.".html") ?>">
         <span aria-hidden="true">➡️</span>
-        <span class="visually-hidden">Jour suivant</span>
+        <span class="visually-hidden">Voir le jour suivant</span>
     </a>
+    <?php endif; ?>
 </h2>
 <nav id="nav_mode"><?php foreach($lignes as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="<?php echo url("/".((!$isToday) ? (new DateTime($dateStart))->format('Ymd')."/" : null).$m.".html") ?>"><?php echo $modesLibelle[$m] ?></a><?php endforeach; ?></nav>
 <div class="hline"><?php for($i = 0; $i <= 1260; $i = $i + 60): ?><div class="ih"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h</small><?php endif; ?></div><?php endfor; ?></div>

@@ -2,6 +2,16 @@ body {
     margin:0; padding: 0;
     background-color: white; /* Couleur de fond par défaut. RGAA 10.5 */
 }
+.strong {
+    font-weight: bold;
+}
+a:hover {
+    color: #555555 !important;
+}
+a.disabled {
+    opacity: 0.20;
+    cursor: not-allowed;
+}
 #container {
     width: 1428px; margin: 0 auto;
 }
@@ -15,7 +25,7 @@ body {
     text-decoration: none; color: #000;
 }
 #header h2 {
-    margin-top: 48px;
+    margin-top: 47px;
 }
 #header #nav_mode {
     display: inline-block;
@@ -34,25 +44,36 @@ body {
 }
 #header #nav_mode a:hover span {
     text-decoration: underline;
+    color: #555555;
 }
 
 #header #nav_mode a.active {
     font-weight: bold;
+    color: #555555;
 }
 
 #header #nav_mode a:not(:first-child):not(:last-child) {
     margin-right: 15px;
     margin-left: 15px;
 }
-#header a#lien_infos {
-    position:fixed; left: 10px; top: 10px; display: inline-block; color: #666666; text-decoration: none;
+
+#header a#lien_infos span {
+    position:absolute;
+    left: 10px;
+    top: 10px;
+    display: inline-block;
+    color: #666666;
+    text-decoration: none;
     font-family: monospace;
     border-radius: 99px;
-    border: 1px solid #909090;
+    border: 1px solid #666666;
     width: 18px;
     height: 18px;
     font-size: 16px;
     text-align: center;
+}
+#header a#lien_infos:hover span {
+    border-color: #444444;
 }
 #header a#lien_refresh {
     position:fixed; right: 14px; top: 10px; display: inline-block; color: #666666; text-decoration: none; font-family: monospace; font-size: 16px;
@@ -92,7 +113,7 @@ body {
     border-left: 1px solid #fff;
 }
 .hline {
-    margin-top: 63px; padding-left: 40px;
+    margin-top: 64px; padding-left: 40px;
     margin-bottom: 9px;
 }
 .hline:after {
@@ -199,9 +220,6 @@ body {
     #header a#lien_refresh {
         display: none;
     }
-    #header a#lien_infos {
-        display: none;
-    }
 }
 
 @media screen and (max-width: 1200px) {
@@ -216,6 +234,9 @@ body {
     }
     .ih {
         margin-bottom: 10px;
+    }
+    #header a#lien_infos span {
+        position:fixed;
     }
 }
 
