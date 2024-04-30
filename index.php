@@ -163,7 +163,7 @@ function get_infos($nbMinutes, $disruptions, $ligne) {
 }
 
 $baseUrlLogo = "/images/lignes/";
-$modesLibelle = ["metros" => "Ⓜ️ Métros", "trains" => "🚆 RER/Trains", "tramways" => "🚈 Tramways"];
+$modesLibelle = ["metros" => "Ⓜ️ <span>Métros</span>", "trains" => "🚆 <span>RER/Trains</span>", "tramways" => "🚈 <span>Tramways</span>"];
 $lignes = [
     "metros" => [
         "Métro 1" => $baseUrlLogo."/1.svg",
@@ -304,25 +304,25 @@ foreach($disruptions as $disruption) {
     <span class="visually-hidden">Informations sur le projet</span>
 </a>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">
-    <span aria-hidden="true">↻</span>
+    <span aria-hidden="true">🔁</span>
     <span class="visually-hidden">Rafraîchir</span>
 </a>
-<h1>
+<h1>Suivi de l'état du trafic</h1>
+<h2>
     <a style="<?php if((new DateTime($dateStart))->modify('-1 day') < new DateTime('2024-04-23')): ?>visibility: hidden;<?php endif; ?>" href="/<?php echo date_format((new DateTime($dateStart))->modify('-1 day'), "Ymd"); ?>/<?php echo $mode ?>.html">
-        <span aria-hidden="true"><</span>
+        <span aria-hidden="true">⬅️</span>
         <span class="visually-hidden">Jour précédent</span>
     </a>
-
-    Suivi trafic du <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?>
+    <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?>
     <a style="<?php if((new DateTime($dateStart))->modify('+1 day') > (new DateTime())->modify('+2 hour')): ?>visibility: hidden;<?php endif; ?>" href="/<?php if(!$tomorowIsToday): ?><?php echo date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd"); ?>/<?php endif; ?><?php echo $mode ?>.html">
-        <span aria-hidden="true">></span>
+        <span aria-hidden="true">➡️</span>
         <span class="visually-hidden">Jour suivant</span>
     </a>
-</h1>
-<div id="nav_mode"><?php foreach($lignes as $m => $ligne): ?><a style="<?php if($mode == $m): ?>font-weight: bold;<?php endif; ?>" href="/<?php if(!$isToday): ?><?php echo (new DateTime($dateStart))->format('Ymd') ?>/<?php endif; ?><?php echo $m ?>.html"><?php echo $modesLibelle[$m] ?></a><?php endforeach; ?></div>
+</h2>
+<div id="nav_mode"><?php foreach($lignes as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="/<?php if(!$isToday): ?><?php echo (new DateTime($dateStart))->format('Ymd') ?>/<?php endif; ?><?php echo $m ?>.html"><?php echo $modesLibelle[$m] ?></a><?php endforeach; ?></div>
 <div class="hline"><?php for($i = 0; $i <= 1260; $i = $i + 60): ?><div class="ih"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h</small><?php endif; ?></div><?php endfor; ?></div>
 </header>
-<main role="main" id="lignes">
+<main role="main">
 <div id="lignes">
 <?php foreach($lignes[$mode] as $ligne => $logo): ?>
 <div class="ligne"><div class="logo"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /></div>
