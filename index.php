@@ -362,7 +362,7 @@ const disruptions=<?php echo json_encode($disruptions_message, JSON_UNESCAPED_UN
 </script>
 <dialog id="tooltipModal"></dialog>
 <dialog id="helpModal">
-
+    <h3>Aide et informations</h3>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France</p>
 
     <p>L'état du trafic est récupéré toutes les 2 minutes à partir du 23 avril 2024.</p>
