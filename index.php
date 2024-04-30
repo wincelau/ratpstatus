@@ -284,6 +284,10 @@ function url($url) {
         modal.addEventListener('click', function(event) {
             modal.close();
         });
+        const modalHelp = document.getElementById('helpModal')
+        modalHelp.addEventListener('click', function(event) {
+            modalHelp.close();
+        });
         modal.addEventListener('close', function(event) {
             const item = document.querySelector('[data-title]')
             if(item && item.title) {
@@ -310,7 +314,7 @@ function url($url) {
 <body>
 <div id="container">
 <header role="banner" id="header">
-<a id="lien_infos" href="https://github.com/wincelau/ratpstatus">
+<a id="lien_infos" onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus">
     <span aria-hidden="true">?</span>
     <span class="visually-hidden">Informations sur le projet</span>
 </a>
@@ -357,5 +361,26 @@ function url($url) {
 const disruptions=<?php echo json_encode($disruptions_message, JSON_UNESCAPED_UNICODE); ?>;
 </script>
 <dialog id="tooltipModal"></dialog>
+<dialog id="helpModal">
+
+    <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France</p>
+
+    <p>L'état du trafic est récupéré toutes les 2 minutes à partir du 23 avril 2024.</p>
+
+    <p>Chaque bloc répresente une durée de 2 minutes, les couleurs ont la signification suivante :<br /><br />
+        <span class="ok"></span> Rien à signaler<br />
+        <span class="perturbe"></span> Perturbation<br />
+        <span class="bloque"></span> Blocage / Interruption<br />
+        <span class="travaux"></span> Travaux
+    </p>
+
+    <p>
+        Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>.
+    </p>
+
+    <p>
+        Le projet initié par <a href="https://piaille.fr/@winy">winy</a> est publié sous licence libre AGPL-3.0 : <a href="https://github.com/wincelau/ratpstatus">https://github.com/wincelau/ratpstatus</a>
+    </p>
+</dialog>
 </body>
 </html>
