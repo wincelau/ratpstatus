@@ -314,7 +314,7 @@ foreach($disruptions as $disruption) {
     </a>
 
     Suivi trafic du <?php echo date_format(new DateTime($dateStart), "d/m/Y"); ?>
-    <a style="<?php if((new DateTime($dateStart))->modify('+1 day') > new DateTime())->modify('+2 hour')): ?>visibility: hidden;<?php endif; ?>" href="/<?php if(!$tomorowIsToday): ?><?php echo date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd"); ?>/<?php endif; ?><?php echo $mode ?>.html">
+    <a style="<?php if((new DateTime($dateStart))->modify('+1 day') > (new DateTime())->modify('+2 hour')): ?>visibility: hidden;<?php endif; ?>" href="/<?php if(!$tomorowIsToday): ?><?php echo date_format((new DateTime($dateStart))->modify('+1 day'), "Ymd"); ?>/<?php endif; ?><?php echo $mode ?>.html">
         <span aria-hidden="true">></span>
         <span class="visually-hidden">Jour suivant</span>
     </a>
