@@ -8,7 +8,8 @@ class Day
 
     public function __construct($datetime) {
         $this->dateStart = (new DateTime((new DateTime($datetime))->modify('-3 hours')->format('Y-m-d').' 05:00:00'));
-        $this->dateEnd = (new DateTime((new DateTime($datetime))->modify('-3 hours +1 day')->format('Y-m-d').' 02:00:00'));
+
+        $this->dateEnd = (clone $this->dateStart)->modify('+21 hours');
         $this->load();
     }
 
@@ -44,10 +45,10 @@ class Day
                 continue;
             }
             $dateFile = DateTime::createFromFormat('YmdHis', explode('_', $file)[0]);
-            if($dateFile < $this->dateStart) {
+            if($dateFile < $this->getDateStart()) {
                 continue;
             }
-            if($dateFile > $this->dateEnd) {
+            if($dateFile > $this->getDateEnd()) {
                 continue;
             }
             $files[$dateFile->format('YmdHis')] = $file;
@@ -58,8 +59,27 @@ class Day
         return $files;
     }
 
+    public function getDateStartYesterday() {
+
+        return (clone $this->getDateStart())->modify('-1 day');
+    }
+
+    public function getDateStartTomorrow() {
+
+        return (clone $this->getDateStart())->modify('+1 day');
+    }
+
     public function getDateStart() {
         return $this->dateStart;
+    }
+
+    public function getDateEnd() {
+        return $this->dateEnd;
+    }
+
+    public function isToday() {
+
+        return $this->getDateStart()->format('Ymd') == date('Ymd');
     }
 
     public function getDistruptionsByLigneInPeriod($ligne, $date) {

@@ -83,7 +83,12 @@ class Disruption
     }
 
     public function isInPeriod(DateTime $date) {
+        foreach($this->data->applicationPeriods as $period) {
+            if ($date->format('Ymd\THis') >= $period->begin && $date->format('Ymd\THis') <= $period->end) {
 
-        return ($date->format('Ymd\THis') >= $this->getDateStart() && $date->format('Ymd\THis') <= $this->getDateEnd());
+                return true;
+            }
+        }
+        return false;
     }
 }
