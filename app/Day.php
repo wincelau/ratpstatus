@@ -145,7 +145,7 @@ class Day
     }
 
     public function getModeLibelles() {
-        return ["metros" => "Ⓜ️ Métros", "trains" => "🚆 RER/Trains", "tramways" => "🚈 Tramways"];
+        return ["metros" => "Ⓜ️ <span>Métros</span>", "trains" => "🚆 <span>RER/Trains</span>", "tramways" => "🚈 <span>Tramways</span>"];
     }
 
     public function getLignes() {
