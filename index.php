@@ -49,13 +49,13 @@
 <main role="main">
 <div id="lignes">
 <?php foreach($day->getLignes()[$mode] as $ligne => $logo): ?>
-<div class="ligne"><div class="logo"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /></div>
+<div class="ligne"><div class="logo"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>"/></div>
 <?php for($i = 0; $i < 1260; $i = $i + 2): ?><a class="i <?php echo $day->getColorClass($i, $ligne) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?>" title="<?php echo sprintf("%02d", (intval($i / 60) + 5) % 24) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?><?php echo $day->getInfo($i, $ligne) ?>"></a>
 <?php endfor; ?></div>
 <?php endforeach; ?>
 </div>
 </main>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="perturbe" style="margin-left: 20px;"></span> Perturbation <span class="bloque" style="margin-left: 20px;"></span> Blocage / Interruption <span class="travaux" style="margin-left: 20px;"></span> Travaux</p>
+<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux</p>
 <footer role="contentinfo" id="footer">
 <p>
     Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a> <small>(récupérées toutes le 2 minutes)</small>
@@ -72,9 +72,9 @@
     <p>L'état du trafic est récupéré toutes les 2 minutes à partir du 23 avril 2024.</p>
     <p>Chaque bloc répresente une durée de 2 minutes, les couleurs ont la signification suivante :<br /><br />
         <span class="ok"></span> Rien à signaler<br />
-        <span class="perturbe"></span> Perturbation<br />
-        <span class="bloque"></span> Blocage / Interruption<br />
-        <span class="travaux"></span> Travaux
+        <span class="pb"></span> Perturbation<br />
+        <span class="bq"></span> Blocage / Interruption<br />
+        <span class="tx"></span> Travaux
     </p>
     <p>Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>.</p>
     <p>Le projet initié par <a href="https://piaille.fr/@winy">winy</a> est publié sous licence libre AGPL-3.0 : <a href="https://github.com/wincelau/ratpstatus">https://github.com/wincelau/ratpstatus</a></p>

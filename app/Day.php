@@ -111,13 +111,13 @@ class Day
         $cssClass = 'ok';
         foreach($this->getDistruptionsByLigneInPeriod($ligne, $date) as $disruption) {
             if($disruption->getCause() == Disruption::CAUSE_PERTURBATION && $disruption->getSeverity() == Disruption::SEVERITY_BLOQUANTE) {
-                return 'bloque';
+                return 'bq';
             }
             if($cssClass == 'ok' && $disruption->getCause() == Disruption::CAUSE_TRAVAUX) {
-                $cssClass = 'travaux';
+                $cssClass = 'tx';
             }
             if($disruption->getCause() == Disruption::CAUSE_PERTURBATION && $disruption->getSeverity() == Disruption::SEVERITY_PERTURBEE) {
-                $cssClass = 'perturbe';
+                $cssClass = 'pb';
             }
         }
 
