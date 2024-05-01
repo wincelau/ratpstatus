@@ -33,8 +33,9 @@ git add static/tramways.html
 git add static/trains.html
 git add static/index.html
 git add static/$currentdate
+git add static/$currentdate.json
 
-git commit static/metros.html static/tramways.html static/trains.html static/index.html static/$currentdate -m "Publication des pages html statique pour $currentdate"
+git commit static/metros.html static/tramways.html static/trains.html static/index.html static/$currentdate static/$currentdate.json -m "Publication des pages html statique pour $currentdate"
 
 if test $nopush == 0; then
     git push
