@@ -141,7 +141,7 @@ class Day
             return strip_tags($message);
         }
 
-        return "\n\nRien à signaler";
+        return "%ok%";
     }
 
     public function getModeLibelles() {

@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
 function replaceMessage(item) {
     item.dataset.title = item.title;
+    item.title = item.title.replace("%ok%", "\n\nRien à signaler");
     for(let disruptionId of item.title.split("\n")) {
         if(disruptionId.match(/^%/)) {
             disruptionId=disruptionId.replace(/%/g, '')
