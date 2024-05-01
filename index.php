@@ -1,58 +1,4 @@
-<?php
-
-date_default_timezone_set('Europe/Paris');
-
-require __DIR__.'/app/Day.php';
-require __DIR__.'/app/Disruption.php';
-require __DIR__.'/app/File.php';
-
-if(isset($argv[1]) && $argv[1]) {
-    $_GET['date'] = $argv[1];
-}
-
-if(isset($_GET['date'])) {
-    $_GET['date'] .= ' 05:00:00';
-} else {
-    $_GET['date'] = date('Y-m-d H:i:s');
-}
-
-$day = new Day($_GET['date']);
-
-if(isset($argv[2]) && $argv[2]) {
-    $_GET['mode'] = $argv[2];
-}
-
-$mode = isset($_GET['mode']) ? $_GET['mode'] : 'metros';
-
-$tomorowIsToday = date_format((clone $day->getDateStart())->modify('+1 day'), "Ymd") == date_format((new DateTime()), "Ymd");
-
-$disruptions_message = [];
-$disruptions_doublons = [];
-foreach($day->getDistruptions() as $disruption) {
-    $disruption = $disruption->data;
-    $key = $disruption->title.$disruption->cause.preg_replace("/[\-_,]*/", "", $disruption->message).$disruption->severity.$disruption->applicationPeriods[0]->begin;
-    if(isset($disruptions_doublons[$key]) && $disruption->lastUpdate < $disruptions_doublons[$key]->lastUpdate) {
-        continue;
-    }
-    if(isset($disruptions_doublons[$key]) && $disruption->lastUpdate > $disruptions_doublons[$key]->lastUpdate) {
-        $disruptions_message[$disruptions_doublons[$key]->id] = "\n";
-    }
-
-    $disruptions_message[$disruption->id] = "# ".$disruption->title."\n\n".str_replace('"', '', html_entity_decode(strip_tags($disruption->message)));
-    $disruptions_doublons[$key] = $disruption;
-}
-
-function url($url) {
-    if(isset($_SERVER['argv']) && !is_null($_SERVER['argv'])) {
-
-        return $url;
-    }
-
-    preg_match('|/?([^/]*)/([^/]*).html|', $url, $matches);
-
-    return "?".http_build_query(['date' => $matches[1], 'mode' => $matches[2]]);
-}
-?>
+<?php require __DIR__.'/day.php'; ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
 <head>
@@ -61,7 +7,10 @@ function url($url) {
 <title><?php echo strip_tags($day->getModeLibelles()[$mode]) ?> le <?php echo $day->getDateStart()->format("d/m/Y"); ?> - Suivi de l'état du trafic - RATP Status</title>
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="stylesheet" href="/css/style.css?202404300341">
-<script src="/js/main.js"></script>
+<script>
+    const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
+</script>
+<script src="/js/main.js?202405020029"></script>
 </head>
 <body>
 <div id="container">
@@ -117,9 +66,6 @@ function url($url) {
 </p>
 <p>Ce site n'est pas un site officiel de la <a href="https://ratp.fr/">RATP</a></p>
 </footer>
-<script>
-const disruptions=<?php echo json_encode($disruptions_message, JSON_UNESCAPED_UNICODE); ?>;
-</script>
 <dialog id="tooltipModal"></dialog>
 <dialog id="helpModal">
     <h3>Aide et informations</h3>

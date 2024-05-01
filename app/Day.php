@@ -204,4 +204,13 @@ class Day
         ];
     }
 
+    public function toJson() {
+        $json = [];
+        foreach($this->getDistruptions() as $disruption) {
+            $json[$disruption->getId()] = "# ".$disruption->getTitle()."\n\n".str_replace('"', '', html_entity_decode(strip_tags($disruption->getMessage())));
+        }
+
+        return json_encode($json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    }
+
 }

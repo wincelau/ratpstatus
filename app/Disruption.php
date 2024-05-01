@@ -24,6 +24,11 @@ class Disruption
         return $this->data->title;
     }
 
+    public function getMessage() {
+
+        return $this->data->message;
+    }
+
     public function getCause() {
 
         return $this->data->cause;

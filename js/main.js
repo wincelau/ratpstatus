@@ -1,4 +1,9 @@
-document.addEventListener('DOMContentLoaded', function () {
+let disruptions = null;
+
+document.addEventListener('DOMContentLoaded', async function () {
+  const response = await fetch(urlJson);
+  disruptions = await response.json();
+
   if(document.querySelector('.ligne .e')) {
       window.scrollTo({ left: document.querySelector('.ligne .e').offsetLeft - window.innerWidth + 66 });
   }
