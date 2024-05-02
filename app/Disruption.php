@@ -61,6 +61,10 @@ class Disruption
             return true;
         }
 
+        if(preg_match('/(Alerte orages|Alerte forte pluies et orages)/', $this->getTitle())) {
+            return true;
+        }
+
         if($this->getCause() == self::CAUSE_TRAVAUX && $this->getSeverity() == self::SEVERITY_PERTURBEE && preg_match('/Ligne D/', $this->getTitle())) {
             return true;
         }
