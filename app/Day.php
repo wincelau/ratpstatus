@@ -203,7 +203,13 @@ class Day
 
     public function toJson() {
         $json = [];
+        $doublons = [];
         foreach($this->getDistruptions() as $disruption) {
+            $uniqueKey = $disruption->getTitle().$disruption->getSeverity().$disruption->getCause().implode(',', $disruption->getLignes()).$disruption->getDateStart();
+            if(isset($doublons[$uniqueKey])) {
+                $json[$doublons[$uniqueKey]] = null;
+            }
+            $doublons[$uniqueKey] = $disruption->getId();
             $json[$disruption->getId()] = "# ".$disruption->getTitle()."\n\n".str_replace('"', '', html_entity_decode(strip_tags($disruption->getMessage())));
         }
 

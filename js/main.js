@@ -50,9 +50,11 @@ function replaceMessage(item) {
         if(disruptionId.match(/^%/)) {
             disruptionId=disruptionId.replace(/%/g, '')
             if(disruptionId && disruptions[disruptionId]) {
-                item.title = item.title.replace('%'+disruptionId+'%', "\n\n"+disruptions[disruptionId])
+                item.title = item.title.replace(';%'+disruptionId+'%', "\n\n"+disruptions[disruptionId])
+            }
+            if(disruptionId && disruptions[disruptionId] == null) {
+                item.title = item.title.replace(';%'+disruptionId+'%', "")
             }
         }
     }
-    item.title = item.title.replace(/;\n/g, "\n")
 }
