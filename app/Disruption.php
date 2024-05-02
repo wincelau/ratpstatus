@@ -65,6 +65,10 @@ class Disruption
             return true;
         }
 
+        if(preg_match('/Modifications de compositions/', $this->getTitle())) {
+            return true;
+        }
+
         if($this->getCause() == self::CAUSE_TRAVAUX && $this->getSeverity() == self::SEVERITY_PERTURBEE && preg_match('/Ligne D/', $this->getTitle())) {
             return true;
         }
