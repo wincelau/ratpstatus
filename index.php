@@ -6,6 +6,8 @@
 <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, target-densitydpi=device-dpi">
 <title><?php echo strip_tags($day->getModeLibelles()[$mode]) ?> le <?php echo $day->getDateStart()->format("d/m/Y"); ?> - Suivi de l'état du trafic - RATP Status</title>
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
+<link rel="icon" href="/images/favicon.ico" />
+<link rel="icon" type="image/png" href="/images/favicon.png" />
 <link rel="stylesheet" href="/css/style.css?202405020135">
 <script>
     const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
