@@ -7,9 +7,9 @@ document.addEventListener('DOMContentLoaded', async function () {
   if(document.querySelector('.ligne .e')) {
       window.scrollTo({ left: document.querySelector('.ligne .e').offsetLeft - window.innerWidth + 66 });
   }
-  document.querySelector('#lignes').addEventListener('mouseover', function(e) {
+  document.querySelector('#lignes').addEventListener('mouseover', async function(e) {
       if(e.target.title) {
-          replaceMessage(e.target);
+          await replaceMessage(e.target);
       }
   })
   document.querySelector('#lignes').addEventListener('mouseout', function(e) {
@@ -46,13 +46,13 @@ document.addEventListener('DOMContentLoaded', async function () {
 function replaceMessage(item) {
     item.dataset.title = item.title;
     item.title = item.title.replace("%ok%", "\n\nRien à signaler");
-    for(let disruptionId of item.title.split("\n")) {
+    for(let disruptionId of item.title.split(";")) {
         if(disruptionId.match(/^%/)) {
             disruptionId=disruptionId.replace(/%/g, '')
             if(disruptionId && disruptions[disruptionId]) {
-                item.title = item.title.replace('%'+disruptionId+'%', disruptions[disruptionId])
+                item.title = item.title.replace('%'+disruptionId+'%', "\n\n"+disruptions[disruptionId])
             }
         }
     }
-    item.title = item.title.replace(/\n\n\n/g, '')
+    item.title = item.title.replace(/;\n/g, "\n")
 }

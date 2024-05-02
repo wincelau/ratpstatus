@@ -131,10 +131,7 @@ class Day
         }
         $message = null;
         foreach($this->getDistruptionsByLigneInPeriod($ligne, $date) as $disruption) {
-            if(!$message) {
-                $message .= "\n";
-            }
-            $message .= "\n%".$disruption->getId()."%\n";
+            $message .= ";%".$disruption->getId()."%";
         }
 
         if($message) {

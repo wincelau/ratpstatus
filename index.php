@@ -63,7 +63,7 @@
 <p>
     Projet publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>) initié par <a href="https://piaille.fr/@winy">winy</a>
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://ratp.fr/">RATP</a></p>
+<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 </div>
 <dialog id="tooltipModal"></dialog>
