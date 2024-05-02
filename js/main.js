@@ -1,7 +1,7 @@
 let disruptions = null;
 
 document.addEventListener('DOMContentLoaded', async function () {
-  const response = await fetch(urlJson);
+  const response = await fetch(urlJson.replace('.json', '.json?'+Date.now()));
   disruptions = await response.json();
 
   if(document.querySelector('.ligne .e')) {
@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', async function () {
           delete e.target.dataset.title
       }
   })
-  document.querySelector('#lignes').addEventListener('click', function(e) {
+  document.querySelector('#lignes').addEventListener('click', async function(e) {
       if(e.target.title) {
-          replaceMessage(e.target);
+          await replaceMessage(e.target);
 
           modal.innerText = e.target.title
           modal.showModal()
