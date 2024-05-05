@@ -214,14 +214,14 @@ class Day
     public function toCsv() {
         $csv = "Date;Mode;Ligne;Type de perturbation;Api disruption id";
         $now = new DateTime();
-        for($i = 0; $i < 1260; $i++) {
+        for($i = 0; $i < 1260; $i=$i+2) {
             $date = (clone $this->getDateStart())->modify("+ ".$i." minutes");
             if($date > $now) {
                 return $csv;
             }
             foreach($this->getLignes() as $mode => $lignes) {
                 foreach($lignes as $ligne => $ligneImg) {
-                    $csv .= $date->format('Y-m-d H:i:s').";".$ligne.";".strtoupper($this->getColorClass($i, $ligne)).";".str_replace(["%ok%", "%", ";"], ["", "", "|"], preg_replace('/^;/', '', $this->getInfo($i, $ligne)))."\n";
+                    $csv .= $date->format('Y-m-d H:i:s').",".$ligne.",".strtoupper($this->getColorClass($i, $ligne)).",".str_replace(["%ok%", "%", ";"], ["", "", "|"], preg_replace('/^;/', '', $this->getInfo($i, $ligne)))."\n";
                 }
             }
         }
