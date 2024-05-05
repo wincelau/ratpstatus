@@ -212,7 +212,7 @@ class Day
     }
 
     public function toCsv() {
-        $csv = "Date,Mode,Ligne,Type de perturbation,Api disruption id";
+        $csv = "Date,Mode,Ligne,Type de perturbation,Api disruption id\n";
         $now = new DateTime();
         for($i = 0; $i < 1260; $i=$i+2) {
             $date = (clone $this->getDateStart())->modify("+ ".$i." minutes");
