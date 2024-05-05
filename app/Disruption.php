@@ -86,12 +86,12 @@ class Disruption
 
     public function getDateStart() {
 
-        return $this->data->applicationPeriods[0]->begin;
+        return DateTime::createFromFormat('Ymd\THis', $this->data->applicationPeriods[0]->begin);
     }
 
     public function getDateEnd() {
 
-        return $this->data->applicationPeriods[0]->end;
+        return DateTime::createFromFormat('Ymd\THis', $this->data->applicationPeriods[0]->end);
     }
 
     public function setDateEnd($date) {

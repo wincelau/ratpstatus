@@ -30,7 +30,7 @@ class Day
                 $currentDisruptions[$disruption->getId()] = $disruption;
             }
             foreach($previousDisruptions as $previousDisruption) {
-                if(!isset($currentDisruptions[$previousDisruption->getId()]) && $this->disruptions[$previousDisruption->getId()]->getDateEnd() > $file->getDate()->format('Ymd\THis')) {
+                if(!isset($currentDisruptions[$previousDisruption->getId()]) && $this->disruptions[$previousDisruption->getId()]->getDateEnd() > $file->getDate()) {
                     $this->disruptions[$previousDisruption->getId()]->setDateEnd($file->getDate()->format('Ymd\THis'));
                 }
             }
@@ -82,13 +82,24 @@ class Day
         return $this->getDateStart()->format('Ymd') == date('Ymd');
     }
 
-    public function getDistruptionsByLigneInPeriod($ligne, $date) {
+    public function getDistruptionsByLigne($ligne) {
         $disruptions = [];
 
         foreach($this->getDistruptions() as $disruption) {
-            if(!preg_match('/(^| )'.$ligne.'[^0-9A-Z]+/', $disruption->getTitle())) {
+            if(!preg_match('/(^| )'.str_replace('é', 'e', $ligne).'[^0-9A-Z]+/', str_replace('é', 'e', $disruption->getTitle()))) {
                 continue;
             }
+
+            $disruptions[$disruption->getId()] = $disruption;
+        }
+
+        return $disruptions;
+    }
+
+    public function getDistruptionsByLigneInPeriod($ligne, $date) {
+        $disruptions = [];
+
+        foreach($this->getDistruptionsByLigne($ligne) as $disruption) {
             if(!$disruption->isInPeriod($date)) {
                 continue;
             }
