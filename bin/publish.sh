@@ -12,7 +12,7 @@ if test $2; then
     nopush=$2
 fi
 
-git checkout static/metros.html static/tramways.html static/trains.html static/index.html static/$currentdate
+git checkout static/metros.html static/tramways.html static/trains.html static/index.html static/$currentdate static/$currentdate.json static/$currentdate.csv
 
 git pull
 
@@ -22,6 +22,7 @@ php index.php $currentdate metros > static/$currentdate/metros.html
 php index.php $currentdate trains > static/$currentdate/trains.html
 php index.php $currentdate tramways > static/$currentdate/tramways.html
 php json.php $currentdate > static/$currentdate.json
+php csv.php $currentdate > static/$currentdate.csv
 
 ln -fs $todaydate/metros.html static/metros.html
 ln -fs $todaydate/tramways.html static/tramways.html
@@ -34,8 +35,9 @@ git add static/trains.html
 git add static/index.html
 git add static/$currentdate
 git add static/$currentdate.json
+git add static/$currentdate.csv
 
-git commit static/metros.html static/tramways.html static/trains.html static/index.html static/$currentdate static/$currentdate.json -m "Publication des pages html statique pour $currentdate"
+git commit static/metros.html static/tramways.html static/trains.html static/index.html static/$currentdate static/$currentdate.json static/$currentdate.csv -m "Publication des pages html statique pour $currentdate"
 
 if test $nopush == 0; then
     git push
