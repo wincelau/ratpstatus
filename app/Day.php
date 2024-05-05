@@ -221,7 +221,7 @@ class Day
             }
             foreach($this->getLignes() as $mode => $lignes) {
                 foreach($lignes as $ligne => $ligneImg) {
-                    $csv .= $date->format('Y-m-d H:i:s').",".str_replace(['Métro ', 'Ligne ' ], ['M', 'L'], $ligne).",".str_replace('OK', '', strtoupper($this->getColorClass($i, $ligne))).",".str_replace(["%ok%", "%", ";"], ["", "", "|"], preg_replace('/^;/', '', $this->getInfo($i, $ligne)))."\n";
+                    $csv .= $date->format('Y-m-d H:i:s').",".str_replace(['Métro ', 'Ligne ' ], ['M', 'L'], $ligne).",".strtoupper($this->getColorClass($i, $ligne)).",".str_replace(["%ok%", "%", ";"], ["", "", "|"], preg_replace('/^;/', '', $this->getInfo($i, $ligne)))."\n";
                 }
             }
         }
