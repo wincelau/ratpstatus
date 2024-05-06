@@ -108,4 +108,12 @@ class Disruption
         }
         return false;
     }
+
+    public function getMessagePlainText() {
+        return str_replace('"', '', html_entity_decode(strip_tags(str_replace("<br>", "\n", $this->getMessage()))));
+    }
+
+    public function getLastUpdate() {
+        return DateTime::createFromFormat('Ymd\THis', $this->data->lastUpdate);
+    }
 }
