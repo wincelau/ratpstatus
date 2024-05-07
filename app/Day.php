@@ -21,11 +21,6 @@ class Day
             $file = new File($filename);
             $currentDisruptions = [];
             foreach($file->getDistruptions() as $disruption) {
-                if(isset($disruptions[$disruption->getId()])) {
-                    $this->disruptions[$disruption->getId()] = $disruption;
-                    $currentDisruptions[$disruption->getId()] = $disruption;
-                    continue;
-                }
                 $this->disruptions[$disruption->getId()] = $disruption;
                 $currentDisruptions[$disruption->getId()] = $disruption;
             }

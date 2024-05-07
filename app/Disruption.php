@@ -10,8 +10,18 @@ class Disruption
     const SEVERITY_BLOQUANTE = 'BLOQUANTE';
     const SEVERITY_INFORMATION = 'INFORMATION';
 
+    protected $dateStart = null;
+    protected $dateEnd = null;
+
     public function __construct($data) {
         $this->data = $data;
+        foreach($this->data->applicationPeriods as $period) {
+            $this->dateEnd = $period->end;
+            if($this->dateStart && $period->begin > $this->dateStart && $period->begin < $this->dateEnd) {
+                continue;
+            }
+            $this->dateStart = $period->begin;
+        }
     }
 
     public function getId() {
@@ -86,27 +96,22 @@ class Disruption
 
     public function getDateStart() {
 
-        return DateTime::createFromFormat('Ymd\THis', $this->data->applicationPeriods[0]->begin);
+        return DateTime::createFromFormat('Ymd\THis', $this->dateStart);
     }
 
     public function getDateEnd() {
 
-        return DateTime::createFromFormat('Ymd\THis', $this->data->applicationPeriods[0]->end);
+        return DateTime::createFromFormat('Ymd\THis', $this->dateEnd);
     }
 
     public function setDateEnd($date) {
 
-        return $this->data->applicationPeriods[0]->end = $date;
+        return $this->dateEnd = $date;
     }
 
     public function isInPeriod(DateTime $date) {
-        foreach($this->data->applicationPeriods as $period) {
-            if ($date->format('Ymd\THis') >= $period->begin && $date->format('Ymd\THis') <= $period->end) {
 
-                return true;
-            }
-        }
-        return false;
+        return $date >= $this->getDateStart() && $date <= $this->getDateEnd();
     }
 
     public function getMessagePlainText() {
