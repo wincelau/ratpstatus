@@ -49,6 +49,15 @@ class Disruption
         return str_replace([" - Reprise progressive / trafic reste très perturbé", " - Reprise progressive / trafic reste perturbé", " - Arrêt non desservi", " - Reprise progressive"," - Stationnement prolongé", " - Trafic interrompu", " - Trafic perturbé", " - Trafic très perturbé", " - Trains stationnent", " - Train stationne"], "", $this->getTitle());
     }
 
+    public function getSuggestionOrigine() {
+        if(preg_match('/Métro/', $this->getTitle())) {
+
+            return preg_replace('/ - .*$/', '', preg_replace('/^[^:]*: /', '', $this->getTitle()));
+        }
+
+        return null;
+    }
+
     public function getMessage() {
 
         return $this->data->message;

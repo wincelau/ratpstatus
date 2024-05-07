@@ -36,24 +36,6 @@ foreach($_POST['origine'] as $id => $origine) {
     $userDisruptions[$id]->origine = $origine;
 }
 
-foreach($_POST['liaisons'] as $id => $liaisons) {
-    if(!count($liaisons) && !isset($userDisruptions[$id])) {
-        continue;
-    }
-    if(!isset($userDisruptions[$id])) {
-        $userDisruptions[$id] = new stdClass();
-    }
-    $userDisruptions[$id]->liaisons = $liaisons;
-    foreach($liaisons as $liaisonId) {
-        if(!isset($userDisruptions[$liaisonId])) {
-            $userDisruptions[$liaisonId] = new stdClass();
-            $userDisruptions[$liaisonId]->liaisons = [];
-        }
-        $userDisruptions[$liaisonId]->liaisons[] = $id;
-        array_unique($userDisruptions[$liaisonId]->liaisons);
-    }
-}
-
 file_put_contents($file, json_encode($userDisruptions, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
 header('Location: /disruptions.php?date='.$day->getDateStart()->format('Ymd'));
 exit;
@@ -105,9 +87,14 @@ exit;
                       <label>Type de perturbation</label>
                     </div>
                     <div class="form-floating mt-3">
-                        <input type="text" name="origine[<?php echo $d->getId(); ?>]" value="<?php if(isset($userDisruptions[$d->getId()])): echo $userDisruptions[$d->getId()]->origine; endif; ?>" class="form-control">
+                        <input id="input_origine_<?php echo $d->getId(); ?>" type="text" name="origine[<?php echo $d->getId(); ?>]" value="<?php if(isset($userDisruptions[$d->getId()])): echo $userDisruptions[$d->getId()]->origine; endif; ?>" class="form-control">
                         <label>Origine de la perturbation</label>
                     </div>
+                    <?php if($d->getSuggestionOrigine()): ?>
+                    <div class="text-muted small mt-2">
+                        Suggestion : <code data-input="input_origine_<?php echo $d->getId(); ?>" onclick="document.getElementById(this.dataset.input).value = this.innerText;"><?php echo $d->getSuggestionOrigine(); ?></code>
+                    </div>
+                    <?php endif; ?>
                 </div>
             </div>
             <?php endforeach; ?>
