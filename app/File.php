@@ -20,7 +20,7 @@ class File
                     }
                 }
             }
-            $disruption = new Disruption($dataDistruption);
+            $disruption = new Disruption($dataDistruption, $this);
             if($disruption->isToExclude()) {
                 continue;
             }

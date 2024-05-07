@@ -29,8 +29,9 @@ class Disruption
 
     protected $dateStart = null;
     protected $dateEnd = null;
+    protected $type = null;
 
-    public function __construct($data) {
+    public function __construct($data, File $file) {
         $this->data = $data;
         foreach($this->data->applicationPeriods as $period) {
             $this->dateEnd = $period->end;
@@ -38,6 +39,14 @@ class Disruption
                 continue;
             }
             $this->dateStart = $period->begin;
+        }
+
+        $userFile = __DIR__.'/../datas/json_userinfos/'.(clone $file->getDate())->modify('-3 hours')->format('Ymd').'.json';
+        if(is_file($userFile)) {
+            $userDisruptions = (array) json_decode(file_get_contents($userFile));
+            if(isset($userDisruptions[$this->getId()])) {
+                $this->type = $userDisruptions[$this->getId()]->type;
+            }
         }
     }
 
@@ -56,10 +65,6 @@ class Disruption
     }
 
     public function getSuggestionType() {
-        if(preg_match('/conditions climatiques/', $this->getTitle()) && preg_match('/alerte orages Météo France/', $this->getMessagePlainText())) {
-            return self::TYPE_AUCUNE;
-        }
-
         if(preg_match("/Le trafic est fortement perturbé[àéèîếa-zA-z\ '0-9]*entre/i", $this->getMessagePlainText())) {
 
             return self::TYPE_PERTURBATION_PARTIELLE_FORTE;
@@ -175,6 +180,11 @@ class Disruption
         return $this->data->severity;
     }
 
+    public function getType() {
+
+        return $this->type;
+    }
+
     public function getLignes() {
 
         return isset($this->data->lines) ? $this->data->lines : [];
@@ -185,11 +195,11 @@ class Disruption
             return true;
         }
 
-        if($this->getSuggestionType() == self::TYPE_AUCUNE) {
+        if($this->getType() == self::TYPE_AUCUNE) {
             return true;
         }
 
-        if($this->getCause() == self::CAUSE_TRAVAUX && $this->getSeverity() == self::SEVERITY_PERTURBEE && preg_match('/Ligne D/', $this->getTitle())) {
+        if($this->getSuggestionType() == self::TYPE_AUCUNE) {
             return true;
         }
 
