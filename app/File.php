@@ -33,6 +33,12 @@ class File
         return new DateTime(preg_replace("/^([0-9]{8})/", '\1T', preg_replace("/_.*.json/", "", $this->filename)));
     }
 
+    public function getLastUpdatedDate() {
+        $dateUpdated = new DateTime($this->data->lastUpdatedDate, new DateTimeZone("UTC"));
+        $dateUpdated->setTimeZone(new DateTimeZone(date_default_timezone_get()));
+        return $dateUpdated;
+    }
+
     public function getDistruptions() {
 
         return $this->distruptions;
