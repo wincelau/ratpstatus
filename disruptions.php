@@ -1,4 +1,64 @@
 <?php require __DIR__.'/day.php'; ?>
+<?php
+$file = __DIR__.'/datas/json_userinfos/'.$day->getDateStart()->format('Ymd').'.json';
+
+$userDisruptions = [];
+
+if(is_file($file)) {
+    $userDisruptions = (array) json_decode(file_get_contents($file));
+}
+
+if(count($_POST)) {
+
+foreach($_POST['type'] as $id => $type) {
+    if(!$type && !isset($userDisruptions[$id])) {
+        continue;
+    }
+    if(!$type) {
+        $type = null;
+    }
+    if(!isset($userDisruptions[$id])) {
+        $userDisruptions[$id] = new stdClass();
+    }
+    $userDisruptions[$id]->type = $type;
+}
+
+foreach($_POST['origine'] as $id => $origine) {
+    if(!$origine && !isset($userDisruptions[$id])) {
+        continue;
+    }
+    if(!$origine) {
+        $origine = null;
+    }
+    if(!isset($userDisruptions[$id])) {
+        $userDisruptions[$id] = new stdClass();
+    }
+    $userDisruptions[$id]->origine = $origine;
+}
+
+foreach($_POST['liaisons'] as $id => $liaisons) {
+    if(!count($liaisons) && !isset($userDisruptions[$id])) {
+        continue;
+    }
+    if(!isset($userDisruptions[$id])) {
+        $userDisruptions[$id] = new stdClass();
+    }
+    $userDisruptions[$id]->liaisons = $liaisons;
+    foreach($liaisons as $liaisonId) {
+        if(!isset($userDisruptions[$liaisonId])) {
+            $userDisruptions[$liaisonId] = new stdClass();
+            $userDisruptions[$liaisonId]->liaisons = [];
+        }
+        $userDisruptions[$liaisonId]->liaisons[] = $id;
+        array_unique($userDisruptions[$liaisonId]->liaisons);
+    }
+}
+
+file_put_contents($file, json_encode($userDisruptions, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT));
+header('Location: /disruptions.php?date='.$day->getDateStart()->format('Ymd'));
+exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -11,13 +71,14 @@
 </head>
 <body>
     <div class="container">
+    <form id="form_disruptions" action="" method="POST">
     <?php foreach(Config::getLignes() as $mode => $lignes): ?>
         <?php foreach($lignes as $ligne => $logo) :?>
             <?php $disruptions = $day->getDistruptionsByLigne($ligne); ?>
             <?php foreach($disruptions as $d): ?>
             <div class="row mb-4">
                 <div class="col-6">
-                <div class="card my-3 h-100">
+                <div class="card my-3 h-100 <?php if(isset($userDisruptions[$d->getId()]->type)): ?>border-success<?php endif; ?>">
                     <div class="card-header">
                         <h5 class="card-title"><img style="height: 18px; display: inline-block;" alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>"/> <?php echo $d->getTitle() ?></h5>
                         <h5 class="card-subtitle mt-2 text-body-secondary"><?php echo $d->getDateStart()->format("H\hi") ?> - <?php echo $d->getDateEnd()->format("H\hi") ?></h5>
@@ -25,44 +86,27 @@
                     <div class="card-body">
                         <p class="card-text"><?php echo nl2br(html_entity_decode(strip_tags(str_replace(["<br>", "</p>"], "\n", $d->getMessage())))) ?></p>
                     </div>
-                    <div class="card-footer text-body-secondary small">
+                    <div class="card-footer <?php if(isset($userDisruptions[$d->getId()])): ?>bg-success<?php endif; ?> text-body-secondary small">
                         ID : <?php echo $d->getId(); ?>
+                        <span title="<?php echo str_replace('"', '', print_r($d, true)) ?>" class="float-end badge text-bg-light">json</span>
+                        <span class="float-end">Dernière mise à jour : <?php echo $d->getLastUpdate()->format("d/m/Y à H\hi\ss"); ?></span>
 
-                        <span class="float-end">Dernière mise à jour : <?php echo $d->getLastUpdate()->format("d/m/Y à H\hi"); ?></span>
                     </div>
                 </div>
                 </div>
                 <div class="col-5">
                     <div class="form-floating mt-3">
                       <select class="form-select" name="type[<?php echo $d->getId(); ?>]">
-                        <option selected></option>
-                        <option value="1">Perturbation partielle</option>
-                        <option value="1">Perturbée</option>
-                        <option value="2">Fortement perturbée</option>
-                        <option value="3">Interruption partielle</option>
-                        <option value="3">Interruption sur l'ensemble de la ligne</option>
-                        <option value="3">Station(s) non desservis</option>
-                        <option value="3">Trains supprimés</option>
-                        <option value="1">Changement d'horaires</option>
-                        <option value="1">Changement de composition</option>
-                        <option value="1">Aucune perturbation en cours</option>
+                        <option <?php if(!isset($userDisruptions[$d->getId()]->type) || !$userDisruptions[$d->getId()]->type): ?>selected<?php endif; ?> selected></option>
+                        <?php foreach(Config::getTypesPerturbation() as $type => $typeLibelle): ?>
+                        <option <?php if(isset($userDisruptions[$d->getId()]) && $userDisruptions[$d->getId()]->type == $type): ?>selected<?php endif; ?> value="<?php echo $type ?>"><?php echo $typeLibelle ?></option>
+                        <?php endforeach; ?>
                       </select>
                       <label>Type de perturbation</label>
                     </div>
                     <div class="form-floating mt-3">
-                      <input type="text" name="origine[<?php echo $d->getId(); ?>]" class="form-control">
-                      <label>Origine de la perturbation</label>
-                    </div>
-                    <label class="text-muted mt-3">Pérturbations liées</label>
-                    <div class="mt-2 border p-2" style="max-height: 120px; overflow: scroll;">
-                    <?php foreach($day->getDistruptionsByLigne($ligne) as $dother): ?>
-                        <div class="form-check">
-                          <input class="form-check-input" name="liaisons[<?php echo $d->getId(); ?>][<?php echo $dother->getId() ?>]" type="checkbox" value="" id="checkbox_liaisons_<?php echo $d->getId(); ?>_<?php echo $dother->getId(); ?>">
-                          <label title="<?php echo $dother->getMessagePlainText() ?>" class="form-check-label" for="checkbox_liaisons_<?php echo $d->getId(); ?>_<?php echo $dother->getId(); ?>">
-                            <span class="text-muted"><?php echo $dother->getDateStart()->format("H\hi") ?> - <?php echo $dother->getDateEnd()->format("H\hi") ?></span> : <?php echo $dother->getTitle() ?>
-                          </label>
-                        </div>
-                    <?php endforeach; ?>
+                        <input type="text" name="origine[<?php echo $d->getId(); ?>]" value="<?php if(isset($userDisruptions[$d->getId()])): echo $userDisruptions[$d->getId()]->origine; endif; ?>" class="form-control">
+                        <label>Origine de la perturbation</label>
                     </div>
                 </div>
             </div>
@@ -71,6 +115,10 @@
             <?php endif; ?>
         <?php endforeach; ?>
     <?php endforeach; ?>
+    </form>
+    </div>
+    <div class="position-fixed bottom-0 p-2 bg-white shadow w-100 text-center" style="z-index: 100;">
+    <button form="form_disruptions" type="submit" class="btn btn-primary">Enregistrer</button>
     </div>
 </body>
 </html>
