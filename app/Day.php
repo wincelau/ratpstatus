@@ -31,6 +31,39 @@ class Day
             }
             $previousDisruptions = $currentDisruptions;
         }
+        $disruptionsByUniqTitle = [];
+        foreach($this->disruptions as $disruption) {
+            $dateKey = $disruption->getLastUpdate()->format('Y-m-d H:i:s');
+            if($disruption->getLastUpdate() < $this->getDateStart()) {
+                $dateKey =  $disruption->getDateStart()->format('Y-m-d H:i:s');
+            }
+
+            $disruptionsByUniqTitle[$disruption->getUniqueTitle()][$dateKey.$disruption->getId()] = $disruption;
+        }
+        foreach($disruptionsByUniqTitle as $uniqName => $disruptions) {
+            $nextDisruption = null;
+            krsort($disruptions);
+            foreach($disruptions as $disruption) {
+                if($nextDisruption && $disruption->getDateEnd() > $nextDisruption->getDateEnd()) {
+                    $disruption->setDateEnd($nextDisruption->getDateStart()->format('Ymd\THis'));
+                }
+
+                if($nextDisruption && $nextDisruption->getDateStart() > $disruption->getDateEnd()) {
+                    $nextDisruption = $disruption;
+                    continue;
+                }
+
+                if($nextDisruption && $disruption->getDateEnd() > $nextDisruption->getDateEnd()) {
+                    $disruption->setDateEnd($nextDisruption->getDateEnd()->format('Ymd\THis'));
+                }
+
+                if($nextDisruption && $disruption->getDateEnd() > $nextDisruption->getDateStart()) {
+                    $disruption->setDateEnd($nextDisruption->getDateStart()->format('Ymd\THis'));
+                }
+
+                $nextDisruption = $disruption;
+            }
+        }
     }
 
     protected function getFiles() {

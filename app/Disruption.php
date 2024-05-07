@@ -34,6 +34,10 @@ class Disruption
         return $this->data->title;
     }
 
+    public function getUniqueTitle() {
+        return str_replace([" - Reprise progressive / trafic reste très perturbé", " - Reprise progressive / trafic reste perturbé", " - Arrêt non desservi", " - Reprise progressive"," - Stationnement prolongé", " - Trafic interrompu", " - Trafic perturbé", " - Trafic très perturbé", " - Trains stationnent", " - Train stationne"], "", $this->getTitle());
+    }
+
     public function getMessage() {
 
         return $this->data->message;
