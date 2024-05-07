@@ -78,7 +78,7 @@ exit;
                 </div>
                 <div class="col-5">
                     <div class="form-floating mt-3">
-                      <select class="form-select" name="type[<?php echo $d->getId(); ?>]">
+                      <select id="input_type_<?php echo $d->getId(); ?>" class="form-select" name="type[<?php echo $d->getId(); ?>]">
                         <option <?php if(!isset($userDisruptions[$d->getId()]->type) || !$userDisruptions[$d->getId()]->type): ?>selected<?php endif; ?> selected></option>
                         <?php foreach(Config::getTypesPerturbation() as $type => $typeLibelle): ?>
                         <option <?php if(isset($userDisruptions[$d->getId()]) && $userDisruptions[$d->getId()]->type == $type): ?>selected<?php endif; ?> value="<?php echo $type ?>"><?php echo $typeLibelle ?></option>
@@ -86,6 +86,11 @@ exit;
                       </select>
                       <label>Type de perturbation</label>
                     </div>
+                    <?php if($d->getSuggestionType()): ?>
+                    <div class="text-muted small mt-2">
+                        Suggestion : <code data-input="input_type_<?php echo $d->getId(); ?>" onclick="document.getElementById(this.dataset.input).value = this.innerText;"><?php echo $d->getSuggestionType(); ?></code>
+                    </div>
+                    <?php endif; ?>
                     <div class="form-floating mt-3">
                         <input id="input_origine_<?php echo $d->getId(); ?>" type="text" name="origine[<?php echo $d->getId(); ?>]" value="<?php if(isset($userDisruptions[$d->getId()])): echo $userDisruptions[$d->getId()]->origine; endif; ?>" class="form-control">
                         <label>Origine de la perturbation</label>

@@ -10,14 +10,20 @@ class Disruption
     const SEVERITY_BLOQUANTE = 'BLOQUANTE';
     const SEVERITY_INFORMATION = 'INFORMATION';
 
+    const TYPE_RALENTI = 'RALENTI';
+    const TYPE_RALENTI_FORTEMENT = 'RALENTI_FORTEMENT';
     const TYPE_PERTURBATION_PARTIELLE = 'PERTURBATION_PARTIELLE';
-    const TYPE_PERTURBATION = 'PERTURBATION';
-    const TYPE_PERTURBATION_FORTE = 'PERTURBATION_FORTE';
+    const TYPE_PERTURBATION_PARTIELLE_FORTE = 'PERTURBATION_PARTIELLE_FORTE';
+    const TYPE_PERTURBATION_TOTALE = 'PERTURBATION_TOTALE';
+    const TYPE_PERTURBATION_TOTALE_FORTE = 'PERTURBATION_TOTALE_FORTE';
+    const TYPE_PERTURBATION_TOTALE_REPRISE = 'PERTURBATION_TOTALE_REPRISE';
     const TYPE_INTERRUPTION_PARTIELLE = 'INTERRUPTION_PARTIELLE';
     const TYPE_INTERRUPTION_TOTALE = 'INTERRUPTION_TOTALE';
     const TYPE_STATIONS_NON_DESSERVIES = 'STATIONS_NON_DESSERVIES';
-    const TYPE_TRAINS_SUPPRIMES = 'CHANGEMENT_HORAIRES';
-    const TYPE_CHANGEMENT_HORAIRES = 'TRAINS_SUPPRIMES';
+    const TYPE_GARES_NON_DESSERVIES = 'GARES_NON_DESSERVIES';
+    const TYPE_TRAINS_STATIONNENT = 'STATIONS_NON_DESSERVIES';
+    const TYPE_TRAINS_SUPPRIMES = 'TRAINS_SUPPRIMES';
+    const TYPE_CHANGEMENT_HORAIRES = 'CHANGEMENT_HORAIRES';
     const TYPE_CHANGEMENT_COMPOSITION = 'CHANGEMENT_COMPOSITION';
     const TYPE_AUCUNE = 'AUCUNE';
 
@@ -49,8 +55,104 @@ class Disruption
         return str_replace([" - Reprise progressive / trafic reste très perturbé", " - Reprise progressive / trafic reste perturbé", " - Arrêt non desservi", " - Reprise progressive"," - Stationnement prolongé", " - Trafic interrompu", " - Trafic perturbé", " - Trafic très perturbé", " - Trains stationnent", " - Train stationne"], "", $this->getTitle());
     }
 
+    public function getSuggestionType() {
+        if(preg_match('/conditions climatiques/', $this->getTitle()) && preg_match('/alerte orages Météo France/', $this->getMessagePlainText())) {
+            return self::TYPE_AUCUNE;
+        }
+
+        if(preg_match("/Le trafic est fortement perturbé[àéèîếa-zA-z\ '0-9]*entre/i", $this->getMessagePlainText())) {
+
+            return self::TYPE_PERTURBATION_PARTIELLE_FORTE;
+        }
+        if(preg_match("/Le trafic est fortement perturbé sur l'ensemble de la ligne/i", $this->getMessagePlainText())) {
+
+            return self::TYPE_PERTURBATION_TOTALE_FORTE;
+        }
+
+        if(preg_match("/Le trafic reprend mais reste perturbé sur l'ensemble de la ligne/i", $this->getMessagePlainText())) {
+
+            return self::TYPE_PERTURBATION_TOTALE_REPRISE;
+        }
+
+        if(preg_match('/Le trafic est interrompu entre/i', $this->getMessagePlainText())) {
+
+            return self::TYPE_INTERRUPTION_PARTIELLE;
+        }
+
+        if(preg_match("/trafic (est |)interrompu sur l'ensemble de la ligne/i", $this->getMessagePlainText())) {
+
+            return self::TYPE_INTERRUPTION_TOTALE;
+        }
+
+        if(preg_match("/Le trafic est perturbé sur l'ensemble de la ligne/i", $this->getMessagePlainText())) {
+
+            return self::TYPE_PERTURBATION_TOTALE;
+        }
+
+        if(preg_match("/Le trafic est perturbé[àéèîếa-zA-z\ '0-9]*entre/i", $this->getMessagePlainText())) {
+
+            return self::TYPE_PERTURBATION_PARTIELLE;
+        }
+
+        if(preg_match("/(Trains|Tramways)?[a-zA-z\ ]*supprimés?/i", $this->getMessagePlainText())) {
+
+            return self::TYPE_TRAINS_SUPPRIMES;
+        }
+
+        if(preg_match("/Gares? non desservies?/i", $this->getTitle())) {
+
+            return self::TYPE_GARES_NON_DESSERVIES;
+        }
+
+        if(preg_match("/Le trafic est fortement ralenti/i", $this->getMessagePlainText())) {
+
+            return self::TYPE_RALENTI_FORTEMENT;
+        }
+
+        if(preg_match("/Le trafic est ralenti/i", $this->getMessagePlainText())) {
+
+            return self::TYPE_RALENTI;
+        }
+
+        if(preg_match("/ralenti/i", $this->getTitle())) {
+
+            return self::TYPE_RALENTI;
+        }
+
+        if(preg_match("/arrêt bus de remplacement/i", $this->getTitle())) {
+
+            return self::TYPE_AUCUNE;
+        }
+
+        if(preg_match('/(Alerte orages|Alerte forte pluies et orages)/', $this->getTitle())) {
+            return self::TYPE_AUCUNE;
+        }
+
+        if(preg_match('/Modifications de compositions/', $this->getTitle())) {
+            return self::TYPE_AUCUNE;
+        }
+
+        if(preg_match('/Adaptation/', $this->getTitle())) {
+            return self::TYPE_AUCUNE;
+        }
+
+        if(preg_match('/(modifications horaires|horaires modifiés)/', $this->getTitle())) {
+            return self::TYPE_AUCUNE;
+        }
+
+        if(preg_match('/Modification de desserte/', $this->getTitle())) {
+            return self::TYPE_AUCUNE;
+        }
+
+        if(preg_match('/train court/', $this->getTitle())) {
+            return self::TYPE_AUCUNE;
+        }
+
+        return null;
+    }
+
     public function getSuggestionOrigine() {
-        if(preg_match('/Métro/', $this->getTitle())) {
+        if(preg_match('/(Métro|Tramway)/', $this->getTitle())) {
 
             return preg_replace('/ - .*$/', '', preg_replace('/^[^:]*: /', '', $this->getTitle()));
         }
@@ -83,27 +185,7 @@ class Disruption
             return true;
         }
 
-        if(preg_match('/(modifications horaires|horaires modifiés)/', $this->getTitle())) {
-            return true;
-        }
-
-        if(preg_match('/Modification de desserte/', $this->getTitle())) {
-            return true;
-        }
-
-        if(preg_match('/train court/', $this->getTitle())) {
-            return true;
-        }
-
-        if(preg_match('/(Alerte orages|Alerte forte pluies et orages)/', $this->getTitle())) {
-            return true;
-        }
-
-        if(preg_match('/Modifications de compositions/', $this->getTitle())) {
-            return true;
-        }
-
-        if(preg_match('/Adaptation/', $this->getTitle())) {
+        if($this->getSuggestionType() == self::TYPE_AUCUNE) {
             return true;
         }
 
