@@ -61,6 +61,10 @@ class Day
                     $disruption->setDateEnd($nextDisruption->getDateStart()->format('Ymd\THis'));
                 }
 
+                if($disruption->getDateStart() > $disruption->getDateEnd()) {
+                    $disruption->setDateStart($disruption->getDateEnd()->format('Ymd\THis'));
+                }
+
                 $nextDisruption = $disruption;
             }
         }

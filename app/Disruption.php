@@ -123,6 +123,11 @@ class Disruption
         return DateTime::createFromFormat('Ymd\THis', $this->dateStart);
     }
 
+    public function setDateStart($date) {
+
+        return $this->dateStart = $date;
+    }
+
     public function getDateEnd() {
 
         return DateTime::createFromFormat('Ymd\THis', $this->dateEnd);
