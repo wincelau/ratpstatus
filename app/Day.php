@@ -92,6 +92,10 @@ class Day
             break;
         }
 
+        if(is_null($data))  {
+            return;
+        }
+
         foreach($data->lines as $line) {
             $line->name = strtoupper($line->name);
             $this->opening_hours[$line->name] = new stdClass();
