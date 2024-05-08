@@ -57,6 +57,7 @@
 <?php endforeach; ?>
 </div>
 </main>
+</div>
 <p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <footer role="contentinfo" id="footer">
 <p>
@@ -67,7 +68,6 @@
 </p>
 <p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
-</div>
 <dialog id="tooltipModal"></dialog>
 <dialog id="helpModal">
     <h3>Aide et informations</h3>
