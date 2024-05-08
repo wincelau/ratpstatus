@@ -253,14 +253,15 @@ class Day
     public function toCsv() {
         $csv = "Date,Ligne,Type de perturbation,Api disruption id\n";
         $now = new DateTime();
-        for($i = 0; $i < 1260; $i=$i+2) {
+        for($i = 0; $i < 1380; $i=$i+2) {
             $date = (clone $this->getDateStart())->modify("+ ".$i." minutes");
-            if($date > $now) {
-                return $csv;
-            }
             foreach(Config::getLignes() as $mode => $lignes) {
                 foreach($lignes as $ligne => $ligneImg) {
-                    $csv .= $date->format('Y-m-d H:i:s').",".str_replace(['Métro ', 'Ligne ' ], ['M', 'L'], $ligne).",".strtoupper($this->getColorClass($i, $ligne)).",".str_replace(["%ok%", "%", ";"], ["", "", "|"], preg_replace('/^;/', '', $this->getInfo($i, $ligne)))."\n";
+                    $statut = strtoupper($this->getColorClass($i, $ligne));
+                    if(in_array($statut, ['NO', 'E'])) {
+                        continue;
+                    }
+                    $csv .= $date->format('Y-m-d H:i:s').",".str_replace(['Métro ', 'Ligne ' ], ['M', 'L'], $ligne).",".$statut .",".str_replace(["%ok%", "%", ";"], ["", "", "|"], preg_replace('/^;/', '', $this->getInfo($i, $ligne)))."\n";
                 }
             }
         }
