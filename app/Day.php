@@ -5,16 +5,20 @@ class Day
     protected $dateStart = null;
     protected $dateEnd = null;
     protected $disruptions = [];
+    protected $opening_hours = [];
 
-    public function __construct($datetime) {
-        $this->dateStart = (new DateTime((new DateTime($datetime))->modify('-3 hours')->format('Y-m-d').' 05:00:00'));
-
-        $this->dateEnd = (clone $this->dateStart)->modify('+21 hours');
-        $this->load();
+    public function __construct($date) {
+        if($date == null) {
+            $date = (new DateTime())->modify('-3 hours')->format('Y-m-d');
+        }
+        $this->dateStart = new DateTime($date.' 04:00:00');
+        $this->dateEnd = (clone $this->dateStart)->modify('+23 hours');
+        $this->loadOpeningHours();
+        $this->loadDisruptions();
     }
 
-    protected function load() {
-        $files = $this->getFiles();
+    protected function loadDisruptions() {
+        $files = $this->getDistruptionsFiles();
         $this->disruptions = [];
         $previousDisruptions = [];
         foreach($files as $filename) {
@@ -70,7 +74,33 @@ class Day
         }
     }
 
-    protected function getFiles() {
+    protected function loadOpeningHours() {
+        $this->opening_hours = [];
+        $data = null;
+        foreach(scandir(__DIR__.'/../datas/jsonlines') as $file) {
+            if(!is_file(__DIR__.'/../datas/jsonlines/'.$file)) {
+                continue;
+            }
+            if(explode('_', $file)[0] < (clone $this->getDateStart())->modify('-2 hours')->format('YmdHis')) {
+                continue;
+            }
+            if(explode('_', $file)[0] > (clone $this->getDateEnd())->modify('-3 hours')->format('YmdHis')) {
+                continue;
+            }
+            $data = json_decode(file_get_contents(__DIR__.'/../datas/jsonlines/'.$file));
+
+            break;
+        }
+
+        foreach($data->lines as $line) {
+            $line->name = strtoupper($line->name);
+            $this->opening_hours[$line->name] = new stdClass();
+            $this->opening_hours[$line->name]->opening_date = DateTime::createFromFormat('YmdHis', $this->getDateStart()->format('Ymd').$line->opening_time);
+            $this->opening_hours[$line->name]->closing_date = DateTime::createFromFormat('YmdHis', $this->getDateEnd()->format('Ymd').$line->closing_time);
+        }
+    }
+
+    protected function getDistruptionsFiles() {
         $files = [];
         foreach(scandir(__DIR__.'/../datas/json') as $file) {
             if(!is_file(__DIR__.'/../datas/json/'.$file)) {
@@ -114,6 +144,14 @@ class Day
         return $this->getDateStart()->format('Ymd') == date('Ymd');
     }
 
+    public function isTomorrow() {
+        return $this->getDateStartTomorrow() > (new DateTime())->modify('+3 hours');
+    }
+
+    public function isTodayTomorrow() {
+        return date_format($this->getDateStartTomorrow(), "Ymd") == date_format((new DateTime()), "Ymd");
+    }
+
     public function getDistruptionsByLigne($ligne) {
         $disruptions = [];
 
@@ -146,10 +184,25 @@ class Day
         return $this->disruptions;
     }
 
+    public function isLigneOpen($ligne, $date) {
+        $shortLine = str_replace(['Métro ', 'Ligne ' ], null, $ligne);
+        if(!isset($this->opening_hours[$shortLine])) {
+
+            return true;
+        }
+
+        $hours = $this->opening_hours[$shortLine];
+
+        return $date > $hours->opening_date && $date < $hours->closing_date;
+    }
+
     public function getColorClass($nbMinutes, $ligne) {
         $date = (clone $this->getDateStart())->modify("+ ".$nbMinutes." minutes");
         if($date > (new DateTime())) {
             return 'e';
+        }
+        if(!$this->isLigneOpen($ligne, $date)) {
+            return 'no';
         }
         $cssClass = 'ok';
         foreach($this->getDistruptionsByLigneInPeriod($ligne, $date) as $disruption) {
@@ -171,6 +224,9 @@ class Day
         $date = (clone $this->getDateStart())->modify("+ ".$nbMinutes." minutes");
         if($date > (new DateTime())) {
             return null;
+        }
+        if(!$this->isLigneOpen($ligne, $date)) {
+            return '%no%';
         }
         $message = null;
         foreach($this->getDistruptionsByLigneInPeriod($ligne, $date) as $disruption) {
