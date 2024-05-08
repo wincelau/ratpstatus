@@ -142,7 +142,7 @@ class Disruption
         }
 
         if(preg_match('/(modifications horaires|horaires modifiés)/', $this->getTitle())) {
-            return self::TYPE_AUCUNE;
+            return self::TYPE_CHANGEMENT_HORAIRES;
         }
 
         if(preg_match('/Modification de desserte/', $this->getTitle())) {
@@ -199,7 +199,15 @@ class Disruption
             return true;
         }
 
+        if($this->getType() == self::TYPE_CHANGEMENT_HORAIRES) {
+            return true;
+        }
+
         if($this->getSuggestionType() == self::TYPE_AUCUNE) {
+            return true;
+        }
+
+        if($this->getSuggestionType() == self::TYPE_CHANGEMENT_HORAIRES) {
             return true;
         }
 
