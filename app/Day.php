@@ -152,7 +152,7 @@ class Day
     }
 
     public function isTomorrow() {
-        return $this->getDateStartTomorrow() > (new DateTime())->modify('+3 hours');
+        return $this->getDateStartTomorrow() > (new DateTime())->modify('+1 hours');
     }
 
     public function isTodayTomorrow() {
