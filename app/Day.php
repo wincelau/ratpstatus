@@ -37,6 +37,9 @@ class Day
         }
         $disruptionsByUniqTitle = [];
         foreach($this->disruptions as $disruption) {
+            if(!preg_match('/(Métro| T[0-9]+)/', $disruption->getTitle())) {
+                continue;
+            }
             $dateKey = $disruption->getLastUpdate()->format('Y-m-d H:i:s');
             if($disruption->getLastUpdate() < $this->getDateStart()) {
                 $dateKey =  $disruption->getDateStart()->format('Y-m-d H:i:s');
