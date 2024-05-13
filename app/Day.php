@@ -213,13 +213,13 @@ class Day
         }
         $cssClass = 'ok';
         foreach($this->getDistruptionsByLigneInPeriod($ligne, $date) as $disruption) {
-            if($disruption->getCause() == Disruption::CAUSE_PERTURBATION && $disruption->getSeverity() == Disruption::SEVERITY_BLOQUANTE) {
+            if($disruption->getCause() == Impact::CAUSE_PERTURBATION && $disruption->getSeverity() == Impact::SEVERITY_BLOQUANTE) {
                 return 'bq';
             }
-            if($cssClass == 'ok' && $disruption->getCause() == Disruption::CAUSE_TRAVAUX) {
+            if($cssClass == 'ok' && $disruption->getCause() == Impact::CAUSE_TRAVAUX) {
                 $cssClass = 'tx';
             }
-            if($disruption->getCause() == Disruption::CAUSE_PERTURBATION && $disruption->getSeverity() == Disruption::SEVERITY_PERTURBEE) {
+            if($disruption->getCause() == Impact::CAUSE_PERTURBATION && $disruption->getSeverity() == Impact::SEVERITY_PERTURBEE) {
                 $cssClass = 'pb';
             }
         }

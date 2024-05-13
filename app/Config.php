@@ -64,18 +64,18 @@ class Config
 
     public static function getTypesPerturbation() {
         return [
-        Disruption::TYPE_PERTURBATION_PARTIELLE => "Perturbation partielle",
-        Disruption::TYPE_PERTURBATION_TOTALE =>"Perturbation sur l'ensemble de la ligne",
-        Disruption::TYPE_PERTURBATION_TOTALE_FORTE => "Forte perturbation",
-        Disruption::TYPE_INTERRUPTION_PARTIELLE => "Interruption partielle",
-        Disruption::TYPE_INTERRUPTION_TOTALE => "Interruption sur l'ensemble de la ligne",
-        Disruption::TYPE_STATIONS_NON_DESSERVIES => "Station(s) non desservie(s)",
-        Disruption::TYPE_GARES_NON_DESSERVIES => "Gare(s) non desservie(s)",
-        Disruption::TYPE_TRAINS_STATIONNENT => "Trains stationnent",
-        Disruption::TYPE_TRAINS_SUPPRIMES => "Trains supprimés",
-        Disruption::TYPE_CHANGEMENT_HORAIRES => "Changement d'horaires",
-        Disruption::TYPE_CHANGEMENT_COMPOSITION => "Changement de composition",
-        Disruption::TYPE_AUCUNE => "Aucune perturbation en cours",
+        Impact::TYPE_PERTURBATION_PARTIELLE => "Perturbation partielle",
+        Impact::TYPE_PERTURBATION_TOTALE =>"Perturbation sur l'ensemble de la ligne",
+        Impact::TYPE_PERTURBATION_TOTALE_FORTE => "Forte perturbation",
+        Impact::TYPE_INTERRUPTION_PARTIELLE => "Interruption partielle",
+        Impact::TYPE_INTERRUPTION_TOTALE => "Interruption sur l'ensemble de la ligne",
+        Impact::TYPE_STATIONS_NON_DESSERVIES => "Station(s) non desservie(s)",
+        Impact::TYPE_GARES_NON_DESSERVIES => "Gare(s) non desservie(s)",
+        Impact::TYPE_TRAINS_STATIONNENT => "Trains stationnent",
+        Impact::TYPE_TRAINS_SUPPRIMES => "Trains supprimés",
+        Impact::TYPE_CHANGEMENT_HORAIRES => "Changement d'horaires",
+        Impact::TYPE_CHANGEMENT_COMPOSITION => "Changement de composition",
+        Impact::TYPE_AUCUNE => "Aucune perturbation en cours",
         ];
     }
 }

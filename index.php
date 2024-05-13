@@ -25,6 +25,10 @@
     <span aria-hidden="true">🔃</span>
     <span class="visually-hidden">Rafraîchir</span>
 </a>
+<a id="lien_export" href="/csv.php">
+    <span aria-hidden="true">Export CSV</span>
+    <span class="visually-hidden">Export CSV</span>
+</a>
 <h1>Suivi de l'état du trafic</h1>
 <h2>
     <?php if($day->getDateStartYesterday() < new DateTime('2024-04-23')): ?>

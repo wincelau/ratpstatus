@@ -4,6 +4,7 @@ date_default_timezone_set('Europe/Paris');
 
 require __DIR__.'/app/Config.php';
 require __DIR__.'/app/Day.php';
+require __DIR__.'/app/Impact.php';
 require __DIR__.'/app/Disruption.php';
 require __DIR__.'/app/File.php';
 
