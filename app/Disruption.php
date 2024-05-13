@@ -149,7 +149,7 @@ class Disruption
             return self::TYPE_AUCUNE;
         }
 
-        if(preg_match('/train court/', $this->getTitle())) {
+        if(preg_match('/train court/i', $this->getTitle())) {
             return self::TYPE_AUCUNE;
         }
 
