@@ -51,7 +51,7 @@ exit;
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 <body>
-    <div class="container" style="padding-bottom: 50px;">
+    <div class="container">
     <form id="form_disruptions" action="" method="POST">
     <?php foreach(Config::getLignes() as $mode => $lignes): ?>
         <?php foreach($lignes as $ligne => $logo) :?>
@@ -61,7 +61,6 @@ exit;
                 <div class="col-6">
                 <div class="card my-3 h-100 <?php if(isset($userDisruptions[$d->getId()]->type)): ?>border-success<?php endif; ?>">
                     <div class="card-header">
-                        <span title="<?php echo str_replace('"', '', print_r($d, true)) ?>" class="float-end badge text-bg-light">json</span>
                         <h5 class="card-title"><img style="height: 18px; display: inline-block;" alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>"/> <?php echo $d->getTitle() ?></h5>
                         <h5 class="card-subtitle mt-2 text-body-secondary"><?php echo $d->getDateStart()->format("H\hi") ?> - <?php echo $d->getDateEnd()->format("H\hi") ?></h5>
                     </div>
@@ -70,9 +69,9 @@ exit;
                     </div>
                     <div class="card-footer <?php if(isset($userDisruptions[$d->getId()])): ?>bg-success<?php endif; ?> text-body-secondary small">
                         ID : <?php echo $d->getId(); ?>
-                        Unique ID : <?php echo $d->getUniqueId(); ?>
-                        Sev : <?php echo $d->getSeverity(); ?>
-                        <span class="float-end">Date : <?php echo $d->getDateCreation()->format("d/m/Y à H\hi\ss"); ?></span>
+                        <span title="<?php echo str_replace('"', '', print_r($d, true)) ?>" class="float-end badge text-bg-light">json</span>
+                        <span class="float-end">Dernière mise à jour : <?php echo $d->getLastUpdate()->format("d/m/Y à H\hi\ss"); ?></span>
+
                     </div>
                 </div>
                 </div>
