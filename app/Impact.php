@@ -207,6 +207,10 @@ class Impact
         return $this->type;
     }
 
+    public function getLigneId() {
+        return preg_replace('/^[^ ]+ /', '', strtoupper(implode("", $this->getLignes())));
+    }
+
     public function getLignes() {
 
         return isset($this->data->lines) ? $this->data->lines : [];

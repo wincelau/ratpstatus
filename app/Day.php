@@ -4,8 +4,7 @@ class Day
 {
     protected $dateStart = null;
     protected $dateEnd = null;
-    protected $disruptions = [];
-    protected $opening_hours = [];
+    protected $lignes = [];
 
     public function __construct($date) {
         if($date == null) {
@@ -13,72 +12,22 @@ class Day
         }
         $this->dateStart = new DateTime($date.' 04:00:00');
         $this->dateEnd = (clone $this->dateStart)->modify('+23 hours');
+        $this->loadLines();
         $this->loadOpeningHours();
         $this->loadDisruptions();
     }
 
-    protected function loadDisruptions() {
-        $files = $this->getDistruptionsFiles();
-        $this->disruptions = [];
-        $previousDisruptions = [];
-        foreach($files as $filename) {
-            $file = new File($filename);
-            $currentDisruptions = [];
-            foreach($file->getDistruptions() as $disruption) {
-                $this->disruptions[$disruption->getId()] = $disruption;
-                $currentDisruptions[$disruption->getId()] = $disruption;
-            }
-            foreach($previousDisruptions as $previousDisruption) {
-                if(!isset($currentDisruptions[$previousDisruption->getId()]) && $this->disruptions[$previousDisruption->getId()]->getDateEnd() > $file->getDate()) {
-                    $this->disruptions[$previousDisruption->getId()]->setDateEnd($file->getDate()->format('Ymd\THis'));
-                }
-            }
-            $previousDisruptions = $currentDisruptions;
-        }
-        $disruptionsByUniqTitle = [];
-        foreach($this->disruptions as $disruption) {
-            if(!preg_match('/(Métro| T[0-9]+)/', $disruption->getTitle())) {
-                continue;
-            }
-            $dateKey = $disruption->getLastUpdate()->format('Y-m-d H:i:s');
-            if($disruption->getLastUpdate() < $this->getDateStart()) {
-                $dateKey =  $disruption->getDateStart()->format('Y-m-d H:i:s');
-            }
-
-            $disruptionsByUniqTitle[$disruption->getUniqueTitle()][$dateKey.$disruption->getId()] = $disruption;
-        }
-        foreach($disruptionsByUniqTitle as $uniqName => $disruptions) {
-            $nextDisruption = null;
-            krsort($disruptions);
-            foreach($disruptions as $disruption) {
-                if($nextDisruption && $disruption->getDateEnd() > $nextDisruption->getDateEnd()) {
-                    $disruption->setDateEnd($nextDisruption->getDateStart()->format('Ymd\THis'));
-                }
-
-                if($nextDisruption && $nextDisruption->getDateStart() > $disruption->getDateEnd()) {
-                    $nextDisruption = $disruption;
-                    continue;
-                }
-
-                if($nextDisruption && $disruption->getDateEnd() > $nextDisruption->getDateEnd()) {
-                    $disruption->setDateEnd($nextDisruption->getDateEnd()->format('Ymd\THis'));
-                }
-
-                if($nextDisruption && $disruption->getDateEnd() > $nextDisruption->getDateStart()) {
-                    $disruption->setDateEnd($nextDisruption->getDateStart()->format('Ymd\THis'));
-                }
-
-                if($disruption->getDateStart() > $disruption->getDateEnd()) {
-                    $disruption->setDateStart($disruption->getDateEnd()->format('Ymd\THis'));
-                }
-
-                $nextDisruption = $disruption;
+    protected function loadLines() {
+        foreach(Config::getLignes() as $mode => $lignes) {
+            foreach($lignes as $ligneName => $ligneImg) {
+                $ligne = new Line($ligneName);
+                $ligne->setImage($ligneImg);
+                $this->lignes[$ligne->getId()] = $ligne;
             }
         }
     }
 
     protected function loadOpeningHours() {
-        $this->opening_hours = [];
         $data = null;
         foreach(scandir(__DIR__.'/../datas/jsonlines') as $file) {
             if(!is_file(__DIR__.'/../datas/jsonlines/'.$file)) {
@@ -99,11 +48,43 @@ class Day
             return;
         }
 
-        foreach($data->lines as $line) {
-            $line->name = strtoupper($line->name);
-            $this->opening_hours[$line->name] = new stdClass();
-            $this->opening_hours[$line->name]->opening_date = DateTime::createFromFormat('YmdHis', $this->getDateStart()->format('Ymd').$line->opening_time);
-            $this->opening_hours[$line->name]->closing_date = DateTime::createFromFormat('YmdHis', $this->getDateEnd()->format('Ymd').$line->closing_time);
+        foreach($data->lines as $dataLine) {
+            if(!isset($this->lignes[strtoupper($dataLine->name)])) {
+                continue;
+            }
+            $ligne = $this->lignes[strtoupper($dataLine->name)];
+            $ligne->setOpeningDateTime(DateTime::createFromFormat('YmdHis', $this->getDateStart()->format('Ymd').$dataLine->opening_time));
+            $ligne->setClosingDateTime(DateTime::createFromFormat('YmdHis', $this->getDateEnd()->format('Ymd').$dataLine->closing_time));
+        }
+    }
+
+    protected function addImpact($impact) {
+        if(!isset($this->lignes[$impact->getLigneId()])) {
+            return;
+        }
+
+        $this->lignes[$impact->getLigneId()]->addImpact($impact);
+    }
+
+    protected function loadDisruptions() {
+        $files = $this->getDistruptionsFiles();
+        $previousDisruptions = [];
+        foreach($files as $filename) {
+            $file = new File($filename);
+            $currentDisruptions = [];
+            foreach($file->getDistruptions() as $disruption) {
+                $this->addImpact($disruption);
+                $currentDisruptions[$disruption->getId()] = $disruption;
+            }
+            foreach($previousDisruptions as $previousDisruption) {
+                if(!isset($currentDisruptions[$previousDisruption->getId()]) && $previousDisruption->getDateEnd() > $file->getDate()) {
+                    $previousDisruption->setDateEnd($file->getDate()->format('Ymd\THis'));
+                }
+            }
+            $previousDisruptions = $currentDisruptions;
+        }
+        foreach($this->lignes as $ligne) {
+            $ligne->buildDisruptions($this);
         }
     }
 
@@ -159,67 +140,24 @@ class Day
         return date_format($this->getDateStartTomorrow(), "Ymd") == date_format((new DateTime()), "Ymd");
     }
 
-    public function getDistruptionsByLigne($ligne) {
-        $disruptions = [];
-
-        foreach($this->getDistruptions() as $disruption) {
-            if(!preg_match('/(^| )'.str_replace('é', 'e', $ligne).'[^0-9A-Z]+/', str_replace('é', 'e', $disruption->getTitle()))) {
-                continue;
-            }
-
-            $disruptions[$disruption->getId()] = $disruption;
-        }
-
-        return $disruptions;
-    }
-
-    public function getDistruptionsByLigneInPeriod($ligne, $date) {
-        $disruptions = [];
-
-        foreach($this->getDistruptionsByLigne($ligne) as $disruption) {
-            if(!$disruption->isInPeriod($date)) {
-                continue;
-            }
-            $disruptions[$disruption->getId()] = $disruption;
-        }
-
-        return $disruptions;
-    }
-
-    public function getDistruptions() {
-
-        return $this->disruptions;
-    }
-
-    public function isLigneOpen($ligne, $date) {
-        $shortLine = str_replace(['Métro ', 'Ligne ' ], null, $ligne);
-        if(!isset($this->opening_hours[$shortLine])) {
-
-            return true;
-        }
-
-        $hours = $this->opening_hours[$shortLine];
-
-        return $date > $hours->opening_date && $date < $hours->closing_date;
-    }
-
-    public function getColorClass($nbMinutes, $ligne) {
+    public function getColorClass($nbMinutes, $ligneName) {
+        $ligne = $this->lignes[strtoupper(str_replace(['Métro ', 'Ligne ' ], null, $ligneName))];
         $date = (clone $this->getDateStart())->modify("+ ".$nbMinutes." minutes");
         if($date > (new DateTime())) {
             return 'e';
         }
-        if(!$this->isLigneOpen($ligne, $date)) {
+        if(!$ligne->isLigneOpen($date)) {
             return 'no';
         }
         $cssClass = 'ok';
-        foreach($this->getDistruptionsByLigneInPeriod($ligne, $date) as $disruption) {
-            if($disruption->getCause() == Impact::CAUSE_PERTURBATION && $disruption->getSeverity() == Impact::SEVERITY_BLOQUANTE) {
+        foreach($ligne->getImpactsInPeriod($date) as $impact) {
+            if($impact->getCause() == Impact::CAUSE_PERTURBATION && $impact->getSeverity() == Impact::SEVERITY_BLOQUANTE) {
                 return 'bq';
             }
-            if($cssClass == 'ok' && $disruption->getCause() == Impact::CAUSE_TRAVAUX) {
+            if($cssClass == 'ok' && $impact->getCause() == Impact::CAUSE_TRAVAUX) {
                 $cssClass = 'tx';
             }
-            if($disruption->getCause() == Impact::CAUSE_PERTURBATION && $disruption->getSeverity() == Impact::SEVERITY_PERTURBEE) {
+            if($impact->getCause() == Impact::CAUSE_PERTURBATION && $impact->getSeverity() == Impact::SEVERITY_PERTURBEE) {
                 $cssClass = 'pb';
             }
         }
@@ -227,17 +165,18 @@ class Day
         return $cssClass;
     }
 
-    public function getInfo($nbMinutes, $ligne) {
+    public function getInfo($nbMinutes, $ligneName) {
+        $ligne = $this->lignes[strtoupper(str_replace(['Métro ', 'Ligne ' ], null, $ligneName))];
         $date = (clone $this->getDateStart())->modify("+ ".$nbMinutes." minutes");
         if($date > (new DateTime())) {
             return null;
         }
-        if(!$this->isLigneOpen($ligne, $date)) {
+        if(!$ligne->isLigneOpen($date)) {
             return '%no%';
         }
         $message = null;
-        foreach($this->getDistruptionsByLigneInPeriod($ligne, $date) as $disruption) {
-            $message .= ";%".$disruption->getId()."%";
+        foreach($ligne->getImpactsInPeriod($date) as $impact) {
+            $message .= ";%".$impact->getId()."%";
         }
 
         if($message) {
@@ -250,8 +189,10 @@ class Day
     public function toJson() {
         $json = [];
         $doublons = [];
-        foreach($this->getDistruptions() as $disruption) {
-            $json[$disruption->getId()] = "# ".$disruption->getTitle()."\n\n".$disruption->getMessagePlainText();
+        foreach($this->lignes as $ligne) {
+            foreach($ligne->getImpacts() as $disruption) {
+                $json[$disruption->getId()] = "# ".$disruption->getTitle()."\n\n".$disruption->getMessagePlainText();
+            }
         }
 
         return json_encode($json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
