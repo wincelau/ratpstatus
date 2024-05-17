@@ -9,6 +9,9 @@ class File
     public function __construct($filename) {
         $this->filename = $filename;
         $this->data = json_decode(file_get_contents(__DIR__.'/../datas/json/'.$filename));
+        if(is_null($this->data) || is_null($this->data->disruptions)) {
+            return;
+        }
         foreach($this->data->disruptions as $dataDistruption) {
             foreach($this->data->lines as $line) {
                 foreach($line->impactedObjects as $object) {
