@@ -14,7 +14,7 @@ fi
 
 git checkout static/metros.html static/tramways.html static/trains.html static/index.html static/$currentdate static/$currentdate.json static/$currentdate.csv
 
-git pull
+git pull --commit
 
 mkdir static/$currentdate 2> /dev/null
 

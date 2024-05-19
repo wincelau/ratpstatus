@@ -9,7 +9,7 @@ mkdir -p datas/json/$todaydate
 
 curl -H "apiKey: $APIKEY" https://prim.iledefrance-mobilites.fr/marketplace/disruptions_bulk/disruptions/v2 > $filebrut
 php bin/optimize_disruption_file.php $filebrut > $fileoptimized
-git pull
+git pull --commit
 git add $fileoptimized
 git commit $fileoptimized -m "Récupération du dernier fichier disruption.json"
 git push
