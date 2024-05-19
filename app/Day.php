@@ -69,8 +69,8 @@ class Day
     protected function loadDisruptions() {
         $files = $this->getDistruptionsFiles();
         $previousDisruptions = [];
-        foreach($files as $filename) {
-            $file = new File($filename);
+        foreach($files as $file) {
+            $file = new File($file);
             $currentDisruptions = [];
             foreach($file->getDistruptions() as $disruption) {
                 $this->addImpact($disruption);
@@ -90,11 +90,8 @@ class Day
 
     protected function getDistruptionsFiles() {
         $files = [];
-        foreach(scandir(__DIR__.'/../datas/json') as $file) {
-            if(!is_file(__DIR__.'/../datas/json/'.$file)) {
-                continue;
-            }
-            $dateFile = DateTime::createFromFormat('YmdHis', explode('_', $file)[0]);
+        foreach(glob("{".__DIR__."/../datas/json/*.json,".__DIR__."/../datas/json/*/*.json}", GLOB_BRACE) as $file) {
+            $dateFile = DateTime::createFromFormat('YmdHis', explode('_', basename($file))[0]);
             if($dateFile < $this->getDateStart()) {
                 continue;
             }

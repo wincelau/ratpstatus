@@ -6,9 +6,9 @@ class File
     protected $filename = null;
     protected $distruptions = [];
 
-    public function __construct($filename) {
-        $this->filename = $filename;
-        $this->data = json_decode(file_get_contents(__DIR__.'/../datas/json/'.$filename));
+    public function __construct($file) {
+        $this->filename = basename($file);
+        $this->data = json_decode(file_get_contents($file));
         if(is_null($this->data) || is_null($this->data->disruptions)) {
             return;
         }
