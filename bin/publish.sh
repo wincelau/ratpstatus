@@ -18,11 +18,13 @@ git pull --commit
 
 mkdir static/$currentdate 2> /dev/null
 
-php index.php $currentdate metros > static/$currentdate/metros.html
-php index.php $currentdate trains > static/$currentdate/trains.html
-php index.php $currentdate tramways > static/$currentdate/tramways.html
-php json.php $currentdate > static/$currentdate.json
-php csv.php $currentdate > static/$currentdate.csv
+php index.php $currentdate metros > static/$currentdate/metros.html.tmp
+php index.php $currentdate trains > static/$currentdate/trains.html.tmp
+php index.php $currentdate tramways > static/$currentdate/tramways.html.tmp
+php json.php $currentdate > static/$currentdate.json.tmp
+php csv.php $currentdate > static/$currentdate.csv.tmp
+
+mv static/$currentdate/*{.tmp,}
 
 ln -fs $todaydate/metros.html static/metros.html
 ln -fs $todaydate/tramways.html static/tramways.html
