@@ -58,9 +58,9 @@ class Impact
         return $this->data->id;
     }
 
-    public function getUniqueId() {
+    public function getDistruptionId() {
 
-        return md5(implode("", $this->getLignes()).$this->getCause().$this->getDateStart()->format('YmdHis'));
+        return md5($this->getId());
     }
 
     public function setDateCreation($date) {

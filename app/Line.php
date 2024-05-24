@@ -7,6 +7,7 @@ class Line
     protected $openingDateTime = null;
     protected $closingDateTime = null;
     protected $impacts = [];
+    protected $disruptions = [];
 
     public function __construct($name) {
         $this->name = $name;
@@ -61,6 +62,15 @@ class Line
     }
 
     public function addImpact($impact) {
+        if(isset($this->disruptions[$impact->getDistruptionId()])) {
+            $disruption = $this->disruptions[$impact->getDistruptionId()];
+        } else {
+            $disruption = new Disruption($impact->getDistruptionId());
+            $this->disruptions[$disruption->getId()] = $disruption;
+        }
+        $disruption->addImpact($impact);
+
+
         $this->impacts[$impact->getId()] = $impact;
     }
 
@@ -111,11 +121,8 @@ class Line
     public function getImpactsInPeriod($date) {
         $impacts = [];
 
-        foreach($this->impacts as $impact) {
-            if(!$impact->isInPeriod($date)) {
-                continue;
-            }
-            $impacts[$impact->getId()] = $impact;
+        foreach($this->disruptions as $disruption) {
+            $impacts = array_merge($impacts, $disruption->getImpactsInPeriod($date));
         }
 
         return $impacts;
