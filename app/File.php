@@ -3,12 +3,14 @@
 class File
 {
     protected $data = null;
+    protected $filePath = null;
     protected $filename = null;
     protected $distruptions = [];
 
-    public function __construct($file) {
-        $this->filename = basename($file);
-        $this->data = json_decode(file_get_contents($file));
+    public function __construct($filePath) {
+        $this->filePath = $filePath;
+        $this->filename = basename($filePath);
+        $this->data = json_decode(file_get_contents($filePath));
         if(is_null($this->data) || is_null($this->data->disruptions)) {
             return;
         }
@@ -45,6 +47,11 @@ class File
     public function getDistruptions() {
 
         return $this->distruptions;
+    }
+
+    public function getFilePath() {
+
+        return $this->filePath;
     }
 
 

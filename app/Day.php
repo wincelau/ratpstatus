@@ -5,6 +5,7 @@ class Day
     protected $dateStart = null;
     protected $dateEnd = null;
     protected $lignes = [];
+    protected $lastFile = null;
 
     public function __construct($date) {
         if($date == null) {
@@ -83,6 +84,10 @@ class Day
             }
             $previousDisruptions = $currentDisruptions;
         }
+        if(isset($file)) {
+            $this->lastFile = $file;
+        }
+
         foreach($this->lignes as $ligne) {
             $ligne->buildDisruptions($this);
         }
@@ -122,6 +127,11 @@ class Day
 
     public function getDateEnd() {
         return $this->dateEnd;
+    }
+
+    public function getLastFile() {
+
+        return $this->lastFile;
     }
 
     public function isToday() {
