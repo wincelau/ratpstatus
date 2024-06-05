@@ -21,7 +21,7 @@ class Day
     protected function loadLines() {
         foreach(Config::getLignes() as $mode => $lignes) {
             foreach($lignes as $ligneName => $ligneImg) {
-                $ligne = new Line($ligneName);
+                $ligne = new Line($ligneName, $this->dateStart);
                 $ligne->setImage($ligneImg);
                 $this->lignes[$ligne->getId()] = $ligne;
             }
@@ -86,10 +86,6 @@ class Day
         }
         if(isset($file)) {
             $this->lastFile = $file;
-        }
-
-        foreach($this->lignes as $ligne) {
-            $ligne->buildDisruptions($this);
         }
     }
 
@@ -216,8 +212,7 @@ class Day
                     if(in_array($statut, ['NO', 'E'])) {
                         continue;
                     }
-                    $csv .= $date->format('Y-m-d H:i:s').",".str_replace(['Métro ', 'Ligne ' ], ['M', 'L'], $ligne).",".$statut .",".str_replace(["%ok%", "%", ";"], ["", "", "|"], preg_replace('/^;/', '', $this->getInfo($i, $ligne)))."\n";
-                }
+                    $csv .= $date->format('Y-m-d H:i:s').",".str_replace(['Métro ', 'Ligne ' ], ['M', 'L'], $ligne).",".$statut .",".str_replace(["%ok%", "%", ";"], ["", "", "|"], preg_replace('/^;/', '', $this->getInfo($i, $ligne)))."\n";                }
             }
         }
 

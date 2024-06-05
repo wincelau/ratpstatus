@@ -59,8 +59,10 @@ class Impact
     }
 
     public function getDistruptionId() {
-
-        return md5($this->getId());
+        if(!preg_match('/(Métro| T[0-9]+)/', $this->getTitle())) {
+            return md5($this->getId());
+        }
+        return md5($this->getUniqueTitle());
     }
 
     public function setDateCreation($date) {
