@@ -161,6 +161,10 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
+        if(preg_match('/offre de transport est adaptée/i', $this->getTitle())) {
+            return self::TYPE_AUCUNE;
+        }
+        
         if(preg_match('/(modifications horaires|horaires modifiés)/', $this->getTitle())) {
             return self::TYPE_CHANGEMENT_HORAIRES;
         }
