@@ -149,7 +149,7 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
-        if(preg_match('/(Alerte orages|Alerte forte pluies et orages)/', $this->getTitle())) {
+        if(preg_match('/(Alerte orages|Alerte forte pluies et orages|Vigilance orange Météo France)/i', $this->getTitle())) {
             return self::TYPE_AUCUNE;
         }
 
