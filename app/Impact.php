@@ -158,6 +158,11 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
+        if(preg_match("/risque de perturbation/i", $this->getTitle())) {
+
+            return self::TYPE_AUCUNE;
+        }
+
         if(preg_match('/Modifications de compositions/', $this->getTitle())) {
             return self::TYPE_AUCUNE;
         }
@@ -169,8 +174,8 @@ class Impact
         if(preg_match('/offre de transport est adaptée/i', $this->getTitle())) {
             return self::TYPE_AUCUNE;
         }
-        
-        if(preg_match('/(modifications horaires|horaires modifiés)/', $this->getTitle())) {
+
+        if(preg_match("/(modifications horaires|horaires modifiés|Modifications d'horaires)/", $this->getTitle())) {
             return self::TYPE_CHANGEMENT_HORAIRES;
         }
 
