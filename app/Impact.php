@@ -153,6 +153,11 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
+        if(preg_match("/risquent de perturber le trafic/i", $this->getMessagePlainText())) {
+
+            return self::TYPE_AUCUNE;
+        }
+
         if(preg_match('/Modifications de compositions/', $this->getTitle())) {
             return self::TYPE_AUCUNE;
         }
