@@ -187,7 +187,7 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
-        if(preg_match('/modification arrêt de bus/i', $this->getTitle())) {
+        if(preg_match("/(modification arrêt de bus|Emplacement des bus de remplacement)/i", $this->getTitle())) {
             return self::TYPE_AUCUNE;
         }
 
