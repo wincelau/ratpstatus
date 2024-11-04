@@ -5,10 +5,45 @@ class Disruption
     protected $impacts = [];
     protected $id;
     protected $dateDayStart;
+    protected $ligne;
 
-    public function __construct($id, $dateDayStart) {
+    public function __construct($id, $dateDayStart, $ligne) {
         $this->id = $id;
         $this->dateDayStart = $dateDayStart;
+        $this->ligne = $ligne;
+    }
+
+    public function getDateEnd() {
+        foreach($this->impacts as $i) {
+            return $i->getDateEnd();
+        }
+    }
+
+    public function getDateStart() {
+
+        return end($this->impacts)->getDateStart();
+    }
+
+    public function getDuration() {
+        $dateEnd = $this->getDateEnd();
+
+        if($this->getDateEnd() > new DateTime()) {
+
+            $dateEnd = new DateTime();
+        }
+
+        return $dateEnd->diff($this->getDateStart());
+    }
+
+    public function getCause() {
+        foreach($this->impacts as $i) {
+            return $i->getCause();
+        }
+    }
+
+    public function getLigne() {
+
+        return $this->ligne;
     }
 
     public function getId()

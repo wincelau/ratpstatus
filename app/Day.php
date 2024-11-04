@@ -143,6 +143,18 @@ class Day
         return date_format($this->getDateStartTomorrow(), "Ymd") == date_format((new DateTime()), "Ymd");
     }
 
+    public function getDisruptions() {
+        $disruptions = [];
+        foreach($this->lignes as $ligne) {
+            if(!preg_match('/Métro/', $ligne->getName())) {
+                continue;
+            }
+            $disruptions = array_merge($disruptions, $ligne->getDisruptions());
+        }
+        uasort($disruptions, function($a, $b) { return $a->getDateStart() < $b->getDateStart(); });
+        return $disruptions;
+    }
+
     public function getColorClass($nbMinutes, $ligneName) {
         $ligne = $this->lignes[strtoupper(str_replace(['Métro ', 'Ligne ' ], null, $ligneName))];
         $date = (clone $this->getDateStart())->modify("+ ".$nbMinutes." minutes");

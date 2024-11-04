@@ -20,11 +20,15 @@ class Line
         return strtoupper(str_replace(['Métro ', 'Ligne ' ], null, $this->getName()));
     }
 
+    public function getDisruptions() {
+        return $this->disruptions;
+    }
+
     public function addImpact($impact) {
         if(isset($this->disruptions[$impact->getDistruptionId()])) {
             $disruption = $this->disruptions[$impact->getDistruptionId()];
         } else {
-            $disruption = new Disruption($impact->getDistruptionId(), $this->dateDayStart);
+            $disruption = new Disruption($impact->getDistruptionId(), $this->dateDayStart, $this);
             $this->disruptions[$disruption->getId()] = $disruption;
         }
         $disruption->addImpact($impact);
@@ -36,6 +40,11 @@ class Line
     }
 
     public function setImage($image) {
+
+        $this->image = $image;
+    }
+
+    public function getImage() {
 
         return $this->image;
     }

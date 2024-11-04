@@ -223,6 +223,22 @@ class Impact
         return $this->type;
     }
 
+    public function getColorClass() {
+        $cssClass = 'ok';
+
+        if($this->getCause() == Impact::CAUSE_PERTURBATION && $this->getSeverity() == Impact::SEVERITY_BLOQUANTE) {
+            $cssClass = 'bq';
+        }
+        if($cssClass == 'ok' && $this->getCause() == Impact::CAUSE_TRAVAUX) {
+            $cssClass = 'tx';
+        }
+        if($this->getCause() == Impact::CAUSE_PERTURBATION && $this->getSeverity() == Impact::SEVERITY_PERTURBEE) {
+            $cssClass = 'pb';
+        }
+
+        return $cssClass;
+    }
+
     public function getLigneId() {
         return preg_replace('/^[^ ]+ /', '', strtoupper(implode("", $this->getLignes())));
     }
@@ -278,6 +294,17 @@ class Impact
     public function setDateEnd($date) {
 
         return $this->dateEnd = $date;
+    }
+
+    public function getDuration() {
+        $dateEnd = $this->getDateEnd();
+
+        if($this->getDateEnd() > new DateTime()) {
+
+            $dateEnd = new DateTime();
+        }
+
+        return $dateEnd->diff($this->getDateStart());
     }
 
     public function isInPeriod(DateTime $date) {
