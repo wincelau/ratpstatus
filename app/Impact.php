@@ -175,7 +175,7 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
-        if(preg_match("/(modifications horaires|horaires modifiés|Modifications d'horaires|Changement d'horaires)/", $this->getTitle())) {
+        if(preg_match("/(modifications horaires|horaires modifiés|Modifications d'horaires|Changement d'horaires)/i", $this->getTitle())) {
             return self::TYPE_CHANGEMENT_HORAIRES;
         }
 
