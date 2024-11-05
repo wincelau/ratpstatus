@@ -1,6 +1,6 @@
 <div class="card my-3">
     <div class="card-header">
-        <h5><img style="height: 20px;" src="<?php echo $disruption->getLigne()->getImage(); ?>" />
+        <h5 class="mb-0"><img style="height: 20px;" src="<?php echo $disruption->getLigne()->getImage(); ?>" />
             <span class="badge text-bg-light"><?php if($disruption->getCause() == Impact::CAUSE_TRAVAUX): ?>🚧<?php else: ?>⚠️<?php endif; ?></span>
         <span class="badge text-bg-light">🕥 <?php if($disruption->getDateEnd() < new DateTime()): ?>De <?php echo $disruption->getDateStart()->format("H\hi") ?> à <?php echo $disruption->getDateEnd()->format("H\hi") ?><?php else: ?>Depuis <?php echo $disruption->getDateStart()->format("H\hi") ?><?php endif; ?></span>
         <span class="badge text-bg-light float-end">⌛ <?php echo $disruption->getDuration()->format("%hh%I"); ?></span>
