@@ -8,15 +8,16 @@
     </div>
     <ul class="list-group list-group-flush">
     <?php $isFirst = true; ?>
-    <?php foreach($disruption->getImpacts() as $i): ?>
+    <?php foreach($disruption->getImpactsOptimized() as $i): ?>
         <?php if($isFirst && $disruption->getDateEnd() < new DateTime()): ?>
             <li class="list-group-item">
-                <strong class="me-2 small"><?php echo $i->getDateEnd()->format("H\hi") ?></strong> <span class="ok text-white strong float-end rounded px-2 small">Fin</span> <?php echo $i->getTitle() ?>
+                <strong class="me-2 small"><?php echo $i->getDateEnd()->format("H\hi") ?></strong> <span class="ok text-white strong float-end rounded px-2 small text-center" style="width: 60px;">Fin</span><span class="text-muted">Fin de l'incident</span>
             </li>
             <?php $isFirst = false; ?>
         <?php endif; ?>
-            <li class="list-group-item" style="overflow: hidden; max-height: 40px;">
-                <strong class="me-2 small"><?php echo $i->getDateStart()->format("H\hi") ?></strong> <span class="<?php echo $i->getColorClass() ?> text-white strong float-end rounded px-2 small"><?php echo $i->getDuration()->format("%hh%I"); ?></span> <?php echo $i->getTitle() ?>
+            <li class="list-group-item">
+                <strong class="me-2 small"><?php echo $i->getDateStart()->format("H\hi") ?></strong> <span class="<?php echo $i->getColorClass() ?> text-white strong float-end rounded px-2 small text-center" style="width: 60px;"><?php echo $i->getDuration()->format("%hh%I"); ?></span> <?php echo $i->getTitle() ?>
+                <p class="text-muted small mb-0"><?php echo $i->getMessagePlainText() ?></p>
             </li>
     <?php endforeach; ?>
     </ul>

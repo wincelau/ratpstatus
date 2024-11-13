@@ -6,7 +6,6 @@ class Line
     protected $name = null;
     protected $openingDateTime = null;
     protected $closingDateTime = null;
-    protected $impacts = [];
     protected $disruptions = [];
     protected $dateDayStart;
 
@@ -24,13 +23,34 @@ class Line
         return $this->disruptions;
     }
 
-    public function addImpact($impact) {
-        if(isset($this->disruptions[$impact->getDistruptionId()])) {
-            $disruption = $this->disruptions[$impact->getDistruptionId()];
-        } else {
-            $disruption = new Disruption($impact->getDistruptionId(), $this->dateDayStart, $this);
-            $this->disruptions[$disruption->getId()] = $disruption;
+    public function findDisruption($impact) {
+        foreach($this->disruptions as $disruption) {
+            $dateStart = $impact->getDateStart();
+            $dateEnd = $impact->getDateEnd();
+            $dateStart = $dateStart->modify('-5 minutes');
+            $dateEnd = $dateEnd->modify('+5 minutes');
+            if($dateStart > $disruption->getDateEnd() || $dateEnd < $disruption->getDateStart()) {
+                continue;
+            }
+
+            if($impact->getDistruptionId() != $disruption->getId()) {
+                continue;
+            }
+
+            return $disruption;
         }
+
+        return null;
+    }
+
+    public function addImpact($impact) {
+        $disruption = $this->findDisruption($impact);
+
+        if(!$disruption) {
+            $disruption = new Disruption($impact->getDistruptionId(), $this->dateDayStart, $this);
+            $this->disruptions[] = $disruption;
+        }
+
         $disruption->addImpact($impact);
     }
 

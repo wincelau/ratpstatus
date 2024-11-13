@@ -3,6 +3,7 @@
 class Disruption
 {
     protected $impacts = [];
+    protected $impacts_optimized = null;
     protected $id;
     protected $dateDayStart;
     protected $ligne;
@@ -93,6 +94,32 @@ class Disruption
 
             $nextImpact = $impact;
         }
+    }
+
+    public function optimize() {
+        $this->impacts_optimized = $this->impacts;
+        foreach($this->impacts_optimized as $key => $impact) {
+            if(!isset($this->impacts_optimized[$key])) {
+                continue;
+            }
+            foreach($this->impacts_optimized as $keyOther => $otherImpact) {
+                if($key == $keyOther) {
+                    continue;
+                }
+                if($otherImpact->isInPeriod($impact->getDateStart()) && $impact->getSeverity() == $otherImpact->getSeverity() && $impact->getTitle() == $otherImpact->getTitle()) {
+                    $otherImpact->setDateEnd($impact->getDateEnd()->format('Ymd\THis'));
+                    unset($this->impacts_optimized[$key]);
+                }
+            }
+        }
+    }
+
+    public function getImpactsOptimized() {
+        if(is_null($this->impacts_optimized)) {
+            $this->optimize();
+        }
+
+        return $this->impacts_optimized;
     }
 
     public function getImpactsInPeriod($date) {

@@ -25,11 +25,11 @@ class File
                     }
                 }
             }
-            $disruption = new Impact($dataDistruption, $this);
-            if($disruption->isToExclude()) {
+            $impact = new Impact($dataDistruption, $this);
+            if($impact->isToExclude()) {
                 continue;
             }
-            $this->distruptions[$dataDistruption->id] = $disruption;
+            $this->distruptions[$dataDistruption->id] = $impact;
         }
     }
 
