@@ -24,4 +24,3 @@ mv static/$currentdate.csv{.tmp,}
 ln -fs $todaydate/metros.html static/metros.html
 ln -fs $todaydate/tramways.html static/tramways.html
 ln -fs $todaydate/trains.html static/trains.html
-ln -fs $todaydate/list.html static/list.html
