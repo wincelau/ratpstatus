@@ -24,7 +24,7 @@
 <?php endif; ?>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">🚥 État du trafic</span></h1>
+<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
     <?php if($day->getDateStartYesterday() < new DateTime('2024-04-23')): ?>
     <a class="disabled">⬅️</a>
