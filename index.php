@@ -18,9 +18,9 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️ <span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
 <?php if($mode == "metros"): ?>
-<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📃 <span class="mobile_hidden">Liste des incidents</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<span class="mobile_hidden"> Liste des incidents</span></a>
 <?php endif; ?>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
