@@ -1,6 +1,7 @@
 body {
     margin:0; padding: 0;
     background-color: white; /* Couleur de fond par défaut. RGAA 10.5 */
+    color: #333;
 }
 .strong {
     font-weight: bold;
@@ -16,20 +17,25 @@ a.disabled {
     width: 1572px; margin: 0 auto;
 }
 #header {
-    position:sticky; top: 0; margin: 0; padding-top: 35px; background: white; z-index: 102;
+    position:sticky; top: 0; margin: 0; padding-top: 40px; background: white; z-index: 102;
 }
+
 #header h1, #header h2 {
-    display: inline-block; white-space: nowrap; margin-top: 18px; top: 0;position: fixed; left: 50%; transform: translate(-50%,-50%) !important; font-weight: normal; text-align: center; color: #666666; font-size: 16px; font-family: monospace; text-transform: uppercase;
+    display: inline-block; white-space: nowrap; margin-top: 18px; top: 0;position: fixed; left: 50%; transform: translate(-50%,-50%) !important; font-weight: normal; text-align: center; font-size: 16px; font-family: monospace; text-transform: uppercase;
 }
 #header h1 a, #header h2 a{
-    text-decoration: none; color: #000;
+    text-decoration: none;
+}
+#header h1 {
+    color: #333;
+    font-size: 18px;
 }
 #header h2 {
-    margin-top: 47px;
+    margin-top: 51px;
 }
 #header #nav_mode {
     display: inline-block;
-    top: 79px;
+    top: 85px;
     position: fixed;
     left: 50%; transform: translate(-50%,-50%) !important;
     width: 100%;
@@ -38,18 +44,17 @@ a.disabled {
 }
 #header #nav_mode a {
     font-size: 16px;
-    color: #666666;
+    color: #333;
     font-family: monospace;
     text-decoration: none;
 }
-#header #nav_mode a:hover span {
+#header a:hover span {
     text-decoration: underline;
-    color: #555555;
+    color: #000;
 }
 
-#header #nav_mode a.active {
+#header a.active span {
     font-weight: bold;
-    color: #555555;
 }
 
 #header #nav_mode a:not(:first-child):not(:last-child) {
@@ -57,26 +62,24 @@ a.disabled {
     margin-left: 15px;
 }
 
-#header a#lien_infos span {
+#header #nav_liens {
     position:absolute;
     left: 10px;
     top: 10px;
-    display: inline-block;
-    color: #666666;
+}
+
+#header #nav_liens a {
+    padding: 0 8px;
+    color: #333;
     text-decoration: none;
     font-family: monospace;
-    border-radius: 99px;
-    border: 1px solid #666666;
-    width: 18px;
-    height: 18px;
     font-size: 16px;
     text-align: center;
+    text-transform: uppercase;
 }
-#header a#lien_infos:hover span {
-    border-color: #444444;
-}
+
 #header a#lien_refresh {
-    position:fixed; right: 14px; top: 10px; display: inline-block; color: #666666; text-decoration: none; font-family: monospace; font-size: 16px;
+    position:absolute; right: 14px; top: 10px; display: inline-block; color: #666666; text-decoration: none; font-family: monospace; font-size: 16px;
 }
 .ligne {
     margin-bottom: 5px;
@@ -112,8 +115,9 @@ a.disabled {
     border-left: 1px solid #fff;
 }
 .hline {
-    margin-top: 64px; padding-left: 40px;
-    margin-bottom: 9px;
+    margin-top: 66px;
+    padding-left: 40px;
+    margin-bottom: 8px;
 }
 .hline:after {
     content:" ";
@@ -201,7 +205,7 @@ a.disabled {
     margin-top: 30px;
 }
 
-#tooltipModal::after, #helpModal::after {
+#tooltipModal::after, #helpModal::after, #listModal::after {
     content: 'X Fermer';
     position: absolute;
     top: 14px;
@@ -220,14 +224,52 @@ a.disabled {
     border: none;
 }
 
-#helpModal {
+#helpModal, #listModal {
     max-width: 700px;
     font-family: monospace;
     font-size: 14px;
 }
 
-#helpModal h3 {
+#helpModal h2, #listModal h2 {
     margin-top: 0;
+    font-size: 18px;
+}
+
+#helpModal h3, #listModal h3 {
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+#helpModal h4, #listModal h4 {
+    font-size: 14px; background: #f2f2f2; padding: 8px; margin-top: 20px; margin-bottom: 20px; border: 1px solid #ececec; border-radius: 2px;
+}
+
+#listModal h4 img {
+    height: 19px; float: left; margin-top: -1px;
+}
+
+#listModal h4 span:first-of-type {
+    margin-left: 10px;
+}
+
+#listModal h4 span:last-child {
+    float: right;
+}
+
+#listModal ul {
+    list-style: none; padding: 0 8px;
+}
+
+#listModal ul li span:first-of-type {
+    display: inline-block; width: 12px; height: 12px; border-radius: 2px;
+}
+
+#listModal ul li strong:first-of-type {
+    margin-right: 10px; margin-left: 6px;
+}
+
+#listModal p {
+    color: #777;
 }
 
 #helpModal span {
@@ -235,12 +277,24 @@ a.disabled {
 }
 
 @media screen and (min-width: 980px) {
+    .mobile_hidden {
+        display: inherit;
+    }
+    .mobile_visible {
+        display: none;
+    }
     #header a#lien_refresh {
         display: none;
     }
 }
 
 @media screen and (max-width: 980px) {
+    .mobile_hidden {
+        display: none;
+    }
+    .mobile_visible {
+        display: inherit;
+    }
     #footer {
         display: none;
     }
@@ -253,8 +307,11 @@ a.disabled {
     .ih {
         margin-bottom: 10px;
     }
-    #header a#lien_infos span {
-        position:fixed;
+    #header #nav_liens {
+        position: fixed;
+    }
+    #header a#lien_refresh {
+        position: fixed;
     }
 }
 

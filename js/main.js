@@ -34,6 +34,10 @@ document.addEventListener('DOMContentLoaded', async function () {
   modalHelp.addEventListener('click', function(event) {
       modalHelp.close();
   });
+  const modalList = document.getElementById('listModal')
+  modalList.addEventListener('click', function(event) {
+      modalList.close();
+  });
   modal.addEventListener('close', function(event) {
       const item = document.querySelector('[data-title]')
       if(item && item.title) {

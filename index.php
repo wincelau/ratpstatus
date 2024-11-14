@@ -17,15 +17,14 @@
 <body>
 <div id="container">
 <header role="banner" id="header">
-<a id="lien_infos" onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">
-    <span aria-hidden="true">?</span>
-    <span class="visually-hidden">Aide et informations</span>
-</a>
-<a id="lien_refresh" href="" onclick="location.reload(); return false;">
-    <span aria-hidden="true">🔃</span>
-    <span class="visually-hidden">Rafraîchir</span>
-</a>
-<h1>Suivi de l'état du trafic</h1>
+<nav id="nav_liens">
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️ <span class="mobile_hidden">Aide et Infos</span></a>
+<?php if($mode == "metros"): ?>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📃 <span class="mobile_hidden">Liste des incidents</span></a>
+<?php endif; ?>
+</nav>
+<a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
+<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">🚥 État du trafic</span></h1>
 <h2>
     <?php if($day->getDateStartYesterday() < new DateTime('2024-04-23')): ?>
     <a class="disabled">⬅️</a>
@@ -59,7 +58,7 @@
 </main>
 </div>
 <p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer role="contentinfo" id="footer">
+<footer class="visually-hidden" role="contentinfo" id="footer">
 <p>
     Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
 </p>
@@ -71,8 +70,22 @@
 <p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du <?php echo $day->getDateStart()->format("d/m/Y"); ?></h2>
+<h3>En cours</h3>
+<!-- <p style="padding-left: 12px;"><span class="ok" style="display: inline-block; width: 12px; height: 12px; border-radius: 2px;"></span> Aucun incident en cours</p> -->
+<?php foreach($day->getDisruptions() as $disruption): ?>
+<?php if($disruption->getDateEnd() < new DateTime()): continue; endif; ?>
+<?php include(__DIR__.'/_disruption.php') ?>
+<?php endforeach; ?>
+<h3>Terminés</h3>
+<?php foreach($day->getDisruptions() as $disruption): ?>
+<?php if($disruption->getDateEnd() >= new DateTime()): continue; endif; ?>
+<?php include(__DIR__.'/_disruption.php') ?>
+<?php endforeach; ?>
+</dialog>
 <dialog id="helpModal">
-    <h3>Aide et informations</h3>
+    <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>
     <p>L'état du trafic est récupéré toutes les 2 minutes à partir du 23 avril 2024.</p>
     <p>Chaque bloc répresente une durée de 2 minutes, les couleurs ont la signification suivante :<br /><br />
