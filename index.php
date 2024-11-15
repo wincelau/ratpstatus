@@ -70,6 +70,7 @@
 <p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<?php if($mode == "metros"): ?>
 <dialog id="listModal">
 <h2>Incidents du <?php echo $day->getDateStart()->format("d/m/Y"); ?></h2>
 <h3>En cours</h3>
@@ -84,6 +85,7 @@
 <?php include(__DIR__.'/_disruption.php') ?>
 <?php endforeach; ?>
 </dialog>
+<?php endif; ?>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>
