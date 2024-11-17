@@ -14,6 +14,18 @@ class Disruption
         $this->ligne = $ligne;
     }
 
+    public function isInProgress() {
+        $current = new DateTime();
+
+        return $current > $this->getDateStart() && $current < $this->getDateEnd();
+    }
+
+    public function getCurrentColorClass() {
+        foreach($this->impacts as $i) {
+            return $i->getColorClass();
+        }
+    }
+
     public function getDateEnd() {
         foreach($this->impacts as $i) {
             return $i->getDateEnd();
