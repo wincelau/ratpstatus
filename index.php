@@ -28,7 +28,7 @@
     <a class="disabled">⬅️</a>
     <?php else: ?>
     <a title="Voir le jour précédent" href="<?php echo url("/".$day->getDateStartYesterday()->format('Ymd')."/".$mode.".html") ?>">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
     <?php endif; ?>
@@ -37,7 +37,7 @@
     <a class="disabled">➡️</a>
     <?php else: ?>
     <a title="Voir le jour suivant" style="" href="<?php echo url("/".((!$day->isTodayTomorrow()) ? $day->getDateStartTomorrow()->format('Ymd')."/" : null).$mode.".html") ?>">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     <?php endif; ?>
