@@ -18,13 +18,13 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos </span></a>
 <?php if($mode == "metros"): ?>
-<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<span class="mobile_hidden"> Liste des incidents</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 <?php endif; ?>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
     <?php if($day->getDateStartYesterday() < new DateTime('2024-04-23')): ?>
     <a class="disabled">⬅️</a>
