@@ -143,10 +143,10 @@ class Day
         return date_format($this->getDateStartTomorrow(), "Ymd") == date_format((new DateTime()), "Ymd");
     }
 
-    public function getDisruptions() {
+    public function getDisruptions($mode) {
         $disruptions = [];
         foreach($this->lignes as $ligne) {
-            if(!preg_match('/Métro/', $ligne->getName())) {
+            if(!isset(Config::getLignes()[$mode][$ligne->getName()])) {
                 continue;
             }
             $disruptions = array_merge($disruptions, $ligne->getDisruptions());

@@ -8,7 +8,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_<?php echo $mode ?>.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_<?php echo $mode ?>.png" />
-<link rel="stylesheet" href="/css/style.css?202411172155">
+<link rel="stylesheet" href="/css/style.css?202411172230">
 <script>
     const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
 </script>
@@ -73,14 +73,18 @@
 <dialog id="listModal">
 <h2>Incidents du <?php echo $day->getDateStart()->format("d/m/Y"); ?></h2>
 <h3>En cours</h3>
-<!-- <p style="padding-left: 12px;"><span class="ok" style="display: inline-block; width: 12px; height: 12px; border-radius: 2px;"></span> Aucun incident en cours</p> -->
-<?php foreach($day->getDisruptions() as $disruption): ?>
-<?php if($disruption->getDateEnd() < new DateTime()): continue; endif; ?>
+<?php foreach($day->getDisruptions($mode) as $disruption): ?>
+<?php if(!$disruption->isInProgress()): continue; endif; ?>
+<?php include(__DIR__.'/_disruption.php') ?>
+<?php endforeach; ?>
+<h3>À venir</h3>
+<?php foreach($day->getDisruptions($mode) as $disruption): ?>
+<?php if(!$disruption->isInFuture()): continue; endif; ?>
 <?php include(__DIR__.'/_disruption.php') ?>
 <?php endforeach; ?>
 <h3>Terminés</h3>
-<?php foreach($day->getDisruptions() as $disruption): ?>
-<?php if($disruption->getDateEnd() >= new DateTime()): continue; endif; ?>
+<?php foreach($day->getDisruptions($mode) as $disruption): ?>
+<?php if(!$disruption->isPast()): continue; endif; ?>
 <?php include(__DIR__.'/_disruption.php') ?>
 <?php endforeach; ?>
 </dialog>

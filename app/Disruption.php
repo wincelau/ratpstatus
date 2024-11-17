@@ -20,6 +20,16 @@ class Disruption
         return $current > $this->getDateStart() && $current < $this->getDateEnd();
     }
 
+    public function isPast() {
+
+        return new DateTime() > $this->getDateEnd();
+    }
+
+    public function isInFuture() {
+
+        return new DateTime() < $this->getDateStart();
+    }
+
     public function getCurrentColorClass() {
         foreach($this->impacts as $i) {
             return $i->getColorClass();
