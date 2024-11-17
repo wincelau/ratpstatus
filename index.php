@@ -8,7 +8,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_<?php echo $mode ?>.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_<?php echo $mode ?>.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411142346">
 <script>
     const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
 </script>
@@ -18,7 +18,7 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos </span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
 <?php if($mode == "metros"): ?>
 <a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 <?php endif; ?>
@@ -57,17 +57,16 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>.<?php if($day->getLastFile()): ?> <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/<?php echo str_replace(__DIR__.DIRECTORY_SEPARATOR, '', $day->getLastFile()->getFilePath()) ?>"><?php echo $day->getLastFile()->getDate()->format('d/m/Y à H:i:s') ?></a><?php endif; ?>
 </p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes<?php if($day->getLastFile()): ?>, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/<?php echo str_replace(__DIR__.DIRECTORY_SEPARATOR, '', $day->getLastFile()->getFilePath()) ?>"><?php echo $day->getLastFile()->getDate()->format('d/m/Y H:i:s') ?></a><?php endif; ?>
-<p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
 <?php if($mode == "metros"): ?>
