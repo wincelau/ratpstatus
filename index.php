@@ -8,7 +8,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_<?php echo $mode ?>.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_<?php echo $mode ?>.png" />
-<link rel="stylesheet" href="/css/style.css?202411172230">
+<link rel="stylesheet" href="/css/style.css?202411172249">
 <script>
     const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
 </script>
@@ -19,9 +19,7 @@
 <header role="banner" id="header">
 <nav id="nav_liens">
 <a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
-<?php if($mode == "metros"): ?>
 <a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
-<?php endif; ?>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
@@ -69,26 +67,33 @@
 </p>
 </footer>
 <dialog id="tooltipModal"></dialog>
-<?php if($mode == "metros"): ?>
 <dialog id="listModal">
 <h2>Incidents du <?php echo $day->getDateStart()->format("d/m/Y"); ?></h2>
+
+<?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isInProgress();}) ?>
+<?php if(count($disruptions)): ?>
 <h3>En cours</h3>
-<?php foreach($day->getDisruptions($mode) as $disruption): ?>
-<?php if(!$disruption->isInProgress()): continue; endif; ?>
+<?php foreach($disruptions as $disruption): ?>
 <?php include(__DIR__.'/_disruption.php') ?>
 <?php endforeach; ?>
-<h3>À venir</h3>
-<?php foreach($day->getDisruptions($mode) as $disruption): ?>
-<?php if(!$disruption->isInFuture()): continue; endif; ?>
-<?php include(__DIR__.'/_disruption.php') ?>
-<?php endforeach; ?>
-<h3>Terminés</h3>
-<?php foreach($day->getDisruptions($mode) as $disruption): ?>
-<?php if(!$disruption->isPast()): continue; endif; ?>
-<?php include(__DIR__.'/_disruption.php') ?>
-<?php endforeach; ?>
-</dialog>
 <?php endif; ?>
+
+<?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isInFuture();}); ?>
+<?php if(count($disruptions)): ?>
+<h3>À venir</h3>
+<?php foreach($disruptions as $disruption): ?>
+<?php include(__DIR__.'/_disruption.php') ?>
+<?php endforeach; ?>
+<?php endif; ?>
+
+<?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isPast();}); ?>
+<?php if(count($disruptions)): ?>
+<h3>Terminés</h3>
+<?php foreach($disruptions as $disruption): ?>
+<?php include(__DIR__.'/_disruption.php') ?>
+<?php endforeach; ?>
+<?php endif; ?>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>
