@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_tramways.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_tramways.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240611.json';
 </script>
@@ -17,18 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240610/tramways.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">11/06/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240612/tramways.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -9728,18 +9729,89 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240611/20240612025801_disruptions.optimized.json">12/06/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240611/20240612025801_disruptions.optimized.json">12/06/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du 11/06/2024</h2>
+
+
+
+<h3>Terminés</h3>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 19h50 à 01h30</span> <span>⌛ 5h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>19h50</strong> <span>⌛ 5h40</span> Ligne T4 : interrompu        <p>Le trafic est interrompu sur l'ensemble de la ligne jusqu'à 22h00.<br />
+<br />
+Pour connaître vos itinéraires de substitution, cliquez ici pour télécharger l'affiche au format pdf.<br />
+<br />
+Motif : agression d'un agent.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 16h40 à 19h08</span> <span>⌛ 2h28</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h08</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h40</strong> <span>⌛ 2h28</span> Ligne T12 : suppressions        <p>Les tramways suivants sont supprimés :<br />
+<br />
+- Massy Palaiseau, départ  17h38 - Evry Courcouronnes, arrivée 18h19.<br />
+<br />
+- Evry Courcouronnes, départ  18h30 -  Massy Palaiseau, arrivée 19h12.<br />
+<br />
+<br />
+Motif : panne d'un tramway.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 16h40 à 21h00</span> <span>⌛ 4h20</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>21h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h40</strong> <span>⌛ 4h20</span> Ligne T12 : perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne.<br />
+<br />
+Motif : panne d'un tramway.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t13.svg" /> <span>De 10h44 à 11h30</span> <span>⌛ 0h46</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>11h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>10h44</strong> <span>⌛ 0h46</span> Ligne T13 : ralentissements        <p>Le trafic est ralenti de Saint-Germain-en-Laye vers Saint-Cyr. <br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 09h58 à 10h48</span> <span>⌛ 0h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h48</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>09h58</strong> <span>⌛ 0h50</span> Ligne T4 : interruption        <p>Le trafic est interrompu entre Gargan et Hôpital de Montfermeil jusqu'à 11h. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne T4. <br />
+<br />
+Motif : panne d'un tramway à Léon Blum.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 09h58 à 12h10</span> <span>⌛ 2h12</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>12h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h58</strong> <span>⌛ 2h12</span> Ligne T4 : trafic ralenti sur toute la ligne        <p>Le trafic est ralenti sur l'ensemble de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne T4. <br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>

@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_metros.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_metros.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240915.json';
 </script>
@@ -17,19 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
-<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<span class="mobile_hidden"> Liste des incidents</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240914/metros.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">15/09/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240916/metros.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -11113,126 +11113,154 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240915/20240916025801_disruptions.optimized.json">16/09/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240915/20240916025801_disruptions.optimized.json">16/09/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
 <dialog id="listModal">
 <h2>Incidents du 15/09/2024</h2>
-<h3>En cours</h3>
-<!-- <p style="padding-left: 12px;"><span class="ok" style="display: inline-block; width: 12px; height: 12px; border-radius: 2px;"></span> Aucun incident en cours</p> -->
+
+
+
 <h3>Terminés</h3>
+<div class="disruption  ">
 <h4><img src="/images/lignes//4.svg" /> <span>De 22h54 à 22h56</span> <span>⌛ 0h01</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>22h56</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>22h54</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h01</span> Métro 4 : Incident technique sur un train - Trains stationnent        <p>Des trains stationnent entre Saint-Michel et Bagneux–Lucie Aubrac en direction de Porte de Clignancourt en raison d'un incident technique sur un train à Bagneux–Lucie Aubrac.
+<li><span class="ok"></span> <strong>22h56</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>22h54</strong> <span>⌛ 0h01</span> Métro 4 : Incident technique sur un train - Trains stationnent        <p>Des trains stationnent entre Saint-Michel et Bagneux–Lucie Aubrac en direction de Porte de Clignancourt en raison d'un incident technique sur un train à Bagneux–Lucie Aubrac.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//6.svg" /> <span>De 22h35 à 22h36</span> <span>⌛ 0h01</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>22h36</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>22h35</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h01</span> Métro 6 : Actionnement d'un signal d'alarme - Train stationne        <p>Un train stationne entre Charles de Gaulle - Etoile et Kléber en direction de Nation en raison de l'actionnement d'un signal d'alarme.
+<li><span class="ok"></span> <strong>22h36</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>22h35</strong> <span>⌛ 0h01</span> Métro 6 : Actionnement d'un signal d'alarme - Train stationne        <p>Un train stationne entre Charles de Gaulle - Etoile et Kléber en direction de Nation en raison de l'actionnement d'un signal d'alarme.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//7.svg" /> <span>De 21h19 à 21h55</span> <span>⌛ 0h35</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>21h55</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>21h43</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h12</span> Métro 7 : Bagage oublié sur un quai - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un bagage oublié sur un quai à Palais Royal.
+<li><span class="ok"></span> <strong>21h55</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>21h43</strong> <span>⌛ 0h12</span> Métro 7 : Bagage oublié sur un quai - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un bagage oublié sur un quai à Palais Royal.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="bq"></span> <strong>21h19</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h23</span> Métro 7 : Bagage oublié sur un quai - Trafic interrompu        <p>Le trafic est interrompu entre Chaussée d'Antin - La Fayette et Pont Neuf en raison d'un bagage oublié sur un quai à Palais Royal . 
-Heure de reprise estimée : 22:20.
-Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.
+<li><span class="bq"></span> <strong>21h19</strong> <span>⌛ 0h23</span> Métro 7 : Bagage oublié sur un quai - Trafic interrompu        <p>Le trafic est interrompu entre Chaussée d'Antin - La Fayette et Pont Neuf en raison d'un bagage oublié sur un quai à Palais Royal . <br />
+Heure de reprise estimée : 22:20.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//3.svg" /> <span>De 17h41 à 17h54</span> <span>⌛ 0h12</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>17h54</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>17h48</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h06</span> Métro 3 : Personnes sur les voies - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison de personnes sur les voies.
+<li><span class="ok"></span> <strong>17h54</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h48</strong> <span>⌛ 0h06</span> Métro 3 : Personnes sur les voies - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison de personnes sur les voies.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="pb"></span> <strong>17h41</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h05</span> Métro 3 : Personnes sur les voies - Trains stationnent        <p>Des trains stationnent sur l'ensemble de la ligne en raison de personnes sur les voies à Porte de Bagnolet.
+<li><span class="pb"></span> <strong>17h41</strong> <span>⌛ 0h05</span> Métro 3 : Personnes sur les voies - Trains stationnent        <p>Des trains stationnent sur l'ensemble de la ligne en raison de personnes sur les voies à Porte de Bagnolet.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//3b.svg" /> <span>De 17h39 à 17h40</span> <span>⌛ 0h01</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>17h40</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>17h39</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h01</span> Métro 3B : Personnes sur les voies - Trains stationnent        <p>Des trains stationnent sur l'ensemble de la ligne en raison de personnes sur les voies.
+<li><span class="ok"></span> <strong>17h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h39</strong> <span>⌛ 0h01</span> Métro 3B : Personnes sur les voies - Trains stationnent        <p>Des trains stationnent sur l'ensemble de la ligne en raison de personnes sur les voies.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//2.svg" /> <span>De 16h54 à 17h00</span> <span>⌛ 0h06</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>17h00</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>16h54</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h06</span> Métro 2 : Personnes sur les voies - Trafic perturbé        <p>Le trafic est perturbé en direction de Nation en raison de personnes sur les voies à Couronnes.
+<li><span class="ok"></span> <strong>17h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h54</strong> <span>⌛ 0h06</span> Métro 2 : Personnes sur les voies - Trafic perturbé        <p>Le trafic est perturbé en direction de Nation en raison de personnes sur les voies à Couronnes.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//6.svg" /> <span>De 15h14 à 16h04</span> <span>⌛ 0h50</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>16h04</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="bq"></span> <strong>15h14</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h50</span> Métro 6 : Bagage oublié sur un quai - Trafic interrompu        <p>Le trafic est interrompu entre Trocadéro et Charles de Gaulle - Etoile en raison d'un bagage oublié sur un quai à Kléber . 
-Heure de reprise estimée : 15:35.
-Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.
+<li><span class="ok"></span> <strong>16h04</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>15h14</strong> <span>⌛ 0h50</span> Métro 6 : Bagage oublié sur un quai - Trafic interrompu        <p>Le trafic est interrompu entre Trocadéro et Charles de Gaulle - Etoile en raison d'un bagage oublié sur un quai à Kléber . <br />
+Heure de reprise estimée : 15:35.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//11.svg" /> <span>De 13h09 à 13h12</span> <span>⌛ 0h03</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>13h12</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>13h09</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h03</span> Métro 11 : Incident (intervention agents) - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un incident nécessitant l’intervention de nos agents à Châtelet.
+<li><span class="ok"></span> <strong>13h12</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>13h09</strong> <span>⌛ 0h03</span> Métro 11 : Incident (intervention agents) - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un incident nécessitant l’intervention de nos agents à Châtelet.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="pb"></span> <strong>13h09</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h00</span> Métro 11 : Incident (intervention agents) - Trains stationnent        <p>Des trains stationnent entre Châtelet et République en raison d'un incident nécessitant l’intervention de nos agents à Châtelet.
+<li><span class="pb"></span> <strong>13h09</strong> <span>⌛ 0h00</span> Métro 11 : Incident (intervention agents) - Trains stationnent        <p>Des trains stationnent entre Châtelet et République en raison d'un incident nécessitant l’intervention de nos agents à Châtelet.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//12.svg" /> <span>De 12h39 à 12h51</span> <span>⌛ 0h11</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>12h51</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>12h43</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h07</span> Métro 12 : Personnes sur les voies - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion de personnes sur les voies à Abbesses.
+<li><span class="ok"></span> <strong>12h51</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>12h43</strong> <span>⌛ 0h07</span> Métro 12 : Personnes sur les voies - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion de personnes sur les voies à Abbesses.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="pb"></span> <strong>12h39</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h01</span> Métro 12 : Personnes sur les voies - Reprise progressive / trafic reste perturbé        <p>Un train stationne à Abbesses en direction de Mairie d'Aubervilliers en raison de personnes sur les voies.
+<li><span class="pb"></span> <strong>12h39</strong> <span>⌛ 0h01</span> Métro 12 : Personnes sur les voies - Reprise progressive / trafic reste perturbé        <p>Un train stationne à Abbesses en direction de Mairie d'Aubervilliers en raison de personnes sur les voies.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//11.svg" /> <span>De 12h26 à 13h12</span> <span>⌛ 0h46</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>13h12</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>12h26</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h46</span> Métro 11 : Incident (intervention conducteur) - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un incident nécessitant l’intervention du conducteur à La Dhuys.
+<li><span class="ok"></span> <strong>13h12</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>12h26</strong> <span>⌛ 0h46</span> Métro 11 : Incident (intervention conducteur) - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un incident nécessitant l’intervention du conducteur à La Dhuys.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//4.svg" /> <span>De 10h48 à 12h15</span> <span>⌛ 1h26</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>12h15</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>11h58</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h17</span> Métro 4 : Personnes sur les voies - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion de personnes sur les voies à Simplon.
+<li><span class="ok"></span> <strong>12h15</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>11h58</strong> <span>⌛ 0h17</span> Métro 4 : Personnes sur les voies - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion de personnes sur les voies à Simplon.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="pb"></span> <strong>11h51</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h07</span> Métro 4 : Personnes sur les voies - Reprise progressive / trafic reste très perturbé        <p>Le trafic reprend mais reste très perturbé sur l'ensemble de la ligne en répercussion de personnes sur les voies à Simplon.
+<li><span class="pb"></span> <strong>11h51</strong> <span>⌛ 0h07</span> Métro 4 : Personnes sur les voies - Reprise progressive / trafic reste très perturbé        <p>Le trafic reprend mais reste très perturbé sur l'ensemble de la ligne en répercussion de personnes sur les voies à Simplon.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="bq"></span> <strong>10h48</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 1h02</span> Métro 4 : Personnes sur les voies - Trafic interrompu        <p>Le trafic est interrompu entre Barbès - Rochechouart et Porte de Clignancourt en raison de personnes sur les voies à Simplon . 
-Heure de reprise estimée : 11:00.
-Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.
+<li><span class="bq"></span> <strong>10h48</strong> <span>⌛ 1h02</span> Métro 4 : Personnes sur les voies - Trafic interrompu        <p>Le trafic est interrompu entre Barbès - Rochechouart et Porte de Clignancourt en raison de personnes sur les voies à Simplon . <br />
+Heure de reprise estimée : 11:00.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//6.svg" /> <span>De 06h13 à 09h13</span> <span>⌛ 2h59</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>09h13</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="bq"></span> <strong>06h13</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 2h59</span> Métro 6 : Jeux de Paris 2024 - Trafic interrompu        <p>Le 15 septembre jusqu'à 08:00, le trafic est interrompu entre Charles de Gaulle - Etoile et Kléber en raison des Jeux de Paris 2024.
+<li><span class="ok"></span> <strong>09h13</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>06h13</strong> <span>⌛ 2h59</span> Métro 6 : Jeux de Paris 2024 - Trafic interrompu        <p>Le 15 septembre jusqu'à 08:00, le trafic est interrompu entre Charles de Gaulle - Etoile et Kléber en raison des Jeux de Paris 2024.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
-<h4><img src="/images/lignes//14.svg" /> <span>De 04h44 à 05h15</span> <span>⌛ 0h30</span></h4>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//14.svg" /> <span>De 04h45 à 05h15</span> <span>⌛ 0h30</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>05h15</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="tx"></span> <strong>04h44</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h30</span> Métro 14 : Travaux de modernisation - Trafic interrompu        <p>Le 15 septembre, le trafic sera interrompu sur l'ensemble de la ligne en raison de travaux de modernisation.
-Des bus de remplacement sont mis à disposition, entre Gare de Lyon et Olympiades
+<li><span class="ok"></span> <strong>05h15</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>04h45</strong> <span>⌛ 0h30</span> Métro 14 : Travaux de modernisation - Trafic interrompu        <p>Le 15 septembre, le trafic est interrompu sur l'ensemble de la ligne en raison de travaux de modernisation.<br />
+Des bus de remplacement sont mis à disposition, entre Gare de Lyon et Olympiades<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//6.svg" /> <span>De 10h00 à 05h15</span> <span>⌛ 19h15</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>05h15</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="bq"></span> <strong>10h00</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 19h15</span> Métro 6 : Jeux de Paris 2024 - Trafic interrompu        <p>Le 14 septembre, le trafic est interrompu entre Trocadéro et Charles de Gaulle - Etoile en raison des Jeux de Paris 2024.
+<li><span class="ok"></span> <strong>05h15</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>10h00</strong> <span>⌛ 19h15</span> Métro 6 : Jeux de Paris 2024 - Trafic interrompu        <p>Le 14 septembre, le trafic est interrompu entre Trocadéro et Charles de Gaulle - Etoile en raison des Jeux de Paris 2024.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
 </dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>

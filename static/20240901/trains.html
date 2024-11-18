@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_trains.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_trains.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240901.json';
 </script>
@@ -17,18 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240831/trains.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">01/09/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240902/trains.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -9036,18 +9037,773 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240901/20240902025801_disruptions.optimized.json">02/09/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240901/20240902025801_disruptions.optimized.json">02/09/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du 01/09/2024</h2>
+
+
+
+<h3>Terminés</h3>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 00h37 à 01h00</span> <span>⌛ 0h22</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>00h37</strong> <span>⌛ 0h22</span> Ligne A : perturbations        <p>Le trafic est perturbé de Nanterre Préfecture vers Cergy le Haut.<br />
+<br />
+Motif malaise voyageur à Achères-Ville.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 20h50 à 22h10</span> <span>⌛ 1h19</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>22h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>20h50</strong> <span>⌛ 1h19</span> Ligne R : Paris Lyon - Montargis ralenti        <p>Prévoir un allongement de temps de trajet de 10 minutes environ pour le train suivant :- GAMO, départ Paris gare de Lyon à  20h16, arrivée Montargis à  21h55.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne.<br />
+<br />
+<br />
+Motif : attente d'autorisation d'accès au réseau dans le secteur de Villeneuve Saint Georges.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h43 à 19h22</span> <span>⌛ 0h38</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h22</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h43</strong> <span>⌛ 0h38</span> Ligne A : perturbations        <p>Le trafic est très perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy dans les 2 sens. <br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h43 à 19h24</span> <span>⌛ 0h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h24</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h43</strong> <span>⌛ 0h40</span> Ligne A : Très perturbé        <p>Le trafic est très perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy.<br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h43 à 19h44</span> <span>⌛ 1h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h44</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h43</strong> <span>⌛ 1h00</span> Ligne A : Très perturbé        <p>Le trafic est très perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy.<br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h43 à 20h00</span> <span>⌛ 1h16</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h43</strong> <span>⌛ 1h16</span> Ligne A : Perturbé        <p>Le trafic est perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy.<br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h43 à 20h04</span> <span>⌛ 1h20</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h04</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h43</strong> <span>⌛ 1h20</span> Ligne A : Perturbé        <p>Le trafic est perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy.<br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h43 à 20h30</span> <span>⌛ 1h46</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h43</strong> <span>⌛ 1h46</span> Ligne A : Perturbé        <p>Le trafic est perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy.<br />
+<br />
+Motif: accident de personne à Rueil-Malmaison</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h43 à 20h42</span> <span>⌛ 1h58</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h42</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h43</strong> <span>⌛ 1h58</span> Ligne A : Perturbé        <p>Le trafic est perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy.<br />
+<br />
+Motif: accident de personne à Rueil-Malmaison</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h11 à 19h06</span> <span>⌛ 0h54</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h06</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h11</strong> <span>⌛ 0h54</span> Ligne A : Rueil-Malmaison non desservie        <p>La gare de Rueil-Malmaison n'est pas desservie et le trafic est très perturbé sur le reste de la ligne. <br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h11 à 19h00</span> <span>⌛ 0h48</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h11</strong> <span>⌛ 0h48</span> Ligne A : perturbations        <p>Le trafic est très perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy dans les 2 sens. <br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h11 à 19h00</span> <span>⌛ 0h48</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h11</strong> <span>⌛ 0h48</span> Ligne A : Très perturbé        <p>Le trafic est très perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy.<br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h11 à 19h00</span> <span>⌛ 0h48</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h11</strong> <span>⌛ 0h48</span> Ligne A : Très perturbé        <p>Le trafic est très perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy.<br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h11 à 19h00</span> <span>⌛ 0h48</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h11</strong> <span>⌛ 0h48</span> Ligne A : Perturbé        <p>Le trafic est perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy.<br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h11 à 19h00</span> <span>⌛ 0h48</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h11</strong> <span>⌛ 0h48</span> Ligne A : Perturbé        <p>Le trafic est perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy.<br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h20 à 17h36</span> <span>⌛ 0h15</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h36</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h20</strong> <span>⌛ 0h15</span> Ligne A : interruption et perturbations        <p>Le trafic est interrompu entre Nanterre-Université et Chatou dans les 2 sens jusqu'à 19h30 et perturbé sur le reste de la ligne. <br />
+<br />
+Motif : Accident de personne en gare de Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h20 à 17h38</span> <span>⌛ 0h17</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h38</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h20</strong> <span>⌛ 0h17</span> Ligne A : interruption et perturbations        <p>Le trafic est interrompu entre Nanterre-Université et Chatou-Croissy dans les 2 sens jusqu'à 19h30 et perturbé sur le reste de la ligne. <br />
+<br />
+Motif : Accident de personne en gare de Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h20 à 17h42</span> <span>⌛ 0h21</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h42</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h20</strong> <span>⌛ 0h21</span> Ligne A : interruption et perturbations        <p>Le trafic est interrompu entre Nanterre-Université et Chatou-Croissy dans les 2 sens jusqu'à 19h30 et perturbé sur le reste de la ligne. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation.<br />
+<br />
+Motif : Accident de personne en gare de Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h20 à 17h46</span> <span>⌛ 0h25</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h46</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h20</strong> <span>⌛ 0h25</span> Ligne A : interruption et perturbations        <p>Le trafic est interrompu entre Nanterre Ville et Chatou-Croissy dans les 2 sens jusqu'à 19h30 et perturbé sur le reste de la ligne. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Motif : Accident de personne en gare de Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h20 à 18h24</span> <span>⌛ 1h03</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h24</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h20</strong> <span>⌛ 1h03</span> Ligne A : interruption et perturbations        <p>Le trafic est interrompu entre Nanterre Ville et Chatou-Croissy dans les 2 sens jusqu'à 19h30 et perturbé sur le reste de la ligne. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Motif : Accident de personne en gare de Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h20 à 19h06</span> <span>⌛ 1h45</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h06</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h20</strong> <span>⌛ 1h45</span> Ligne A : Rueil-Malmaison non desservie        <p>La gare de Rueil-Malmaison n'est pas desservie et le trafic est très perturbé sur le reste de la ligne. <br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h20 à 18h43</span> <span>⌛ 1h22</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h43</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h20</strong> <span>⌛ 1h22</span> Ligne A : perturbations        <p>Le trafic est très perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy dans les 2 sens. <br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h20 à 18h43</span> <span>⌛ 1h22</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h43</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h20</strong> <span>⌛ 1h22</span> Ligne A : Très perturbé        <p>Le trafic est très perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy.<br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h20 à 18h43</span> <span>⌛ 1h22</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h43</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h20</strong> <span>⌛ 1h22</span> Ligne A : Très perturbé        <p>Le trafic est très perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy.<br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h19 à 17h36</span> <span>⌛ 0h16</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h36</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>17h19</strong> <span>⌛ 0h16</span> Ligne A : interruption et perturbations        <p>Le trafic est interrompu entre Nanterre-Université et Chatou dans les 2 sens jusqu'à 19h30 et perturbé sur le reste de la ligne. <br />
+<br />
+Motif : Accident de personne en gare de Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h19 à 17h38</span> <span>⌛ 0h18</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h38</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>17h19</strong> <span>⌛ 0h18</span> Ligne A : interruption et perturbations        <p>Le trafic est interrompu entre Nanterre-Université et Chatou-Croissy dans les 2 sens jusqu'à 19h30 et perturbé sur le reste de la ligne. <br />
+<br />
+Motif : Accident de personne en gare de Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h19 à 17h42</span> <span>⌛ 0h22</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h42</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>17h19</strong> <span>⌛ 0h22</span> Ligne A : interruption et perturbations        <p>Le trafic est interrompu entre Nanterre-Université et Chatou-Croissy dans les 2 sens jusqu'à 19h30 et perturbé sur le reste de la ligne. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation.<br />
+<br />
+Motif : Accident de personne en gare de Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h19 à 17h46</span> <span>⌛ 0h26</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h46</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>17h19</strong> <span>⌛ 0h26</span> Ligne A : interruption et perturbations        <p>Le trafic est interrompu entre Nanterre Ville et Chatou-Croissy dans les 2 sens jusqu'à 19h30 et perturbé sur le reste de la ligne. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Motif : Accident de personne en gare de Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h19 à 18h24</span> <span>⌛ 1h04</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h24</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>17h19</strong> <span>⌛ 1h04</span> Ligne A : interruption et perturbations        <p>Le trafic est interrompu entre Nanterre Ville et Chatou-Croissy dans les 2 sens jusqu'à 19h30 et perturbé sur le reste de la ligne. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Motif : Accident de personne en gare de Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h19 à 18h12</span> <span>⌛ 0h52</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h12</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>17h19</strong> <span>⌛ 0h52</span> Ligne A : Rueil-Malmaison non desservie        <p>La gare de Rueil-Malmaison n'est pas desservie et le trafic est très perturbé sur le reste de la ligne. <br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 17h19 à 18h12</span> <span>⌛ 0h52</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h12</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>17h19</strong> <span>⌛ 0h52</span> Ligne A : perturbations        <p>Le trafic est très perturbé entre Saint-Germain-en-Laye et Boissy-Saint-Léger et entre Saint-Germain-en-Laye et Marne-la-Vallée Chessy dans les 2 sens. <br />
+<br />
+Motif : accident de personne à Rueil-Malmaison.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h47 à 16h58</span> <span>⌛ 0h10</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h58</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h47</strong> <span>⌛ 0h10</span> Ligne A : perturbations        <p>Le trafic est perturbé entre Rueil-Malmaison et Saint-Germain-en-Laye dans les 2 sens. <br />
+<br />
+Motif : affaires oubliées à bord d'un train à St Germain-en-Laye.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h47 à 17h02</span> <span>⌛ 0h14</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h02</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h47</strong> <span>⌛ 0h14</span> Ligne A : perturbations        <p>Le trafic est perturbé entre Rueil-Malmaison et Saint-Germain-en-Laye dans les 2 sens. <br />
+<br />
+Motif : affaires oubliées à bord d'un train à St Germain-en-Laye.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 14h56 à 15h08</span> <span>⌛ 0h11</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h08</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>14h56</strong> <span>⌛ 0h11</span> Ligne C : Marrolles en Hurepoix non desservie        <p>La gare de Marolles-en-Hurepoix en direction de St-Quentin-Yvelines n'est pas desservie jusqu'à 16h. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne C. <br />
+<br />
+Motif : affaires oubliées.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 14h56 à 15h14</span> <span>⌛ 0h17</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h14</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>14h56</strong> <span>⌛ 0h17</span> Ligne C : Marrolles en Hurepoix non desservie        <p>La gare de Marolles-en-Hurepoix en direction de St-Quentin-Yvelines n'est pas desservie jusqu'à 16h. <br />
+Pour rejoindre Marolles en Hurepoix, restez dans votre train jusquà Brétigny pour emprunter un train ELBA en sens inverse.Pour quitter Marolles-en-Hurepoix, prenez un train SARA jusqu'à Bouray pour retrouver vos trains habituels.<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne C. <br />
+<br />
+Motif : affaires oubliées.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 14h56 à 15h18</span> <span>⌛ 0h21</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h18</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>14h56</strong> <span>⌛ 0h21</span> Ligne C : Marrolles en Hurepoix non desservie        <p>La gare de Marolles-en-Hurepoix en direction de St-Quentin-Yvelines n'est pas desservie jusqu'à 16h. <br />
+Pour rejoindre Marolles en Hurepoix, restez dans votre train jusquà Brétigny pour emprunter un train SARA en sens inverse.Pour quitter Marolles-en-Hurepoix, prenez un train ELBA jusqu'à Bouray pour retrouver vos trains habituels.<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne C. <br />
+<br />
+Motif : affaires oubliées.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 14h56 à 15h28</span> <span>⌛ 0h31</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h28</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>14h56</strong> <span>⌛ 0h31</span> Ligne C : Marrolles en Hurepoix non desservie        <p>La gare de Marolles-en-Hurepoix en direction de St-Quentin-Yvelines n'est pas desservie jusqu'à 16h. <br />
+Pour rejoindre Marolles en Hurepoix, restez dans votre train jusqu'à Brétigny pour emprunter un train ELBA en sens inverse.Pour quitter Marolles-en-Hurepoix, prenez un train ELBA jusqu'à Bouray pour retrouver vos trains habituels.<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne C. <br />
+<br />
+Motif : affaires oubliées.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 14h43 à 15h00</span> <span>⌛ 0h16</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>14h43</strong> <span>⌛ 0h16</span> Ligne A : perturbations        <p>Le trafic est perturbé entre Marne-la-Vallée Chessy et Torcy dans les 2 sens. <br />
+<br />
+Motif : affaires oubliées en gare de Marne-la-Vallée-Chessy.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 13h33 à 13h46</span> <span>⌛ 0h12</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>13h46</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>13h33</strong> <span>⌛ 0h12</span> Ligne A : perturbation.        <p>Le trafic est perturbé de Vincennes vers Marne-la-Vallée Chessy. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez l'application Transport Public Paris 2024. <br />
+<br />
+Motif : incident voyageur à bord d'un train en gare de Neuilly-Plaisance.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 11h57 à 11h16</span> <span>⌛ 0h41</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>11h16</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>11h57</strong> <span>⌛ 0h41</span> Ligne D : interruption et ralentissements        <p>Le trafic est interrompu entre Paris Gare de Lyon et Paris Gare du Nord dans les 2 sens jusqu'à 11h59 et fortement ralenti sur le reste de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 11h07 à 11h42</span> <span>⌛ 0h34</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>11h42</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>11h07</strong> <span>⌛ 0h34</span> Ligne D : ralentissements        <p>Le trafic est fortement ralenti entre Villeneuve S Georges et Stade France St-Denis dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D.Prévoir un allongement de temps de trajet ainsi que des modifications de dessertes et des suppressions.  <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau à Chatelet (panne de signalisation).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 11h07 à 12h18</span> <span>⌛ 1h10</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>12h18</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>11h07</strong> <span>⌛ 1h10</span> Ligne D : ralentissements        <p>Le trafic est ralenti entre Villeneuve S Georges et Orry la Ville dans les 2 sens.Prévoir un allongement de temps de trajet d'environ 10 à 20 minutes ainsi que des modifications de dessertes et des suppressions.    <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau à Chatelêt (Panne de signalisation).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 11h00 à 11h16</span> <span>⌛ 0h15</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>11h16</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>11h00</strong> <span>⌛ 0h15</span> Ligne D : interruption et ralentissements        <p>Le trafic est interrompu entre Paris Gare de Lyon et Paris Gare du Nord dans les 2 sens jusqu'à 11h59 et fortement ralenti sur le reste de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 11h00 à 11h07</span> <span>⌛ 0h07</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>11h07</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>11h00</strong> <span>⌛ 0h07</span> Ligne D : ralentissements        <p>Le trafic est fortement ralenti entre Villeneuve S Georges et Stade France St-Denis dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D.Prévoir un allongement de temps de trajet ainsi que des modifications de dessertes et des suppressions.  <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau à Chatelet (panne de signalisation).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 11h00 à 11h07</span> <span>⌛ 0h07</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>11h07</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>11h00</strong> <span>⌛ 0h07</span> Ligne D : ralentissements        <p>Le trafic est ralenti entre Villeneuve S Georges et Orry la Ville dans les 2 sens.Prévoir un allongement de temps de trajet d'environ 10 à 20 minutes ainsi que des modifications de dessertes et des suppressions.    <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau à Chatelêt (Panne de signalisation).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 08h38 à 10h00</span> <span>⌛ 1h22</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>08h38</strong> <span>⌛ 1h22</span> Ligne J : perturbations        <p>Le trafic est perturbé entre Paris Saint-Lazare et Gisors dans les 2 sens jusqu'à 10h. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau (dysfonctionnement d’un passage à niveau dans le secteur de Eragny-Neuville)).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 08h27 à 09h04</span> <span>⌛ 0h36</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h04</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>08h27</strong> <span>⌛ 0h36</span> Ligne J : ralentissements        <p>Le trafic est ralenti entre Vernon - Giverny et Paris Saint-Lazare dans les 2 sens jusqu'à 10h. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau (incident sur les voies dans le secteur de Houilles-Carrières-sur-Seine).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 08h27 à 09h14</span> <span>⌛ 0h46</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h14</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>08h27</strong> <span>⌛ 0h46</span> Ligne J : fortes perturbations        <p>Le trafic est fortement perturbé entre Vernon - Giverny et Paris Saint-Lazare dans les 2 sens jusqu'à 10h. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau (incident sur les voies dans le secteur de Houilles-Carrières-sur-Seine).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 08h15 à 12h46</span> <span>⌛ 4h30</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>12h46</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>08h15</strong> <span>⌛ 4h30</span> Ligne P : Esbly <-> Crécy la Ch. trafic interrompu        <p>Le trafic est interrompu entre Esbly et Crécy la Chapelle dans les 2 sens jusqu'à 14h. <br />
+Bus mis en place avec dessertes des gares intermédiaires.<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : obstacle sur la voie (branches sur la caténaire dans le secteur d'Esbly).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 08h15 à 13h36</span> <span>⌛ 5h20</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>13h36</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>08h15</strong> <span>⌛ 5h20</span> Ligne P : Esbly <-> Crécy la Ch. trafic interrompu        <p>Le trafic est interrompu entre Esbly et Crécy la Chapelle dans les 2 sens jusqu'à 14h. <br />
+Bus mis en place avec dessertes des gares intermédiaires.<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : obstacle sur la voie (branches sur la caténaire dans le secteur d'Esbly).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 08h15 à 13h40</span> <span>⌛ 5h24</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>13h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>08h15</strong> <span>⌛ 5h24</span> Ligne P : Esbly <-> Crécy la Ch. trafic interrompu        <p>Le trafic est interrompu entre Esbly et Crécy la Chapelle dans les 2 sens jusqu'à 15h. <br />
+Bus mis en place avec dessertes des gares intermédiaires.<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : obstacle sur la voie (branches sur la caténaire dans le secteur d'Esbly).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 08h15 à 13h42</span> <span>⌛ 5h26</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>13h42</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>08h15</strong> <span>⌛ 5h26</span> Ligne P : Esbly <-> Crécy la Ch. trafic interrompu        <p>Le trafic est interrompu entre Esbly et Crécy la Chapelle dans les 2 sens jusqu'à 15h. <br />
+Bus mis en place avec dessertes des gares intermédiaires.<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : obstacle sur la voie (branches sur la caténaire dans le secteur d'Esbly).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 08h15 à 15h00</span> <span>⌛ 6h44</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>08h15</strong> <span>⌛ 6h44</span> Ligne P : Esbly <-> Crécy la Ch. trafic interrompu        <p>Le trafic est interrompu entre Esbly et Crécy la Chapelle dans les 2 sens jusqu'à 15h. <br />
+Bus mis en place avec dessertes des gares intermédiaires.<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : obstacle sur la voie (branches sur la caténaire).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 08h15 à 16h00</span> <span>⌛ 7h44</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>08h15</strong> <span>⌛ 7h44</span> Ligne P : Esbly <-> Crécy la Ch. trafic interrompu        <p>Le trafic est interrompu entre Esbly et Crécy la Chapelle dans les 2 sens jusqu'à 16h. <br />
+Bus mis en place avec dessertes des gares intermédiaires.<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : obstacle sur la voie (branches sur la caténaire).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//n.svg" /> <span>De 06h36 à 06h46</span> <span>⌛ 0h09</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h46</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h36</strong> <span>⌛ 0h09</span> Ligne N : St-Cyr - Plaisir Grignon ralenti        <p>Prévoir un allongement de temps de trajet de 20 minutes environ pour le train suivant :-GOPI , départ de St-Cyr 06h21 arrivée à Plaisir-Grignon à 06h35.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne.<br />
+<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//n.svg" /> <span>De 06h36 à 07h00</span> <span>⌛ 0h23</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>07h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h36</strong> <span>⌛ 0h23</span> Ligne N : St-Cyr - Plaisir Grignon ralenti        <p>Prévoir un allongement de temps de trajet de 20 minutes environ pour le train suivant :-GOPI , départ de St-Cyr 06h21 arrivée à Plaisir-Grignon à 06h35.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne.<br />
+<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h25 à 04h42</span> <span>⌛ 0h16</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>04h42</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>04h25</strong> <span>⌛ 0h16</span> Ligne P : perturbé        <p>Le trafic est perturbé entre Meaux et La Ferté-Milon dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : conditions météorologiques (arbre sur la caténaire aux abords de Trilport).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h25 à 04h52</span> <span>⌛ 0h26</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>04h52</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>04h25</strong> <span>⌛ 0h26</span> Ligne P : perturbé        <p>Le trafic est perturbé entre Meaux et La Ferté-Milon dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : conditions météorologiques (arbre sur la caténaire aux abords de Trilport).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h25 à 08h00</span> <span>⌛ 3h34</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>04h25</strong> <span>⌛ 3h34</span> Ligne P : perturbé        <p>Le trafic est perturbé entre Meaux et La Ferté-Milon dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+Le train MOFO départ de La Ferté Milon à 05:59 arrivée 06:36 est supprimé. Bus de substitution mis en place.Motif : conditions météorologiques (arbre sur la caténaire aux abords de Trilport).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h22 à 06h14</span> <span>⌛ 1h51</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h14</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>04h22</strong> <span>⌛ 1h51</span> Ligne P : perturbé        <p>Le trafic est perturbé entre Paris Est et Château-Thierry dans les deux sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : conséquences de mauvaises conditions climatiques (arbre sur la caténaire aux abords de Trilport).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h22 à 08h00</span> <span>⌛ 3h38</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>04h22</strong> <span>⌛ 3h38</span> Ligne P : perturbé        <p>Le trafic est perturbé entre Paris Est et Château-Thierry dans les deux sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : conséquences de mauvaises conditions météorologiques (arbre sur la caténaire aux abords de Trilport).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h19 à 04h40</span> <span>⌛ 0h20</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>04h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>04h19</strong> <span>⌛ 0h20</span> Ligne P : perturbé        <p>Le trafic est perturbé entre Paris Est et Coulommiers dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : conditions météorologiques (arbre sur la caténaire aux abords de Mortcerf)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h19 à 05h10</span> <span>⌛ 0h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>05h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>04h19</strong> <span>⌛ 0h50</span> Ligne P : perturbé        <p>Le trafic est perturbé entre Paris Est et Coulommiers dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : conditions météorologiques (arbre sur la caténaire aux abords de Mortcerf)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h19 à 05h42</span> <span>⌛ 1h22</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>05h42</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>04h19</strong> <span>⌛ 1h22</span> Ligne P : perturbé        <p>Le trafic est perturbé entre Paris Est et Coulommiers dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+Le train PITU au départ de Coulommiers à 06:38 est supprimé. Bus de substitutions mis en place entre Coulommiers et Tournan.<br />
+Motif : conditions météorologiques (arbre sur la caténaire aux abords de Mortcerf)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h19 à 06h52</span> <span>⌛ 2h32</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h52</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>04h19</strong> <span>⌛ 2h32</span> Ligne P : perturbé        <p>Le trafic est perturbé entre Paris Est et Coulommiers dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+Motif : conditions météorologiques (arbre sur la caténaire aux abords de Mortcerf)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h19 à 08h00</span> <span>⌛ 3h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>04h19</strong> <span>⌛ 3h40</span> Ligne P : perturbé        <p>Le trafic est perturbé entre Paris Est et Coulommiers dans les 2 sens. <br />
+1 bus de remplacement partira aux environs de 7h de Coulommiers jusqu'à Tournan et sera omnibus.<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+Motif : conditions météorologiques (arbre sur la caténaire aux abords de Mortcerf)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h13 à 04h24</span> <span>⌛ 0h10</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>04h24</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>04h13</strong> <span>⌛ 0h10</span> Ligne P : Esbly <-> Crécy la Ch. trafic interrompu        <p>Le trafic est interrompu entre Esbly et Crécy la Chapelle dans les deux sens jusqu'à 12h30. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : conditions météorologiques (arbre sur la caténaire).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h13 à 04h34</span> <span>⌛ 0h20</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>04h34</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>04h13</strong> <span>⌛ 0h20</span> Ligne P : Esbly <-> Crécy la Ch. trafic interrompu        <p>Le trafic est interrompu entre Esbly et Crécy la Chapelle dans les deux sens jusqu'à 12h30. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : conséquence de mauvaises conditions climatiques (arbre sur la caténaire dans le secteur de Crécy-La-Chapelle).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h13 à 04h48</span> <span>⌛ 0h34</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>04h48</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>04h13</strong> <span>⌛ 0h34</span> Ligne P : Esbly <-> Crécy la Ch. trafic interrompu        <p>Le trafic est interrompu entre Esbly et Crécy la Chapelle dans les deux sens jusqu'à 12h30. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : conséquence de mauvaises conditions climatiques (arbre sur la caténaire dans le secteur de Crécy-La-Chapelle).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h13 à 05h52</span> <span>⌛ 1h38</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>05h52</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>04h13</strong> <span>⌛ 1h38</span> Ligne P : Esbly <-> Crécy la Ch. trafic interrompu        <p>Le trafic est interrompu entre Esbly et Crécy la Chapelle dans les deux sens jusqu'à 12h30. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+Bus de substitution mis en place avec desserte des gares intermédiaires.<br />
+Motif : conséquence de mauvaises conditions climatiques (arbre sur la caténaire dans le secteur de Crécy-La-Chapelle).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h13 à 06h16</span> <span>⌛ 2h02</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h16</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>04h13</strong> <span>⌛ 2h02</span> Ligne P : Esbly <-> Crécy la Ch. trafic interrompu        <p>Le trafic est interrompu entre Esbly et Crécy la Chapelle dans les deux sens jusqu'à 12h30. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+Bus de substitution mis en place avec desserte des gares intermédiaires.<br />
+Motif : conséquence de mauvaises conditions climatiques (arbre sur la caténaire dans le secteur de Crécy-La-Chapelle).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h13 à 06h54</span> <span>⌛ 2h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h54</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>04h13</strong> <span>⌛ 2h40</span> Ligne P : Esbly <-> Crécy la Ch. trafic interrompu        <p>Le trafic est interrompu entre Esbly et Crécy la Chapelle dans les deux sens jusqu'à 12h30. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+Bus de substitution mis en place avec desserte des gares intermédiaires.<br />
+Motif : conséquence de mauvaises conditions météorologiques (arbre sur la caténaire dans le secteur de Crécy-La-Chapelle).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 04h13 à 08h30</span> <span>⌛ 4h17</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>04h13</strong> <span>⌛ 4h17</span> Ligne P : Esbly <-> Crécy la Ch. trafic interrompu        <p>Le trafic est interrompu entre Esbly et Crécy la Chapelle dans les deux sens jusqu'à 08h30. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+Bus de substitution mis en place avec desserte des gares intermédiaires.<br />
+Motif : conséquence de mauvaises conditions météorologiques (arbre sur la caténaire dans le secteur de Crécy-La-Chapelle).</p></li>
+</ul>
+</div>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>

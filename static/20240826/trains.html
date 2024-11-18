@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_trains.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_trains.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240826.json';
 </script>
@@ -17,18 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240825/trains.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">26/08/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240827/trains.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -9036,18 +9037,450 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240826/20240827025801_disruptions.optimized.json">27/08/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240826/20240827025801_disruptions.optimized.json">27/08/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du 26/08/2024</h2>
+
+
+
+<h3>Terminés</h3>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 22h30 à 02h20</span> <span>⌛ 3h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h20</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h30</strong> <span>⌛ 3h50</span> Ligne E : Haussmann - Villiers/Tournan 12/08-27/08        <p>Période : à partir de 22h30<br />
+<br />
+Dates : du lundi 12 au mardi 27 août, sauf week-end<br />
+<br />
+Le trafic est interrompu entre Haussmann - Gare Saint-Lazare et Villiers-sur-Marne - Le Plessis-Trévise et entre Haussmann - Gare Saint-Lazare et Tournan.<br />
+Le dernier train HAVA de Tournan vers Haussmann - Gare Saint-Lazare est à 21h52.<br />
+Le dernier train HOVE de Villiers-sur-Marne vers Haussmann - Gare Saint-Lazare est à 22h20.<br />
+Le dernier train TOHA de Haussmann - Gare Saint-Lazare vers Tournan est à 22h34.<br />
+Le dernier train VOHE de Haussmann - Gare Saint-Lazare vers Villiers-sur-Marne est à 22h21.<br />
+<br />
+Un service de bus de remplacement est mis en place :<br />
+- De Paris, rejoignez par le RER A Noisy-le-Grand Mont-d'Est d'où partent les bus à destination de Tournan,<br />
+- De Tournan à Nogent-le-Perreux pour Paris, rejoignez Val-de-Fontenay par bus puis prendre le RER A,<br />
+- Les deux derniers bus au départ de Tournan ont pour destination Gare de l'Est,<br />
+- Des bus circulent également entre Rosny-Bois-Perrier et Noisy-le-Grand Mont-d'Est RER A.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 22h30 à 01h50</span> <span>⌛ 3h20</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h30</strong> <span>⌛ 3h20</span> Ligne E : Haussmann - Chelles-G. du 12 au 27/08        <p>Période : à partir de 22h30<br />
+<br />
+Dates : du lundi 12 au mardi 27 août, sauf jeudi 15 août<br />
+<br />
+Le trafic est interrompu entre Haussmann - Gare Saint-Lazare et Chelles - Gournay.<br />
+Le dernier train HOCI de Chelles-Gournay vers Haussmann - Gare Saint-Lazare est à 22h15.<br />
+Le dernier train COHI de Haussmann - Gare Saint-Lazare vers Chelles-Gournay est à 22h58.<br />
+<br />
+Un service de bus de remplacement est mis en place :<br />
+- De Chelles-Gournay à Paris Gare de l'Est,<br />
+- De Paris, rejoignez par la ligne 5  du métro Bobigny Pablo Picasso d'où partent les bus à destination de Chelles-Gournay.<br />
+Attention, du lundi 15 juillet au dimanche 15 septembre, l'arrêt des bus de remplacement en gare de Chelles-Gournay est transféré Place du Grand Jardin (arrêt du bus 8). Des affiches spécifiques avec un guidage piéton sont disponibles en gare pendant cette période. <br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 22h30 à 01h20</span> <span>⌛ 2h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h20</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h30</strong> <span>⌛ 2h50</span> Ligne P : Paris Est - Coulommiers du 12 au 27/08        <p>Période : à partir de 22h30<br />
+<br />
+Dates : du lundi 12 au mardi 27 août, sauf le week-end<br />
+<br />
+Le trafic est interrompu entre Paris Est et Coulommiers.<br />
+Le dernier train PITU de Coulommiers vers Paris-Est part à 21h38.<br />
+Le dernier train CITU de Paris-Est vers Coulommiers part à 22h17.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 22h20 à 02h50</span> <span>⌛ 4h30</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h20</strong> <span>⌛ 4h30</span> Ligne P : Paris Est - Meaux du 12 au 27/08        <p>Période : à partir de 22h20<br />
+<br />
+Dates : du lundi 12 au mardi 27 août, sauf le week-end et jeudi 15 août<br />
+<br />
+Le trafic est interrompu entre Paris Est et Meaux.<br />
+Le dernier train PICI de Meaux vers Paris-Est est à 21h50.<br />
+Le dernier train MICI de Paris-Est vers Meaux est à 22h31.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+Attention, du lundi 15 juillet au dimanche 15 septembre, l'arrêt des bus de remplacement en gare de Chelles-Gournay est transféré Place du Grand Jardin (arrêt du bus 8). Des affiches spécifiques avec un guidage piéton sont disponibles en gare pendant cette période. <br />
+Dans Horaires des bus, consultez les grilles horaires La Ferté Milon - Meaux et Verdun / Paris Est - La Ferté Milon.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 22h00 à 02h30</span> <span>⌛ 4h30</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h00</strong> <span>⌛ 4h30</span> Ligne P : Paris Est - Château-Thierry 12/08-27/08        <p>Période : à partir de 22h00<br />
+<br />
+Dates : du lundi 12 au mardi 27 août, sauf le week-end<br />
+<br />
+Le trafic est interrompu entre Paris Est et Château-Thierry.<br />
+Le dernier train PIMO de Château-Thierry vers Paris-Est est à 21h04.<br />
+Le dernier train ZIMO de Paris-Est vers Château-Thierry est à 21h49.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 21h45 à 01h00</span> <span>⌛ 3h15</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>21h45</strong> <span>⌛ 3h15</span> Ligne P : Paris Est - Provins du 12/08 au 27/08        <p>Période : à partir de 21h45<br />
+<br />
+Dates : du lundi 12 au mardi 27 août, sauf le week-end<br />
+<br />
+Le trafic est interrompu entre Paris Est et Provins.<br />
+Le dernier train PIBU de Provins vers Paris-Est part à 20h46.<br />
+Le dernier train XIBU de Paris-Est vers Provins part à 21h47.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 21h13 à 22h00</span> <span>⌛ 0h46</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>22h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>21h13</strong> <span>⌛ 0h46</span> Ligne J : ralentissements        <p>Le trafic est ralenti entre Paris Saint-Lazare et Pontoise et entre Paris Saint-Lazare et Mantes-la-Jolie via Conflans Ste-H. dans les 2 sens jusqu'à 22h00<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau (dysfonctionnement d’un passage à niveau dans le secteur de Conflans-Sainte-Honorine).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 20h48 à 21h14</span> <span>⌛ 0h25</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>21h14</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>20h48</strong> <span>⌛ 0h25</span> Ligne J : ralentissements        <p>Le trafic est ralenti entre Paris Saint-Lazare et Pontoise et entre Paris Saint-Lazare et Mantes-la-Jolie via Conflans Ste-H. dans les 2 sens jusqu'à 22h00<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau (dysfonctionnement d’un passage à niveau dans le secteur de Conflans-Sainte-Honorine).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 20h13 à 20h38</span> <span>⌛ 0h24</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h38</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>20h13</strong> <span>⌛ 0h24</span> Ligne C Pontoise - Massy-P. : suppression        <p>Train supprimé :<br />
+- Le train MONA au départ de Pontoise à 20h28 pour une arrivée à Massy Palaiseau à 22h20<br />
+<br />
+Prochain train à circuler :<br />
+- Le train ROMI au départ de Pontoise à 20h58 pour une arrivée à Pont-de-Rungis à 22h37-Le train MONA au départ de Pontoise à 21h58 pour une arrivée à Massy Palaiseau à 23h51<br />
+<br />
+Motif : acte de vandalisme (dégradation du train).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 20h13 à 22h20</span> <span>⌛ 2h07</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>22h20</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>20h13</strong> <span>⌛ 2h07</span> Ligne C Pontoise - Massy-P. : suppression        <p>Train supprimé :<br />
+- Le train MONA au départ de Pontoise à 20h28 pour une arrivée à Massy Palaiseau à 22h20<br />
+<br />
+Prochain train à circuler :<br />
+- Le train MONA au départ de Pontoise à 20h58 pour une arrivée à Massy Palaiseau à 22h52<br />
+Motif : acte de vandalisme (dégradation du train).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 17h50 à 19h10</span> <span>⌛ 1h20</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>17h50</strong> <span>⌛ 1h20</span> Ligne E : Haussmann - Chelles-G. du 26 au 28/08        <p>Dates : du lundi 26 au mercredi 28 août <br />
+<br />
+Les trains suivants sont avancés d'1 minute :<br />
+- 17h47 COHI, au départ de Haussmann - Gare Saint-Lazare vers Chelles-Gournay, dans les gares de Noisy-Le-Sec à Le Raincy-Villemomble-Montfermeil,<br />
+- 18h47 COHI, au départ de Haussmann - Gare Saint-Lazare vers Chelles-Gournay, en gare de Bondy. <br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h37 à 16h54</span> <span>⌛ 0h16</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h54</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h37</strong> <span>⌛ 0h16</span> Ligne A : Cergy le Haut - Boissy-St-Léger perturbé        <p>Le trafic est perturbé de Cergy le Haut vers Boissy-Saint-Léger.<br />
+<br />
+Motif panne d'un train à Conflans-Fin-d'Oise.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h37 à 17h16</span> <span>⌛ 0h38</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h16</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h37</strong> <span>⌛ 0h38</span> Ligne A : Cergy le Haut - Boissy-St-Léger perturbé        <p>Le trafic est perturbé de Cergy le Haut vers Boissy-Saint-Léger.<br />
+<br />
+Motif panne d'un train à Conflans-Fin-d'Oise.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 14h29 à 15h50</span> <span>⌛ 1h21</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>14h29</strong> <span>⌛ 1h21</span> Ligne C Dourdan - Invalides : suppression        <p>Train supprimé :<br />
+- Le train LARA au départ de Dourdan à 14h36 pour une arrivée à Invalides à 15h53.<br />
+<br />
+Prochain train à circuler :<br />
+- Le train SARA au passage à Dourdan à 15h06 pour un passage à Invalides à 16h26.<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 13h00 à 15h30</span> <span>⌛ 2h30</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>13h00</strong> <span>⌛ 2h30</span> RERD : Vert de Maisons non desservi 26/08 et 27/08        <p>Période : de 13h50 à 15h30 <br />
+<br />
+Dates :  Le lundi 26/08 et le Mardi 27/08<br />
+<br />
+La gare de Vert de Maisons n'est pas desservis dans le sens Villeneuve Saint Georges vers Paris Gare de Lyon.Pour se rendre à la gare de Vert de Maisons veuillez descendre à la gare de Maisons Alfort et emprunter un train dans l'autre sens desservant cette gare.  <br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 09h56 à 10h28</span> <span>⌛ 0h31</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h28</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h56</strong> <span>⌛ 0h31</span> Ligne A : Perturbé        <p>Le trafic est perturbé de Nanterre-Préfecture vers Cergy le Haut et de Nanterre-Préfecture vers Poissy. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : panne d'un train à Maisons Laffitte.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 09h26 à 10h45</span> <span>⌛ 1h18</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h45</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h26</strong> <span>⌛ 1h18</span> Ligne E Nanterre-La-Folie - Magenta : suppression        <p>Le train suivant est supprimé :<br />
+- MONY, départ de Nanterre La Folie à 10h12 et arrivée à Magenta 10h28.<br />
+Prochain train à circuler :<br />
+ -MONY, départ de Nanterre La Folie à 10h42 et arrivée à Magenta 10h58.<br />
+<br />
+Motif : conditions de départ non réunies. Il s’agit plus précisément d’une difficulté liée à un manque de personnel.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 09h06 à 09h40</span> <span>⌛ 0h33</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h06</strong> <span>⌛ 0h33</span> Ligne A : Perturbé        <p>Le trafic est perturbé de Nanterre-Préfecture vers Boissy-Saint-Léger et de Nanterre-Préfecture vers Marne-la-Vallée Chessy. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : malaise voyageur à La Défense.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 08h48 à 09h48</span> <span>⌛ 0h59</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h48</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>08h48</strong> <span>⌛ 0h59</span> Ligne J : perturbations        <p>Le trafic est perturbé entre Gisors et Paris Saint-Lazare et entre Mantes-la-Jolie via Conflans Ste-H. et Paris Saint-Lazare dans les 2 sens jusqu'à 10h<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau (panne d’un passage à niveau dans le secteur d'Herblay)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 08h48 à 10h32</span> <span>⌛ 1h43</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h32</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>08h48</strong> <span>⌛ 1h43</span> Ligne J : perturbations        <p>Le trafic est perturbé entre Gisors et Paris Saint-Lazare et entre Mantes-la-Jolie via Conflans Ste-H. et Paris Saint-Lazare dans les 2 sens jusqu'à 11h<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau (panne d’un passage à niveau dans le secteur d'Herblay)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 08h46 à 09h48</span> <span>⌛ 1h01</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h48</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>08h46</strong> <span>⌛ 1h01</span> Ligne J : perturbations        <p>Le trafic est perturbé entre Gisors et Paris Saint-Lazare et entre Mantes-la-Jolie via Conflans Ste-H. et Paris Saint-Lazare dans les 2 sens jusqu'à 10h<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau (panne d’un passage à niveau dans le secteur d'Herblay)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 08h46 à 10h32</span> <span>⌛ 1h45</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h32</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>08h46</strong> <span>⌛ 1h45</span> Ligne J : perturbations        <p>Le trafic est perturbé entre Gisors et Paris Saint-Lazare et entre Mantes-la-Jolie via Conflans Ste-H. et Paris Saint-Lazare dans les 2 sens jusqu'à 11h<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau (panne d’un passage à niveau dans le secteur d'Herblay)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 08h37 à 08h46</span> <span>⌛ 0h09</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h46</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>08h37</strong> <span>⌛ 0h09</span> Ligne J : perturbations        <p>Le trafic est perturbé entre Gisors et Paris Saint-Lazare et entre Mantes-la-Jolie via Conflans Ste-H. et Paris Saint-Lazare dans les 2 sens jusqu'à 10h<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau (panne d’un passage à niveau dans le secteur d'Herblay)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 06h00 à 08h30</span> <span>⌛ 2h30</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>06h00</strong> <span>⌛ 2h30</span> Ligne E : Chelles-Gournay - Haussmann le 26/08        <p>Date : lundi 26 août <br />
+<br />
+Les trains suivants sont avancés d'1 minute au départ de  Chelles - Gournay en direction d'Haussmann - Gare Saint-Lazare : <br />
+- 6h02 HOCI part à 6h01 et est avancé dans les gares de Gagny, de Noisy-Le-Sec à Rosa-Parks ; <br />
+- 7h55 HOCI dans les gares de Le Chénay-Gagny, Le Raincy-Villemomble-Montfermeil, Bondy, Pantin et Magenta - Gare du Nord. <br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 05h19 à 08h00</span> <span>⌛ 2h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>05h19</strong> <span>⌛ 2h40</span> Ligne C St-Martin d'É. - St-Quentin : suppressions        <p>Trains supprimés :- Le train SLOM au départ de la gare de Saint-Martin-d ’Etampes à 05h44 a son départ reporté en gare d'Etrechy à 05h56 et sera terminus en gare de Juvisy.<br />
+- Le train DEBO au départ de Saint-Quentin-en-Yvelines à 07h55 a son départ reporté en gare de Juvisy à 09h00.<br />
+<br />
+Prochains trains à circuler :- Le train SLOM au départ de la gare de Saint-Martin-d ’Etampes à 05h59 pour une arrivée en gare de Saint-Quentin-en-Yvelines à 07h51.<br />
+- Le train DEBO au départ de Saint-Quentin-en-Yvelines à 08h25 pour une arrivée en gare de Saint-Martin-d ’Etampes à 10h21.<br />
+<br />
+<br />
+Risque d'affluence à bord des trains suivants.<br />
+<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne.<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 04h58 à 07h20</span> <span>⌛ 2h21</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>07h20</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>04h58</strong> <span>⌛ 2h21</span> Ligne C Versail.Château - Juvisy : suppression        <p>Train supprimé :- Le train JUJU au départ de la gare de Versailles-Château-Rive-Gauche à 06h25 a son départ reporté en gare de Choisy-le-Roi à 07h19.Prochain train à circuler :- Le train JILL au départ de la gare de Versailles-Château-Rive-Gauche à 06h40 pour une arrivée en gare de Juvisy à 07h47.Risque d'affluence à bord du train suivant.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne.<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 22h52 à 07h00</span> <span>⌛ 8h07</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>07h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>22h52</strong> <span>⌛ 8h07</span> Ligne C Massy-P. - Pontoise : suppression        <p>Train supprimé :- Le train NORA au départ de la gare de Massy-Palaiseau à 05h10 pour une arrivée en gare de Pontoise à 07h02.Prochain train à circuler :- Le train GOTA au départ de la gare de Massy-Palaiseau à 05h27 pour une arrivée en gare de Pont de Rungis à 05h36.- Le train NORA au départ de la gare de Massy-Palaiseau à 05h40 pour une arrivée en gare de Pontoise à 07h32.<br />
+<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne.<br />
+<br />
+Motif : difficultés liées à un manque de personnel.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 03h00 à 03h00</span> <span>⌛ 0h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>03h00</strong> <span>⌛ 0h00</span> Ligne P : Meaux - La Ferté-Milon du 12 au 27/08        <p>Période : toute la journée<br />
+<br />
+Dates : du lundi 12 au mardi 27 août, week-ends compris<br />
+<br />
+Le trafic est interrompu entre Meaux et La Ferté-Milon.<br />
+Les trains FYMO et PUMO ne circulent pas entre Paris-Est et La Ferté-Milon.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 15h56 à 21h46</span> <span>⌛ 5h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>21h46</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>15h56</strong> <span>⌛ 5h50</span> Travaux Juvisy-Corbeil-Ess. : trafic interrompu        <p>Dates : du dimanche 25 août au mardi 27 août 2024 inclus<br />
+A partir de 23h20, le trafic est interrompu entre Corbeil-Essonnes et Juvisy via Evry-Courcouronnes dans les deux sens de circulation.<br />
+Les trains sont détournés par la vallée (Gares d'Evry-Val-de-Seine, Grand-Bourg et Ris-Orangis), direct entre Viry-Châtillon et Corbeil-Essonnes.Un service de bus est mis en place.<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+Motif : travaux de réparation.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 15h56 à 02h00</span> <span>⌛ 10h04</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>15h56</strong> <span>⌛ 10h04</span> Travaux Juvisy-Corbeil-Ess. : trafic interrompu        <p>Dates : du dimanche 25 août au mardi 27 août 2024 inclus<br />
+A partir de 23h20, le trafic est interrompu entre Corbeil-Essonnes et Juvisy via Evry-Courcouronnes dans les deux sens de circulation.<br />
+Les trains sont détournés par la vallée (Gares d'Evry-Val-de-Seine, Grand-Bourg et Ris-Orangis), direct entre Viry-Châtillon et Corbeil-Essonnes.Un service de bus est mis en place.<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+Motif : travaux de réparation.</p></li>
+</ul>
+</div>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>

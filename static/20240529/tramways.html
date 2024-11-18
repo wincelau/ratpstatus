@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_tramways.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_tramways.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240529.json';
 </script>
@@ -17,18 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240528/tramways.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">29/05/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240530/tramways.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -9728,18 +9729,154 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240529/20240530025801_disruptions.optimized.json">30/05/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240529/20240530025801_disruptions.optimized.json">30/05/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du 29/05/2024</h2>
+
+
+
+<h3>Terminés</h3>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 22h55 à 02h15</span> <span>⌛ 3h20</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h15</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h55</strong> <span>⌛ 3h20</span> Ligne T4 : Bondy - Aulnay s/s Bois du 27 au 31/05        <p>Période : à partir de 22h55<br />
+<br />
+Dates : du lundi 27 au vendredi 31 mai<br />
+<br />
+Le trafic est interrompu entre Gargan et Aulnay-sous-Bois.<br />
+Moins de tramways circulent entre Bondy et Gargan.<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 19h26 à 20h50</span> <span>⌛ 1h24</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h26</strong> <span>⌛ 1h24</span> Ligne T12 : trafic ralenti sur toute la ligne        <p>Le trafic est ralenti sur l'ensemble de la ligne.<br />
+Le tramway de 20h04 au départ d'Évry - Courcouronnes est supprimé.<br />
+Motif : panne d'un tramway (incident terminé).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 16h29 à 16h48</span> <span>⌛ 0h19</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h48</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>16h29</strong> <span>⌛ 0h19</span> Ligne T4 : trafic interrompu sur toute la ligne        <p>Le trafic est interrompu sur l'ensemble de la ligne jusqu'à 18h30. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne T4. <br />
+<br />
+Motif : colis abandonné dans une rame en gare de Bondy.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 16h29 à 18h40</span> <span>⌛ 2h11</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h29</strong> <span>⌛ 2h11</span> Ligne T4 : trafic perturbé sur toute la ligne        <p>Le trafic est perturbé sur l'ensemble de la ligne jusqu'à 18h30. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne T4. <br />
+<br />
+Motif : colis abandonné dans une rame en gare de Bondy.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 16h02 à 16h38</span> <span>⌛ 0h36</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h38</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h02</strong> <span>⌛ 0h36</span> Ligne T12 : trafic ralenti sur toute la ligne        <p>Le trafic est ralenti sur l'ensemble de la ligne. <br />
+<br />
+Motif : panne d'un tramway entre Épinay-sur-Orge et Parc du Château.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 16h02 à 17h10</span> <span>⌛ 1h08</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h02</strong> <span>⌛ 1h08</span> Ligne T12 : suppressions        <p>Les tramways suivants sont supprimés :<br />
+- Au départ de Massy ﻿- Palaiseau : 16h14.- Au départ d'Évry - Courcouronnes : 17h04.<br />
+Motif : panne d'un tramway entre Épinay-sur-Orge et Parc du Château.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t1.svg" /> <span>De 14h55 à 15h23</span> <span>⌛ 0h27</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h23</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h06</strong> <span>⌛ 0h17</span> Tramway T1 : Malaise voyageur - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne  en répercussion d'un malaise voyageur à La Courneuve - 8 Mai 1945<br />
+Plus d'informations sur le site ratp.fr</p></li>
+<li><span class="bq"></span> <strong>14h55</strong> <span>⌛ 0h10</span> Tramway T1 : Malaise voyageur - Trafic interrompu        <p>Le trafic est interrompu sur l'ensemble de la ligne  en raison d'un malaise voyageur à La Courneuve - 8 Mai 1945 . <br />
+Heure de reprise estimée : 15:40.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t1.svg" /> <span>De 10h38 à 11h15</span> <span>⌛ 0h37</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>11h15</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>10h49</strong> <span>⌛ 0h26</span> Tramway T1 : Panne électrique - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne  en répercussion d'une panne électrique<br />
+Plus d'informations sur le site ratp.fr</p></li>
+<li><span class="bq"></span> <strong>10h38</strong> <span>⌛ 0h10</span> Tramway T1 : Panne électrique - Trafic interrompu        <p>Le trafic est interrompu entre Gaston Roulaud et Bobigny – Pablo Picasso  en raison d'une panne électrique  . <br />
+Heure de reprise estimée : 11:00.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 10h17 à 12h20</span> <span>⌛ 2h03</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>12h20</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>10h17</strong> <span>⌛ 2h03</span> Ligne T12 : quelques suppressions        <p>Les tramways suivants sont supprimés :<br />
+<br />
+De Massy Palaiseau vers Evry Courcouronnes,<br />
+- Massy Palaiseau, départ 10h59,D'Evry Courcouronnes vers Massy Palaiseau,<br />
+- Evry Courcouronnes, départ 11h49.<br />
+Motif : conditions de départ non réunies</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t13.svg" /> <span>De 07h48 à 08h40</span> <span>⌛ 0h52</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>07h48</strong> <span>⌛ 0h52</span> Ligne T13 : quelques suppressions        <p>Les tramways suivants sont supprimés :- départ St-Cyr à 7h20 en direction de  St-Germain -en-Laye, - départ  St-Germain-en-Laye à 8h10 en direction de St-Cyr.<br />
+<br />
+Motif : obstacle sur la voie (incident terminé).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 04h00 à 05h00</span> <span>⌛ 1h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>05h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>04h00</strong> <span>⌛ 1h00</span> Ligne T4 : Aulnay - Bondy du 23/04 au 1er/06        <p>Période : jusqu'à 5h00<br />
+<br />
+Dates : du mardi 23 avril au samedi 1er juin, sauf dimanches et lundis<br />
+<br />
+Le trafic est interrompu entre Aulnay-sous-Bois et Bondy.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Plus d'informations en cliquant ici pour télécharger l'affiche PDF.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.<br />
+ </p></li>
+</ul>
+</div>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>

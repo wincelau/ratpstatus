@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_trains.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_trains.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240815.json';
 </script>
@@ -17,18 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240814/trains.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">15/08/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240816/trains.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -9036,18 +9037,518 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240815/20240816025801_disruptions.optimized.json">16/08/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240815/20240816025801_disruptions.optimized.json">16/08/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du 15/08/2024</h2>
+
+
+
+<h3>Terminés</h3>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 23h34 à 00h14</span> <span>⌛ 0h39</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>00h14</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>23h34</strong> <span>⌛ 0h39</span> Ligne A : perturbations        <p>Le trafic est perturbé de Vincennes vers Boissy-Saint-Léger et de Vincennes vers Marne-la-Vallée Chessy.<br />
+<br />
+Motif incident voyageur à Vincennes.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 22h50 à 02h50</span> <span>⌛ 4h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h50</strong> <span>⌛ 4h00</span> Ligne P : Paris Est - Meaux le 15/08        <p>Période : à partir de 22h50<br />
+<br />
+Date : jeudi 15 août<br />
+<br />
+Le trafic est interrompu entre Paris Est et Meaux.<br />
+Le dernier train PICI de Meaux vers Paris-Est est à 22h20.<br />
+Le dernier train MICI de Paris-Est vers Meaux est à 22h31.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+Attention, du lundi 15 juillet au dimanche 15 septembre, l'arrêt des bus de remplacement en gare de Chelles-Gournay est transféré Place du Grand Jardin (arrêt du bus 8). Des affiches spécifiques avec un guidage piéton sont disponibles en gare pendant cette période. <br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 22h45 à 01h45</span> <span>⌛ 3h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h45</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h45</strong> <span>⌛ 3h00</span> Ligne E : Haussmann St-L. - Chelles-Gournay 15/08        <p>Période : à partir de 22h45<br />
+<br />
+Date : jeudi 15 août<br />
+<br />
+Le trafic est interrompu entre Haussmann - Gare Saint-Lazare et Chelles - Gournay.<br />
+Le dernier train HOCI de Chelles-Gournay vers Haussmann - Gare Saint-Lazare est à 22h15.<br />
+Le dernier train COHI de Haussmann - Gare Saint-Lazare vers Chelles-Gournay est à 22h58.<br />
+<br />
+Un service de bus de remplacement est mis en place :<br />
+- De Chelles-Gournay à Paris Gare de l'Est,<br />
+- De Paris, rejoignez par la ligne 5  du métro Bobigny Pablo Picasso d'où partent les bus à destination de Chelles-Gournay.<br />
+Attention, du lundi 15 juillet au dimanche 15 septembre, l'arrêt des bus de remplacement en gare de Chelles-Gournay est transféré Place du Grand Jardin (arrêt du bus 8). Des affiches spécifiques avec un guidage piéton sont disponibles en gare pendant cette période. <br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 22h30 à 02h30</span> <span>⌛ 4h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h30</strong> <span>⌛ 4h00</span> RER D arrêts non desservis semaine 12/08 au 23/08        <p>Période : à partir de 22H05<br />
+<br />
+Dates : Du lundi au vendredi du 12/08 au 16/08 et du 19/08 au 23/08.<br />
+<br />
+Les arrêts Vert de Maisons, Créteil Pompadour et Villeneuve Triage ne sont pas desservis.<br />
+Derniers trains à desservir ces gares :- De la province vers Paris : Train DOPA, départ Corbeil-Essonnes 22h06, arrivée Gare de Lyon à 22h54.- De Paris vers la province : Train RORO, départ Paris Gare de Lyon 22h29, arrivée Corbeil-Essonnes 23h16.<br />
+Un service de bus de remplacement est mis en place.<br />
+Pour plus d'information consulter le fil Twitter (X) de votre ligne.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux de maintenance.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 22h30 à 02h20</span> <span>⌛ 3h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h20</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h30</strong> <span>⌛ 3h50</span> Ligne E : Haussmann - Villiers/Tournan 12/08-27/08        <p>Période : à partir de 22h30<br />
+<br />
+Dates : du lundi 12 au mardi 27 août, sauf week-end<br />
+<br />
+Le trafic est interrompu entre Haussmann - Gare Saint-Lazare et Villiers-sur-Marne - Le Plessis-Trévise et entre Haussmann - Gare Saint-Lazare et Tournan.<br />
+Le dernier train HAVA de Tournan vers Haussmann - Gare Saint-Lazare est à 21h52.<br />
+Le dernier train HOVE de Villiers-sur-Marne vers Haussmann - Gare Saint-Lazare est à 22h20.<br />
+Le dernier train TOHA de Haussmann - Gare Saint-Lazare vers Tournan est à 22h34.<br />
+Le dernier train VOHE de Haussmann - Gare Saint-Lazare vers Villiers-sur-Marne est à 22h21.<br />
+<br />
+Un service de bus de remplacement est mis en place :<br />
+- De Paris, rejoignez par le RER A Noisy-le-Grand Mont-d'Est d'où partent les bus à destination de Tournan,<br />
+- De Tournan à Nogent-le-Perreux pour Paris, rejoignez Val-de-Fontenay par bus puis prendre le RER A,<br />
+- Les deux derniers bus au départ de Tournan ont pour destination Gare de l'Est,<br />
+- Des bus circulent également entre Rosny-Bois-Perrier et Noisy-le-Grand Mont-d'Est RER A.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 22h30 à 01h20</span> <span>⌛ 2h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h20</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h30</strong> <span>⌛ 2h50</span> Ligne P : Paris Est - Coulommiers du 12 au 27/08        <p>Période : à partir de 22h30<br />
+<br />
+Dates : du lundi 12 au mardi 27 août, sauf le week-end<br />
+<br />
+Le trafic est interrompu entre Paris Est et Coulommiers.<br />
+Le dernier train PITU de Coulommiers vers Paris-Est part à 21h38.<br />
+Le dernier train CITU de Paris-Est vers Coulommiers part à 22h17.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 22h20 à 03h00</span> <span>⌛ 4h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h20</strong> <span>⌛ 4h40</span> Ligne J : Gisors et Pontoise le 15 août        <p>Période : Le dernier train de Gisors vers Paris Saint-Lazare.&#11;Dates : le jeudi 15 aoûtLe dernier train au départ de Gisors de 22h30 vers Paris Saint-Lazare est supprimé de Gisors à Pontoise.Horaire du train au départ de Pontoise : 23h12Un service de bus de remplacement est mis en place de Gisors vers Paris Saint-Lazare avec desserte des gares intermédiaires.Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 22h00 à 02h30</span> <span>⌛ 4h30</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h00</strong> <span>⌛ 4h30</span> Ligne P : Paris Est - Château-Thierry 12/08-27/08        <p>Période : à partir de 22h00<br />
+<br />
+Dates : du lundi 12 au mardi 27 août, sauf le week-end<br />
+<br />
+Le trafic est interrompu entre Paris Est et Château-Thierry.<br />
+Le dernier train PIMO de Château-Thierry vers Paris-Est est à 21h04.<br />
+Le dernier train ZIMO de Paris-Est vers Château-Thierry est à 21h49.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 21h45 à 01h00</span> <span>⌛ 3h15</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>21h45</strong> <span>⌛ 3h15</span> Ligne P : Paris Est - Provins du 12/08 au 27/08        <p>Période : à partir de 21h45<br />
+<br />
+Dates : du lundi 12 au mardi 27 août, sauf le week-end<br />
+<br />
+Le trafic est interrompu entre Paris Est et Provins.<br />
+Le dernier train PIBU de Provins vers Paris-Est part à 20h46.<br />
+Le dernier train XIBU de Paris-Est vers Provins part à 21h47.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 18h35 à 18h44</span> <span>⌛ 0h08</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h44</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h35</strong> <span>⌛ 0h08</span> Ligne C : ralentissements        <p>Le trafic est ralenti entre Champ de Mars et St-Quentin-Yvelines dans les 2 sens et de Champ de Mars vers Versailles Château. <br />
+<br />
+<br />
+Motif : obstacle sur la voie ( dans le secteur d'Issy).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 18h35 à 18h52</span> <span>⌛ 0h16</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h52</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h35</strong> <span>⌛ 0h16</span> Ligne C : ralentissements        <p>Le trafic est ralenti de Champ de Mars vers Versailles Château et de Champ de Mars vers St-Quentin-Yvelines. <br />
+<br />
+<br />
+Motif : obstacle sur la voie (dans le secteur d'Issy).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 18h35 à 20h32</span> <span>⌛ 1h56</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h32</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h35</strong> <span>⌛ 1h56</span> Ligne C : ralentissements        <p>Le trafic est perturbé entre Champ de Mars et Versailles Château et entre Champ de Mars et St-Quentin-Yvelines dans les 2 sens. <br />
+<br />
+<br />
+Motif : obstacle sur la voie (arbre dans le secteur d'Issy).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 18h35 à 21h04</span> <span>⌛ 2h28</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>21h04</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h35</strong> <span>⌛ 2h28</span> Ligne C : ralentissements        <p>Le trafic est perturbé entre Champ de Mars et Versailles Château et entre Champ de Mars et St-Quentin-Yvelines dans les 2 sens. <br />
+<br />
+<br />
+Motif : obstacle sur la voie (arbre dans le secteur d'Issy).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 18h20 à 18h55</span> <span>⌛ 0h35</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h55</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h20</strong> <span>⌛ 0h35</span> Ligne E Magenta - Nanterre-La-Folie 1 suppression        <p>Train supprimé :- NOMY départ 18h46 au départ de Magenta, arrivée 19h00 à Nanterre La Folie.<br />
+<br />
+Prochain train à circuler :<br />
+- NOMY départ 19h01 au départ de Magenta, arrivée 19h15 à Nanterre La Folie.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne.<br />
+<br />
+Motif : panne du train à Nanterre La Folie survenue plus tôt en fin de journée.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 17h50 à 18h50</span> <span>⌛ 1h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>17h50</strong> <span>⌛ 1h00</span> Ligne P : Paris Est - Provins du 15/08 au 27/10        <p>Dates : jeudi 15 août, dimanche 18 août, dimanche 25 août, dimanche 15 septembre, dimanche 29 septembre, samedi 12 et dimanche 13 octobre et dimanche 27 octobre<br />
+<br />
+L'horaire de passage du train XIBU au départ de Paris-Est à 17h47 est avancé jusqu'à 6 minutes dans certaines gares : <br />
+- Verneuil-L'Etang à 18h17 ;<br />
+- Mormant à 18h22 ; <br />
+- Nangis à 18h29.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//k.svg" /> <span>De 16h25 à 18h25</span> <span>⌛ 2h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h25</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h25</strong> <span>⌛ 2h00</span> Ligne K : trafic ralenti sur toute la ligne        <p>Le trafic est ralenti sur l'ensemble de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne K. <br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 15h49 à 16h26</span> <span>⌛ 0h36</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h26</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h49</strong> <span>⌛ 0h36</span> Ligne C Paris Austerlitz - Dourdan : suppression        <p>Train supprimé :<br />
+- Le train DEBA au départ de Paris Austerlitz Grandes Lignes à 17h17 pour une arrivée à Dourdan à 18h17<br />
+<br />
+Prochain train à circuler :<br />
+- Le train DEBA au départ de Paris Austerlitz Grandes Lignes à 17h47 pour une arrivée à Dourdan à 18h47<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 15h49 à 17h45</span> <span>⌛ 1h55</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h45</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h49</strong> <span>⌛ 1h55</span> Ligne C Paris Austerlitz -Dourdan : départ reporté        <p>Train dont le départ est reporté :<br />
+- Le train DEBA, initialement  au départ de Paris Austerlitz Grandes Lignes à 17h17, a son départ reporté à Brétigny à 17h48 <br />
+<br />
+Prochain train à circuler :<br />
+- Le train DEBA au départ de Paris Austerlitz Grandes Lignes à 17h47 pour un passage à Brétigny à 18h18 et une arrivée à Dourdan à 18h47<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 14h20 à 15h10</span> <span>⌛ 0h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>14h20</strong> <span>⌛ 0h50</span> Ligne P : Meaux - Paris Est le 15/08        <p>Date : jeudi 15 août.<br />
+<br />
+Le départ du train PICI, initialement prévu à 14h20 en gare de Meaux pour Paris-Est est repoussé de 7 minutes dans toutes les gares de son parcours.<br />
+Départ de Meaux à 14h27, arrivée à Paris-Est à 15h05.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 11h49 à 12h30</span> <span>⌛ 0h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>12h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>11h49</strong> <span>⌛ 0h40</span> Ligne E Nanterre-La-Folie - Magenta : suppression        <p>Le train suivant est supprimé :- MONY, départ de Nanterre La Folie à 11h57 et arrivée à Magenta 12h16.Prochain train à circuler : -MONY, départ de Nanterre La Folie à 12h12 et arrivée à Magenta 12h28.<br />
+<br />
+Motif : panne d’un train à Nanterre la Folie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 10h07 à 10h52</span> <span>⌛ 0h44</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h52</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>10h07</strong> <span>⌛ 0h44</span> Ligne R : Montargis - Paris Lyon ralenti        <p>Prévoir un allongement de temps de trajet de 10 minutes environ pour le train suivant :- POMA, départ Montargis 09h02, arrivée Paris Lyon 10h43Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne.<br />
+<br />
+<br />
+Motif : attente d'autorisation d'accès au réseau.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 08h12 à 08h50</span> <span>⌛ 0h38</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>08h12</strong> <span>⌛ 0h38</span> Ligne E Villiers - Haussmann St-L. : suppression        <p>Le train suivant est supprimé : <br />
+-    HOVE départ 08h20 de Villiers sur Marne, arrivée 08h54 à Haussmann-St-Lazare <br />
+Prochain train à circuler : <br />
+-    HOVE départ 08h50 de Villiers sur Marne, arrivée 09h24 à Haussmann-St-LazareToutefois des arrêts supplémentaires seront réalisés par le train HAVA sur tout le long de son parcours pour vous permettre de poursuivre votre voyage.<br />
+<br />
+Motif : Panne d’un train à Haussmann Saint Lazare</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 07h39 à 08h10</span> <span>⌛ 0h30</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>07h39</strong> <span>⌛ 0h30</span> Ligne E : suppression        <p>Le train suivant est supprimé : <br />
+-    VOHE départ 07h36 de Haussmann-St-Lazare, arrivée 08h10 à Villiers sur MarneProchain train à circuler : <br />
+-    VOHE départ 08h06 de Haussmann-St-Lazare, arrivée 08h40 à Villiers sur MarneToutefois des arrêts supplémentaires seront réalisés par le train TAVA sur tout le long de son parcours pour vous permettre de poursuivre votre voyage.Motif : Panne du train à Haussmann Saint Lazare.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 07h39 à 08h10</span> <span>⌛ 0h31</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>07h39</strong> <span>⌛ 0h31</span> Ligne E : suppression        <p>Le train suivant est supprimé : <br />
+-    VOHE départ 07h36 de Haussmann-St-Lazare, arrivée 08h10 à Villiers sur MarneProchain train à circuler : <br />
+-    VOHE départ 08h06 de Haussmann-St-Lazare, arrivée 08h40 à Villiers sur MarneToutefois des arrêts supplémentaires seront réalisés par le train TAVA sur tout le long de son parcours pour vous permettre de poursuivre votre voyage.Motif : Panne d'un train à Haussmann Saint Lazare.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 07h39 à 08h11</span> <span>⌛ 0h32</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h11</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>07h39</strong> <span>⌛ 0h32</span> Ligne E Villiers - Haussmann St-L. : suppression        <p>Le train suivant est supprimé : <br />
+-    HOVE départ 08h20 de Villiers sur Marne, arrivée 08h54 à Haussmann-St-Lazare <br />
+Prochain train à circuler : <br />
+-    HOVE départ 08h50 de Villiers sur Marne, arrivée 09h24 à Haussmann-St-LazareToutefois des arrêts supplémentaires seront réalisés par le train HAVA sur tout le long de son parcours pour vous permettre de poursuivre votre voyage.<br />
+<br />
+Motif : Panne d’un train à Haussmann Saint Lazare</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 06h44 à 09h32</span> <span>⌛ 2h47</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h32</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h44</strong> <span>⌛ 2h47</span> Ligne B : perturbations        <p>Le trafic est fortement perturbé sur l'ensemble de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif :  panne de signalisation à La Plaine Stade de France.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 06h44 à 09h26</span> <span>⌛ 2h42</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h26</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h44</strong> <span>⌛ 2h42</span> Ligne B : perturbations        <p>Le trafic est fortement perturbé sur l'ensemble de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif :  panne de signalisation à La Plaine Stade de France.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 06h30 à 11h30</span> <span>⌛ 4h59</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>11h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h30</strong> <span>⌛ 4h59</span> Ligne R : Paris Lyon -> Montargis différé        <p>Le train suivant voit son départ différé de 15 minutes environ :  - GOMO, départ Paris Gare de Lyon 09h16, arrivée Montargis 10h55<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne R. <br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 05h46 à 06h10</span> <span>⌛ 0h23</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>05h46</strong> <span>⌛ 0h23</span> Ligne B : interruption        <p>Le trafic est interrompu entre Paris Nord et Le Bourget et perturbé sur le reste de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif : panne de signalisation à La Plaine Stade de France. </p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 05h46 à 06h54</span> <span>⌛ 1h07</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h54</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>05h46</strong> <span>⌛ 1h07</span> Ligne B : interruption        <p>Le trafic est interrompu entre Paris Nord et Le Bourget jusqu'à 7h15 et perturbé sur le reste de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif : panne de signalisation à La Plaine Stade de France. </p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 05h46 à 06h44</span> <span>⌛ 0h58</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h44</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>05h46</strong> <span>⌛ 0h58</span> Ligne B : perturbations        <p>Le trafic est fortement perturbé sur l'ensemble de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif :  panne de signalisation à La Plaine Stade de France.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 05h35 à 05h54</span> <span>⌛ 0h18</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>05h54</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>05h35</strong> <span>⌛ 0h18</span> Ligne B : perturbations sur toute la ligne        <p>Le trafic est perturbé sur l'ensemble de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif : panne de signalisation à La Plaine Stade de France. </p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 05h35 à 06h10</span> <span>⌛ 0h34</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>05h35</strong> <span>⌛ 0h34</span> Ligne B : interruption        <p>Le trafic est interrompu entre Paris Nord et Le Bourget et perturbé sur le reste de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif : panne de signalisation à La Plaine Stade de France. </p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 05h35 à 06h54</span> <span>⌛ 1h18</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h54</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>05h35</strong> <span>⌛ 1h18</span> Ligne B : interruption        <p>Le trafic est interrompu entre Paris Nord et Le Bourget jusqu'à 7h15 et perturbé sur le reste de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif : panne de signalisation à La Plaine Stade de France. </p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 05h35 à 06h44</span> <span>⌛ 1h09</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h44</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>05h35</strong> <span>⌛ 1h09</span> Ligne B : perturbations        <p>Le trafic est fortement perturbé sur l'ensemble de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif :  panne de signalisation à La Plaine Stade de France.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 23h00 à 03h00</span> <span>⌛ 4h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>23h00</strong> <span>⌛ 4h00</span> Ligne R : Arrêts non desservis        <p>Période : de 23h à 02h<br />
+<br />
+Dates : du 12/08 au 23/08 en semaine (sauf le 15/08)<br />
+<br />
+Les trains KAMO au départ de Paris Lyon à 23h55 et 00h43 ne marquent pas l'arrêt à Bois-le-Roi, Fontainebleau - Avon, Thomery, Moret - Veneux-les-Sablons et Saint-Mammès suite à un détournement des trains par Héricy. Ils marqueront exceptionnellement l'arrêt en gare de Champagne-sur-Seine.<br />
+Dernier train à circuler de Paris Lyon vers Montereau via Moret : -Train KUMO, départ Paris Gare de Lyon 22h46, arrivée Montereau 23h44<br />
+Un service de bus de remplacement est mis en place à Bois-le-Roi, Fontainebleau - Avon, Moret - Veneux-les-Sablons, Saint-Mammès et Thomery, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+<br />
+Motif : travaux d'entretien du réseau.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 03h00 à 03h00</span> <span>⌛ 0h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>03h00</strong> <span>⌛ 0h00</span> Ligne P : Meaux - La Ferté-Milon du 12 au 27/08        <p>Période : toute la journée<br />
+<br />
+Dates : du lundi 12 au mardi 27 août, week-ends compris<br />
+<br />
+Le trafic est interrompu entre Meaux et La Ferté-Milon.<br />
+Les trains FYMO et PUMO ne circulent pas entre Paris-Est et La Ferté-Milon.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>

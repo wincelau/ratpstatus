@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_tramways.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_tramways.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240702.json';
 </script>
@@ -17,18 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240701/tramways.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">02/07/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240703/tramways.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -9728,18 +9729,133 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240702/20240703025801_disruptions.optimized.json">03/07/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240702/20240703025801_disruptions.optimized.json">03/07/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du 02/07/2024</h2>
+
+
+
+<h3>Terminés</h3>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 18h53 à 19h46</span> <span>⌛ 0h53</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h46</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h53</strong> <span>⌛ 0h53</span> Ligne T12 : Evry -> Massy-P. suppression        <p>De Evry Courcouronnes vers Massy-Palaiseau : tram-train de 19h30 supprimé<br />
+<br />
+Motif : panne d'un tram-train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 18h53 à 21h00</span> <span>⌛ 2h07</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>21h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h53</strong> <span>⌛ 2h07</span> Ligne T12 : quelques suppressions        <p>Quelques trains supprimés au départ de :<br />
+Evry Courcouronnes :  20h20, 20h40<br />
+Massy Palaiseau : 19h28, 19h48<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t3a.svg" /> <span>De 18h00 à 00h11</span> <span>⌛ 6h11</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>00h11</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h00</strong> <span>⌛ 6h11</span> Tramway T3A : Panne de portes d'un tram - Trams stationnent        <p>Des trams stationnent en direction de Pont du Garigliano  en raison d'une panne de portes d'un tram à Porte de Choisy<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t9.svg" /> <span>De 17h23 à 19h02</span> <span>⌛ 1h39</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h02</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h23</strong> <span>⌛ 1h39</span> Tram T9 - Trafic perturbé        <p>Tram T9 - Trafic perturbé :<br />
+<br />
+Le trafic est perturbé en raison d'un blocage intempestif des portes, qui a causé une avarie sur une rame. La reprise normal du trafic est prévu aux alentours de 18h00.<br />
+<br />
+Merci de votre compréhension. </p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 16h12 à 18h20</span> <span>⌛ 2h08</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h20</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h12</strong> <span>⌛ 2h08</span> Ligne T12 : quelques suppressions        <p>Suppressions au départ de :<br />
+Gravigny Balizy : 16h12<br />
+Evry Courcouronnes : 16h40<br />
+<br />
+Motif : panne d'un tram-train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t3a.svg" /> <span>De 14h36 à 15h22</span> <span>⌛ 0h46</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h22</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>14h36</strong> <span>⌛ 0h46</span> Tramway T3A : Autres - Trafic interrompu        <p>Le trafic est interrompu sur l'ensemble de la ligne  en raison d'un accident de la route bloquant les voies à Jean Moulin . <br />
+Heure de reprise estimée : 15:30.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t5.svg" /> <span>De 13h20 à 13h22</span> <span>⌛ 0h02</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>13h22</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>13h20</strong> <span>⌛ 0h02</span> Tramway T5 : Tramway en panne - Trams stationnent        <p>Des trams stationnent entre Marché de Saint-Denis et Garges - Sarcelles en direction de Garges - Sarcelles  en raison d'un tramway en panne à Joncherolles<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t9.svg" /> <span>De 12h19 à 14h19</span> <span>⌛ 2h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>14h19</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="ok"></span> <strong>12h19</strong> <span>⌛ 2h00</span> T9 -  Trafic ralenti        <p>T9 - Trafic ralenti Le trafic est ralenti sur l'ensemble de la ligne en raison de difficultés d'exploitation.Nous reviendrons vers vous pour vous informer de la reprise normale du trafic. Merci pour votre compréhension et votre patience.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 06h06 à 07h12</span> <span>⌛ 1h06</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>07h12</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h06</strong> <span>⌛ 1h06</span> Ligne T12 : trafic ralenti        <p>Le trafic est ralenti sur l'ensemble de la ligne. <br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 06h06 à 12h45</span> <span>⌛ 6h39</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>12h45</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h06</strong> <span>⌛ 6h39</span> Ligne T12 : suppressions        <p>Les tramways suivants sont supprimés :<br />
+<br />
+- Massy Palaiseau, départ 7h48 - Evry Courcouronnes, arrivée 8h29,<br />
+- Massy Palaiseau, départ 8h08 - Evry Courcouronnes, arrivée 8h49,<br />
+- Massy Palaiseau, départ 8h28 - Evry Courcouronnes, arrivée 9h09,<br />
+- Massy Palaiseau, départ 8h59 - Evry Courcouronnes, arrivée 9h40,<br />
+- Massy Palaiseau, départ 9h29 - Evry Courcouronnes, arrivée 10h10, <br />
+- Massy Palaiseau, départ 11h14 - Evry Courcouronnes, arrivée 11h55.<br />
+<br />
+- Evry Courcouronnes, départ 7h20  -  Massy Palaiseau, arrivée 8h02,<br />
+- Evry Courcouronnes, départ 7h40 - Massy Palaiseau, arrivée 8h22,<br />
+- Evry Courcouronnes, départ 8h10 - Massy Palaiseau, arrivée 8h52,<br />
+- Evry Courcouronnes, départ 8h40 - Massy Palaiseau, arrivée 9h22,<br />
+- Evry Courcouronnes, départ 9h20 - Massy Palaiseau, arrivée10h02,<br />
+- Evry Courcouronnes, départ 9h50 - Massy Palaiseau, arrivée 10h32,<br />
+- Evry Courcouronnes, départ 10h18 - Massy Palaiseau, arrivée 12h00,<br />
+- Evry Courcouronnes, départ 12h03 - Massy Palaiseau, arrivée 12h45.<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>

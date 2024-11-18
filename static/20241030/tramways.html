@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_tramways.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_tramways.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20241030.json';
 </script>
@@ -17,18 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20241029/tramways.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">30/10/2024</span>
         <a title="Voir le jour suivant" style="" href="/20241031/tramways.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -9728,18 +9729,218 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20241030/20241031025801_disruptions.optimized.json">31/10/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20241030/20241031025801_disruptions.optimized.json">31/10/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du 30/10/2024</h2>
+
+<h3>En cours</h3>
+<div class="disruption  tx">
+<h4><img src="/images/lignes//t1.svg" /> <span>Depuis 04h45</span> <span>⌛ 22h20</span></h4>
+<ul>
+<li><span class="tx"></span> <strong>04h45</strong> <span>⌛ 22h20</span> Tramway T1 : Travaux - Trafic interrompu        <p>Jusqu'au lundi 31 mars 2025, le trafic est interrompu entre Gare de Noisy-le-Sec et Escadrille Normandie-Niémen en raison de travaux.<br />
+Bus de remplacement.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+
+
+<h3>Terminés</h3>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t13.svg" /> <span>De 21h00 à 01h30</span> <span>⌛ 4h30</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>21h00</strong> <span>⌛ 4h30</span> Ligne T13 : du lundi 21/10 au vendredi 8/11        <p>Dates : du lundi 21 au vendredi 8 novembre, sauf le jeudi 31 octobre et vendredi 1er novembre<br />
+<br />
+Période : du lundi au vendredi, dès 21h jusqu'en fin de soirée.<br />
+<br />
+<br />
+Le trafic est interrompu sur l’ensemble de la ligne.<br />
+ <br />
+- Le dernier départ de Saint Germain-en-Laye en direction de Saint-Cyr est à 21 h,<br />
+- le dernier départ de Saint-Cyr à destination de Saint-Germain-en-Laye est à 21h,<br />
+<br />
+Un service de bus de remplacement est mis en place.<br />
+ <br />
+Motif : travaux sur la ligne L impactant les circulations du T13.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t9.svg" /> <span>De 18h36 à 20h30</span> <span>⌛ 1h54</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h36</strong> <span>⌛ 1h54</span> Tram T9 - Trafic ralenti        <p>Tram T9 - Trafic ralenti :<br />
+<br />
+Le trafic est ralenti sur l'ensemble de la ligne suite à un accident avec un tiers.<br />
+<br />
+Merci de votre compréhension.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t13.svg" /> <span>De 17h29 à 18h00</span> <span>⌛ 0h31</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h29</strong> <span>⌛ 0h31</span> Ligne T13 :  suppressions        <p>Les départs suivants sont supprimés :- depuis St-Germain-en-Laye vers Saint-Cyr de 17h50 / 18h00,- depuis Saint-Cyr  vers St-Germain-en-Laye  de 17h10<br />
+Motif : panne d'un tramway.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 15h56 à 20h10</span> <span>⌛ 4h14</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h56</strong> <span>⌛ 4h14</span> Ligne T12 : suppressions        <p>Mercredi 30 octobre :<br />
+<br />
+Suppression des départs de 16h58 / 17h28 / 18h38 / 19h08 depuis la gare de Massy-Palaiseau<br />
+<br />
+Suppression des départs de 16h40 / 17h50 / 18h20 / 19h30 / 20h01depuis la gare de Évry - Courcouronnes<br />
+<br />
+<br />
+Motif : aléa d'exploitation.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t7.svg" /> <span>De 14h42 à 15h08</span> <span>⌛ 0h26</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h08</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h01</strong> <span>⌛ 0h07</span> Tramway T7 : Malaise voyageur - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne  en répercussion d'un malaise voyageur à Hélène Boucher<br />
+Plus d'informations sur le site ratp.fr</p></li>
+<li><span class="bq"></span> <strong>14h42</strong> <span>⌛ 0h18</span> Tramway T7 : Malaise voyageur - Trafic interrompu        <p>Le trafic est interrompu sur l'ensemble de la ligne  en raison d'un malaise voyageur à Hélène Boucher . <br />
+Heure de reprise estimée : 15:30.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t13.svg" /> <span>De 12h18 à 13h30</span> <span>⌛ 1h12</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>13h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>12h18</strong> <span>⌛ 1h12</span> Ligne T13 : suppression        <p>Train supprimé au départ de :<br />
+Saint-Cyr : 12h40<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t9.svg" /> <span>De 10h26 à 13h02</span> <span>⌛ 2h36</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>13h02</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>10h26</strong> <span>⌛ 2h36</span> Tram T9 - Trafic Perturbé        <p>Tram T9 - Trafic Perturbé :<br />
+<br />
+Le trafic est perturbé en raison d’un malaise voyageur à la station Constant Coquelin, en direction d’Orly - Gaston Viens.<br />
+<br />
+Merci de votre compréhension.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 09h23 à 10h08</span> <span>⌛ 0h45</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h08</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>09h23</strong> <span>⌛ 0h45</span> Ligne T12 : trafic interrompu sur toute la ligne        <p>Le trafic est interrompu sur l'ensemble de la ligne jusqu'à 10h00.<br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau ( incident sur un passage à niveau à Petit Vaux).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 09h23 à 11h10</span> <span>⌛ 1h47</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>11h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h23</strong> <span>⌛ 1h47</span> Ligne T12 : trafic perrturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne.<br />
+Motif : panne sur les installations du gestionnaire de réseau ( incident sur un passage à niveau à Petit Vaux).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 09h23 à 14h30</span> <span>⌛ 5h07</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>14h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h23</strong> <span>⌛ 5h07</span> Ligne T12 : perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne. <br />
+<br />
+Motif : incident sur un passage à niveau à Petit Vaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 07h47 à 10h04</span> <span>⌛ 2h17</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h04</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>07h47</strong> <span>⌛ 2h17</span> Ligne T12 : suppressions        <p>Mercredi 30 octobre : <br />
+Suppression des départs de 07h58 / 10h59 / 11h44 depuis la gare de Massy-Palaiseau<br />
+<br />
+Suppression des départs de 11h49 / 12h34 depuis la gare de Évry - Courcouronnes<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 07h41 à 08h46</span> <span>⌛ 1h05</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h46</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h41</strong> <span>⌛ 1h05</span> Ligne T4 : interruption        <p>Le trafic est interrompu entre Clichy - Montfermeil et Hôpital de Montfermeil dans les 2 sens. <br />
+Heure de reprise estimée : 09h00Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne T4. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau (incident de signalisation à Arboretum)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 07h41 à 10h00</span> <span>⌛ 2h19</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>07h41</strong> <span>⌛ 2h19</span> Ligne T4 : ralentissements        <p>Le trafic est perturbé entre Clichy - Montfermeil et Hôpital de Montfermeil dans les 2 sens jusqu'à 10h00<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne T4. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 07h41 à 11h56</span> <span>⌛ 4h15</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>11h56</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h41</strong> <span>⌛ 4h15</span> Ligne T4 : trafic interrompu sur toute la ligne        <p>Le trafic est interrompu sur l'ensemble de la ligne. <br />
+Heure de reprise estimée : 13h30Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne T4. <br />
+<br />
+Motif : Incident d'alimentation électrique en gare de Bondy</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 07h41 à 01h40</span> <span>⌛ 17h59</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>11h50</strong> <span>⌛ 13h50</span> Ligne T4 : perturbé.        <p>Le trafic est perturbé sur l'ensemble de la ligne jusqu'au dernier tramway.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne T4. <br />
+<br />
+Motif : défaut d'alimentation électrique en gare de Bondy.</p></li>
+<li><span class="bq"></span> <strong>07h41</strong> <span>⌛ 4h09</span> Ligne T4 : perturbé.        <p>Le trafic est perturbé sur l'ensemble de la ligne jusqu'à 14h30.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne T4. <br />
+<br />
+Motif : Incident d'alimentation électrique en gare de Bondy (incident terminé).</p></li>
+<li><span class="pb"></span> <strong>07h41</strong> <span>⌛ 0h00</span> Ligne T4 : perturbé.        <p>Le trafic est perturbé sur l'ensemble de la ligne jusqu'à 14h30.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne T4. <br />
+<br />
+Motif : Incident d'alimentation électrique en gare de Bondy (incident terminé).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 06h21 à 06h44</span> <span>⌛ 0h23</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h44</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h21</strong> <span>⌛ 0h23</span> Ligne T12 : fortement perturbé        <p>Le trafic est fortement perturbé sur l'ensemble de la ligne. <br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>

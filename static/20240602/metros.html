@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_metros.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_metros.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240602.json';
 </script>
@@ -17,19 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
-<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<span class="mobile_hidden"> Liste des incidents</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240601/metros.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">02/06/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240603/metros.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -11113,91 +11113,109 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240602/20240603025801_disruptions.optimized.json">03/06/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240602/20240603025801_disruptions.optimized.json">03/06/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
 <dialog id="listModal">
 <h2>Incidents du 02/06/2024</h2>
-<h3>En cours</h3>
-<!-- <p style="padding-left: 12px;"><span class="ok" style="display: inline-block; width: 12px; height: 12px; border-radius: 2px;"></span> Aucun incident en cours</p> -->
+
+
+
 <h3>Terminés</h3>
+<div class="disruption  ">
 <h4><img src="/images/lignes//13.svg" /> <span>De 23h08 à 23h10</span> <span>⌛ 0h02</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>23h10</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>23h08</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h02</span> Métro 13 : Incident (intervention conducteur) - Trafic perturbé        <p>Le trafic est perturbé entre Asnières - Gennevilliers Les Courtilles et La Fourche en direction de Châtillon-Montrouge en raison d'un incident nécessitant l’intervention du conducteur à Asnières - Gennevilliers Les Courtilles.
+<li><span class="ok"></span> <strong>23h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>23h08</strong> <span>⌛ 0h02</span> Métro 13 : Incident (intervention conducteur) - Trafic perturbé        <p>Le trafic est perturbé entre Asnières - Gennevilliers Les Courtilles et La Fourche en direction de Châtillon-Montrouge en raison d'un incident nécessitant l’intervention du conducteur à Asnières - Gennevilliers Les Courtilles.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//2.svg" /> <span>De 21h21 à 21h41</span> <span>⌛ 0h20</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>21h41</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>21h21</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h20</span> Métro 2 : Incident voyageur - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un incident voyageur à Ménilmontant.
+<li><span class="ok"></span> <strong>21h41</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>21h21</strong> <span>⌛ 0h20</span> Métro 2 : Incident voyageur - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un incident voyageur à Ménilmontant.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//4.svg" /> <span>De 20h22 à 20h31</span> <span>⌛ 0h09</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>20h31</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>20h27</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h04</span> Métro 4 : Incident affectant la voie - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un incident affectant la voie à Bagneux–Lucie Aubrac.
+<li><span class="ok"></span> <strong>20h31</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>20h27</strong> <span>⌛ 0h04</span> Métro 4 : Incident affectant la voie - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un incident affectant la voie à Bagneux–Lucie Aubrac.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="bq"></span> <strong>20h22</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h04</span> Métro 4 : Incident affectant la voie - Trafic interrompu        <p>Le trafic est interrompu entre Bagneux–Lucie Aubrac et Porte d'Orléans en raison d'un incident affectant la voie à Bagneux–Lucie Aubrac . 
-Heure de reprise estimée : 20:35.
-Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.
+<li><span class="bq"></span> <strong>20h22</strong> <span>⌛ 0h04</span> Métro 4 : Incident affectant la voie - Trafic interrompu        <p>Le trafic est interrompu entre Bagneux–Lucie Aubrac et Porte d'Orléans en raison d'un incident affectant la voie à Bagneux–Lucie Aubrac . <br />
+Heure de reprise estimée : 20:35.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//4.svg" /> <span>De 18h21 à 19h07</span> <span>⌛ 0h46</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>19h07</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>18h21</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h46</span> Métro 4 : Actionnement d'un signal d'alarme - Trains stationnent        <p>Des trains stationnent entre Porte de Clignancourt et Simplon en raison de l'actionnement d'un signal d'alarme à Simplon.
+<li><span class="ok"></span> <strong>19h07</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h21</strong> <span>⌛ 0h46</span> Métro 4 : Actionnement d'un signal d'alarme - Trains stationnent        <p>Des trains stationnent entre Porte de Clignancourt et Simplon en raison de l'actionnement d'un signal d'alarme à Simplon.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//6.svg" /> <span>De 14h31 à 14h59</span> <span>⌛ 0h28</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>14h59</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>14h31</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h28</span> Métro 6 : Personnes sur les voies - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison de personnes sur les voies à Passy.
+<li><span class="ok"></span> <strong>14h59</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>14h31</strong> <span>⌛ 0h28</span> Métro 6 : Personnes sur les voies - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison de personnes sur les voies à Passy.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//6.svg" /> <span>De 11h12 à 11h42</span> <span>⌛ 0h30</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>11h42</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>11h26</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h16</span> Métro 6 : Bagage oublié - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un bagage oublié à Kléber.
+<li><span class="ok"></span> <strong>11h42</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>11h26</strong> <span>⌛ 0h16</span> Métro 6 : Bagage oublié - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un bagage oublié à Kléber.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="bq"></span> <strong>11h12</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h14</span> Métro 6 : Bagage oublié - Trafic interrompu        <p>Le trafic est interrompu entre Charles de Gaulle - Etoile et La Motte-Picquet - Grenelle en raison d'un bagage oublié à Kléber . 
-Heure de reprise estimée : 11:45.
-Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.
+<li><span class="bq"></span> <strong>11h12</strong> <span>⌛ 0h14</span> Métro 6 : Bagage oublié - Trafic interrompu        <p>Le trafic est interrompu entre Charles de Gaulle - Etoile et La Motte-Picquet - Grenelle en raison d'un bagage oublié à Kléber . <br />
+Heure de reprise estimée : 11:45.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//8.svg" /> <span>De 11h06 à 11h27</span> <span>⌛ 0h21</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>11h27</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>11h06</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h21</span> Métro 8 : Panne de signalisation - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'une panne de signalisation à Concorde.
+<li><span class="ok"></span> <strong>11h27</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>11h06</strong> <span>⌛ 0h21</span> Métro 8 : Panne de signalisation - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'une panne de signalisation à Concorde.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//8.svg" /> <span>De 10h48 à 11h05</span> <span>⌛ 0h16</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>11h05</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="bq"></span> <strong>10h52</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h12</span> Métro 8 : Bagage oublié - Trafic interrompu        <p>Le trafic est interrompu entre Balard et La Motte-Picquet - Grenelle en raison d'un bagage oublié à Balard . 
-Heure de reprise estimée : 11:10.
-Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.
+<li><span class="ok"></span> <strong>11h05</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>10h52</strong> <span>⌛ 0h12</span> Métro 8 : Bagage oublié - Trafic interrompu        <p>Le trafic est interrompu entre Balard et La Motte-Picquet - Grenelle en raison d'un bagage oublié à Balard . <br />
+Heure de reprise estimée : 11:10.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="bq"></span> <strong>10h48</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h01</span> Métro 8 : Bagage oublié - Trafic interrompu        <p>Le trafic est interrompu entre Balard et La Motte-Picquet - Grenelle en raison d'un bagage oublié à Balard . 
-Heure de reprise estimée : 11:10.
-Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.
+<li><span class="bq"></span> <strong>10h48</strong> <span>⌛ 0h01</span> Métro 8 : Bagage oublié - Trafic interrompu        <p>Le trafic est interrompu entre Balard et La Motte-Picquet - Grenelle en raison d'un bagage oublié à Balard . <br />
+Heure de reprise estimée : 11:10.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//8.svg" /> <span>De 01h26 à 04h29</span> <span>⌛ 3h02</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>04h29</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>01h26</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 3h02</span> Métro 8 : Personnes sur les voies - Stationnement prolongé        <p>Le stationnement est prolongé entre Michel Bizot et Strasbourg - Saint-Denis en raison de personnes sur les voies à République.
+<li><span class="ok"></span> <strong>04h29</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>01h26</strong> <span>⌛ 3h02</span> Métro 8 : Personnes sur les voies - Stationnement prolongé        <p>Le stationnement est prolongé entre Michel Bizot et Strasbourg - Saint-Denis en raison de personnes sur les voies à République.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
 </dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>

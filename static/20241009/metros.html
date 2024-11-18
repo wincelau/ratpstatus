@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_metros.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_metros.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20241009.json';
 </script>
@@ -17,19 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
-<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<span class="mobile_hidden"> Liste des incidents</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20241008/metros.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">09/10/2024</span>
         <a title="Voir le jour suivant" style="" href="/20241010/metros.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -11113,249 +11113,311 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20241009/20241010025802_disruptions.optimized.json">10/10/2024 à 02:58:02</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20241009/20241010025802_disruptions.optimized.json">10/10/2024 02:58:02</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
 <dialog id="listModal">
 <h2>Incidents du 09/10/2024</h2>
-<h3>En cours</h3>
-<!-- <p style="padding-left: 12px;"><span class="ok" style="display: inline-block; width: 12px; height: 12px; border-radius: 2px;"></span> Aucun incident en cours</p> -->
+
+
+
 <h3>Terminés</h3>
+<div class="disruption  ">
 <h4><img src="/images/lignes//2.svg" /> <span>De 22h19 à 22h21</span> <span>⌛ 0h01</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>22h21</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>22h19</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h01</span> Métro 2 : Bagage oublié sur un quai - Trains stationnent        <p>Des trains stationnent entre Porte Dauphine et Charles de Gaulle - Etoile en raison d'un bagage oublié sur un quai à Victor Hugo.
+<li><span class="ok"></span> <strong>22h21</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>22h19</strong> <span>⌛ 0h01</span> Métro 2 : Bagage oublié sur un quai - Trains stationnent        <p>Des trains stationnent entre Porte Dauphine et Charles de Gaulle - Etoile en raison d'un bagage oublié sur un quai à Victor Hugo.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//14.svg" /> <span>De 22h00 à 05h15</span> <span>⌛ 7h15</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>05h15</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="tx"></span> <strong>22h00</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 7h15</span> Métro 14 : Travaux de modernisation - Trafic interrompu        <p>Jusqu'au 14 octobre, du lundi au jeudi à partir de 22:00, le trafic est interrompu sur l'ensemble de la ligne en raison de travaux de modernisation. 
-Bus de remplacement.
+<li><span class="ok"></span> <strong>05h15</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h00</strong> <span>⌛ 7h15</span> Métro 14 : Travaux de modernisation - Trafic interrompu        <p>Jusqu'au 14 octobre, du lundi au jeudi à partir de 22:00, le trafic est interrompu sur l'ensemble de la ligne en raison de travaux de modernisation. <br />
+Bus de remplacement.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//6.svg" /> <span>De 20h04 à 20h13</span> <span>⌛ 0h08</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>20h13</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>20h04</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h08</span> Métro 6 : Panne de signalisation - Train stationne        <p>Un train stationne entre Nation et Picpus en direction de Charles de Gaulle - Etoile en raison d'une panne de signalisation.
+<li><span class="ok"></span> <strong>20h13</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>20h04</strong> <span>⌛ 0h08</span> Métro 6 : Panne de signalisation - Train stationne        <p>Un train stationne entre Nation et Picpus en direction de Charles de Gaulle - Etoile en raison d'une panne de signalisation.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//2.svg" /> <span>De 19h48 à 21h22</span> <span>⌛ 1h34</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>21h22</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>20h44</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h38</span> Métro 2 : Incident affectant les voies - Reprise progressive / trafic reste très perturbé        <p>Le trafic reprend mais reste très perturbé sur l'ensemble de la ligne en répercussion d'un incident affectant les voies à Père-Lachaise.
+<li><span class="ok"></span> <strong>21h22</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>20h44</strong> <span>⌛ 0h38</span> Métro 2 : Incident affectant les voies - Reprise progressive / trafic reste très perturbé        <p>Le trafic reprend mais reste très perturbé sur l'ensemble de la ligne en répercussion d'un incident affectant les voies à Père-Lachaise.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="bq"></span> <strong>19h48</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h56</span> Métro 2 : Incident affectant les voies - Trafic interrompu        <p>Le trafic est interrompu entre Barbès - Rochechouart et Nation en raison d'un incident affectant les voies à Père-Lachaise . 
-Heure de reprise estimée : 20:15.
-Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.
+<li><span class="bq"></span> <strong>19h48</strong> <span>⌛ 0h56</span> Métro 2 : Incident affectant les voies - Trafic interrompu        <p>Le trafic est interrompu entre Barbès - Rochechouart et Nation en raison d'un incident affectant les voies à Père-Lachaise . <br />
+Heure de reprise estimée : 20:15.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//2.svg" /> <span>De 19h45 à 19h58</span> <span>⌛ 0h12</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>19h58</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>19h45</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h12</span> Métro 2 : Incident (intervention conducteur) - Trains stationnent        <p>Des trains stationnent entre Ménilmontant et Nation en raison d'un incident nécessitant l’intervention du conducteur à Père-Lachaise.
+<li><span class="ok"></span> <strong>19h58</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h45</strong> <span>⌛ 0h12</span> Métro 2 : Incident (intervention conducteur) - Trains stationnent        <p>Des trains stationnent entre Ménilmontant et Nation en raison d'un incident nécessitant l’intervention du conducteur à Père-Lachaise.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//8.svg" /> <span>De 19h40 à 20h02</span> <span>⌛ 0h22</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>20h02</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>19h50</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h12</span> Métro 8 : Métro en panne - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un métro en panne à Bonne Nouvelle.
+<li><span class="ok"></span> <strong>20h02</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h50</strong> <span>⌛ 0h12</span> Métro 8 : Métro en panne - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un métro en panne à Bonne Nouvelle.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="pb"></span> <strong>19h40</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h10</span> Métro 8 : Métro en panne - Trains stationnent        <p>Des trains stationnent entre Bonne Nouvelle et Faidherbe - Chaligny en direction de Balard en raison d'un métro en panne à Bonne Nouvelle.
+<li><span class="pb"></span> <strong>19h40</strong> <span>⌛ 0h10</span> Métro 8 : Métro en panne - Trains stationnent        <p>Des trains stationnent entre Bonne Nouvelle et Faidherbe - Chaligny en direction de Balard en raison d'un métro en panne à Bonne Nouvelle.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//13.svg" /> <span>De 19h34 à 19h40</span> <span>⌛ 0h06</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>19h40</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>19h34</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h06</span> Métro 13 : Incident (intervention conducteur) - Trains stationnent        <p>Des trains stationnent entre Porte de Clichy et Les Agnettes en direction de Asnières - Gennevilliers Les Courtilles en raison d'un incident nécessitant l’intervention du conducteur à Les Agnettes.
+<li><span class="ok"></span> <strong>19h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h34</strong> <span>⌛ 0h06</span> Métro 13 : Incident (intervention conducteur) - Trains stationnent        <p>Des trains stationnent entre Porte de Clichy et Les Agnettes en direction de Asnières - Gennevilliers Les Courtilles en raison d'un incident nécessitant l’intervention du conducteur à Les Agnettes.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//1.svg" /> <span>De 18h50 à 18h51</span> <span>⌛ 0h01</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>18h51</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>18h50</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h01</span> Métro 1 : Gêne à la fermeture des portes de quai - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'une gêne à la fermeture des portes de quai à Bastille.
+<li><span class="ok"></span> <strong>18h51</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h50</strong> <span>⌛ 0h01</span> Métro 1 : Gêne à la fermeture des portes de quai - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'une gêne à la fermeture des portes de quai à Bastille.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//13.svg" /> <span>De 18h47 à 19h33</span> <span>⌛ 0h46</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>19h33</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>18h47</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h46</span> Métro 13 : Gêne à la fermeture des portes de quai - Trains stationnent        <p>Des trains stationnent entre Basilique de Saint-Denis et Saint-Denis – Université en direction de Châtillon-Montrouge en raison d'une gêne à la fermeture des portes de quai à Basilique de Saint-Denis.
+<li><span class="ok"></span> <strong>19h33</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h47</strong> <span>⌛ 0h46</span> Métro 13 : Gêne à la fermeture des portes de quai - Trains stationnent        <p>Des trains stationnent entre Basilique de Saint-Denis et Saint-Denis – Université en direction de Châtillon-Montrouge en raison d'une gêne à la fermeture des portes de quai à Basilique de Saint-Denis.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//14.svg" /> <span>De 18h47 à 22h39</span> <span>⌛ 3h51</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>22h39</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="bq"></span> <strong>19h05</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 3h33</span> Métro 14 : Incident d'exploitation - Trafic interrompu        <p>Trafic interrompu entre Maison Blanche et Thiais – Orly  en raison d'un incident à Chevilly-Larue . 
-Heure de reprise estimée : 19:45.
-Pour l'aéroport de Paris-Orly, les voyageurs sont invités à emprunter la ligne 14 du métro, l'Orlybus à Denfert-Rochereau ou la ligne T7 à Villejuif - Louis Aragon.
+<li><span class="ok"></span> <strong>22h39</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>19h05</strong> <span>⌛ 3h33</span> Métro 14 : Incident d'exploitation - Trafic interrompu        <p>Trafic interrompu entre Maison Blanche et Thiais – Orly  en raison d'un incident à Chevilly-Larue . <br />
+Heure de reprise estimée : 19:45.<br />
+Pour l'aéroport de Paris-Orly, les voyageurs sont invités à emprunter la ligne 14 du métro, l'Orlybus à Denfert-Rochereau ou la ligne T7 à Villejuif - Louis Aragon.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="pb"></span> <strong>18h47</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h17</span> Métro 14 : Incident d'exploitation - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un incident d'exploitation.
+<li><span class="pb"></span> <strong>18h47</strong> <span>⌛ 0h17</span> Métro 14 : Incident d'exploitation - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un incident d'exploitation.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//1.svg" /> <span>De 18h28 à 18h30</span> <span>⌛ 0h02</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>18h30</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>18h28</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h02</span> Métro 1 : Gêne à la fermeture des portes de quai - Trafic perturbé        <p>Le trafic est perturbé en direction de Château de Vincennes en raison d'une gêne à la fermeture des portes de quai à Bastille.
+<li><span class="ok"></span> <strong>18h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h28</strong> <span>⌛ 0h02</span> Métro 1 : Gêne à la fermeture des portes de quai - Trafic perturbé        <p>Le trafic est perturbé en direction de Château de Vincennes en raison d'une gêne à la fermeture des portes de quai à Bastille.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//9.svg" /> <span>De 17h45 à 17h50</span> <span>⌛ 0h05</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>17h50</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>17h45</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h05</span> Métro 9 : Intervention des forces de l'ordre - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison de l'intervention des forces de l'ordre à Charonne.
+<li><span class="ok"></span> <strong>17h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h45</strong> <span>⌛ 0h05</span> Métro 9 : Intervention des forces de l'ordre - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison de l'intervention des forces de l'ordre à Charonne.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//4.svg" /> <span>De 17h25 à 17h28</span> <span>⌛ 0h03</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>17h28</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>17h25</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h03</span> Métro 4 : Actionnement d'un signal d'alarme - Trains stationnent        <p>Des trains stationnent entre Etienne Marcel et Saint-Michel en direction de Bagneux–Lucie Aubrac en raison de l'actionnement d'un signal d'alarme à Châtelet.
+<li><span class="ok"></span> <strong>17h28</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h25</strong> <span>⌛ 0h03</span> Métro 4 : Actionnement d'un signal d'alarme - Trains stationnent        <p>Des trains stationnent entre Etienne Marcel et Saint-Michel en direction de Bagneux–Lucie Aubrac en raison de l'actionnement d'un signal d'alarme à Châtelet.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//1.svg" /> <span>De 16h29 à 16h30</span> <span>⌛ 0h01</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>16h30</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>16h29</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h01</span> Métro 1 : Gêne à la fermeture des portes de quai - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'une gêne à la fermeture des portes de quai à Concorde.
+<li><span class="ok"></span> <strong>16h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h29</strong> <span>⌛ 0h01</span> Métro 1 : Gêne à la fermeture des portes de quai - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'une gêne à la fermeture des portes de quai à Concorde.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//14.svg" /> <span>De 16h19 à 16h42</span> <span>⌛ 0h23</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>16h42</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>16h19</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h23</span> Métro 14 : Métro en panne - Reprise progressive        <p>Le trafic reprend progressivement sur l'ensemble de la ligne  en répercussion d'un métro en panne à Saint-Denis - Pleyel
+<li><span class="ok"></span> <strong>16h42</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h19</strong> <span>⌛ 0h23</span> Métro 14 : Métro en panne - Reprise progressive        <p>Le trafic reprend progressivement sur l'ensemble de la ligne  en répercussion d'un métro en panne à Saint-Denis - Pleyel<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//3.svg" /> <span>De 16h04 à 16h54</span> <span>⌛ 0h50</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>16h54</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>16h08</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h46</span> Métro 3 : Personnes sur les voies - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison de personnes sur les voies à Gallieni.
+<li><span class="ok"></span> <strong>16h54</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h08</strong> <span>⌛ 0h46</span> Métro 3 : Personnes sur les voies - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison de personnes sur les voies à Gallieni.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="pb"></span> <strong>16h04</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h04</span> Métro 3 : Personnes sur les voies - Trains stationnent        <p>Des trains stationnent sur l'ensemble de la ligne en raison de personnes sur les voies à Gallieni.
+<li><span class="pb"></span> <strong>16h04</strong> <span>⌛ 0h04</span> Métro 3 : Personnes sur les voies - Trains stationnent        <p>Des trains stationnent sur l'ensemble de la ligne en raison de personnes sur les voies à Gallieni.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//4.svg" /> <span>De 15h58 à 16h44</span> <span>⌛ 0h46</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>16h44</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>15h58</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h46</span> Métro 4 : Gêne à la fermeture des portes de quai - Trains stationnent        <p>Des trains stationnent entre Denfert-Rochereau et Saint-Germain-des-Prés en direction de Porte de Clignancourt en raison d'une gêne à la fermeture des portes de quai à Montparnasse Bienvenue.
+<li><span class="ok"></span> <strong>16h44</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h58</strong> <span>⌛ 0h46</span> Métro 4 : Gêne à la fermeture des portes de quai - Trains stationnent        <p>Des trains stationnent entre Denfert-Rochereau et Saint-Germain-des-Prés en direction de Porte de Clignancourt en raison d'une gêne à la fermeture des portes de quai à Montparnasse Bienvenue.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//4.svg" /> <span>De 15h25 à 15h55</span> <span>⌛ 0h30</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>15h55</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>15h50</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h05</span> Métro 4 : Bagage oublié sur un quai - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un bagage oublié sur un quai à Porte de Clignancourt.
+<li><span class="ok"></span> <strong>15h55</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h50</strong> <span>⌛ 0h05</span> Métro 4 : Bagage oublié sur un quai - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un bagage oublié sur un quai à Porte de Clignancourt.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="bq"></span> <strong>15h25</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h24</span> Métro 4 : Bagage oublié sur un quai - Trafic interrompu        <p>Trafic interrompu entre Porte de Clignancourt et Barbès - Rochechouart en raison d'un bagage oublié sur un quai à Porte de Clignancourt . 
-Heure de reprise estimée : 16:30.
-Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.
+<li><span class="bq"></span> <strong>15h25</strong> <span>⌛ 0h24</span> Métro 4 : Bagage oublié sur un quai - Trafic interrompu        <p>Trafic interrompu entre Porte de Clignancourt et Barbès - Rochechouart en raison d'un bagage oublié sur un quai à Porte de Clignancourt . <br />
+Heure de reprise estimée : 16:30.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//13.svg" /> <span>De 14h28 à 15h14</span> <span>⌛ 0h46</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>15h14</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>14h28</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h46</span> Métro 13 : Actionnement d'un signal d'alarme - Trains stationnent        <p>Des trains stationnent entre Saint-Lazare et Varenne en direction de Châtillon-Montrouge en raison de l'actionnement d'un signal d'alarme à Saint-Lazare.
+<li><span class="ok"></span> <strong>15h14</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>14h28</strong> <span>⌛ 0h46</span> Métro 13 : Actionnement d'un signal d'alarme - Trains stationnent        <p>Des trains stationnent entre Saint-Lazare et Varenne en direction de Châtillon-Montrouge en raison de l'actionnement d'un signal d'alarme à Saint-Lazare.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//4.svg" /> <span>De 14h07 à 14h35</span> <span>⌛ 0h27</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>14h35</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>14h33</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h02</span> Métro 4 : Incident technique - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un incident technique à Porte de Clignancourt.
+<li><span class="ok"></span> <strong>14h35</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>14h33</strong> <span>⌛ 0h02</span> Métro 4 : Incident technique - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un incident technique à Porte de Clignancourt.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="bq"></span> <strong>14h09</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h24</span> Métro 4 : Incident technique - Trafic interrompu        <p>Le trafic est interrompu entre Barbès - Rochechouart et Porte de Clignancourt en raison d'un incident technique à Porte de Clignancourt . 
-Heure de reprise estimée : 15:00.
-Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.
+<li><span class="bq"></span> <strong>14h09</strong> <span>⌛ 0h24</span> Métro 4 : Incident technique - Trafic interrompu        <p>Le trafic est interrompu entre Barbès - Rochechouart et Porte de Clignancourt en raison d'un incident technique à Porte de Clignancourt . <br />
+Heure de reprise estimée : 15:00.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="pb"></span> <strong>14h07</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h01</span> Métro 4 : Incident technique - Trains stationnent        <p>Des trains stationnent entre Barbès - Rochechouart et Porte de Clignancourt en direction de Porte de Clignancourt en raison d'un incident technique à Porte de Clignancourt.
+<li><span class="pb"></span> <strong>14h07</strong> <span>⌛ 0h01</span> Métro 4 : Incident technique - Trains stationnent        <p>Des trains stationnent entre Barbès - Rochechouart et Porte de Clignancourt en direction de Porte de Clignancourt en raison d'un incident technique à Porte de Clignancourt.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//13.svg" /> <span>De 12h19 à 12h25</span> <span>⌛ 0h06</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>12h25</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>12h19</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h06</span> Métro 13 : Malaise voyageur - Trains stationnent        <p>Des trains stationnent entre Place de Clichy et Miromesnil en direction de Châtillon-Montrouge en raison d'un malaise voyageur à Place de Clichy.
+<li><span class="ok"></span> <strong>12h25</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>12h19</strong> <span>⌛ 0h06</span> Métro 13 : Malaise voyageur - Trains stationnent        <p>Des trains stationnent entre Place de Clichy et Miromesnil en direction de Châtillon-Montrouge en raison d'un malaise voyageur à Place de Clichy.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//5.svg" /> <span>De 11h29 à 12h56</span> <span>⌛ 1h27</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>12h56</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>11h29</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 1h27</span> Métro 5 : Métro en panne - Trafic perturbé        <p>Le trafic est perturbé en direction de Place d'Italie en raison d'un métro en panne.
+<li><span class="ok"></span> <strong>12h56</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>11h29</strong> <span>⌛ 1h27</span> Métro 5 : Métro en panne - Trafic perturbé        <p>Le trafic est perturbé en direction de Place d'Italie en raison d'un métro en panne.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//3.svg" /> <span>De 10h34 à 11h52</span> <span>⌛ 1h18</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>11h52</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>11h39</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h13</span> Métro 3 : Bagage oublié dans un train - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un bagage oublié dans un train à Gambetta.
+<li><span class="ok"></span> <strong>11h52</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>11h39</strong> <span>⌛ 0h13</span> Métro 3 : Bagage oublié dans un train - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un bagage oublié dans un train à Gambetta.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="bq"></span> <strong>10h34</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 1h05</span> Métro 3 : Bagage oublié dans un train - Trafic interrompu        <p>Le trafic est interrompu entre Père-Lachaise et Gallieni en raison d'un bagage oublié dans un train à Gambetta . 
-Heure de reprise estimée : 11:15.
-Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.
+<li><span class="bq"></span> <strong>10h34</strong> <span>⌛ 1h05</span> Métro 3 : Bagage oublié dans un train - Trafic interrompu        <p>Le trafic est interrompu entre Père-Lachaise et Gallieni en raison d'un bagage oublié dans un train à Gambetta . <br />
+Heure de reprise estimée : 11:15.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//2.svg" /> <span>De 09h58 à 10h06</span> <span>⌛ 0h08</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>10h06</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>10h05</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h01</span> Métro 2 : Incident (intervention agents) - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un incident nécessitant l’intervention de nos agents à Stalingrad.
+<li><span class="ok"></span> <strong>10h06</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>10h05</strong> <span>⌛ 0h01</span> Métro 2 : Incident (intervention agents) - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un incident nécessitant l’intervention de nos agents à Stalingrad.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="bq"></span> <strong>09h58</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h04</span> Métro 2 : Incident (intervention agents) - Trafic interrompu        <p>Trafic interrompu entre Père Lachaise et Ménilmontant, entre Couronnes et Belleville, et entre Colonel Fabien et Jaurès en raison d'un incident nécessitant l’intervention de nos agents  . 
-Heure de reprise estimée : 10:00.
-Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.
+<li><span class="bq"></span> <strong>09h58</strong> <span>⌛ 0h04</span> Métro 2 : Incident (intervention agents) - Trafic interrompu        <p>Trafic interrompu entre Père Lachaise et Ménilmontant, entre Couronnes et Belleville, et entre Colonel Fabien et Jaurès en raison d'un incident nécessitant l’intervention de nos agents  . <br />
+Heure de reprise estimée : 10:00.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//8.svg" /> <span>De 09h55 à 09h58</span> <span>⌛ 0h02</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>09h58</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>09h55</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h02</span> Métro 8 : Actionnement d'un signal d'alarme - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison de l'actionnement d'un signal d'alarme.
+<li><span class="ok"></span> <strong>09h58</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h55</strong> <span>⌛ 0h02</span> Métro 8 : Actionnement d'un signal d'alarme - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison de l'actionnement d'un signal d'alarme.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//9.svg" /> <span>De 09h14 à 09h26</span> <span>⌛ 0h12</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>09h26</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>09h14</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h12</span> Métro 9 : Incident technique sur un train - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un incident technique sur un train à Croix de Chavaux.
+<li><span class="ok"></span> <strong>09h26</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h14</strong> <span>⌛ 0h12</span> Métro 9 : Incident technique sur un train - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un incident technique sur un train à Croix de Chavaux.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//8.svg" /> <span>De 09h07 à 09h19</span> <span>⌛ 0h12</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>09h19</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>09h07</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h12</span> Métro 8 : Actionnement d'un signal d'alarme - Trafic perturbé        <p>Le trafic est perturbé en direction de Pointe du Lac en raison de l'actionnement d'un signal d'alarme à Invalides.
+<li><span class="ok"></span> <strong>09h19</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h07</strong> <span>⌛ 0h12</span> Métro 8 : Actionnement d'un signal d'alarme - Trafic perturbé        <p>Le trafic est perturbé en direction de Pointe du Lac en raison de l'actionnement d'un signal d'alarme à Invalides.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//1.svg" /> <span>De 08h28 à 09h18</span> <span>⌛ 0h50</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>09h18</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>09h00</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h18</span> Métro 1 : Dégagement de fumée - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un dégagement de fumée.
+<li><span class="ok"></span> <strong>09h18</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h00</strong> <span>⌛ 0h18</span> Métro 1 : Dégagement de fumée - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un dégagement de fumée.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="bq"></span> <strong>08h28</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h31</span> Métro 1 : Dégagement de fumée - Trafic interrompu        <p>Le trafic est interrompu entre Château de Vincennes et Gare de Lyon en raison d'un dégagement de fumée  . 
-Heure de reprise estimée : 09:00.
-Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.
+<li><span class="bq"></span> <strong>08h28</strong> <span>⌛ 0h31</span> Métro 1 : Dégagement de fumée - Trafic interrompu        <p>Le trafic est interrompu entre Château de Vincennes et Gare de Lyon en raison d'un dégagement de fumée  . <br />
+Heure de reprise estimée : 09:00.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//4.svg" /> <span>De 07h41 à 07h42</span> <span>⌛ 0h01</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>07h42</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>07h41</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h01</span> Métro 4 : Manoeuvre de train retardée - Trains stationnent        <p>Des trains stationnent entre Gare du Nord et Porte de Clignancourt en raison d'une manoeuvre de train retardée à Porte de Clignancourt.
+<li><span class="ok"></span> <strong>07h42</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>07h41</strong> <span>⌛ 0h01</span> Métro 4 : Manoeuvre de train retardée - Trains stationnent        <p>Des trains stationnent entre Gare du Nord et Porte de Clignancourt en raison d'une manoeuvre de train retardée à Porte de Clignancourt.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//14.svg" /> <span>De 07h20 à 07h23</span> <span>⌛ 0h03</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>07h23</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>07h22</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h01</span> Métro 14 : Panne d’alimentation électrique d’un train - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'une panne d’alimentation électrique d’un train à Chevilly-Larue.
+<li><span class="ok"></span> <strong>07h23</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>07h22</strong> <span>⌛ 0h01</span> Métro 14 : Panne d’alimentation électrique d’un train - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'une panne d’alimentation électrique d’un train à Chevilly-Larue.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="bq"></span> <strong>07h20</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h02</span> Métro 14 : Panne d’alimentation électrique d’un train - Trafic interrompu        <p>Le trafic est interrompu entre Aéroport d'Orly et Thiais – Orly en raison d'une panne d’alimentation électrique d’un train à Chevilly-Larue . 
-Heure de reprise estimée : 07:30.
-Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.
+<li><span class="bq"></span> <strong>07h20</strong> <span>⌛ 0h02</span> Métro 14 : Panne d’alimentation électrique d’un train - Trafic interrompu        <p>Le trafic est interrompu entre Aéroport d'Orly et Thiais – Orly en raison d'une panne d’alimentation électrique d’un train à Chevilly-Larue . <br />
+Heure de reprise estimée : 07:30.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//14.svg" /> <span>De 22h00 à 05h15</span> <span>⌛ 7h15</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>05h15</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="tx"></span> <strong>22h00</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 7h15</span> Métro 14 : Travaux de modernisation - Trafic interrompu        <p>Jusqu'au 14 octobre, du lundi au jeudi à partir de 22:00, le trafic est interrompu sur l'ensemble de la ligne en raison de travaux de modernisation. 
-Bus de remplacement.
+<li><span class="ok"></span> <strong>05h15</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h00</strong> <span>⌛ 7h15</span> Métro 14 : Travaux de modernisation - Trafic interrompu        <p>Jusqu'au 14 octobre, du lundi au jeudi à partir de 22:00, le trafic est interrompu sur l'ensemble de la ligne en raison de travaux de modernisation. <br />
+Bus de remplacement.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
 </dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>

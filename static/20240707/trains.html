@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_trains.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_trains.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240707.json';
 </script>
@@ -17,18 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240706/trains.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">07/07/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240708/trains.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -9036,18 +9037,394 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240707/20240708025801_disruptions.optimized.json">08/07/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240707/20240708025801_disruptions.optimized.json">08/07/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du 07/07/2024</h2>
+
+
+
+<h3>Terminés</h3>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 23h59 à 01h59</span> <span>⌛ 2h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h59</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>23h59</strong> <span>⌛ 2h00</span> Ligne C : Austerlitz – Étampes/Dourdan - Dim soirs        <p>Période : à partir de 22h jusqu’en fin de soirée.<br />
+<br />
+Dates : le dimanche 7 juillet.<br />
+<br />
+Le trafic est interrompu entre Saint-Martin d’Étampes et Paris Austerlitz :<br />
+<br />
+Dernier train au départ de Saint-Martin d'Étampes pour Paris Austerlitz à 22h56.<br />
+Dernier train au départ de Paris Austerlitz pour Saint-Martin d’Étampes à 00h00.<br />
+<br />
+Le trafic est interrompu entre Dourdan et Paris Austerlitz :<br />
+<br />
+Dernier train au départ de Dourdan pour Paris Austerlitz à 23h10.<br />
+Dernier train au départ de Paris Austerlitz pour Dourdan à 23h46.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux de maintenance (Remplacement caténaire).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 23h40 à 02h30</span> <span>⌛ 2h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>23h40</strong> <span>⌛ 2h50</span> Ligne C : Austerlitz – Juvisy - dimanche soir        <p>Période : à partir de 22h30 jusqu’en fin de soirée.<br />
+<br />
+Date : dimanche 7 juillet.<br />
+<br />
+Le trafic est interrompu ente Paris Austerlitz et Juvisy via Choisy le Roi :<br />
+Dernier train au départ de Juvisy pour Paris Austerlitz à 23h28.<br />
+Dernier train au départ de Paris Austerlitz pour Juvisy à 00h06.Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux de maintenance (Remplacement caténaire).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 22h51 à 23h30</span> <span>⌛ 0h38</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>23h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>22h51</strong> <span>⌛ 0h38</span> Ligne A : perturbations        <p>Le trafic est perturbé de Nanterre-Préfecture vers Cergy le Haut. <br />
+<br />
+Pour p<br />
+<br />
+Motif : panne d'un train à Nanterre-Préfecture.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 22h30 à 01h15</span> <span>⌛ 2h45</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h15</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h30</strong> <span>⌛ 2h45</span> Ligne P : Paris Est - Coulommiers du 8/06 au 7/07        <p>Période : à partir de 22h30<br />
+<br />
+Dates : du samedi 8 juin au dimanche 7 juillet, le week-end uniquement, sauf samedi 22 et dimanche 23 juin <br />
+<br />
+Le trafic est interrompu entre Paris Est et Coulommiers.<br />
+Le dernier train PITU de Coulommiers vers Paris-Est part à 21h38.<br />
+Le dernier train CITU de Paris-Est vers Coulommiers part à 22h17.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 22h20 à 23h10</span> <span>⌛ 0h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>23h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h20</strong> <span>⌛ 0h50</span> Ligne E : Haussmann - Chelles - Gournay 6 et 7/07        <p>Période : entre 22h25 et 23h10<br />
+<br />
+Dates : samedi 6 et dimanche 7 juillet<br />
+<br />
+Les horaires du train COHI de 22h28 au départ de Haussmann - Gare Saint-Lazare vers Chelles - Gournay sont avancés de 2 minutes à Gagny et Le Chénay Gagny.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 22h20 à 23h10</span> <span>⌛ 0h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>23h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h20</strong> <span>⌛ 0h50</span> Ligne E : Haussmann - Chelles-Gournay 6 et 7/07        <p>Dates : samedi 6 et dimanche 7 juillet<br />
+<br />
+Les horaires du train COHI de 22h28 au départ de Haussmann - Gare Saint-Lazare vers Chelles - Gournay sont avancés de 2 minutes à Gagny et Le Chénay Gagny.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 21h54 à 22h38</span> <span>⌛ 0h43</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>22h38</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>21h54</strong> <span>⌛ 0h43</span> Ligne C : Pontoise <-> Massy-P. trafic ralenti        <p>Le trafic est ralenti entre Pontoise et Massy-Palaiseau dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne C. <br />
+<br />
+Motif : individus sur les voies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 21h30 à 22h10</span> <span>⌛ 0h39</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>22h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>21h30</strong> <span>⌛ 0h39</span> Ligne D : interruption        <p>Le trafic est interrompu entre Orry la Ville et Stade France St-Denis dans les 2 sens jusqu'à 22h10. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : affaires oubliées en gare de Villiers-le-Bel.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 21h30 à 22h50</span> <span>⌛ 1h19</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>22h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>21h30</strong> <span>⌛ 1h19</span> Ligne D : ralentissements        <p>Le trafic est fortement ralenti entre Orry la Ville et Paris Gare de Lyon dans les 2 sens. <br />
+<br />
+Prévoir des allongements de temps de parcours allant jusqu'à 30min.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : affaires oubliées en gare de Villiers-le-Bel.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 20h37 à 22h00</span> <span>⌛ 1h22</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>22h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>20h37</strong> <span>⌛ 1h22</span> Ligne R : ralentissements        <p>Le trafic est ralenti entre Montereau et Melun via Héricy dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne R. <br />
+<br />
+Motif : panne d'un train de marchandise dans le secteur de Montereau.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 20h05 à 20h14</span> <span>⌛ 0h08</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h14</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>20h05</strong> <span>⌛ 0h08</span> Ligne E : ralentissements        <p>Le trafic est ralenti entre Haussmann St-Lazare et Villiers-sur-Marne dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne E. <br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//n.svg" /> <span>De 19h51 à 20h14</span> <span>⌛ 0h23</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h14</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h51</strong> <span>⌛ 0h23</span> Ligne N Paris Montp- Plaisir Grignon : suppression        <p>Train supprimé :<br />
+- GOPI, départ Paris-Montparnasse à 22H20 arrivée à Plaisir-Grignon 23H05.<br />
+<br />
+Prochain train à circuler :<br />
+- GOPI, départ Paris-Montparnasse à 23H05 arrivée à Plaisir-Grignon à 23H50.Pour les personnes désirant ce rendre à Versailles-Chantiers ou à Plaisir-Grignon vous pouvez emprunter le train :<br />
+-DAPO, départ Paris-Montparnasse à 22H58, Versailles-Chantiers à 23H10 et Plaisir-Grignon à 23H26.<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//n.svg" /> <span>De 19h51 à 23h05</span> <span>⌛ 3h14</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>23h05</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h51</strong> <span>⌛ 3h14</span> Ligne N Paris Montp- Plaisir Grignon : suppression        <p>Train supprimé :<br />
+- GOPI, départ Paris-Montparnasse à 22H20 arrivée à Plaisir-Grignon 23H05.<br />
+<br />
+Prochain train à circuler :<br />
+- GOPI, départ Paris-Montparnasse à 23H05 arrivée à Plaisir-Grignon à 23H50.Pour les personnes désirant ce rendre à Versailles-Chantiers ou à Plaisir-Grignon vous pouvez emprunter le train :<br />
+-DAPO, départ Paris-Montparnasse à 22H58, il desservira Versailles-Chantiers à 23H10 et Plaisir-Grignon à 23H26.<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 19h34 à 19h54</span> <span>⌛ 0h19</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h54</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h34</strong> <span>⌛ 0h19</span> Ligne A : perturbations        <p>Le trafic est perturbé de Poissy vers Nanterre-Préfecture.<br />
+<br />
+Motif : panne d'un train à Poissy.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 19h34 à 20h10</span> <span>⌛ 0h35</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h34</strong> <span>⌛ 0h35</span> Ligne A : perturbations        <p>Le trafic est perturbé de Poissy vers Marne-la-Vallée Chessy.<br />
+<br />
+Motif : Panne d'un train à Poissy.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 19h34 à 20h24</span> <span>⌛ 0h49</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h24</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h34</strong> <span>⌛ 0h49</span> Ligne A : perturbations        <p>Le trafic est perturbé de Nanterre-Préfecture vers Marne-la-Vallée Chessy.<br />
+<br />
+Motif : panne d'un train à Poissy. (Fin d'incident).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 19h34 à 20h56</span> <span>⌛ 1h21</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h56</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h34</strong> <span>⌛ 1h21</span> Ligne A : perturbations        <p>Le trafic est perturbé de Nanterre-Préfecture vers Marne-la-Vallée Chessy.<br />
+<br />
+Motif : panne d'un train à Poissy. (Fin d'incident).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 17h50 à 18h40</span> <span>⌛ 0h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>17h50</strong> <span>⌛ 0h50</span> Ligne P : Paris Est - Provins du 1er/06 au 7/07        <p>Dates : samedi 1er juin, dimanche 2 juin, dimanche 16 juin, dimanche 30 juin, dimanche 7 juillet<br />
+<br />
+L'horaire de passage du train XIBU au départ de Paris-Est à 17h47 est avancé jusqu'à 6 minutes dans certaines gares : <br />
+- Verneuil-L'Etang à 18h17 ;<br />
+- Mormant à 18h22 ; <br />
+- Nangis à 18h29.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//n.svg" /> <span>De 16h04 à 19h52</span> <span>⌛ 3h47</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h52</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h04</strong> <span>⌛ 3h47</span> Ligne N Paris Montp- Plaisir Grignon : suppression        <p>Train supprimé :<br />
+- GOPI, départ Paris-Montparnasse à 22H20 arrivée à Plaisir-Grignon 23H05.<br />
+<br />
+Prochain train à circuler :<br />
+- GOPI, départ Paris-Montparnasse à 23H05 arrivée à Plaisir-Grignon à 23H50.Pour les personnes désirant ce rendre à Versailles-Chantiers ou à Plaisir-Grignon vous pouvez emprunter le train :<br />
+-DAPO, départ Paris-Montparnasse à 22H58, Versailles-Chantiers à 23H10 et Plaisir-Grignon à 23H26.<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//n.svg" /> <span>De 16h04 à 19h52</span> <span>⌛ 3h47</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h52</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h04</strong> <span>⌛ 3h47</span> Ligne N Paris Montp- Plaisir Grignon : suppression        <p>Train supprimé :<br />
+- GOPI, départ Paris-Montparnasse à 22H20 arrivée à Plaisir-Grignon 23H05.<br />
+<br />
+Prochain train à circuler :<br />
+- GOPI, départ Paris-Montparnasse à 23H05 arrivée à Plaisir-Grignon à 23H50.Pour les personnes désirant ce rendre à Versailles-Chantiers ou à Plaisir-Grignon vous pouvez emprunter le train :<br />
+-DAPO, départ Paris-Montparnasse à 22H58, il desservira Versailles-Chantiers à 23H10 et Plaisir-Grignon à 23H26.<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 13h04 à 14h00</span> <span>⌛ 0h55</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>14h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>13h04</strong> <span>⌛ 0h55</span> Ligne R : Melun <-> Montargis trafic ralenti        <p>Le trafic est ralenti entre Melun et Montargis dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne R. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau ( fin d'incident ).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 12h30 à 13h15</span> <span>⌛ 0h44</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>13h15</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>12h30</strong> <span>⌛ 0h44</span> Ligne R : Paris Lyon - Montargis allongements        <p>Prévoir un allongement de temps de trajet de 30 minutes environ pour le train suivant :-  GAMO départ Paris Lyon à 11h16, arrivée Montargis à 12h55.<br />
+<br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 12h18 à 12h42</span> <span>⌛ 0h23</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>12h42</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>12h18</strong> <span>⌛ 0h23</span> Ligne R : Montargis - Paris Lyon allongement        <p>Prévoir un allongement de temps de trajet de 25 minutes environ pour le train suivant :- POMA départ Montargis à 12h02, arrivée Paris Lyon à 13h43.<br />
+<br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 12h18 à 14h00</span> <span>⌛ 1h42</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>14h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>12h18</strong> <span>⌛ 1h42</span> Ligne R : Montargis - Paris Lyon allongement        <p>Prévoir un allongement de temps de trajet de 30 minutes environ pour le train suivant :- POMA départ Montargis à 12h02, arrivée Paris Lyon à 13h43.<br />
+<br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 05h52 à 07h00</span> <span>⌛ 1h07</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>07h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>05h52</strong> <span>⌛ 1h07</span> Ligne D : Melun - Juvisy différé        <p>Le train suivant voit son départ différé de 10 minutes environ :<br />
+<br />
+- le train JUVA départ Melun à 06h05, arrivée Juvisy à 06h54.<br />
+<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 05h43 à 06h15</span> <span>⌛ 0h31</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h15</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>05h43</strong> <span>⌛ 0h31</span> RER E : Haussmann - Tournan en Brie : suppression        <p>Le train suivant est supprimé :  <br />
+<br />
+ -TAVA départ 5h46 de Haussmann St Lazare, arrivée Tournan à 6h38.<br />
+<br />
+Prochain train à circuler :  <br />
+<br />
+  -TAVA départ 6h16 de Haussmann St Lazare, arrivée Tournan à 7h08.<br />
+<br />
+ Motif : Panne du train à Haussmann-St-Lazare </p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 05h16 à 05h40</span> <span>⌛ 0h23</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>05h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>05h16</strong> <span>⌛ 0h23</span> Ligne D : interruption        <p>Le trafic est interrompu entre Créteil Pompadour et Paris Gare du Nord dans les 2 sens jusqu'à 05h45. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : prolongation des travaux effectués par le gestionnaire de réseau à Paris Gare de Lyon.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 05h16 à 06h10</span> <span>⌛ 0h53</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>05h16</strong> <span>⌛ 0h53</span> Ligne D : ralentissements        <p>Le trafic est fortement ralenti entre Orry la Ville et Corbeil Essonnes via Evry Courcouronnes et entre Goussainville et Melun dans les 2 sens.Prévoir des allongements de temps de parcours allant jusqu'à 30 min ainsi que des modifications et suppressions. <br />
+Motif : prolongation des travaux effectués par le gestionnaire de réseau à Paris Gare de Lyon.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//l.svg" /> <span>De 04h02 à 02h00</span> <span>⌛ 21h58</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>04h02</strong> <span>⌛ 21h58</span> Suppressions à prévoir le dimanche 07 Juillet.        <p>Difficultés liées à un manque de personnel : Le trafic de la ligne sera réduit dimanche 07 juillet. Des suppressions sont à prévoir.Avant de vous rendre en gare, nous vous recommandons de vérifier l’horaire de votre train sur l’appli Ile-de-France Mobilités, Transilien.com, SNCF Connect ou votre appli de mobilité. Vous pouvez personnaliser votre fiche horaire sur transilien.com.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 04h00 à 02h00</span> <span>⌛ 22h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>04h00</strong> <span>⌛ 22h00</span> Suppressions à prévoir le 07 Juillet.        <p>Difficultés liées à un manque de personnel : Le trafic de la ligne sera réduit dimanche 07 juillet. Des suppressions sont à prévoir.Avant de vous rendre en gare, nous vous recommandons de vérifier l’horaire de votre train sur l’appli Ile-de-France Mobilités, Transilien.com, SNCF Connect ou votre appli de mobilité. Vous pouvez personnaliser votre fiche horaire sur transilien.com.</p></li>
+</ul>
+</div>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>

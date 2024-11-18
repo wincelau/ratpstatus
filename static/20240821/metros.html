@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_metros.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_metros.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240821.json';
 </script>
@@ -17,19 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
-<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<span class="mobile_hidden"> Liste des incidents</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240820/metros.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">21/08/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240822/metros.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -11113,75 +11113,91 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240821/20240822025801_disruptions.optimized.json">22/08/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240821/20240822025801_disruptions.optimized.json">22/08/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
 <dialog id="listModal">
 <h2>Incidents du 21/08/2024</h2>
-<h3>En cours</h3>
-<!-- <p style="padding-left: 12px;"><span class="ok" style="display: inline-block; width: 12px; height: 12px; border-radius: 2px;"></span> Aucun incident en cours</p> -->
+
+
+
 <h3>Terminés</h3>
+<div class="disruption  ">
 <h4><img src="/images/lignes//4.svg" /> <span>De 20h04 à 20h17</span> <span>⌛ 0h13</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>20h17</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>20h12</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h05</span> Métro 4 : Incident technique - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un incident technique à Bagneux–Lucie Aubrac.
+<li><span class="ok"></span> <strong>20h17</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>20h12</strong> <span>⌛ 0h05</span> Métro 4 : Incident technique - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne en répercussion d'un incident technique à Bagneux–Lucie Aubrac.<br />
 Plus d'informations sur le site ratp.fr</p></li>
-<li><span class="bq"></span> <strong>20h04</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h07</span> Métro 4 : Incident technique - Trafic interrompu        <p>Le trafic est interrompu entre Porte d'Orléans et Bagneux–Lucie Aubrac en raison d'un incident technique à Bagneux–Lucie Aubrac . 
-Heure de reprise estimée : 20:20.
-Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.
+<li><span class="bq"></span> <strong>20h04</strong> <span>⌛ 0h07</span> Métro 4 : Incident technique - Trafic interrompu        <p>Le trafic est interrompu entre Porte d'Orléans et Bagneux–Lucie Aubrac en raison d'un incident technique à Bagneux–Lucie Aubrac . <br />
+Heure de reprise estimée : 20:20.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//13.svg" /> <span>De 19h22 à 19h23</span> <span>⌛ 0h01</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>19h23</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>19h22</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h01</span> Métro 13 : Personnes sur les voies - Trains stationnent        <p>Des trains stationnent entre Montparnasse Bienvenue et Châtillon-Montrouge en raison de personnes sur les voies à Châtillon-Montrouge.
+<li><span class="ok"></span> <strong>19h23</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h22</strong> <span>⌛ 0h01</span> Métro 13 : Personnes sur les voies - Trains stationnent        <p>Des trains stationnent entre Montparnasse Bienvenue et Châtillon-Montrouge en raison de personnes sur les voies à Châtillon-Montrouge.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//13.svg" /> <span>De 17h03 à 17h04</span> <span>⌛ 0h01</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>17h04</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>17h03</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h01</span> Métro 13 : Incident (intervention conducteur) - Trains stationnent        <p>Des trains stationnent entre Saint-Lazare et Champs-Élysées – Clemenceau en direction de Châtillon-Montrouge en raison d'un incident nécessitant l’intervention du conducteur.
+<li><span class="ok"></span> <strong>17h04</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h03</strong> <span>⌛ 0h01</span> Métro 13 : Incident (intervention conducteur) - Trains stationnent        <p>Des trains stationnent entre Saint-Lazare et Champs-Élysées – Clemenceau en direction de Châtillon-Montrouge en raison d'un incident nécessitant l’intervention du conducteur.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//3.svg" /> <span>De 16h34 à 16h53</span> <span>⌛ 0h19</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>16h53</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>16h34</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h19</span> Métro 3 : Gêne à la fermeture des portes d'un train - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'une gêne à la fermeture des portes d'un train à Pont de Levallois – Bécon.
+<li><span class="ok"></span> <strong>16h53</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h34</strong> <span>⌛ 0h19</span> Métro 3 : Gêne à la fermeture des portes d'un train - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'une gêne à la fermeture des portes d'un train à Pont de Levallois – Bécon.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//8.svg" /> <span>De 16h29 à 17h08</span> <span>⌛ 0h39</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>17h08</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>16h29</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h39</span> Métro 8 : Métro en panne - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un métro en panne à Maisons-Alfort - Stade.
+<li><span class="ok"></span> <strong>17h08</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h29</strong> <span>⌛ 0h39</span> Métro 8 : Métro en panne - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un métro en panne à Maisons-Alfort - Stade.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//12.svg" /> <span>De 08h44 à 08h49</span> <span>⌛ 0h05</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>08h49</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>08h44</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h05</span> Métro 12 : Incident (intervention conducteur) - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un incident nécessitant l’intervention du conducteur à Marcadet - Poissonniers.
+<li><span class="ok"></span> <strong>08h49</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>08h44</strong> <span>⌛ 0h05</span> Métro 12 : Incident (intervention conducteur) - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'un incident nécessitant l’intervention du conducteur à Marcadet - Poissonniers.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//13.svg" /> <span>De 06h24 à 06h34</span> <span>⌛ 0h10</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>06h34</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>06h24</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h10</span> Métro 13 : Incident technique sur un train - Trafic perturbé        <p>Le trafic est perturbé entre Guy Môquet et Saint-Denis - Porte de Paris en direction de Saint-Denis – Université en raison d'un incident technique sur un train à Garibaldi.
+<li><span class="ok"></span> <strong>06h34</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h24</strong> <span>⌛ 0h10</span> Métro 13 : Incident technique sur un train - Trafic perturbé        <p>Le trafic est perturbé entre Guy Môquet et Saint-Denis - Porte de Paris en direction de Saint-Denis – Université en raison d'un incident technique sur un train à Garibaldi.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
+<div class="disruption  ">
 <h4><img src="/images/lignes//4.svg" /> <span>De 06h00 à 06h46</span> <span>⌛ 0h46</span></h4>
 <ul>
-<li><span class="ok"></span> <strong>06h46</strong> <span>Fin de l'incident</span><p></p></li>
-<li><span class="pb"></span> <strong>06h00</strong> <span class="" style="float: right; text-align: center; border-radius: 2px;">⌛ 0h46</span> Métro 4 : Gêne à la fermeture des portes de quai - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'une gêne à la fermeture des portes de quai à Porte d'Orléans.
+<li><span class="ok"></span> <strong>06h46</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h00</strong> <span>⌛ 0h46</span> Métro 4 : Gêne à la fermeture des portes de quai - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en raison d'une gêne à la fermeture des portes de quai à Porte d'Orléans.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
+</div>
 </dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>

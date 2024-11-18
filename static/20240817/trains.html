@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_trains.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_trains.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240817.json';
 </script>
@@ -17,18 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240816/trains.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">17/08/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240818/trains.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -9036,18 +9037,690 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240817/20240818025801_disruptions.optimized.json">18/08/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240817/20240818025801_disruptions.optimized.json">18/08/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du 17/08/2024</h2>
+
+
+
+<h3>Terminés</h3>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 01h36 à 06h10</span> <span>⌛ 4h34</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>01h36</strong> <span>⌛ 4h34</span> Ligne C St-Quentin - Invalides : suppression        <p>Train dont le départ est reporté :<br />
+- le train ELBA au départ de Saint Quentin en Yvelines initialement prévu à 05h10 fera son départ à Invalides à 05h51 pour un terminus à Saint Martin d'Etampes à 07h01.<br />
+<br />
+Prochain train à circuler :<br />
+- le train ELBA au départ de Saint Quentin en Yvelines à 06h10 pour un passage à Invalides à 06h51, sera terminus à Saint Martin d'Etampes à 08h01<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne.<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 01h14 à 01h42</span> <span>⌛ 0h27</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h42</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>01h14</strong> <span>⌛ 0h27</span> Ligne A : Auber - St-Germain-en-L. perturbé        <p>Le trafic est perturbé de Auber vers Saint-Germain-en-Laye.<br />
+<br />
+Motif panne d'un train à Auber.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 23h27 à 23h56</span> <span>⌛ 0h28</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>23h56</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>23h27</strong> <span>⌛ 0h28</span> Ligne C : Dourdan -> Brétigny trafic interrompu        <p>Le trafic est interrompu de Dourdan vers Brétigny jusqu'à 00h. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne C. <br />
+<br />
+Motif : conditions météorologiques.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 23h27 à 00h14</span> <span>⌛ 0h46</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>00h14</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>23h27</strong> <span>⌛ 0h46</span> Ligne C : Dourdan -> Brétigny trafic ralenti        <p>Le trafic est ralenti de Dourdan vers Brétigny. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne C. <br />
+<br />
+Motif : conditions météorologiques.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 23h27 à 00h20</span> <span>⌛ 0h52</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>00h20</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>23h27</strong> <span>⌛ 0h52</span> Ligne C : ralentissements        <p>Le trafic est fortement ralenti de Dourdan vers Brétigny. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne C. <br />
+<br />
+Motif : conditions météorologiques.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 23h27 à 00h32</span> <span>⌛ 1h04</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>00h32</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>23h27</strong> <span>⌛ 1h04</span> Ligne C : ralentissements        <p>Le trafic est perturbé de Dourdan vers Paris Austerlitz. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne C. <br />
+<br />
+Motif : conditions météorologiques.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 23h27 à 01h00</span> <span>⌛ 1h32</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>23h27</strong> <span>⌛ 1h32</span> Ligne C : ralentissements        <p>Le trafic est perturbé de Juvisy vers Paris Austerlitz. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne C. <br />
+<br />
+Motif : conditions météorologiques.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 23h20 à 23h36</span> <span>⌛ 0h15</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>23h36</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>23h20</strong> <span>⌛ 0h15</span> Ligne C : La Norville -> Brétigny trafic ralenti        <p>Le trafic est ralenti de La Norville vers Brétigny. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne C. <br />
+<br />
+Motif : conditions météorologiques.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 23h20 à 23h27</span> <span>⌛ 0h07</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>23h27</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>23h20</strong> <span>⌛ 0h07</span> Ligne C : Dourdan -> Brétigny trafic interrompu        <p>Le trafic est interrompu de Dourdan vers Brétigny jusqu'à 00h. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne C. <br />
+<br />
+Motif : conditions météorologiques.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 23h20 à 23h27</span> <span>⌛ 0h07</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>23h27</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>23h20</strong> <span>⌛ 0h07</span> Ligne C : Dourdan -> Brétigny trafic ralenti        <p>Le trafic est ralenti de Dourdan vers Brétigny. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne C. <br />
+<br />
+Motif : conditions météorologiques.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 23h20 à 23h27</span> <span>⌛ 0h07</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>23h27</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>23h20</strong> <span>⌛ 0h07</span> Ligne C : ralentissements        <p>Le trafic est fortement ralenti de Dourdan vers Brétigny. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne C. <br />
+<br />
+Motif : conditions météorologiques.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 23h20 à 23h27</span> <span>⌛ 0h07</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>23h27</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>23h20</strong> <span>⌛ 0h07</span> Ligne C : ralentissements        <p>Le trafic est perturbé de Dourdan vers Paris Austerlitz. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne C. <br />
+<br />
+Motif : conditions météorologiques.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//h.svg" /> <span>De 22h00 à 23h00</span> <span>⌛ 1h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>23h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>22h00</strong> <span>⌛ 1h00</span> Ligne H : ralentissements        <p>Le trafic est ralenti entre Paris Gare du Nord et Persan Beaumont via Valmondois dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne H. <br />
+<br />
+Motif : panne sur les installations du gestionnaire de réseau.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 21h34 à 22h56</span> <span>⌛ 1h21</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>22h56</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>21h34</strong> <span>⌛ 1h21</span> Ligne A : trafic ralenti sur toute la ligne        <p>Le trafic est ralenti sur l'ensemble de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : défaut d'alimentation électrique à Fontenay-sous-Bois (incident terminé).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 21h34 à 23h24</span> <span>⌛ 1h49</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>23h24</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>21h34</strong> <span>⌛ 1h49</span> Ligne A : trafic ralenti sur toute la ligne        <p>Le trafic est ralenti sur l'ensemble de la ligne. <br />
+<br />
+<br />
+<br />
+Motif : défaut d'alimentation électrique à Fontenay-sous-Bois (incident terminé).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 18h14 à 18h55</span> <span>⌛ 0h41</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h55</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h14</strong> <span>⌛ 0h41</span> Ligne C St-Martin d'É. - Brétigny : départ reporté        <p>Train dont le départ est reporté :<br />
+- Le train SARA, initialement prévu à 18h26 à Saint Martin d'Etampes, a son départ reporté à Brétigny à 18h58<br />
+<br />
+Prochain train à circuler :<br />
+- Le train SARA au départ de Saint Martin d'Etampes à 18h56 pour un passage à Brétigny à 19h28<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 18h09 à 18h30</span> <span>⌛ 0h20</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>18h09</strong> <span>⌛ 0h20</span> Ligne J : interruption        <p>Le trafic est interrompu entre Argenteuil et Ermont - Eaubonne dans les 2 sens jusqu'à 19h. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : affaires oubliées (à bord du train en gare de Ermont-Eaubonne).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 18h09 à 18h36</span> <span>⌛ 0h26</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h36</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>18h09</strong> <span>⌛ 0h26</span> Ligne J : interruption        <p>Le trafic est interrompu entre Argenteuil et Ermont - Eaubonne dans les 2 sens jusqu'à 19h. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : affaires oubliées (à bord du train en gare de Ermont-Eaubonne).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 18h09 à 18h35</span> <span>⌛ 0h25</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h35</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>18h09</strong> <span>⌛ 0h25</span> Ligne J : interruption        <p>Le trafic est interrompu entre Argenteuil et Ermont - Eaubonne dans les 2 sens jusqu'à 18h35. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : affaires oubliées (à bord du train en gare de Ermont-Eaubonne).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 18h05 à 18h18</span> <span>⌛ 0h12</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h18</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h05</strong> <span>⌛ 0h12</span> Ligne P : Paris Est <-> Provins trafic ralenti        <p>Le trafic est ralenti entre Paris Est et Provins dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. <br />
+<br />
+Motif : alerte de sécurité émise par le conducteur. d'un train de marchandise.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 18h05 à 19h30</span> <span>⌛ 1h24</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h05</strong> <span>⌛ 1h24</span> Ligne P : Paris Est <-> Provins trafic ralenti        <p>Le trafic est ralenti entre Paris Est et Provins dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne P. appli Transport public Paris 2024, Site transilien.com.Motif : alerte de sécurité émise par le conducteur. d'un train de marchandise.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 18h03 à 18h09</span> <span>⌛ 0h05</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h09</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h03</strong> <span>⌛ 0h05</span> Ligne J : interruption        <p>Le trafic est interrompu entre Argenteuil et Ermont - Eaubonne dans les 2 sens jusqu'à 19h. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : affaires oubliées (à bord du train en gare de Ermont-Eaubonne).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 18h03 à 18h09</span> <span>⌛ 0h05</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h09</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h03</strong> <span>⌛ 0h05</span> Ligne J : interruption        <p>Le trafic est interrompu entre Argenteuil et Ermont - Eaubonne dans les 2 sens jusqu'à 19h. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : affaires oubliées (à bord du train en gare de Ermont-Eaubonne).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 18h03 à 18h09</span> <span>⌛ 0h05</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h09</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h03</strong> <span>⌛ 0h05</span> Ligne J : interruption        <p>Le trafic est interrompu entre Argenteuil et Ermont - Eaubonne dans les 2 sens jusqu'à 18h35. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : affaires oubliées (à bord du train en gare de Ermont-Eaubonne).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h33 à 16h50</span> <span>⌛ 0h16</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h33</strong> <span>⌛ 0h16</span> Ligne A : ralentissements        <p>Le trafic est ralenti entre Vincennes et Joinville-le-Pont dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : incident électrique à Fontenay-sous-Bois.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h33 à 16h56</span> <span>⌛ 0h22</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h56</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>16h33</strong> <span>⌛ 0h22</span> Ligne A : interruptions        <p>Le trafic est interrompu entre Nation et Joinville-le-Pont et entre Nation et Neuilly-Plaisance dans les 2 sens jusqu'à 17h30. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : incident électrique à Fontenay-sous-Bois.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h33 à 17h12</span> <span>⌛ 0h38</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h12</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>16h33</strong> <span>⌛ 0h38</span> Ligne A : interruptions        <p>Ligne A. Le trafic est interrompu entre Nation et Joinville-le-Pont et entre Nation et Neuilly-Plaisance, trafic perturbé sur le reste de la ligne jusqu'à 17h30.<br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : incident électrique à Fontenay-sous-Bois.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h33 à 17h16</span> <span>⌛ 0h42</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h16</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>16h33</strong> <span>⌛ 0h42</span> Ligne A : interruptions        <p>Ligne A. Le trafic est interrompu entre Nation et Joinville-le-Pont et entra Nation et Neuilly-Plaisance, trafic perturbé sur le reste de la ligne jusqu'à 17h30.<br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : Défaut d'alimentation électrique à Fontenay-sous-Bois.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h33 à 17h18</span> <span>⌛ 0h44</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h18</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>16h33</strong> <span>⌛ 0h44</span> Ligne A : interruptions        <p>Ligne A. Le trafic est interrompu entre Nation et Joinville-le-Pont et entra Nation et Val-de-Fontenay, trafic perturbé sur le reste de la ligne jusqu'à 17h30.<br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : Défaut d'alimentation électrique à Fontenay-sous-Bois.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h33 à 17h22</span> <span>⌛ 0h48</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h22</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>16h33</strong> <span>⌛ 0h48</span> Ligne A : interruptions        <p>Ligne A. Le trafic est interrompu entre Nation et Joinville-le-Pont et entra Nation et Val-de-Fontenay, trafic perturbé sur le reste de la ligne jusqu'à 17h30.<br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : Défaut d'alimentation électrique à Fontenay-sous-Bois.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h33 à 17h30</span> <span>⌛ 0h56</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>16h33</strong> <span>⌛ 0h56</span> Ligne A : interruptions        <p>Le trafic est interrompu entre Vincennes et Joinville-le-Pont et entre Vincennes et Val de Fontenay dans les 2 sens jusqu'à 18h30. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : défaut d'alimentation électrique à Fontenay-sous-Bois.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h33 à 18h02</span> <span>⌛ 1h28</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h02</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>16h33</strong> <span>⌛ 1h28</span> Ligne A : interruptions        <p>Le trafic est interrompu entre Vincennes et Joinville-le-Pont et entre Vincennes et Val de Fontenay dans les 2 sens jusqu'à 18h30. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : défaut d'alimentation électrique à Fontenay-sous-Bois.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h33 à 18h30</span> <span>⌛ 1h56</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>16h33</strong> <span>⌛ 1h56</span> Ligne A : interruptions        <p>Le trafic est interrompu entre Vincennes et Nogent-sur-Marne et entre Vincennes et Val de Fontenay dans les 2 sens jusqu'à 18h30. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : défaut d'alimentation électrique à Fontenay-sous-Bois.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h33 à 20h26</span> <span>⌛ 3h52</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h26</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>16h33</strong> <span>⌛ 3h52</span> Ligne A : interruptions        <p>Le trafic est interrompu entre Vincennes et Nogent-sur-Marne et entre Vincennes et Val de Fontenay dans les 2 sens jusqu'à 20h30. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : défaut d'alimentation électrique à Fontenay-sous-Bois.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h33 à 20h46</span> <span>⌛ 4h12</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h46</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>16h33</strong> <span>⌛ 4h12</span> Ligne A : interruptions        <p>Le trafic est interrompu entre Vincennes et Nogent-sur-Marne et entre Vincennes et Val de Fontenay dans les 2 sens jusqu'à 23h. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : acte de vandalisme à Fontenay-sous-Bois.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h33 à 21h26</span> <span>⌛ 4h52</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>21h26</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>16h33</strong> <span>⌛ 4h52</span> Ligne A : interruptions        <p>Le trafic est interrompu entre Vincennes et Joinville-le-Pont et entre Vincennes et Val de Fontenay dans les 2 sens jusqu'à 23h. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : acte de vandalisme à Fontenay-sous-Bois.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h33 à 21h42</span> <span>⌛ 5h08</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>21h42</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>16h33</strong> <span>⌛ 5h08</span> Ligne A : interruptions        <p>Le trafic est interrompu entre Vincennes et Joinville-le-Pont et entre Vincennes et Val de Fontenay dans les 2 sens jusqu'à 23h. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : défaut d'alimentation électrique à Fontenay-sous-Bois.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 16h33 à 21h34</span> <span>⌛ 5h01</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>21h34</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h33</strong> <span>⌛ 5h01</span> Ligne A : trafic ralenti sur toute la ligne        <p>Le trafic est ralenti sur l'ensemble de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne A. <br />
+<br />
+Motif : défaut d'alimentation électrique à Fontenay-sous-Bois (incident terminé).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 16h29 à 18h00</span> <span>⌛ 1h30</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h29</strong> <span>⌛ 1h30</span> Ligne J : perturbations        <p>Le trafic est perturbé entre Paris Saint-Lazare et Gisors dans les 2 sens de circulation jusqu'à 18h.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : panne d'un train dans le secteur d'Osny.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 16h00 à 18h00</span> <span>⌛ 2h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h00</strong> <span>⌛ 2h00</span> Ligne C St-Quentin - St-Martin d'É. : suppression        <p>Train supprimé :<br />
+- Le train ELBA au départ de Saint Quentin-en-Yvelines à 16h10 pour une arrivée à Saint Martin d'Etampes à18h00<br />
+<br />
+Prochain train à circuler :<br />
+-  Le train ELBA au départ de Saint Quentin-en-Yvelines à 16h40 pour une arrivée à Saint Martin d'Etampes à18h30<br />
+<br />
+Risque d'affluence à bord du train suivant.Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 16h00 à 18h00</span> <span>⌛ 1h59</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h00</strong> <span>⌛ 1h59</span> Ligne C St-Martin d'É. - Brétigny : départ reporté        <p>Train dont le départ est reporté :<br />
+- Le train SARA, initialement prévu à 18h26 à Saint Martin d'Etampes, a son départ reporté à Brétigny à 18h58<br />
+<br />
+Prochain train à circuler :<br />
+- Le train SARA au départ de Saint Martin d'Etampes à 18h56 pour un passage à Brétigny à 19h28<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 15h48 à 16h28</span> <span>⌛ 0h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h28</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h48</strong> <span>⌛ 0h40</span> Ligne J : perturbations        <p>Le trafic est perturbé entre Paris Saint-Lazare et Gisors dans les 2 sens de circulation jusqu'à 18h.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne J. <br />
+<br />
+Motif : panne d'un train dans le secteur d'Osny.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 14h17 à 15h16</span> <span>⌛ 0h58</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h16</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>14h17</strong> <span>⌛ 0h58</span> RER E : Suppression        <p>Train supprimé :-NOMY de 15h01 de Magenta vers Nanterre-La-Folie<br />
+<br />
+Prochain train à circuler :-NOMY de 15h16 de Magenta vers Nanterre-La-Folie<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne E. <br />
+<br />
+Motif : Panne du train à Magenta</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 08h16 à 10h17</span> <span>⌛ 2h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h17</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>08h16</strong> <span>⌛ 2h00</span> Ligne C Paris Austerlitz - Dourdan : suppression        <p>Train supprimé :<br />
+- Le train DEBA au départ de Paris Austerlitz Grandes Lignes à 09h17 et à l'arrivée à Dourdan à 10h17.<br />
+<br />
+Prochain train à circuler :<br />
+- Le train DEBA au départ de Paris Austerlitz GL à 09h47 et à l'arrivée à Dourdan à 10h47.<br />
+<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne.<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 06h25 à 06h52</span> <span>⌛ 0h26</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h52</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h25</strong> <span>⌛ 0h26</span> Ligne B : perturbations        <p>Le trafic est fortement perturbé entre Aérop. C De Gaulle 2 et Aulnay sous Bois dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif : problème de signalisation en gare du Parc des expositions.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 06h25 à 07h00</span> <span>⌛ 0h34</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>07h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h25</strong> <span>⌛ 0h34</span> Ligne B : perturbations        <p>Le trafic est fortement perturbé entre Aérop. C De Gaulle 2 et Aulnay sous Bois dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif : incident affectant la signalisation à l'entrée de la gare du Parc des expositions.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 06h25 à 07h30</span> <span>⌛ 1h04</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>07h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h25</strong> <span>⌛ 1h04</span> Ligne B : perturbations        <p>Le trafic est perturbé entre Aérop. C De Gaulle 2 et Aulnay sous Bois dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif : incident affectent la signalisation à l'entrée du Parc des Expositions.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 06h25 à 07h40</span> <span>⌛ 1h14</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>07h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h25</strong> <span>⌛ 1h14</span> Ligne B : perturbations        <p>Le trafic est perturbé entre Aérop. C De Gaulle 2 et Aulnay sous Bois dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif : incident affectent la signalisation à l'entrée du Parc des Expositions.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 05h44 à 06h14</span> <span>⌛ 0h29</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h14</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>05h44</strong> <span>⌛ 0h29</span> Ligne A Cergy le Haut - Nanterre-P : suppression        <p>Train supprimé :<br />
+QYRO26<br />
+<br />
+Prochain train à circuler :<br />
+QYO32<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+<br />
+<br />
+Motif conditions de départ non réunies à Cergy-le-Haut.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 23h00 à 03h00</span> <span>⌛ 4h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>23h00</strong> <span>⌛ 4h00</span> Ligne J : Conflans Ste-H. - Pontoise 12 au 23/08        <p>Période : à partir de 21h55Dates : du lundi 12 au vendredi 23 août, sauf le 14 - 15 août et le samedi et dimanche.Le trafic est interrompu entre Conflans Sainte-Honorine et Pontoise.Un service de bus est mis en place, avec desserte des gares intermédiaires entre Conflans Sainte-Honorine et Pontoise.Dernier train en circulation normale de Paris Saint-Lazare à Pontoise : 21h58Dernier train en circulation normale de Pontoise à Paris Saint-Lazare : 22h19<br />
+Les horaires du calculateur d’itinéraire tiennent compte des travaux.<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//l.svg" /> <span>De 23h00 à 03h00</span> <span>⌛ 4h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>23h00</strong> <span>⌛ 4h00</span> Ligne L : Paris - La Défense du 12 au 23 août        <p>Période : à partir de 22h30Dates : du lundi 12 au vendredi 23 août. Sauf le 14, 15 août et le samedi et dimanche.<br />
+Les trains des axes Paris Saint-Lazare - St-Nom la Bretèche et Paris St Lazare – Versailles Rive Droite ne circulent pas entre Paris Saint-Lazare et La Défense.<br />
+Dernier train à circuler normalement entre Paris Saint Lazare et Saint-Nom la Bretèche : 22h41<br />
+Dernier train à circuler normalement entre Saint-Nom la Bretèche et Paris Saint Lazare : 22h17<br />
+Dernier train à circuler normalement entre Paris Saint-Lazare et Versailles Rive Droite  : 22h31 <br />
+<br />
+Dernier train à circuler normalement entre Versailles Rive Droite et Paris Saint Lazare : 22h12<br />
+<br />
+Les clients souhaitant voyager entre Bécon les Bruyères et La Défense sont invités à emprunter les lignes régulières renforcées 178 et 275.Entre Paris Saint-Lazare et Bécon les Bruyères, les voyageurs sont invités à prendre la ligne L axe Paris Saint-Lazare – Nanterre Université.<br />
+<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 22h55 à 03h00</span> <span>⌛ 4h05</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h55</strong> <span>⌛ 4h05</span> Ligne J : Paris - Mantes via Poissy du 12 au 24/08        <p>Période : à partir de 21h45.Dates : du lundi 12 au vendredi 23 août, sauf  le 14 – 15 août et le samedi et dimanche.Le trafic est interrompu entre Paris Saint-Lazare et Mantes-la-Jolie via Poissy.&#11;Un service de bus de remplacement est mis en place entre Sartrouville – Les Mureaux et Sartrouville - Mantes la Jolie, avec desserte des gares intermédiaires.&#11;Pour rejoindre les gares de Houilles Carrières sur Seine, Sartrouville et Poissy, nous vous conseillons d'emprunter le RER A direction Cergy le Haut ou Poissy.&#11;Renforcement de ligne régulière : <br />
+- Express A14 entre La Défense et Mantes la Jolie.<br />
+<br />
+Dernier train à circuler normalement entre Paris Saint-Lazare et Mantes la Jolie : 21h47<br />
+Dernier train à circuler normalement entre Mantes la Jolie et Paris Saint-Lazare : 21h45Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 03h00 à 03h00</span> <span>⌛ 0h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>03h00</strong> <span>⌛ 0h00</span> Ligne P : Meaux - La Ferté-Milon du 12 au 27/08        <p>Période : toute la journée<br />
+<br />
+Dates : du lundi 12 au mardi 27 août, week-ends compris<br />
+<br />
+Le trafic est interrompu entre Meaux et La Ferté-Milon.<br />
+Les trains FYMO et PUMO ne circulent pas entre Paris-Est et La Ferté-Milon.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>

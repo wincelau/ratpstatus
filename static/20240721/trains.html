@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_trains.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_trains.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240721.json';
 </script>
@@ -17,18 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240720/trains.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">21/07/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240722/trains.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -9036,18 +9037,965 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240721/20240722025801_disruptions.optimized.json">22/07/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240721/20240722025801_disruptions.optimized.json">22/07/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du 21/07/2024</h2>
+
+
+
+<h3>Terminés</h3>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 23h00 à 00h10</span> <span>⌛ 1h10</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>00h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>23h00</strong> <span>⌛ 1h10</span> Ligne P : Château-Thierry - Paris Est 13 au 21/07        <p>Période : entre 23h00 et 00h10<br />
+<br />
+Dates : samedi 13, dimanche 14, samedi 20 et dimanche 21 juillet<br />
+<br />
+L'horaire du train PIMO de 23h04 au départ de Château-Thierry vers Paris Est est avancé d'1 minute à Meaux (23h43 au lieu de 23h44).<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 23h00 à 00h10</span> <span>⌛ 1h10</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>00h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>23h00</strong> <span>⌛ 1h10</span> Ligne P : Château-Thierry - Paris Est 13 au 21/07        <p>Période : entre 23h00 et 00h10<br />
+<br />
+Dates : samedi 13, dimanche 14, samedi 20 et dimanche 21 juillet<br />
+<br />
+L'horaire du train PIMO de 23h04 au départ de Château-Thierry vers Paris Est est avancé d'1 minute à Meaux (23h43 au lieu de 23h44).<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 22h00 à 22h14</span> <span>⌛ 0h13</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>22h14</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>22h00</strong> <span>⌛ 0h13</span> Ligne B : Sevran - Livry non desservi        <p>Les trains ne marquent pas l'arrêt à Sevran - Livry dans les deux sens jusqu'à 23h00.<br />
+<br />
+Motif : défaut d'alimentation électrique en gare de Sevran - Livry.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 21h09 à 21h20</span> <span>⌛ 0h10</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>21h20</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>21h09</strong> <span>⌛ 0h10</span> Ligne B : Aéroport CDG2 non desservie        <p>La gare de Aérop. C De Gaulle 2 n'est pas desservie jusqu'à 21h45. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif :  affaires oubliées en gare de l'Aéroport CDG2.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 21h09 à 21h40</span> <span>⌛ 0h30</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>21h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>21h09</strong> <span>⌛ 0h30</span> Ligne B : Aéroport CDG2 non desservie        <p>La gare de Aérop. C De Gaulle 2 n'est pas desservie jusqu'à 21h45. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif :  affaires oubliées en gare de l'Aéroport CDG2.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//b.svg" /> <span>De 21h09 à 22h22</span> <span>⌛ 1h12</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>22h22</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>21h09</strong> <span>⌛ 1h12</span> Ligne B : Aéroport CDG2 non desservie        <p>La gare de Aérop. C De Gaulle 2 n'est pas desservie jusqu'à 22h30. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne B. <br />
+<br />
+Motif :  affaires oubliées en gare de l'Aéroport CDG2.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 20h48 à 22h48</span> <span>⌛ 2h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>22h48</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>20h48</strong> <span>⌛ 2h00</span> Ligne R : Montargis - Paris Lyon différé        <p>Le train suivant voit son départ différé de 10 minutes environ :<br />
+<br />
+- POMA départ Montargis à 21h02, arrivée Paris gare de Lyon à 22h43<br />
+<br />
+<br />
+Motif : attente d'autorisation d'accès au réseau à Montargis.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 18h53 à 19h04</span> <span>⌛ 0h10</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h04</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h53</strong> <span>⌛ 0h10</span> Ligne D : ralentissements        <p>Le trafic est ralenti de Villeneuve S Georges vers Melun via Combs la Ville. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : panne d'un train à Montgeron.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 18h53 à 20h30</span> <span>⌛ 1h36</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h53</strong> <span>⌛ 1h36</span> Ligne D : ralentissements        <p>Le trafic est ralenti de Villeneuve S Georges vers Melun via Combs la Ville.Veuillez prévoir des modifications ainsi que des suppressions.  <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : panne d'un train à Montgeron.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 18h53 à 21h30</span> <span>⌛ 2h36</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>21h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h53</strong> <span>⌛ 2h36</span> Ligne D : ralentissements        <p>Le trafic est ralenti de Villeneuve S Georges vers Melun via Combs la Ville.Veuillez prévoir des modifications ainsi que des suppressions.  <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : panne d'un train à Montgeron.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 18h42 à 19h18</span> <span>⌛ 0h35</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h18</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h42</strong> <span>⌛ 0h35</span> Ligne D : ralentissements        <p>Le trafic est fortement ralenti de Goussainville vers Melun via Combs la Ville. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : panne d'un train à Montgeron.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 17h00 à 16h56</span> <span>⌛ 0h03</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h56</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h00</strong> <span>⌛ 0h03</span> Ligne E Tournan - Haussmann St-L. : suppression        <p>Train supprimé :- HAVA de Tournan en Brie à destination d'Haussmann Saint Lazare de 17h22 arrivé à 18h13 à Haussmann.<br />
+<br />
+Prochain train à circuler :- HAVA de Tournan en Brie à destination d'Haussmann Saint Lazare de 17h52 arrivé à 18h43 à Haussmann.<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : Conditions de départ non réunies (difficultés liées à un manque de personnel).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 17h00 à 18h00</span> <span>⌛ 1h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h00</strong> <span>⌛ 1h00</span> Ligne E Tournan - Haussmann St-L. : suppression        <p>Train supprimé :- HAVA de Tournan en Brie à destination d'Haussmann Saint Lazare de 17h22 arrivé à 18h13 à Haussmann.<br />
+<br />
+Prochain train à circuler :- HAVA de Tournan en Brie à destination d'Haussmann Saint Lazare de 17h52 arrivé à 18h43 à Haussmann.<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : Conditions de départ non réunies (difficultés liées à un manque de personnel).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 17h00 à 18h02</span> <span>⌛ 1h02</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h02</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h00</strong> <span>⌛ 1h02</span> Ligne E Tournan - Haussmann St-L. : suppressions        <p>Les trains supprimés :<br />
+<br />
+- HAVA de Tournan en Brie à destination d'Haussmann Saint Lazare de 17h22 arrivé à 18h13 à Haussmann.et TAVA d'Haussmann Saint Lazare à destination de Tournan en Brie de 18h46 arrivé à 19h38 à Tournan.<br />
+<br />
+Prochains trains à circuler :<br />
+<br />
+- HAVA de Tournan en Brie à destination d'Haussmann Saint Lazare de 17h52 arrivé à 18h43 à Haussmann.<br />
+et <br />
+TAVA de Haussmann Saint Lazare à destination de Tournan en Brie de 19h16 arrivé à Tournan à 20h08.Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : Conditions de départ non réunies (difficultés liées à un manque de personnel).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 17h00 à 20h00</span> <span>⌛ 3h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h00</strong> <span>⌛ 3h00</span> Ligne E Tournan - Haussmann St-L. : suppressions        <p>Les trains supprimés :<br />
+<br />
+- HAVA de Tournan en Brie à destination d'Haussmann Saint Lazare de 17h22 arrivé à 18h13 à Haussmann.<br />
+et TAVA d'Haussmann Saint Lazare à destination de Tournan en Brie de 18h46 arrivé à 19h38 à Tournan.<br />
+<br />
+Prochains trains à circuler :<br />
+- HAVA de Tournan en Brie à destination d'Haussmann Saint Lazare de 17h52 arrivé à 18h43 à Haussmann.<br />
+et <br />
+TAVA de Haussmann Saint Lazare à destination de Tournan en Brie de 19h16 arrivé à Tournan à 20h08.Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : Conditions de départ non réunies (difficultés liées à un manque de personnel).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 15h54 à 16h40</span> <span>⌛ 0h45</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h54</strong> <span>⌛ 0h45</span> Ligne D : ralentissements        <p>Le trafic est ralenti entre Malesherbes et Juvisy et entre Melun et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie. à Plessis Chenet.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 15h54 à 16h52</span> <span>⌛ 0h57</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h52</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h54</strong> <span>⌛ 0h57</span> Ligne D : ralentissements        <p>Le trafic est ralenti entre Malesherbes et Juvisy et entre Melun et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie. à Plessis Chenet.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 15h54 à 18h00</span> <span>⌛ 2h05</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h54</strong> <span>⌛ 2h05</span> Ligne D : ralentissements        <p>Le trafic est ralenti entre Malesherbes et Juvisy et entre Melun et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie. à Plessis Chenet. (Incident terminé)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 15h38 à 15h48</span> <span>⌛ 0h09</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h48</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h38</strong> <span>⌛ 0h09</span> Ligne A : Perturbations        <p>Le trafic est perturbé de Vincennes vers Saint-Germain-en-Laye, de Vincennes vers Cergy le Haut et de Vincennes vers Poissy.<br />
+<br />
+<br />
+Motif incident voyageur à Châtelet les Halles</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 15h38 à 16h22</span> <span>⌛ 0h43</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h22</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h38</strong> <span>⌛ 0h43</span> Ligne A : Perturbations        <p>Le trafic est perturbé de Vincennes vers Saint-Germain-en-Laye, de Vincennes vers Cergy le Haut et de Vincennes vers Poissy.<br />
+<br />
+<br />
+Motif incident voyageur à Châtelet les Halles (personne violente dans le train arrêtée par la police). </p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 15h24 à 19h50</span> <span>⌛ 4h26</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h24</strong> <span>⌛ 4h26</span> ligne R : changement de composition        <p>La composition des trains suivants est réduite : <br />
+<br />
+ - POMA départ Montargis à 18h02, arrivée Paris Gare de Lyon à 19h43.<br />
+<br />
+ <br />
+<br />
+Retrouvez tous les horaires de vos trains dans la rubrique Itinéraires ou Prochains départs. </p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 14h37 à 15h24</span> <span>⌛ 0h46</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h24</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>14h37</strong> <span>⌛ 0h46</span> Ligne C : ralentissements        <p>Le trafic est perturbé entre Versailles Chantiers et Massy-Palaiseau dans les 2 sens. <br />
+<br />
+<br />
+Motif : panne d'un train de marchandises à Massy Palaiseau</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 10h13 à 10h54</span> <span>⌛ 0h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h54</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>10h13</strong> <span>⌛ 0h40</span> Ligne E Magenta - Nanterre-La-Folie : suppressions        <p>Trains supprimés :<br />
+- NOMY : départ à 10h16 en gare de Magenta, arrivée à 10h30 en gare de Nanterre la Folie.<br />
+- MONY : départ à 10h42 en gare de Nanterre la Folie, arrivée à 10h58 en gare de Magenta<br />
+<br />
+Prochains trains à circuler :<br />
+- NOMY :  départ à 10h31 en gare de Magenta, arrivée à 10h45 en gare de Nanterre la Folie.<br />
+- MONY : départ à 10h57 en gare de Nanterre la Folie, arrivée à 11h12 en gare de Magenta.<br />
+<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 10h13 à 11h00</span> <span>⌛ 0h46</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>11h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>10h13</strong> <span>⌛ 0h46</span> Ligne E Magenta - Nanterre-La-Folie : suppressions        <p>Trains supprimés :<br />
+- NOMY : départ à 10h16 en gare de Magenta, arrivée à 10h30 en gare de Nanterre la Folie.<br />
+- MONY : départ à 10h42 en gare de Nanterre la Folie, arrivée à 10h58 en gare de Magenta<br />
+<br />
+Prochains trains à circuler :<br />
+- NOMY :  départ à 10h31 en gare de Magenta, arrivée à 10h45 en gare de Nanterre la Folie.<br />
+- MONY : départ à 11h01 en gare de La Défense, arrivée à 11h12 en gare de Magenta.<br />
+<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 09h30 à 10h10</span> <span>⌛ 0h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>09h30</strong> <span>⌛ 0h40</span> Ligne E : Haussmann - Villiers les 20 et 21/07        <p>Dates : samedi 20 et dimanche 21 juillet<br />
+<br />
+L'horaire du train VOHE de 9h36 au départ de Haussmann - Gare Saint-Lazare vers Villiers-sur-Marne - Le Plessis-Trévise est avancé d'1 minute à Haussmann - Gare Saint-Lazare.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 09h30 à 10h10</span> <span>⌛ 0h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>09h30</strong> <span>⌛ 0h40</span> Ligne E : Haussmann - Villiers les 20 et 21/07        <p>Dates : samedi 20 et dimanche 21 juillet<br />
+<br />
+L'horaire du train VOHE de 9h36 au départ de Haussmann - Gare Saint-Lazare vers Villiers-sur-Marne - Le Plessis-Trévise est avancé d'1 minute à Haussmann - Gare Saint-Lazare.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 09h26 à 12h00</span> <span>⌛ 2h33</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>12h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h26</strong> <span>⌛ 2h33</span> Ligne R Montereau - Melun : suppression        <p>Train supprimé :<br />
+- train ZOHA départ Montereau 10h29, arrivée Melun 11h06<br />
+<br />
+Prochain train à circuler :<br />
+- train ZOHA départ Montereau 11h29, arrivée Melun 12h06 <br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 09h18 à 10h25</span> <span>⌛ 1h06</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h25</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h18</strong> <span>⌛ 1h06</span> Ligne R Melun - Montereau : suppression        <p>Train supprimé :<br />
+-  train KOHO départ Melun 08h49, arrivée Montereau 09h26 <br />
+<br />
+Prochain train à circuler :<br />
+-  train KOHO départ Melun 09h48, arrivée Montereau 10h25<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 10h18</span> <span>⌛ 1h04</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h18</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 1h04</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30 et fortement ralenti entre Malesherbes et Juvisy et entre Villeneuve S Georges et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 10h18</span> <span>⌛ 1h04</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h18</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 1h04</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30 et fortement ralenti entre Malesherbes et Juvisy et entre Villeneuve S Georges et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 10h54</span> <span>⌛ 1h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h54</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 1h40</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 13h et fortement ralenti entre Malesherbes et Juvisy et entre Villeneuve S Georges et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 10h44</span> <span>⌛ 1h31</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h44</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 1h31</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 13h et fortement ralenti entre Malesherbes et Juvisy dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie (arbre sur les voies)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 10h44</span> <span>⌛ 1h31</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h44</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 1h31</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 13h et fortement ralenti entre Malesherbes et Juvisy dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie (arbre sur les voies)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 10h18</span> <span>⌛ 1h04</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h18</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 1h04</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30 et fortement ralenti entre Malesherbes et Juvisy et entre Villeneuve S Georges et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 10h18</span> <span>⌛ 1h04</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h18</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 1h04</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30 et fortement ralenti entre Malesherbes et Juvisy et entre Villeneuve S Georges et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 10h54</span> <span>⌛ 1h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h54</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 1h40</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 13h et fortement ralenti entre Malesherbes et Juvisy et entre Villeneuve S Georges et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 11h04</span> <span>⌛ 1h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>11h04</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 1h50</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 13h et fortement ralenti entre Malesherbes et Juvisy dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie (arbre sur les voies)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 12h30</span> <span>⌛ 3h16</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>12h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 3h16</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 13h et fortement ralenti entre Malesherbes et Juvisy dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie (arbre sur les voies)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 14h34</span> <span>⌛ 5h20</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>14h34</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 5h20</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 15h et ralenti entre Malesherbes et Juvisy dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie (arbre sur les voies)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 16h00</span> <span>⌛ 6h46</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 6h46</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 15h50 et ralenti entre Malesherbes et Juvisy dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie au Plessis Chenet.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 16h02</span> <span>⌛ 6h48</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h02</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 6h48</span> Ligne D : Malesherbes <-> Juvisy trafic ralenti        <p>Le trafic est ralenti entre Malesherbes et Juvisy dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 16h40</span> <span>⌛ 7h26</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 7h26</span> Ligne D : ralentissements        <p>Le trafic est ralenti entre Malesherbes et Juvisy et entre Melun et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie. à Plessis Chenet.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 16h52</span> <span>⌛ 7h38</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h52</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 7h38</span> Ligne D : ralentissements        <p>Le trafic est ralenti entre Malesherbes et Juvisy et entre Melun et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie. à Plessis Chenet.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 09h13 à 18h00</span> <span>⌛ 8h46</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h13</strong> <span>⌛ 8h46</span> Ligne D : ralentissements        <p>Le trafic est ralenti entre Malesherbes et Juvisy et entre Melun et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie. à Plessis Chenet. (Incident terminé)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 08h13 à 09h00</span> <span>⌛ 0h46</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>08h13</strong> <span>⌛ 0h46</span> Ligne D : interruptions        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30.Le trafic est interrompu entre Juvisy et Corbeil Essonnes , entre Malesherbes et Juvisy et entre dans les 2 sens jusqu'à 09h. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 08h13 à 09h22</span> <span>⌛ 1h08</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h22</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>08h13</strong> <span>⌛ 1h08</span> Ligne D : interruptions        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30.Le trafic est interrompu entre Juvisy et Corbeil Essonnes , entre Malesherbes et Juvisy et entre dans les 2 sens jusqu'à 09h30. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 08h13 à 09h12</span> <span>⌛ 0h59</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h12</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>08h13</strong> <span>⌛ 0h59</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30 et fortement ralenti entre Malesherbes et Juvisy et entre Villeneuve S Georges et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 08h13 à 09h12</span> <span>⌛ 0h59</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h12</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>08h13</strong> <span>⌛ 0h59</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30 et fortement ralenti entre Malesherbes et Juvisy et entre Villeneuve S Georges et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 08h11 à 09h00</span> <span>⌛ 0h48</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>08h11</strong> <span>⌛ 0h48</span> Ligne D : interruptions        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30.Le trafic est interrompu entre Juvisy et Corbeil Essonnes , entre Malesherbes et Juvisy et entre dans les 2 sens jusqu'à 09h. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 08h11 à 09h22</span> <span>⌛ 1h10</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h22</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>08h11</strong> <span>⌛ 1h10</span> Ligne D : interruptions        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30.Le trafic est interrompu entre Juvisy et Corbeil Essonnes , entre Malesherbes et Juvisy et entre dans les 2 sens jusqu'à 09h30. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 08h11 à 09h12</span> <span>⌛ 1h01</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h12</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>08h11</strong> <span>⌛ 1h01</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30 et fortement ralenti entre Malesherbes et Juvisy et entre Villeneuve S Georges et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 08h11 à 09h12</span> <span>⌛ 1h01</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h12</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>08h11</strong> <span>⌛ 1h01</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30 et fortement ralenti entre Malesherbes et Juvisy et entre Villeneuve S Georges et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h34 à 08h30</span> <span>⌛ 0h55</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>07h34</strong> <span>⌛ 0h55</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30 et ralenti entre Juvisy et Corbeil Essonnes via Ris Orangis dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie (arbre)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h34 à 09h00</span> <span>⌛ 1h25</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h34</strong> <span>⌛ 1h25</span> Ligne D : interruptions        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30.Le trafic est interrompu entre Juvisy et Corbeil Essonnes , entre Malesherbes et Juvisy et entre dans les 2 sens jusqu'à 09h. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h34 à 09h22</span> <span>⌛ 1h47</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h22</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h34</strong> <span>⌛ 1h47</span> Ligne D : interruptions        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30.Le trafic est interrompu entre Juvisy et Corbeil Essonnes , entre Malesherbes et Juvisy et entre dans les 2 sens jusqu'à 09h30. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h34 à 09h12</span> <span>⌛ 1h38</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h12</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h34</strong> <span>⌛ 1h38</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30 et fortement ralenti entre Malesherbes et Juvisy et entre Villeneuve S Georges et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h34 à 09h12</span> <span>⌛ 1h38</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h12</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h34</strong> <span>⌛ 1h38</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30 et fortement ralenti entre Malesherbes et Juvisy et entre Villeneuve S Georges et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h32 à 08h30</span> <span>⌛ 0h57</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h32</strong> <span>⌛ 0h57</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30 et ralenti entre Juvisy et Corbeil Essonnes via Ris Orangis dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie (arbre)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h32 à 09h06</span> <span>⌛ 1h33</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h06</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h32</strong> <span>⌛ 1h33</span> Ligne D : interruptions        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30.Le trafic est interrompu entre Juvisy et Corbeil Essonnes , entre Malesherbes et Juvisy et entre dans les 2 sens jusqu'à 09h. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h32 à 09h22</span> <span>⌛ 1h49</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h22</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h32</strong> <span>⌛ 1h49</span> Ligne D : interruptions        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30.Le trafic est interrompu entre Juvisy et Corbeil Essonnes , entre Malesherbes et Juvisy et entre dans les 2 sens jusqu'à 09h30. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h32 à 10h18</span> <span>⌛ 2h45</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h18</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h32</strong> <span>⌛ 2h45</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30 et fortement ralenti entre Malesherbes et Juvisy et entre Villeneuve S Georges et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h32 à 10h18</span> <span>⌛ 2h45</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h18</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h32</strong> <span>⌛ 2h45</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 10h30 et fortement ralenti entre Malesherbes et Juvisy et entre Villeneuve S Georges et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h32 à 10h54</span> <span>⌛ 3h21</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>10h54</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h32</strong> <span>⌛ 3h21</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 13h et fortement ralenti entre Malesherbes et Juvisy et entre Villeneuve S Georges et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h32 à 11h04</span> <span>⌛ 3h31</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>11h04</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h32</strong> <span>⌛ 3h31</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 13h et fortement ralenti entre Malesherbes et Juvisy dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie (arbre sur les voies)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h32 à 12h30</span> <span>⌛ 4h57</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>12h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h32</strong> <span>⌛ 4h57</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 13h et fortement ralenti entre Malesherbes et Juvisy dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie (arbre sur les voies)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h32 à 14h34</span> <span>⌛ 7h01</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>14h34</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h32</strong> <span>⌛ 7h01</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 15h et ralenti entre Malesherbes et Juvisy dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie (arbre sur les voies)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h32 à 15h50</span> <span>⌛ 8h17</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h32</strong> <span>⌛ 8h17</span> Ligne D : Melun <-> Corbeil-Ess. trafic interrompu        <p>Le trafic est interrompu entre Melun et Corbeil Essonnes dans les 2 sens jusqu'à 15h50 et ralenti entre Malesherbes et Juvisy dans les 2 sens. <br />
+<br />
+Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie au Plessis Chenet.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h32 à 15h53</span> <span>⌛ 8h21</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h53</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h32</strong> <span>⌛ 8h21</span> Ligne D : Malesherbes <-> Juvisy trafic ralenti        <p>Le trafic est ralenti entre Malesherbes et Juvisy dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h32 à 15h53</span> <span>⌛ 8h21</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h53</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h32</strong> <span>⌛ 8h21</span> Ligne D : ralentissements        <p>Le trafic est ralenti entre Malesherbes et Juvisy et entre Melun et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie. à Plessis Chenet.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h32 à 15h53</span> <span>⌛ 8h21</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h53</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h32</strong> <span>⌛ 8h21</span> Ligne D : ralentissements        <p>Le trafic est ralenti entre Malesherbes et Juvisy et entre Melun et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie. à Plessis Chenet.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 07h32 à 15h53</span> <span>⌛ 8h21</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h53</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>07h32</strong> <span>⌛ 8h21</span> Ligne D : ralentissements        <p>Le trafic est ralenti entre Malesherbes et Juvisy et entre Melun et Corbeil Essonnes dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne D. <br />
+<br />
+Motif : obstacle sur la voie. à Plessis Chenet. (Incident terminé)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 06h32 à 06h46</span> <span>⌛ 0h13</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h46</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h32</strong> <span>⌛ 0h13</span> Ligne P : Esbly - Crécy la Ch. ralenti        <p>Le trafic est ralenti entre Esbly et Crécy-la-Chapelle.<br />
+<br />
+Motif : obstacle sur la voie entre Couilly-St-Germain et Villiers-Montbarbin.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 06h32 à 07h38</span> <span>⌛ 1h05</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>07h38</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h32</strong> <span>⌛ 1h05</span> Ligne P : Esbly - Crécy la Ch. ralenti        <p>Le trafic est ralenti entre Esbly et Crécy-la-Chapelle.<br />
+<br />
+Motif : obstacle sur la voie entre Couilly-St-Germain et Villiers-Montbarbin.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 22h26 à 06h26</span> <span>⌛ 7h59</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h26</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>22h26</strong> <span>⌛ 7h59</span> Ligne C St-Quentin - St-Martin d'É. : suppressions        <p>21 juillet 2024 :<br />
+Trains supprimés :<br />
+- le train ELBA au départ de Saint Quentin en Yvelines à 06h40 pour un passage à Juvisy à 07h45 et un terminus à Saint Martin d'Etampes à 08h31.<br />
+- le train ELBA au départ de Saint Quentin en Yvelines à 07h40 pour un passage à Juvisy à 08h45 et un terminus à Saint Martin d'Etampes à 09h31.- le train ELBA au départ de Saint Quentin en Yvelines à 09h40 pour un passage à Juvisy à 10h45 et un terminus à Saint Martin d'Etampes à 11h31.<br />
+Prochains trains à circuler :<br />
+- le train ELBA au départ de Saint Quentin en Yvelines à 07h10 pour un passage à Juvisy à 08h15 et un terminus à Saint Martin d'Etampes à 09h01.<br />
+- le train ELBA au départ de Saint Quentin en Yvelines à 08h10 pour un passage à Juvisy à 09h15 et un terminus à Saint Martin d'Etampes à 10h01.- le train ELBA au départ de Saint Quentin en Yvelines à 10h10 pour un passage à Juvisy à 11h15 et un terminus à Saint Martin d'Etampes à 12h01.<br />
+Risque d'affluence à bord des trains suivants.<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 03h00 à 02h30</span> <span>⌛ 23h30</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>03h00</strong> <span>⌛ 23h30</span> Ligne C : du 18 au 26/07 – gares non desservies        <p>PARIS 2024 : Champ de Mars - Tour Eiffel, Pont de l'Alma et Musée d'Orsay : gares non desservies du 18 au 26 juillet 2024.<br />
+Impacts de la cérémonie d’ouverture Paris 2024 :<br />
+<br />
+Certaines gares ne seront pas desservies :- du 18 au 26 juillet inclus - Musée d’Orsay, Pont de l’Alma et Champ de Mars. ​- le 26 juillet entre 12h30 et 23h30 - Invalides​. Par ailleurs, les correspondances avec les lignes du métro 8 et 13 seront impossibles.<br />
+<br />
+Par ailleurs, le trafic sera interrompu le 26 juillet entre 17h20 et 23h30 :- entre Pont du Garigliano et gare de Paris Austerlitz.<br />
+- entre Avenue Henri Martin et gare de Paris Austerlitz. <br />
+En conséquence, certains temps de correspondance pourront être allongés.​Avant tout déplacement, nous vous conseillons de vérifier les horaires de vos trains sur la recherche d’itinéraires.​<br />
+Pour plus d'informations, consultez le fil Twitter de la ligne <br />
+Motif : cérémonie ouverture Jeux Paris 2024.</p></li>
+</ul>
+</div>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>

@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_tramways.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_tramways.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240720.json';
 </script>
@@ -17,18 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240719/tramways.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">20/07/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240721/tramways.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -9728,18 +9729,97 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240720/20240721025801_disruptions.optimized.json">21/07/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240720/20240721025801_disruptions.optimized.json">21/07/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du 20/07/2024</h2>
+
+
+
+<h3>Terminés</h3>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 18h30 à 21h30</span> <span>⌛ 3h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>21h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h30</strong> <span>⌛ 3h00</span> Ligne T12 : suppressions        <p>Les tramways suivants sont supprimés :<br />
+<br />
+- Massy Palaiseau, départ 19h59  - Evry Courcouronnes, arrivée 20h40.<br />
+- Evry Courcouronnes, départ 20h48 - Massy Palaiseau, arrivée 21h30.<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t3b.svg" /> <span>De 12h48 à 13h05</span> <span>⌛ 0h17</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>13h05</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>12h53</strong> <span>⌛ 0h12</span> Tramway T3B : Malaise voyageur - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne  en raison d'un malaise voyageur à Porte de Clignancourt<br />
+Plus d'informations sur le site ratp.fr</p></li>
+<li><span class="bq"></span> <strong>12h48</strong> <span>⌛ 0h05</span> Tramway T3B : Malaise voyageur - Trafic interrompu        <p>Le trafic est interrompu sur l'ensemble de la ligne  en raison d'un malaise voyageur à Porte de Clignancourt . <br />
+Heure de reprise estimée : 13:20.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t7.svg" /> <span>De 12h47 à 13h48</span> <span>⌛ 1h01</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>13h48</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>13h37</strong> <span>⌛ 0h11</span> Tramway T7 : Dégagement de fumée - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne  en répercussion d'un dégagement de fumée à Porte de l’Essonne et Aéroport d’Orly<br />
+Plus d'informations sur le site ratp.fr</p></li>
+<li><span class="bq"></span> <strong>12h47</strong> <span>⌛ 0h50</span> Tramway T7 : Dégagement de fumée - Trafic interrompu        <p>Le trafic est interrompu sur l'ensemble de la ligne  en raison d'un dégagement de fumée à Porte de l’Essonne et Aéroport d’Orly . <br />
+Heure de reprise estimée : 13:45.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t7.svg" /> <span>De 12h38 à 12h56</span> <span>⌛ 0h17</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>12h56</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>12h38</strong> <span>⌛ 0h17</span> Tramway T7 : Dégagement de fumée - Trams stationnent        <p>Des trams stationnent entre Aéroport d’Orly et Porte de l’Essonne  en raison d'un dégagement de fumée<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 10h56 à 18h30</span> <span>⌛ 7h34</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>10h56</strong> <span>⌛ 7h34</span> Ligne T12 : trafic ralenti sur toute la ligne        <p>Le trafic est ralenti sur l'ensemble de la ligne jusqu'à 18h30. <br />
+<br />
+Motif : conditions de départ pour certains tramways non réunies .</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 04h00 à 05h00</span> <span>⌛ 1h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>05h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>04h00</strong> <span>⌛ 1h00</span> Ligne T4 : Bondy - Aulnay 3 au 8/06, 8/07 au 14/09        <p>Dates / Périodes : <br />
+- Du lundi 3 au vendredi 7 juin à partir de 1h15 ; <br />
+- Du mardi 4 au samedi 8 juin jusqu'à 5h00 ;<br />
+- Du lundi 8 juillet au vendredi 9 août à partir de 1h15 ; <br />
+- Du mardi 9 juillet au samedi 10 août jusqu'à 5h00 ;<br />
+- Du lundi 19 août au vendredi 13 septembre à partir de 1h15 ;<br />
+- Du mardi 20 août au samedi 14 septembre jusqu'à 5h00.<br />
+<br />
+Le trafic est interrompu entre Bondy et Aulnay-sous-Bois.<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>

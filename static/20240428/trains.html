@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_trains.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_trains.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240428.json';
 </script>
@@ -17,18 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240427/trains.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">28/04/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240429/trains.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -9036,18 +9037,662 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240428/20240429025801_disruptions.optimized.json">29/04/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240428/20240429025801_disruptions.optimized.json">29/04/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du 28/04/2024</h2>
+
+
+
+<h3>Terminés</h3>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 00h10 à 03h00</span> <span>⌛ 2h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>00h10</strong> <span>⌛ 2h50</span> Ligne J : Paris - Mantes via Poissy 29/04 au 17/05        <p>Période : les trois derniers trains<br />
+Dates : du lundi 29 avril au vendredi 17 mai, sauf les samedis et dimanches.Les deux derniers trains au départ de Paris Saint-Lazare et à destination de Mantes la Jolie via Poissy sont supprimés.<br />
+Le dernier train de Mantes la jolie via Poissy vers Paris Saint-Lazare est supprimé.En conséquence, les voyageurs sont invités :<br />
+- Pour rejoindre Houilles Carrières sur Seine et Poissy, nous vous conseillons d’emprunter le RER A.- Pour rejoindre les gares de Villennes sur Seine jusqu’à Mantes la Jolie, nous vous conseillons d’emprunter le RER A jusqu’à Sartrouville où un service de bus de remplacement est mis en place entre Sartrouville et Mantes la Jolie, avec desserte des gares intermédiaires.- Au départ de Mantes la Jolie, pour rejoindre Paris, nous vous conseillons d’emprunter le bus de remplacement.<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux de maintenance.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 23h59 à 02h59</span> <span>⌛ 3h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h59</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>23h59</strong> <span>⌛ 3h00</span> Ligne C : Austerlitz-Dourdan/Étampes 7-14-21-28/04        <p>Période : à partir de 22h jusqu’en fin de soirée.<br />
+<br />
+Dates : dimanches 7, 14,21 et 28 avril.<br />
+<br />
+<br />
+Le trafic est interrompu entre Saint-Martin d’Étampes et Paris Austerlitz.<br />
+<br />
+- Dernier train au départ de Saint-Martin d'Étampes pour Paris Austerlitz à 21h41.<br />
+- Dernier train au départ de Paris Austerlitz pour Saint-Martin d’Étampes à 22h45.<br />
+<br />
+Le trafic est interrompu entre Dourdan et Paris Austerlitz.<br />
+<br />
+- Dernier train au départ de Dourdan pour Paris Austerlitz à 21h07.<br />
+- Dernier train au départ de Paris Austerlitz pour Dourdan à 22h15.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+<br />
+Motif : Travaux de maintenance (remplacement caténaire)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 23h00 à 02h30</span> <span>⌛ 3h30</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>23h00</strong> <span>⌛ 3h30</span> Ligne P : Paris Est - Château-Thierry 27 au 05/05        <p>Période : à partir de 23h00<br />
+<br />
+Dates : samedi 27 et dimanche 28 avril, samedi 4 et dimanche 5 mai<br />
+<br />
+Le trafic est interrompu entre Paris Est et Château-Thierry.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 22h50 à 02h50</span> <span>⌛ 4h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h50</strong> <span>⌛ 4h00</span> Ligne P : Paris Est - Meaux du 27/04 au 5/05        <p>Période : à partir de 22h50<br />
+<br />
+Dates : samedi 27 et dimanche 28 avril, samedi 4 et dimanche 5 mai<br />
+<br />
+Le trafic est interrompu entre Paris Est et Meaux.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 22h30 à 02h20</span> <span>⌛ 3h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h20</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h30</strong> <span>⌛ 3h50</span> Ligne E : Haussmann - Villiers / Tournan 28/04        <p>Période : à partir de 22h30<br />
+<br />
+Date : dimanche 28 avril <br />
+<br />
+Le trafic est interrompu entre Haussmann - Gare Saint-Lazare et Villiers-sur-Marne - Le Plessis-Trévise et entre Haussmann - Gare Saint-Lazare et Tournan. Un service de bus de remplacement est mis en place :<br />
+- De Paris, rejoignez par le RER A Noisy-le-Grand Mont-d'Est d'où partent les bus à destination de Tournan,<br />
+- De Tournan à Nogent-le-Perreux pour Paris, rejoignez Val-de-Fontenay par bus puis prendre le RER A,<br />
+- Les deux derniers bus au départ de Tournan ont pour destination Gare de l'Est,<br />
+- Des bus circulent également entre Rosny-Bois-Perrier et Noisy-le-Grand Mont-d'Est RER A.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.<br />
+ </p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 22h30 à 01h50</span> <span>⌛ 3h20</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h30</strong> <span>⌛ 3h20</span> Ligne E : Haussmann - Chelles-G. du 27/04 au 5/05        <p>Période : à partir de 22h30<br />
+<br />
+Dates : samedi 27 et dimanche 28 avril, samedi 4 et dimanche 5 mai<br />
+<br />
+Le trafic est interrompu entre Haussmann - Gare Saint-Lazare et Chelles-Gournay.<br />
+<br />
+Un service de bus de remplacement est mis en place :<br />
+- De Chelles-Gournay à Paris Gare de l'Est,<br />
+- De Paris, rejoignez par la ligne 5  du métro Bobigny Pablo Picasso d'où partent les bus à destination de Chelles-Gournay.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 22h30 à 01h20</span> <span>⌛ 2h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>01h20</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h30</strong> <span>⌛ 2h50</span> Ligne P : Paris Est - Coulommiers 27 et 28/04        <p>Période : à partir de 22h30<br />
+<br />
+Dates : samedi 27 et dimanche 28 avril<br />
+<br />
+Le trafic est interrompu entre Paris Est et Coulommiers.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 20h17 à 20h52</span> <span>⌛ 0h34</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h52</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>20h17</strong> <span>⌛ 0h34</span> Ligne R : ralentissements        <p>Le trafic est ralenti entre Paris Gare de Lyon et Montereau via Moret Veneux les S. et entre Paris Gare de Lyon et Montargis dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne R. <br />
+<br />
+Motif : animaux sur la voie dans le secteur de Fontainebleau-Avon (incident en cours).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 20h17 à 22h00</span> <span>⌛ 1h42</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>22h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>20h17</strong> <span>⌛ 1h42</span> Ligne R : ralentissements        <p>Le trafic est ralenti entre Paris Gare de Lyon et Montereau via Moret Veneux les S. et entre Paris Gare de Lyon et Montargis dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne R. <br />
+<br />
+Motif : animaux sur la voie dans le secteur de Fontainebleau-Avon (incident terminé).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 20h00 à 08h00</span> <span>⌛ 12h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>20h00</strong> <span>⌛ 12h00</span> Ligne E : Haussmann - Chelles-Gournay 27 et 28/04        <p>Période : entre 20h00 et 8h00<br />
+<br />
+Date : nuit du samedi 27 au dimanche 28 avril<br />
+<br />
+Sur l'axe Paris <> Chelles-Gournay, les départs et les arrivées se font de Paris-Est, et les gares suivantes ne sont pas desservies : <br />
+- Haussmann - Gare Saint-Lazare dans les deux sens, <br />
+- Magenta - Gare du Nord dans les deux sens,<br />
+- Rosa Parks dans les deux sens,<br />
+- Pantin en direction de Paris-Est.<br />
+<br />
+Rosa Parks et Pantin sont desservies par la ligne du tramway T3bis.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.<br />
+ </p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 19h56 à 20h24</span> <span>⌛ 0h27</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h24</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h56</strong> <span>⌛ 0h27</span> Ligne R : ralentissements        <p>Le trafic est ralenti entre Paris Gare de Lyon et Moret Veneux les S. dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne R. <br />
+<br />
+Motif : animaux sur la voie dans le secteur de Fontainebleau-Avon.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 19h56 à 20h52</span> <span>⌛ 0h55</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h52</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h56</strong> <span>⌛ 0h55</span> Ligne R : ralentissements        <p>Le trafic est ralenti entre Paris Gare de Lyon et Montereau via Moret Veneux les S. et entre Paris Gare de Lyon et Montargis dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne R. <br />
+<br />
+Motif : animaux sur la voie dans le secteur de Fontainebleau-Avon (incident en cours).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//r.svg" /> <span>De 19h56 à 22h00</span> <span>⌛ 2h03</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>22h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h56</strong> <span>⌛ 2h03</span> Ligne R : ralentissements        <p>Le trafic est ralenti entre Paris Gare de Lyon et Montereau via Moret Veneux les S. et entre Paris Gare de Lyon et Montargis dans les 2 sens. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne R. <br />
+<br />
+Motif : animaux sur la voie dans le secteur de Fontainebleau-Avon (incident terminé).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 19h52 à 20h15</span> <span>⌛ 0h22</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h15</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h52</strong> <span>⌛ 0h22</span> Ligne A : perturbé        <p>Le trafic est perturbé de Nanterre Préfecture vers Marne-la-Vallée Chessy et de Nanterre Préfecture vers Boissy-Saint-Léger.<br />
+<br />
+Motif : affaires oubliées à Auber ( fin d'incident). </p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 19h52 à 20h30</span> <span>⌛ 0h37</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h52</strong> <span>⌛ 0h37</span> Ligne A :  perturbé        <p>Le trafic est perturbé de Nanterre Préfecture vers Marne-la-Vallée Chessy et de Nanterre Préfecture vers Boissy-Saint-Léger.<br />
+<br />
+Motif : affaires oubliées  à Auber (fin d'incident)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 19h52 à 20h44</span> <span>⌛ 0h51</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h44</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h52</strong> <span>⌛ 0h51</span> Ligne A :  perturbé        <p>Le trafic est perturbé de Nanterre Préfecture vers Marne-la-Vallée Chessy et de Nanterre Préfecture vers Boissy-Saint-Léger.<br />
+<br />
+Motif : affaires oubliées  à Auber (fin d'incident)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 19h14 à 20h05</span> <span>⌛ 0h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>20h05</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h14</strong> <span>⌛ 0h50</span> Ligne C Massy-P. - Vers.Chantiers : suppression        <p>Train supprimé :<br />
+- Le train CIME de 19h45 à Massy Palaiseau, arrivée à Versailles Chantiers à 20h05.<br />
+<br />
+Prochain train à circuler :<br />
+- Le train CIME de 20h15 à Massy Palaiseau, arrivée à Versailles Chantiers à 20h35.<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : difficultés liées à un manque de personnel.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h44 à 19h50</span> <span>⌛ 1h05</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h44</strong> <span>⌛ 1h05</span> Ligne A : perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne.<br />
+<br />
+Motif : affaires oubliées à Auber (fin d'incident) Valise récupérée par son propriétaire.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h44 à 19h53</span> <span>⌛ 1h08</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h53</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h44</strong> <span>⌛ 1h08</span> Ligne A : perturbé        <p>Le trafic est perturbé de Nanterre Préfecture vers Marne-la-Vallée Chessy et de Nanterre Préfecture vers Boissy-Saint-Léger.<br />
+<br />
+Motif : affaires oubliées à Auber ( fin d'incident). </p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h44 à 19h53</span> <span>⌛ 1h08</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h53</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h44</strong> <span>⌛ 1h08</span> Ligne A :  perturbé        <p>Le trafic est perturbé de Nanterre Préfecture vers Marne-la-Vallée Chessy et de Nanterre Préfecture vers Boissy-Saint-Léger.<br />
+<br />
+Motif : affaires oubliées  à Auber (fin d'incident)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h44 à 19h53</span> <span>⌛ 1h08</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h53</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h44</strong> <span>⌛ 1h08</span> Ligne A :  perturbé        <p>Le trafic est perturbé de Nanterre Préfecture vers Marne-la-Vallée Chessy et de Nanterre Préfecture vers Boissy-Saint-Léger.<br />
+<br />
+Motif : affaires oubliées  à Auber (fin d'incident)</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h42 à 19h16</span> <span>⌛ 0h33</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h16</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h42</strong> <span>⌛ 0h33</span> Ligne A : perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne.<br />
+<br />
+Motif : affaires oubliées à Auber (fin d'incident) Valise récupérée par son propriétaire.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h20 à 18h30</span> <span>⌛ 0h09</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>18h20</strong> <span>⌛ 0h09</span> Ligne A : interruption        <p>Le trafic est interrompu entre Auber et Châtelet Les Halles dans les 2 sens jusqu'à 19h20. <br />
+<br />
+<br />
+Motif : affaires oubliées à Auber.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h20 à 18h52</span> <span>⌛ 0h31</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h52</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>18h20</strong> <span>⌛ 0h31</span> Ligne A : interruption        <p>Le trafic est interrompu entre Ch. de Gaulle - Étoile et Châtelet Les Halles dans les 2 sens jusqu'à 19h20. <br />
+<br />
+<br />
+Motif : affaires oubliées à Auber.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h20 à 18h44</span> <span>⌛ 0h24</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h44</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>18h20</strong> <span>⌛ 0h24</span> Ligne A : perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne.<br />
+<br />
+Motif : affaires oubliées à Auber (fin d'incident) Valise récupérée par son propriétaire.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 18h20 à 18h44</span> <span>⌛ 0h24</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h44</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>18h20</strong> <span>⌛ 0h24</span> Ligne A : perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne.<br />
+<br />
+Motif : affaires oubliées à Auber (fin d'incident) Valise récupérée par son propriétaire.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 17h05 à 17h30</span> <span>⌛ 0h24</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h05</strong> <span>⌛ 0h24</span> Ligne C Paris Austerlitz - Massy-P. : suppression        <p>Train supprimé :<br />
+- Le train MONA de 17h40 à Paris Austerlitz, arrivée à Massy Palaiseau à 18h20.<br />
+<br />
+Prochain train à circuler :<br />
+- Le train MONA de 18h10 à Paris Austerlitz, arrivée à Massy Palaiseau à 18h50.<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 17h05 à 17h54</span> <span>⌛ 0h48</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h54</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h05</strong> <span>⌛ 0h48</span> Ligne C Paris Austerlitz - Massy-P. : suppression        <p>Train supprimé :<br />
+- Le train MONA de 17h40 à Paris Austerlitz a son départ reporté à Choisy le Roi à 17h57, arrivée à Massy Palaiseau à 18h20.<br />
+<br />
+Prochain train à circuler :<br />
+- Le train MONA de 18h10 à Paris Austerlitz, arrivée à Massy Palaiseau à 18h50.<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 17h05 à 18h50</span> <span>⌛ 1h44</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h05</strong> <span>⌛ 1h44</span> Ligne C Paris Austerlitz - Massy-P. : suppression        <p>Train supprimé :<br />
+- Le train MONA de 17h40 à Paris Austerlitz, arrivée à Massy Palaiseau à 18h20.<br />
+<br />
+Prochain train à circuler :<br />
+- Le train MONA de 18h10 à Paris Austerlitz, arrivée à Massy Palaiseau à 18h50.<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 15h53 à 16h56</span> <span>⌛ 1h02</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h56</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h53</strong> <span>⌛ 1h02</span> Ligne C Musée d'Ors - St-Martin d'É. : suppression        <p>Train supprimé :<br />
+- Le train ELBA de 15h53 à Musée d'Orsay, arrivée à St Martin d’Étampes à 17h00.<br />
+<br />
+Prochain train à circuler :<br />
+- Le train ELBA de 16h23 à Musée d'Orsay, arrivée à St Martin d’Étampes à 17h30.<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 15h53 à 17h55</span> <span>⌛ 2h01</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h55</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h53</strong> <span>⌛ 2h01</span> Ligne C Musée d'Ors - St-Martin d'É. : suppression        <p>Train supprimé :<br />
+- Le train ELBA de 15h53 à Musée d'Orsay, arrivée à St Martin d’Étampes à 17h00.- Le train ORET de 17h26 à St Martin d’Étampes a son départ reporté à Brétigny à 17h56,  arrivée à Musée d'Orsay à 18h36.<br />
+Prochain train à circuler :<br />
+- Le train ELBA de 16h23 à Musée d'Orsay, arrivée à St Martin d’Étampes à 17h30.- Le train ORET de 17h56 à St Martin d’Étampes, arrivée à Musée d'Orsay à 19h06.<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 14h32 à 15h35</span> <span>⌛ 1h03</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h35</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>14h32</strong> <span>⌛ 1h03</span> Ligne C Vers.Chantiers - Massy-P. : suppressions        <p>Trains supprimés :<br />
+- Le train MICK de 14h45 à Versailles Chantiers, arrivée à Massy Palaiseau à 15h05.<br />
+- Le train CIME de 15h15 à Massy Palaiseau, arrivée à Versailles Chantiers à 15h35.<br />
+<br />
+Prochains trains à circuler :<br />
+- Le train MICK de 15h15 à Versailles Chantiers, arrivée à Massy Palaiseau à 15h35.<br />
+- Le train CIME de 15h45 à Massy Palaiseau, arrivée à Versailles Chantiers à 16h05.<br />
+<br />
+Risque d'affluence à bord des trains suivants.<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 13h36 à 14h30</span> <span>⌛ 0h53</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>14h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>13h36</strong> <span>⌛ 0h53</span> Ligne C Massy-P. - Vers.Chantiers : suppressions        <p>Trains supprimés :<br />
+- MICK : départ Versailles-Chantiers à 13h45, arrivée Massy-Palaiseau à 14h05.<br />
+- CIME : départ Massy-Palaiseau à 14h15, arrivée Versailles-Chantiers à 14h35.<br />
+<br />
+Prochains trains à circuler :<br />
+<br />
+- MICK : départ Versailles-Chantiers à 14h15, arrivée Massy-Palaiseau à 14h35.<br />
+- CIME : départ Massy-Palaiseau à 14h45, arrivée Versailles-Chantiers à 15h05.<br />
+<br />
+<br />
+<br />
+Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 12h10 à 12h28</span> <span>⌛ 0h17</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>12h28</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>12h10</strong> <span>⌛ 0h17</span> Ligne P : Esbly - Crécy la Ch. interrompu        <p>Le trafic est interrompu entre Esbly et Crécy-la-Chapelle jusqu'à 14h00.<br />
+<br />
+Pour rejoindre ou quitter les gares suivantes, cliquer sur le lien concerné pour télécharger l'affiche PDF :<br />
+* Esbly,<br />
+* Montry Condé, <br />
+* Couilly Saint-Germain Quincy, <br />
+* Villiers Montbarbin,<br />
+* Crécy la Chapelle.Motif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 10h41 à 11h50</span> <span>⌛ 1h08</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>11h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>10h41</strong> <span>⌛ 1h08</span> Ligne C : Invalides <-> Pontoise trafic ralenti        <p>Le trafic est ralenti entre Invalides et Pontoise dans les 2 sens. <br />
+<br />
+Motif : attente d'autorisation d'accès au réseau.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//a.svg" /> <span>De 07h56 à 08h12</span> <span>⌛ 0h15</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h12</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>07h56</strong> <span>⌛ 0h15</span> Ligne A : Nanterre-Préf - Cergy le Haut perturbé        <p>Le trafic est perturbé de Nanterre Préfecture vers Cergy le Haut.<br />
+<br />
+Motif : individus sur les voies (en gare de Cergy-Préfecture).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 06h50 à 07h30</span> <span>⌛ 0h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>07h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>06h50</strong> <span>⌛ 0h40</span> Ligne E : Haussmann - Chelles-Gournay le 28/04        <p>Date : dimanche 28 avril<br />
+<br />
+L'horaire de passage du train à 6h56 de Paris Est vers Chelles - Gournay est retardé de 6 minutes sur l'ensemble des gares desservies.<br />
+<br />
+Les gares de Haussmann - Gare Saint-Lazare, Magenta - Gare du Nord et Rosa Parks ne sont pas desservies. Pour rejoindre Rosa Parks, prenez le T3bis.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//d.svg" /> <span>De 05h00 à 02h00</span> <span>⌛ 21h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>05h00</strong> <span>⌛ 21h00</span> Ligne D : Villeneuve St-G-Melun du 27 au 28 avril.        <p>Période : Tout le week-end<br />
+<br />
+Dates : du 27 au 28 avril 2024. <br />
+<br />
+Allègement du plan de transport entre Villeneuve-Saint-Georges et Melun avec 1 train sur 2 en circulation sur l'axe Combs-la-Ville.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux de maintenance.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 05h00 à 16h00</span> <span>⌛ 11h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>05h00</strong> <span>⌛ 11h00</span> Ligne J : Paris - Val de Reuil 06/04 au 05/05        <p>Période et dates : les samedis 06, 13, 20, 27 avril et le 04 mai toute la journée et les dimanches 07, 14, 21, 28 avril et le 05 mai jusqu’à 16h.<br />
+<br />
+Le trafic est interrompu entre Val de Reuil et Paris Saint-Lazare. <br />
+<br />
+Les samedis : <br />
+- Lignes de bus régulières 2A et 2B entre Mantes la Jolie et Bonnières avec desserte de la gare intermédiaire de Rosny sur Seine.<br />
+<br />
+Les dimanches : <br />
+- Renforcement de la ligne de bus régulière 2A entre Mantes la Jolie et Bonnières avec desserte de la gare intermédiaire de Rosny sur Seine.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//c.svg" /> <span>De 04h58 à 06h50</span> <span>⌛ 1h51</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>04h58</strong> <span>⌛ 1h51</span> Ligne C Dourdan - Musée d'Orsay : suppression        <p>Train supprimé :- Le train ORET : départ initialement prévu de la gare de Dourdan à 05h37, arrivée initialement prévue en gare de Musée d'Orsay à 06h51.<br />
+<br />
+Prochain train à circuler :- Le train ORET : départ prévu de la gare de Dourdan à 06h37, arrivée prévue en gare de Musée d'Orsay à 07h51.<br />
+<br />
+Risque d'affluence à bord du train suivant.<br />
+<br />
+Motif : conditions de départ non réunies (problème d'acheminement du conducteur).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 20h00 à 08h00</span> <span>⌛ 12h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>20h00</strong> <span>⌛ 12h00</span> Ligne E : Haussmann - Chelles-Gournay 27 et 28/04        <p>Période : entre 20h00 et 8h00<br />
+<br />
+Date : nuit du samedi 27 au dimanche 28 avril<br />
+<br />
+Sur l'axe Paris <> Chelles-Gournay, les départs et les arrivées se font de Paris-Est, et les gares suivantes ne sont pas desservies : <br />
+- Haussmann - Gare Saint-Lazare dans les deux sens, <br />
+- Magenta - Gare du Nord dans les deux sens,<br />
+- Rosa Parks dans les deux sens,<br />
+- Pantin en direction de Paris-Est.<br />
+<br />
+Rosa Parks et Pantin sont desservies par la ligne du tramway T3bis.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.<br />
+ </p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//e.svg" /> <span>De 03h00 à 03h00</span> <span>⌛ 0h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>03h00</strong> <span>⌛ 0h00</span> Ligne E : Haussmann - Tournan  27 et 28/04        <p>Dates : samedi 27 et dimanche 28 avril<br />
+<br />
+1 train sur 2 circule samedi et dimanche toute la journée entre Haussmann - Gare Saint-Lazare et Tournan.<br />
+<br />
+Les trains de l'axe Paris <> Villiers-sur-Marne ne circulent pas samedi toute la journée et dimanche jusqu'à 16h00. <br />
+<br />
+Le temps de parcours des trains est allongé et les horaires sont modifiés samedi toute la journée et dimanche jusqu'à 16h00. <br />
+<br />
+Les trains en direction de Paris sont sans arrêt de Villiers-sur-Marne à Magenta - Gare du Nord samedi toute la journée et dimanche jusqu'à 16h00. <br />
+<br />
+Les trains en direction de Tournan sont sans arrêt de Pantin à Villiers-sur-Marne samedi jusqu'à 20h50 et dimanche de 7h50 à 16h00. <br />
+Les trains en direction de Tournan sont sans arrêt de Magenta - Gare du Nord à Villiers-sur-Marne samedi de 20h50 au dernier train et le dimanche du premier train jusqu'à 7h50. <br />
+<br />
+Des bus de remplacement sont mis en place et desservent dans les deux sens de circulation : Villiers-sur-Marne, Les Boullereaux-Champigny, Nogent-Le-Perreux, Val-de-Fontenay, Rosny-sous-Bois, Rosny-Bois-Perrier et Bondy RER E (axe Paris <> Chelles-Gournay). <br />
+<br />
+Les gares Rosa Parks et Pantin sont desservies par la ligne de tramway T3bis. <br />
+Noisy-Le-Sec est desservie par la ligne de tramway T1. <br />
+Val-de-Fontenay est desservie par la ligne du RER A. <br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.<br />
+ </p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//j.svg" /> <span>De 03h00 à 03h00</span> <span>⌛ 0h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>03h00</strong> <span>⌛ 0h00</span> Ligne J : Paris - Val de Reuil 06/04 au 05/05        <p>Période et dates : les samedis 06, 13, 20, 27 avril et le 04 mai toute la journée et les dimanches 07, 14, 21, 28 avril et le 05 mai jusqu’à 16h.<br />
+<br />
+Le trafic est interrompu entre Val de Reuil et Paris Saint-Lazare. <br />
+<br />
+Les samedis : <br />
+- Lignes de bus régulières 2A et 2B entre Mantes la Jolie et Bonnières avec desserte de la gare intermédiaire de Rosny sur Seine.<br />
+<br />
+Les dimanches : <br />
+- Renforcement de la ligne de bus régulière 2A entre Mantes la Jolie et Bonnières avec desserte de la gare intermédiaire de Rosny sur Seine.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//k.svg" /> <span>De 03h00 à 03h00</span> <span>⌛ 0h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>03h00</strong> <span>⌛ 0h00</span> Ligne K. Paris-Mitry : trafic interrompu 27, 28/04        <p>Période : toute la journée<br />
+<br />
+Dates : les samedis et les dimanches, du 20 avril au 28 avril 2024<br />
+<br />
+Le trafic est interrompu entre Paris Gare du Nord et Mitry - Claye.<br />
+<br />
+<br />
+Veuillez emprunter la ligne du RER B entre Paris Gare du Nord et Mitry Claye puis un train de la ligne K entre Mitry Claye et Crépy en Valois.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : Travaux .</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//p.svg" /> <span>De 03h00 à 16h00</span> <span>⌛ 13h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>03h00</strong> <span>⌛ 13h00</span> Ligne P : Paris Est - Provins/Coulommiers 27-28/04        <p>Dates / Période : samedi 27 avril toute la journée et dimanche 28 avril jusqu'à 16h00<br />
+<br />
+Le trafic est ralenti entre Paris Est et Provins et entre Paris Est et Coulommiers.<br />
+Le temps de parcours est allongé de 15 minutes.<br />
+L'horaire des trains est donc modifié. <br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+Motif : travaux.<br />
+ </p></li>
+</ul>
+</div>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>

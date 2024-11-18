@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_tramways.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_tramways.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240621.json';
 </script>
@@ -17,18 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240620/tramways.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">21/06/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240622/tramways.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -9728,18 +9729,149 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240621/20240622025801_disruptions.optimized.json">22/06/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240621/20240622025801_disruptions.optimized.json">22/06/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du 21/06/2024</h2>
+
+
+
+<h3>Terminés</h3>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t6.svg" /> <span>De 18h24 à 18h43</span> <span>⌛ 0h19</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h43</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h31</strong> <span>⌛ 0h12</span> Tramway T6 : Tramway en panne - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne  en répercussion d'un tramway en panne à Vauban<br />
+Plus d'informations sur le site ratp.fr</p></li>
+<li><span class="bq"></span> <strong>18h24</strong> <span>⌛ 0h06</span> Tramway T6 : Tramway en panne - Trafic interrompu        <p>Le trafic est interrompu sur l'ensemble de la ligne  en raison d'un tramway en panne à Vauban . <br />
+Heure de reprise estimée : 19:00.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 16h15 à 22h30</span> <span>⌛ 6h15</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>22h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h15</strong> <span>⌛ 6h15</span> Ligne T12 : suppressions        <p>Les tramways suivants sont supprimés :- départ depuis Massy Palaiseau vers Evry Courcouronnes à 17h38 / 20h15 / 21h59,- départ depuis Evry Courcouronnes vers Massy Plaiseau à 18h30 / 21h04 / 22h46.<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 15h43 à 16h00</span> <span>⌛ 0h17</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h43</strong> <span>⌛ 0h17</span> Ligne T12 : perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne. <br />
+<br />
+Motif : malaise voyageur à Longjumeau.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 15h43 à 16h06</span> <span>⌛ 0h23</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h06</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h43</strong> <span>⌛ 0h23</span> Ligne T12 : trafic ralenti sur toute la ligne        <p>Le trafic est ralenti sur l'ensemble de la ligne. <br />
+<br />
+Motif : malaise voyageur à Longjumeau (fin d'intervention des secours, incident terminé).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 15h43 à 16h22</span> <span>⌛ 0h39</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h22</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h43</strong> <span>⌛ 0h39</span> Ligne T12 Evry C. - Massy-Palaiseau : suppression        <p>Le trafic est ralenti d'Evry Courcouronnes vers Massy-Palaiseau : prévoir la suppression du tramway au départ d'Evry Courcouronnes à 16h30.<br />
+<br />
+Motif : malaise voyageur à Longjumeau (incident terminé).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 15h43 à 17h20</span> <span>⌛ 1h37</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h20</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h43</strong> <span>⌛ 1h37</span> Ligne T12 : suppression et modifications de trams        <p>Le tramway suivant est supprimé :- départ Evry Courcouronnes à 16h30 vers Massy Palaiseau.Les tramways suivants sont modifiés :- départ d'Evry Courcouronnes 16h34, limité à Epinay sur Orge,<br />
+- départ depuis Epinay sur Orge à 17h25, à destination d'Evry Courcouronnes.<br />
+Motif : malaise voyageur à Longjumeau (incident terminé).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t1.svg" /> <span>De 14h08 à 15h15</span> <span>⌛ 1h07</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h15</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>14h19</strong> <span>⌛ 0h56</span> Tramway T1 : Malaise voyageur - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne  en répercussion d'un malaise voyageur à Cimetière de Saint-Denis<br />
+Plus d'informations sur le site ratp.fr</p></li>
+<li><span class="bq"></span> <strong>14h08</strong> <span>⌛ 0h11</span> Tramway T1 : Malaise voyageur - Trafic interrompu        <p>Le trafic est interrompu sur l'ensemble de la ligne  en raison d'un malaise voyageur à Cimetière de Saint-Denis . <br />
+Heure de reprise estimée : 15:00.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t2.svg" /> <span>De 08h47 à 09h15</span> <span>⌛ 0h27</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h15</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>08h54</strong> <span>⌛ 0h21</span> Tramway T2 : Incident d'exploitation - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne  en répercussion d'un incident d'exploitation<br />
+Plus d'informations sur le site ratp.fr</p></li>
+<li><span class="bq"></span> <strong>08h47</strong> <span>⌛ 0h06</span> Tramway T2 : Incident d'exploitation - Trafic interrompu        <p>Le trafic est interrompu sur l'ensemble de la ligne  en raison d'un incident d'exploitation  . <br />
+Heure de reprise estimée : 10:00.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 08h39 à 09h08</span> <span>⌛ 0h29</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h08</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>08h39</strong> <span>⌛ 0h29</span> Ligne T12 : 2 suppressions        <p>Vendredi 21 juin : Le train suivant est supprimé au départ de Massy-Palaiseau : - 08h59Le train suivant est supprimé au départ de Evry- Courcouronnes : - 09h50<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 08h39 à 12h00</span> <span>⌛ 3h21</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>12h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>08h39</strong> <span>⌛ 3h21</span> Ligne T12 : trafic ralenti sur toute la ligne        <p>Le trafic est ralenti sur l'ensemble de la ligne jusqu'à 11h00<br />
+<br />
+Motif : alerte de sécurité émise par le conducteur.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 06h07 à 08h20</span> <span>⌛ 2h13</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>08h20</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h07</strong> <span>⌛ 2h13</span> Ligne T12 : suppressions        <p>Vendredi 21 juin:Le train suivant est supprimé au départ de Massy-Palaiseau : - 07h27Les trains suivant sont supprimés au départ de Evry- Courcouronnes :-06h40 / 07h00 / 08h20  <br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t13.svg" /> <span>De 20h00 à 06h40</span> <span>⌛ 10h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>20h00</strong> <span>⌛ 10h40</span> Ligne T13 : du 3 juin au 19 juillet        <p>Dates : du 03 juin au 19 juillet.<br />
+<br />
+Périodes : du lundi au vendredi à partir de 20h, sauf 21 juin, jusqu'à 6h40 le lendemain.<br />
+<br />
+Le trafic est interrompu sur l’ensemble de la ligne.<br />
+<br />
+Dernier départ de Saint Germain en Laye à 20h,<br />
+Dernier départ de Saint-Cyr direction Saint-Germain en Laye à 19h40,<br />
+Derniers départs de Saint-Cyr terminus Lisière Pereire à 19h50 et 20h.<br />
+<br />
+Un service de bus de remplacement est mis en place.<br />
+<br />
+Motif : travaux sur la ligne L impactant les circulations du T13.</p></li>
+</ul>
+</div>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>

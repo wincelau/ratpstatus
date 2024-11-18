@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_tramways.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_tramways.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20240926.json';
 </script>
@@ -17,18 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20240925/tramways.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">26/09/2024</span>
         <a title="Voir le jour suivant" style="" href="/20240927/tramways.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -9728,18 +9729,230 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240926/20240927025801_disruptions.optimized.json">27/09/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20240926/20240927025801_disruptions.optimized.json">27/09/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du 26/09/2024</h2>
+
+
+
+<h3>Terminés</h3>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 21h10 à 02h20</span> <span>⌛ 5h10</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h20</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>21h10</strong> <span>⌛ 5h10</span> Ligne T4 : Bondy - Hôpital Montferm. 16/09 - 11/10        <p>Période : à partir de 21h15<br />
+<br />
+Dates : du lundi 16 septembre au vendredi 11 octobre, sauf les week-ends  <br />
+<br />
+Le trafic est interrompu entre Gargan et Hôpital de Montfermeil. <br />
+Par conséquent, moins de tramways circulent entre Bondy et Gargan (1 toutes les 10 à 15 minutes environ)<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires, entre Gargan et Hôpital de Montfermeil : un bus toutes les 15 minutes jusqu'à 2h00. <br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+<br />
+Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t13.svg" /> <span>De 20h00 à 06h40</span> <span>⌛ 10h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>20h00</strong> <span>⌛ 10h40</span> Ligne T13 : lundi 9/09 au vendredi 18/10        <p>Dates : du lundi 9 septembre au vendredi 18 octobre.<br />
+Période : du lundi au vendredi, de 20h à 6h40 le lendemain<br />
+<br />
+Le trafic est interrompu sur l’ensemble de la ligne. <br />
+ <br />
+- Le dernier départ de St Germain-en-Laye en direction de  St-Cyr est à 20 h,<br />
+- le dernier départ de St-Cyr à destination de  St-Germain-en-Laye est à 19h40,<br />
+- les départs de St-Cyr 19h50, puis le dernier à 20h00, sont rendus terminus à la station Lisière Pereire.<br />
+ <br />
+Un service de bus de remplacement est mis en place. <br />
+ <br />
+Motif : travaux sur la ligne L impactant les circulations du T13.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t1.svg" /> <span>De 19h29 à 19h45</span> <span>⌛ 0h16</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h45</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h29</strong> <span>⌛ 0h16</span> Tramway T1 : Malaise voyageur - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé en direction de Asnières - Quatre Routes  en répercussion d'un malaise voyageur à Le Village<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t1.svg" /> <span>De 19h17 à 19h40</span> <span>⌛ 0h22</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>19h17</strong> <span>⌛ 0h22</span> Tramway T1 : Malaise voyageur - Trams stationnent        <p>Des trams stationnent en direction de Asnières - Quatre Routes  en raison d'un malaise voyageur à Le Village<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 16h34 à 21h15</span> <span>⌛ 4h41</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>21h15</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h34</strong> <span>⌛ 4h41</span> Ligne T12 : trafic perturbé sur toute la ligne        <p>Le trafic est perturbé sur l'ensemble de la ligne. <br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t3a.svg" /> <span>De 16h01 à 19h27</span> <span>⌛ 3h26</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>19h27</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>18h52</strong> <span>⌛ 0h35</span> Tramway T3A : Autres - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne  en raison d'un accident de la route bloquant les voies à Montsouris<br />
+Plus d'informations sur le site ratp.fr</p></li>
+<li><span class="pb"></span> <strong>17h51</strong> <span>⌛ 1h01</span> Tramway T3A : Autres - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne  en répercussion d'un accident de la route bloquant les voies à Montsouris<br />
+Plus d'informations sur le site ratp.fr</p></li>
+<li><span class="bq"></span> <strong>16h01</strong> <span>⌛ 1h50</span> Tramway T3A : Autres - Trafic interrompu        <p>Le trafic est interrompu entre Stade Charléty et Porte d'Orléans  en raison d'un accident de la route bloquant les voies à Montsouris . <br />
+Heure de reprise estimée : 17:00.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t3a.svg" /> <span>De 15h46 à 16h12</span> <span>⌛ 0h25</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h12</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>15h46</strong> <span>⌛ 0h25</span> Tramway T3A : Autres - Trams stationnent        <p>Des trams stationnent sur l'ensemble de la ligne  en raison d'un accident de la route bloquant les voies à Montsouris<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t2.svg" /> <span>De 13h49 à 17h28</span> <span>⌛ 3h38</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h28</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>13h49</strong> <span>⌛ 3h38</span> Tramway T2 : Incident affectant les voies - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne en répercussion d'une intervention des services techniques entre Brimborion et Meudon-sur-Seine<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 10h26 à 16h00</span> <span>⌛ 5h34</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>16h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>10h26</strong> <span>⌛ 5h34</span> Ligne T12 : suppressions        <p>Jeudi 26 septembre : <br />
+Suppression des départs de 11h44 / 12h44 / 13h29 / 14h44 / 15h08 depuis la gare de Massy-Palaiseau<br />
+<br />
+Suppression des départs de 12h34 / 13h04 / 14h19 / 15h34 / 16h00 depuis la gare de Évry - Courcouronnes<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t2.svg" /> <span>De 08h18 à 11h59</span> <span>⌛ 3h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>11h59</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>11h28</strong> <span>⌛ 0h31</span> Tramway T2 : Intervention des équipes techniques - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne  en répercussion d'une intervention des équipes techniques<br />
+Plus d'informations sur le site ratp.fr</p></li>
+<li><span class="bq"></span> <strong>08h18</strong> <span>⌛ 3h09</span> Tramway T2 : Intervention des équipes techniques - Trafic interrompu        <p>Le trafic est interrompu entre Suresnes Longchamp et Issy - Val de Seine  en raison d'une intervention des équipes techniques  . <br />
+Heure de reprise estimée : 10:00.<br />
+Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapprocher de nos agents.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t13.svg" /> <span>De 07h53 à 09h50</span> <span>⌛ 1h57</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>07h53</strong> <span>⌛ 1h57</span> Ligne T13 : suppressions        <p>Jeudi 26 septembre : <br />
+<br />
+Suppression du départ de 08h20 depuis la gare de Saint-Cyr<br />
+<br />
+Suppression du départ de 09h00 depuis la gare de Saint-Germain en Laye<br />
+<br />
+Motif : difficultés liées à un manque de personnel.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t10.svg" /> <span>De 07h26 à 07h26</span> <span>⌛ 0h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>07h26</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>07h26</strong> <span>⌛ 0h00</span> Trafic perturbé le 24/09/24        <p>En raison d'une avarie électrique, le trafic est perturbé sur l'ensemble de la ligne.Nous vous présentons nos excuses pour la gène occasionnée.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t13.svg" /> <span>De 07h21 à 09h30</span> <span>⌛ 2h09</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>07h21</strong> <span>⌛ 2h09</span> Ligne T13 : suppression        <p>Jeudi 26 septembre : <br />
+Suppression du départ de 07h10 depuis la gare de Saint-Germain en LayeMotif : panne d'un train.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t3b.svg" /> <span>De 07h05 à 17h40</span> <span>⌛ 10h35</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>07h05</strong> <span>⌛ 10h35</span> Tramway T3B : Incident affectant les voies - Trafic perturbé        <p>Le trafic est perturbé entre Porte de Vincennes et Porte Dauphine (Avenue Foch) en direction de Porte Dauphine (Avenue Foch)  en raison d'un incident affectant les voies<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t3b.svg" /> <span>De 06h53 à 07h12</span> <span>⌛ 0h18</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>07h12</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h53</strong> <span>⌛ 0h18</span> Tramway T3B : Incident affectant les voies - Tram stationne        <p>Un tram stationne à Porte Dauphine (Avenue Foch) en direction de Porte Dauphine (Avenue Foch)  en raison d'un incident affectant les voies<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 06h24 à 07h50</span> <span>⌛ 1h26</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>07h50</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h24</strong> <span>⌛ 1h26</span> Ligne T12 : suppressions        <p>Jeudi 26 septembre :Suppression des départs de 06h10 / 06h40 / 07h30 / 07h50 depuis la gare de Massy-Palaiseau<br />
+<br />
+Suppression des départs de 06h38 / 06h58 depuis la gare de Évry - Courcouronnes<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t2.svg" /> <span>De 03h08 à 03h09</span> <span>⌛ 0h01</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>03h09</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>03h08</strong> <span>⌛ 0h01</span> Tramway T2 : Autres - Trafic interrompu        <p>Le trafic est interrompu entre Parc Pierre Lagravère et Pont de Bezons  en raison d'un accident de la route bloquant les voies à Parc Pierre Lagravère . <br />
+Pas de reprise prévue d'ici la fin de service.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t13.svg" /> <span>De 20h00 à 06h40</span> <span>⌛ 10h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>20h00</strong> <span>⌛ 10h40</span> Ligne T13 : lundi 9/09 au vendredi 18/10        <p>Dates : du lundi 9 septembre au vendredi 18 octobre.<br />
+Période : du lundi au vendredi, de 20h à 6h40 le lendemain<br />
+<br />
+Le trafic est interrompu sur l’ensemble de la ligne. <br />
+ <br />
+- Le dernier départ de St Germain-en-Laye en direction de  St-Cyr est à 20 h,<br />
+- le dernier départ de St-Cyr à destination de  St-Germain-en-Laye est à 19h40,<br />
+- les départs de St-Cyr 19h50, puis le dernier à 20h00, sont rendus terminus à la station Lisière Pereire.<br />
+ <br />
+Un service de bus de remplacement est mis en place. <br />
+ <br />
+Motif : travaux sur la ligne L impactant les circulations du T13.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t1.svg" /> <span>De 18h48 à 05h15</span> <span>⌛ 10h27</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>05h15</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>18h48</strong> <span>⌛ 10h27</span> Tramway T1 : Travaux - Trafic interrompu        <p>Jusqu'au 25 septembre, le trafic est interrompu entre La Courneuve - Six Routes et Maurice Lachâtre en raison de travaux.<br />
+Bus de remplacement.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>

@@ -7,7 +7,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_tramways.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_tramways.png" />
-<link rel="stylesheet" href="/css/style.css?202411142345">
+<link rel="stylesheet" href="/css/style.css?202411172333">
 <script>
     const urlJson = '/20241014.json';
 </script>
@@ -17,18 +17,19 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<span class="mobile_hidden"> Aide et Infos</span></a>
+<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-<h1><span class="mobile_hidden">🚥 Suivi de l'état du trafic</span><span class="mobile_visible">État du trafic</span></h1>
+<h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
         <a title="Voir le jour précédent" href="/20241013/tramways.html">
-        <span aria-hidden="true">⬅️</span>
+        ⬅️
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
         <span class="">14/10/2024</span>
         <a title="Voir le jour suivant" style="" href="/20241015/tramways.html">
-        <span aria-hidden="true">➡️</span>
+        ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     </h2>
@@ -9728,18 +9729,223 @@
 </div>
 </main>
 </div>
-<p id="legende"><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
-<footer class="visually-hidden" role="contentinfo" id="footer">
+<div id="legende">
+<p><span class="ok"></span> Rien à signaler <span class="pb" style="margin-left: 20px;"></span> Perturbation <span class="bq" style="margin-left: 20px;"></span> Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> Travaux <span class="no" style="margin-left: 20px;"></span> Service terminé ou non commencé</p>
 <p>
-    Les informations présentées proviennent des données open data du portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>
-</p>
+    L'état du trafic est récupéré toutes les 2 minutes depuis le portail <a href="https://prim.iledefrance-mobilites.fr/">PRIM Île-de-France mobilités</a>. <br /><br />La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20241014/20241015025801_disruptions.optimized.json">15/10/2024 à 02:58:01</a></p>
+</div>
+<footer role="contentinfo" id="footer">
 <p>
-    L'état du trafic est récupéré toutes les 2 minutes, la dernière récupération date du <a href="https://github.com/wincelau/ratpstatus/blob/main/app/../datas/json/20241014/20241015025801_disruptions.optimized.json">15/10/2024 02:58:01</a><p>
-    Le projet est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), initié par <a href="https://piaille.fr/@winy">winy</a>
+    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
-<p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a></p>
 </footer>
 <dialog id="tooltipModal"></dialog>
+<dialog id="listModal">
+<h2>Incidents du 14/10/2024</h2>
+
+<h3>En cours</h3>
+<div class="disruption  tx">
+<h4><img src="/images/lignes//t1.svg" /> <span>Depuis 04h45</span> <span>⌛ 22h24</span></h4>
+<ul>
+<li><span class="tx"></span> <strong>04h45</strong> <span>⌛ 22h24</span> Tramway T1 : Travaux - Trafic interrompu        <p>Jusqu'au lundi 31 mars 2025, le trafic est interrompu entre Gare de Noisy-le-Sec et Escadrille Normandie-Niémen en raison de travaux.<br />
+Bus de remplacement.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+
+
+<h3>Terminés</h3>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 22h50 à 02h10</span> <span>⌛ 3h20</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h50</strong> <span>⌛ 3h20</span> Ligne T4 : Bondy - Aulnay s/s Bois 14/10 - 18/10        <p>Période : à partir de 22h55<br />
+<br />
+Dates : du lundi 14 au vendredi 18 octobre<br />
+<br />
+Le trafic est interrompu entre Bondy et Aulnay-sous-Bois.<br />
+Le dernier tram de Bondy vers Aulnay-sous-Bois est à 22h46.<br />
+Le dernier tram de Aulnay-sous-Bois vers Bondy est à 22h46.<br />
+<br />
+Un service de bus de remplacement est mis en place avec desserte des gares intermédiaires. Un bus circule toutes les 15 minutes.<br />
+Attention : la circulation est aussi interrompue entre Bondy et Hôpital de Montfermeil.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+﻿Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t11.svg" /> <span>De 22h00 à 02h00</span> <span>⌛ 4h00</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>22h00</strong> <span>⌛ 4h00</span> Ligne T11 : lundi 14 au vendredi 25 octobre        <p>Période : en soirée dès 22h, sauf le samedi et le dimanche<br />
+<br />
+Dates : du lundi 14 au vendredi 25 octobre<br />
+<br />
+Le trafic est interrompu sur l'ensemble de la ligne.<br />
+<br />
+Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires.<br />
+<br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+<br />
+Motif : travaux de maintenance.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 21h36 à 22h40</span> <span>⌛ 1h04</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>22h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>21h36</strong> <span>⌛ 1h04</span> Ligne T12 : trafic ralenti sur toute la ligne        <p>Le trafic est ralenti sur l'ensemble de la ligne. <br />
+<br />
+Motif : panne d'un tramway à Petit Vaux (incident terminé).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 21h32 à 23h00</span> <span>⌛ 1h28</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>23h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>21h32</strong> <span>⌛ 1h28</span> Ligne T4 : interruption Gargan - Aulnay sous Bois.        <p>Le trafic est interrompu entre Gargan et Aulnay sous Bois dans les 2 sens. <br />
+<br />
+Motif : affaires oubliées à Aulnay sous Bois.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 21h15 à 02h40</span> <span>⌛ 5h25</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>02h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>21h15</strong> <span>⌛ 5h25</span> Ligne T4 : Bondy - Hôpital Montferm. 14/10 - 18/10        <p>Période : à partir de 21h15<br />
+<br />
+Dates : du lundi 14 au vendredi 18 octobre<br />
+<br />
+Le trafic est interrompu entre Bondy et Hôpital de Montfermeil.<br />
+Le dernier tram de Bondy vers Hôpital de Montfermeil est à 20h59.<br />
+Le dernier tram de Hôpital de Montfermeil vers Bondy est à 21h25.<br />
+<br />
+Un service de bus de remplacement est mis en place entre Bondy et Hôpital de Montfermeil, sans arrêt entre Bondy et Gargan dans les deux sens de circulation. Un bus circule toutes les 15 minutes.<br />
+Attention : la circulation est interrompue entre Bondy et Aulnay-sous-Bois à partir de 22h55. Il est nécessaire de changer de bus à Gargan : <br />
+- Si vous prenez le bus entre La Remise à Jorelle et Les Pavillons-sous-Bois et que vous vous rendez entre République Marx Dormoy et Hôpital de Montfermeil ; <br />
+- Si vous prenez le bus entre Hôpital de Montfermeil et République Marx Dormoy et que vous vous rendez entre Les Pavillons-sous-Bois et La Remise à Jorelle. <br />
+Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
+<br />
+﻿Motif : travaux.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t13.svg" /> <span>De 20h00 à 06h40</span> <span>⌛ 10h40</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>06h40</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="tx"></span> <strong>20h00</strong> <span>⌛ 10h40</span> Ligne T13 : lundi 9/09 au vendredi 18/10        <p>Dates : du lundi 9 septembre au vendredi 18 octobre.<br />
+Période : du lundi au vendredi, de 20h à 6h40 le lendemain<br />
+<br />
+Le trafic est interrompu sur l’ensemble de la ligne. <br />
+ <br />
+- Le dernier départ de St Germain-en-Laye en direction de  St-Cyr est à 20 h,<br />
+- le dernier départ de St-Cyr à destination de  St-Germain-en-Laye est à 19h40,<br />
+- les départs de St-Cyr 19h50, puis le dernier à 20h00, sont rendus terminus à la station Lisière Pereire.<br />
+ <br />
+Un service de bus de remplacement est mis en place. <br />
+ <br />
+Motif : travaux sur la ligne L impactant les circulations du T13.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t1.svg" /> <span>De 17h16 à 17h45</span> <span>⌛ 0h29</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h45</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>17h16</strong> <span>⌛ 0h29</span> Tramway T1 : Tramway en panne - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne  en répercussion d'un tramway en panne à La Courneuve - Six Routes<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 16h33 à 18h10</span> <span>⌛ 1h37</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>18h10</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h33</strong> <span>⌛ 1h37</span> Ligne T4 : ralentissements        <p>Le trafic est fortement perturbé sur l'ensemble de la ligne. <br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne T4. <br />
+<br />
+Motif : difficultés liées à un manque de matériel.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t1.svg" /> <span>De 16h18 à 17h02</span> <span>⌛ 0h44</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>17h02</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>16h18</strong> <span>⌛ 0h44</span> Tramway T1 : Intervention de police bloquant les voies - Trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne  en raison d'une intervention de police bloquant les voies à La Courneuve - Six Routes<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 11h01 à 12h38</span> <span>⌛ 1h37</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>12h38</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="bq"></span> <strong>11h01</strong> <span>⌛ 1h37</span> Ligne T4 : trafic interrompu sur toute la ligne        <p>Le trafic est interrompu sur l'ensemble de la ligne jusqu'à 13h00.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne T4. <br />
+<br />
+Motif : panne d'un tramway à Pavillons sous Bois.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t4.svg" /> <span>De 11h01 à 14h30</span> <span>⌛ 3h29</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>14h30</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>11h01</strong> <span>⌛ 3h29</span> Ligne T4 : trafic perturbé        <p>Le trafic est perturbé sur l'ensemble de la ligne.<br />
+<br />
+Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne T4. <br />
+<br />
+Motif : panne d'un tramway à Pavillons sous Bois (incident terminé).</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t12.svg" /> <span>De 09h10 à 15h00</span> <span>⌛ 5h50</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>15h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>09h10</strong> <span>⌛ 5h50</span> Ligne T12 : suppressions        <p>Les tramways suivants sont supprimés :<br />
+<br />
+- Massy Palaiseau, départ 9h45 - Evry Courcouronnes, arrivée 10h26,<br />
+- Massy Palaiseau, départ 9h59 - Evry Courcouronnes, arrivée 10h40,<br />
+- Massy Palaiseau, départ 10h59 - Evry Courcouronnes, arrivée 11h40,<br />
+- Massy Palaiseau, départ 11h44 - Evry Courcouronnes, arrivée 12h25,<br />
+- Massy Palaiseau, départ 13h29 - Evry Courcouronnes, arrivée 14h10.<br />
+<br />
+- Evry Courcouronnes, départ 10h33  -  Massy Palaiseau, arrivée 11h15,<br />
+- Evry Courcouronnes, départ 10h48 - Massy Palaiseau, arrivée 11h30,<br />
+- Evry Courcouronnes, départ 11h48 - Massy Palaiseau, arrivée 12h30,<br />
+- Evry Courcouronnes, départ 12h33 - Massy Palaiseau, arrivée 13h15,<br />
+- Evry Courcouronnes, départ 14h18 - Massy Palaiseau, arrivée 15h00.<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t3a.svg" /> <span>De 08h21 à 09h32</span> <span>⌛ 1h10</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h32</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>08h58</strong> <span>⌛ 0h34</span> Tramway T3A : Autres - Reprise progressive / trafic reste perturbé        <p>Le trafic reprend mais reste perturbé sur l'ensemble de la ligne  en répercussion d'un accident de la route bloquant les voies à Cité Universitaire<br />
+Plus d'informations sur le site ratp.fr</p></li>
+<li><span class="bq"></span> <strong>08h21</strong> <span>⌛ 0h36</span> Tramway T3A : Autres - Trafic interrompu        <p>Le trafic est interrompu sur l'ensemble de la ligne  en raison d'un accident de la route bloquant les voies à Cité Universitaire . <br />
+Heure de reprise estimée : 09:30.<br />
+Plus d'informations sur le site ratp.fr</p></li>
+</ul>
+</div>
+<div class="disruption  ">
+<h4><img src="/images/lignes//t13.svg" /> <span>De 06h23 à 09h00</span> <span>⌛ 2h37</span></h4>
+<ul>
+<li><span class="ok"></span> <strong>09h00</strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="pb"></span> <strong>06h23</strong> <span>⌛ 2h37</span> Ligne T13 : suppressions        <p>Les tramways suivants sont supprimés :<br />
+<br />
+- Saint-Cyr, départ 7h10 - Saint-Germain en Laye, arrivée 7h42,<br />
+- Saint-Cyr, départ 8h30 - Saint-Germain en Laye, arrivée 9h02.<br />
+<br />
+- Saint-Germain en Laye, départ 7h50 - Saint-Cyr, arrivée 8h21.<br />
+<br />
+Motif : conditions de départ non réunies.</p></li>
+</ul>
+</div>
+</dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>
