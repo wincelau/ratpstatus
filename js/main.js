@@ -7,6 +7,18 @@ document.addEventListener('DOMContentLoaded', async function () {
   if(document.querySelector('.ligne .e')) {
       window.scrollTo({ left: document.querySelector('.ligne .e').offsetLeft - window.innerWidth + 66 });
   }
+
+  document.querySelector('#btn_help').addEventListener('click', function(e) {
+      document.getElementById('helpModal').showModal();
+      return false;
+  });
+
+  document.querySelector('#btn_list').addEventListener('click', function(e) {
+      filtreListeDisruption();
+      document.getElementById('listModal').showModal();
+      return false;
+  });
+
   document.querySelector('#lignes').addEventListener('mouseover', async function(e) {
       if(e.target.title) {
           await replaceMessage(e.target);
@@ -18,12 +30,11 @@ document.addEventListener('DOMContentLoaded', async function () {
           delete e.target.dataset.title
       }
   })
-  document.querySelector('#lignes').addEventListener('click', async function(e) {
-      if(e.target.title) {
-          await replaceMessage(e.target);
-
-          modal.innerText = e.target.title
-          modal.showModal()
+  document.querySelector('#lignes').addEventListener('click', function(e) {
+      console.log(e.target.parentNode);
+      if(e.target.closest('.ligne')) {
+        filtreListeDisruption(e.target.closest('.ligne').dataset.id);
+        document.getElementById('listModal').showModal();
       }
   })
   const modal = document.getElementById('tooltipModal')
@@ -62,4 +73,19 @@ function replaceMessage(item) {
             }
         }
     }
+}
+
+function filtreListeDisruption(ligneId = null) {
+  document.querySelectorAll('#listModal .disruption').forEach(function(item) {
+    if(ligneId) {
+      item.classList.add('hide');
+    } else {
+      item.classList.remove('hide');
+    }
+  });
+  if(ligneId) {
+    document.querySelectorAll('#listModal .disruption[data-line="'+ligneId+'"]').forEach(function(item) {
+      item.classList.remove('hide');
+    });
+  }
 }
