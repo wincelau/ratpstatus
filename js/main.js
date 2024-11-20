@@ -19,9 +19,9 @@ document.addEventListener('DOMContentLoaded', async function () {
       return false;
   });
 
-  document.querySelector('#lignes').addEventListener('mouseover', async function(e) {
+  document.querySelector('#lignes').addEventListener('mouseover', function(e) {
       if(e.target.title) {
-          await replaceMessage(e.target);
+          replaceMessage(e.target);
       }
   })
   document.querySelector('#lignes').addEventListener('mouseout', function(e) {
@@ -31,7 +31,6 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
   })
   document.querySelector('#lignes').addEventListener('click', function(e) {
-      console.log(e.target.parentNode);
       if(e.target.closest('.ligne')) {
         filtreListeDisruption(e.target.closest('.ligne').dataset.id);
         document.getElementById('listModal').showModal();
@@ -66,7 +65,7 @@ function replaceMessage(item) {
         if(disruptionId.match(/^%/)) {
             disruptionId=disruptionId.replace(/%/g, '')
             if(disruptionId && disruptions[disruptionId]) {
-                item.title = item.title.replace(';%'+disruptionId+'%', "\n\n"+disruptions[disruptionId])
+                item.title = item.title.replace(';%'+disruptionId+'%', "\n\n"+disruptions[disruptionId].replace(/[\n]+$/, ""))
             }
             if(disruptionId && disruptions[disruptionId] == null) {
                 item.title = item.title.replace(';%'+disruptionId+'%', "")
