@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   document.querySelector('#btn_list').addEventListener('click', function(e) {
       filtreListeDisruption();
       document.getElementById('listModal').showModal();
+      document.getElementById('listModal').scrollTo(0,0);
       return false;
   });
 
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       if(e.target.closest('.ligne')) {
         filtreListeDisruption(e.target.closest('.ligne').dataset.id);
         document.getElementById('listModal').showModal();
+        document.getElementById('listModal').scrollTo(0,0);
       }
   })
   const modal = document.getElementById('tooltipModal')
