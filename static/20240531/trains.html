@@ -7,18 +7,18 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_trains.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_trains.png" />
-<link rel="stylesheet" href="/css/style.css?202411172333">
+<link rel="stylesheet" href="/css/style.css?202411202353">
 <script>
     const urlJson = '/20240531.json';
 </script>
-<script src="/js/main.js?202411142342"></script>
+<script src="/js/main.js?202411202353"></script>
 </head>
 <body>
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
-<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
+<a id="btn_help" href="#aide" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a id="btn_list" href="#incidents" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
@@ -38,7 +38,7 @@
 </header>
 <main role="main">
 <div id="lignes">
-<div class="ligne"><div class="logo"><img alt="Ligne A" title="Ligne A" src="/images/lignes//a.svg"/></div>
+<div class="ligne" data-id="A"><div class="logo"><img alt="Ligne A" title="Ligne A" src="/images/lignes//a.svg"/></div>
 <a class="i pb i1h" title="04h00;%3a50754e-1dd0-11ef-96a1-0a58a9feac02%"></a>
 <a class="i pb " title="04h02;%3a50754e-1dd0-11ef-96a1-0a58a9feac02%"></a>
 <a class="i pb " title="04h04;%3a50754e-1dd0-11ef-96a1-0a58a9feac02%"></a>
@@ -730,7 +730,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne B" title="Ligne B" src="/images/lignes//b.svg"/></div>
+<div class="ligne" data-id="B"><div class="logo"><img alt="Ligne B" title="Ligne B" src="/images/lignes//b.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -1422,7 +1422,7 @@
 <a class="i tx " title="02h56;%7f404cd8-174f-11ef-8504-0a58a9feac02%"></a>
 <a class="i tx " title="02h58;%7f404cd8-174f-11ef-8504-0a58a9feac02%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne C" title="Ligne C" src="/images/lignes//c.svg"/></div>
+<div class="ligne" data-id="C"><div class="logo"><img alt="Ligne C" title="Ligne C" src="/images/lignes//c.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -2114,7 +2114,7 @@
 <a class="i pb " title="02h56;%6600c6fa-1f4f-11ef-9544-0a58a9feac02%"></a>
 <a class="i pb " title="02h58;%6600c6fa-1f4f-11ef-9544-0a58a9feac02%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne D" title="Ligne D" src="/images/lignes//d.svg"/></div>
+<div class="ligne" data-id="D"><div class="logo"><img alt="Ligne D" title="Ligne D" src="/images/lignes//d.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -2806,7 +2806,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne E" title="Ligne E" src="/images/lignes//e.svg"/></div>
+<div class="ligne" data-id="E"><div class="logo"><img alt="Ligne E" title="Ligne E" src="/images/lignes//e.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -3498,7 +3498,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne H" title="Ligne H" src="/images/lignes//h.svg"/></div>
+<div class="ligne" data-id="H"><div class="logo"><img alt="Ligne H" title="Ligne H" src="/images/lignes//h.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -4190,7 +4190,7 @@
 <a class="i tx " title="02h56;%224d343a-e5f6-11ee-aab6-0a58a9feac02%;%53cdea18-e5f6-11ee-aab6-0a58a9feac02%;%28498570-fb34-11ee-bdfc-0a58a9feac02%;%8c6c8fb8-1365-11ef-9544-0a58a9feac02%"></a>
 <a class="i tx " title="02h58;%224d343a-e5f6-11ee-aab6-0a58a9feac02%;%53cdea18-e5f6-11ee-aab6-0a58a9feac02%;%28498570-fb34-11ee-bdfc-0a58a9feac02%;%8c6c8fb8-1365-11ef-9544-0a58a9feac02%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne J" title="Ligne J" src="/images/lignes//j.svg"/></div>
+<div class="ligne" data-id="J"><div class="logo"><img alt="Ligne J" title="Ligne J" src="/images/lignes//j.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -4882,7 +4882,7 @@
 <a class="i tx " title="02h56;%275c7538-0092-11ef-a614-0a58a9feac02%;%d3902f54-03d3-11ef-a614-0a58a9feac02%;%d3ecb31e-03d3-11ef-a614-0a58a9feac02%;%a9522c22-03df-11ef-bcf2-0a58a9feac02%;%b3618e54-03d7-11ef-9935-0a58a9feac02%;%4c659300-03df-11ef-bdfc-0a58a9feac02%"></a>
 <a class="i tx " title="02h58;%275c7538-0092-11ef-a614-0a58a9feac02%;%d3902f54-03d3-11ef-a614-0a58a9feac02%;%d3ecb31e-03d3-11ef-a614-0a58a9feac02%;%a9522c22-03df-11ef-bcf2-0a58a9feac02%;%b3618e54-03d7-11ef-9935-0a58a9feac02%;%4c659300-03df-11ef-bdfc-0a58a9feac02%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne K" title="Ligne K" src="/images/lignes//k.svg"/></div>
+<div class="ligne" data-id="K"><div class="logo"><img alt="Ligne K" title="Ligne K" src="/images/lignes//k.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -5574,7 +5574,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne L" title="Ligne L" src="/images/lignes//l.svg"/></div>
+<div class="ligne" data-id="L"><div class="logo"><img alt="Ligne L" title="Ligne L" src="/images/lignes//l.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -6266,7 +6266,7 @@
 <a class="i tx " title="02h56;%c94aa11e-f5b4-11ee-8953-0a58a9feac02%"></a>
 <a class="i tx " title="02h58;%c94aa11e-f5b4-11ee-8953-0a58a9feac02%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne N" title="Ligne N" src="/images/lignes//n.svg"/></div>
+<div class="ligne" data-id="N"><div class="logo"><img alt="Ligne N" title="Ligne N" src="/images/lignes//n.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -6958,7 +6958,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne P" title="Ligne P" src="/images/lignes//p.svg"/></div>
+<div class="ligne" data-id="P"><div class="logo"><img alt="Ligne P" title="Ligne P" src="/images/lignes//p.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -7650,7 +7650,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne R" title="Ligne R" src="/images/lignes//r.svg"/></div>
+<div class="ligne" data-id="R"><div class="logo"><img alt="Ligne R" title="Ligne R" src="/images/lignes//r.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -8342,7 +8342,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne U" title="Ligne U" src="/images/lignes//u.svg"/></div>
+<div class="ligne" data-id="U"><div class="logo"><img alt="Ligne U" title="Ligne U" src="/images/lignes//u.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -9050,11 +9050,8 @@
 <dialog id="tooltipModal"></dialog>
 <dialog id="listModal">
 <h2>Incidents du 31/05/2024</h2>
-
-
-
 <h3>Terminés</h3>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 03h00 à 03h00</span> <span>⌛ 0h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9072,7 +9069,7 @@ Bus mis en place entre Maisons-Alfort et Villeneuve-Saint-Georges à partir de 2
 Motif : travaux de maintenance et de développement du réseau ferré.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 03h00 à 03h00</span> <span>⌛ 0h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9086,7 +9083,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 03h00 à 03h00</span> <span>⌛ 0h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9098,7 +9095,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="K" class="disruption  ">
 <h4><img src="/images/lignes//k.svg" /> <span>De 03h00 à 03h00</span> <span>⌛ 0h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9114,7 +9111,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 03h00 à 03h00</span> <span>⌛ 0h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9140,7 +9137,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 23h40 à 02h30</span> <span>⌛ 2h50</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9165,7 +9162,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux de maintenance (Remplacement caténaire).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 23h40 à 02h30</span> <span>⌛ 2h50</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9185,7 +9182,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux de maintenance des installations.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 23h40 à 02h30</span> <span>⌛ 2h50</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9204,7 +9201,7 @@ Motif : travaux de maintenance (remplacement caténaire).<br />
  </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 23h40 à 02h30</span> <span>⌛ 2h50</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9222,7 +9219,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux de maintenance (Remplacement caténaire).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 23h30 à 03h30</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9232,7 +9229,7 @@ Dates : en semaine du jeudi 02 mai au vendredi 05 juillet, sauf les week-ends, l
   Le trafic est interrompu entre Paris Nord et Pontoise. Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires :- de Paris, rejoignez la ligne 5 du métro, jusqu'à Bobigny Pablo Picasso.- de Saint Denis, rendez-vous rue Charles Michels, au point d'arrêt bus RATP 274. Les horaires du calculateur d'itinéraire tiennent compte des travaux. Motif : travaux</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 23h30 à 03h30</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9250,7 +9247,7 @@ Motif : travaux.<br />
  </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 23h30 à 03h30</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9271,7 +9268,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 23h30 à 03h30</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9292,14 +9289,14 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 23h20 à 03h00</span> <span>⌛ 3h40</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
 <li><span class="tx"></span> <strong>23h20</strong> <span>⌛ 3h40</span> Ligne J: Paris-Conflans Ste Honorine 21/05 - 07/06        <p>Période : à partir de 23hDates : du mardi 21 mai au vendredi 07 juinLes trains de l'axe Paris Saint-Lazare - Conflans Sainte-Honorine ne marquent pas d'arrêts dans les gares de Bois Colombes, Colombes et Le Stade dans les 2 sens de circulation.Un service de bus de remplacement en mis en place entre les gares d'Asnières sur Seine et Argenteuil.Également :  Axe Paris Saint-Lazare - Ermont Eaubonne les trains ne desservent pas les gares de Colombes, Bois Colombes et le Stade, et le trafic est interrompu entre Argenteuil et Ermont Eaubonne.Les horaires du calculateur d'itinéraire tiennent compte des travaux.Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 23h20 à 03h00</span> <span>⌛ 3h40</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9310,7 +9307,7 @@ Dernier train en circulation normale de Paris Saint-Lazare à Pontoise : 21h27De
 Les horaires du calculateur d’itinéraire tiennent compte des travaux.Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 23h15 à 02h15</span> <span>⌛ 3h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h15</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9329,7 +9326,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux de maintenance.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 23h15 à 02h15</span> <span>⌛ 3h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h15</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9346,7 +9343,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux de maintenance.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 23h08 à 23h20</span> <span>⌛ 0h12</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>23h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9355,7 +9352,7 @@ Motif : travaux de maintenance.</p></li>
 Motif: acte de malveillance en gare de Maisons-Laffitte.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 23h08 à 23h44</span> <span>⌛ 0h36</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>23h44</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9366,7 +9363,7 @@ Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire
 Motif: acte de malveillance en gare de Maisons-Laffitte.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 23h00 à 03h00</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9377,7 +9374,7 @@ Dernier train en circulation normale de Paris Saint-Lazare à Ermont Eaubonne : 
 Les horaires du calculateur d'itinéraire tiennent compte des travauxMotif : travaux</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 23h00 à 03h00</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9388,7 +9385,7 @@ Dernier train en circulation normale de Paris Saint-Lazare à Ermont Eaubonne : 
 Les horaires du calculateur d'itinéraire tiennent compte des travauxMotif : travaux</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 23h00 à 03h00</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9400,7 +9397,7 @@ Le trafic est interrompu entre Paris Saint-Lazare et Mantes-la-Jolie via Poissy.
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 23h00 à 02h00</span> <span>⌛ 3h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9416,7 +9413,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux de maintenance.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 22h50 à 02h50</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h50</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9431,7 +9428,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="B" class="disruption  ">
 <h4><img src="/images/lignes//b.svg" /> <span>De 22h45 à 03h45</span> <span>⌛ 5h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h45</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9440,7 +9437,7 @@ Motif : travaux.</p></li>
 Pour plus d'informations, rendez-vous sur le blog du RER B. Motif : travaux. </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="E" class="disruption  ">
 <h4><img src="/images/lignes//e.svg" /> <span>De 22h30 à 02h20</span> <span>⌛ 3h50</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9457,7 +9454,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="E" class="disruption  ">
 <h4><img src="/images/lignes//e.svg" /> <span>De 22h30 à 02h20</span> <span>⌛ 3h50</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9479,7 +9476,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="E" class="disruption  ">
 <h4><img src="/images/lignes//e.svg" /> <span>De 22h30 à 02h00</span> <span>⌛ 3h30</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9500,7 +9497,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 22h30 à 03h00</span> <span>⌛ 4h30</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9513,7 +9510,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 22h30 à 01h20</span> <span>⌛ 2h50</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>01h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9531,7 +9528,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="U" class="disruption  ">
 <h4><img src="/images/lignes//u.svg" /> <span>De 22h30 à 02h30</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9549,7 +9546,7 @@ Motif : travaux de maintenance des voies.<br />
  </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 22h20 à 02h50</span> <span>⌛ 4h30</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h50</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9568,7 +9565,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 22h15 à 22h38</span> <span>⌛ 0h22</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h38</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9579,7 +9576,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de vandalisme.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 22h15 à 01h50</span> <span>⌛ 3h35</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>01h50</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9590,7 +9587,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance dans un train.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="N" class="disruption  ">
 <h4><img src="/images/lignes//n.svg" /> <span>De 22h15 à 23h59</span> <span>⌛ 1h44</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>23h59</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9608,7 +9605,7 @@ Motif : travaux de maintenance.<br />
  </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="N" class="disruption  ">
 <h4><img src="/images/lignes//n.svg" /> <span>De 22h00 à 02h30</span> <span>⌛ 4h30</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9626,7 +9623,7 @@ Motif : travaux de maintenance.<br />
  </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 21h54 à 22h26</span> <span>⌛ 0h31</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h26</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9637,7 +9634,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : agression d'un agent.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 21h54 à 01h50</span> <span>⌛ 3h56</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>01h50</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9648,7 +9645,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 21h53 à 22h30</span> <span>⌛ 0h36</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9659,7 +9656,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train en gare de Val de Fontenay (incident terminé).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 21h53 à 23h16</span> <span>⌛ 1h23</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>23h16</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9670,7 +9667,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train en gare de Val de Fontenay (incident terminé).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 21h52 à 22h26</span> <span>⌛ 0h33</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h26</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9681,7 +9678,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : agression d'un agent.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 21h52 à 01h50</span> <span>⌛ 3h58</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>01h50</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9692,7 +9689,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="N" class="disruption  ">
 <h4><img src="/images/lignes//n.svg" /> <span>De 21h50 à 02h25</span> <span>⌛ 4h35</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h25</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9701,7 +9698,7 @@ Motif : acte de malveillance</p></li>
  </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 21h39 à 22h30</span> <span>⌛ 0h50</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9709,7 +9706,7 @@ Motif : acte de malveillance</p></li>
 Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne L. </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 21h39 à 02h00</span> <span>⌛ 4h21</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9717,7 +9714,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne L. </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 21h36 à 21h46</span> <span>⌛ 0h09</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h46</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9727,7 +9724,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 21h36 à 22h18</span> <span>⌛ 0h41</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h18</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9739,7 +9736,7 @@ Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 21h36 à 22h20</span> <span>⌛ 0h43</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9751,7 +9748,7 @@ Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 21h36 à 23h00</span> <span>⌛ 1h23</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>23h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9763,7 +9760,7 @@ Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 21h36 à 00h00</span> <span>⌛ 2h23</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>00h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9773,7 +9770,7 @@ Motif : affaires oubliées.</p></li>
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 21h36 à 00h22</span> <span>⌛ 2h45</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>00h22</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9783,7 +9780,7 @@ Motif : affaires oubliées.</p></li>
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 21h35 à 21h39</span> <span>⌛ 0h04</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h39</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9791,7 +9788,7 @@ Motif : affaires oubliées.</p></li>
 Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne L. </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 21h35 à 21h39</span> <span>⌛ 0h04</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h39</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9799,7 +9796,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la ligne L. </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 21h33 à 21h46</span> <span>⌛ 0h12</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h46</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9809,7 +9806,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 21h33 à 22h18</span> <span>⌛ 0h44</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h18</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9821,7 +9818,7 @@ Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 21h33 à 22h20</span> <span>⌛ 0h46</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9833,7 +9830,7 @@ Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 21h33 à 23h00</span> <span>⌛ 1h26</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>23h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9845,7 +9842,7 @@ Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 21h33 à 22h53</span> <span>⌛ 1h19</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h53</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9855,7 +9852,7 @@ Motif : affaires oubliées.</p></li>
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 21h33 à 21h53</span> <span>⌛ 0h20</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h53</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9866,7 +9863,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : agression d'un agent.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 21h33 à 21h53</span> <span>⌛ 0h20</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h53</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9877,7 +9874,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 21h30 à 03h00</span> <span>⌛ 5h30</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9895,7 +9892,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 21h27 à 22h30</span> <span>⌛ 1h02</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9906,7 +9903,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance commis à bord d'un train en gare de Maisons-Laffitte.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 21h27 à 22h32</span> <span>⌛ 1h04</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h32</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9915,7 +9912,7 @@ Motif : acte de malveillance commis à bord d'un train en gare de Maisons-Laffit
 Motif : acte de malveillance commis à bord d'un train en gare de Maisons-Laffitte.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 21h27 à 22h45</span> <span>⌛ 1h17</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h45</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9926,7 +9923,7 @@ Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire
 Motif : acte de malveillance commis à bord d'un train en gare de Maisons-Laffitte.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 21h20 à 21h30</span> <span>⌛ 0h09</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9937,7 +9934,7 @@ Motif : acte de malveillance commis à bord d'un train en gare de Maisons-Laffit
 Motif : conditions de départ non réunies à Paris Gare de Lyon.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 21h20 à 23h05</span> <span>⌛ 1h44</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>23h05</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9948,7 +9945,7 @@ Motif : conditions de départ non réunies à Paris Gare de Lyon.</p></li>
 Motif : conditions de départ non réunies à Paris Gare de Lyon.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="N" class="disruption  ">
 <h4><img src="/images/lignes//n.svg" /> <span>De 21h20 à 23h59</span> <span>⌛ 2h39</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>23h59</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9965,7 +9962,7 @@ Motif : travaux de maintenance.<br />
  </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 21h05 à 21h20</span> <span>⌛ 0h14</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9976,7 +9973,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance dans un train.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 21h05 à 21h34</span> <span>⌛ 0h28</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h34</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9987,7 +9984,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance dans un train.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 21h05 à 22h26</span> <span>⌛ 1h20</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h26</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9996,7 +9993,7 @@ Motif : acte de malveillance dans un train.</p></li>
 Motif : acte de malveillance dans un train.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 21h05 à 22h16</span> <span>⌛ 1h11</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h16</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10007,7 +10004,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de vandalisme.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 21h05 à 22h16</span> <span>⌛ 1h11</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h16</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10018,7 +10015,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance dans un train.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 20h50 à 21h04</span> <span>⌛ 0h14</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h04</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10029,7 +10026,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance dans un train.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 20h50 à 21h04</span> <span>⌛ 0h14</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h04</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10040,7 +10037,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance dans un train.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 20h50 à 21h04</span> <span>⌛ 0h14</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h04</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10049,7 +10046,7 @@ Motif : acte de malveillance dans un train.</p></li>
 Motif : acte de malveillance dans un train.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 20h50 à 21h05</span> <span>⌛ 0h14</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h05</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10060,7 +10057,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance dans un train.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 20h50 à 21h05</span> <span>⌛ 0h14</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h05</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10071,7 +10068,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance dans un train.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 20h50 à 21h05</span> <span>⌛ 0h14</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h05</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10080,7 +10077,7 @@ Motif : acte de malveillance dans un train.</p></li>
 Motif : acte de malveillance dans un train.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 20h08 à 20h28</span> <span>⌛ 0h19</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h28</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10091,7 +10088,7 @@ Motif : acte de malveillance dans un train.</p></li>
 Motif : attente d'autorisation d'accès au réseau. (gêne circulation avec un train dans le secteur de Montargis)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 20h08 à 20h44</span> <span>⌛ 0h35</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h44</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10102,7 +10099,7 @@ Motif : attente d'autorisation d'accès au réseau. (gêne circulation avec un t
 Motif : attente d'autorisation d'accès au réseau. (gêne circulation avec un train dans le secteur de Montargis)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 19h43 à 20h05</span> <span>⌛ 0h22</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h05</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10116,7 +10113,7 @@ Risque d'affluence à bord du train suivant.<br />
 Motif : conditions de départ non réunies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 19h37 à 19h48</span> <span>⌛ 0h10</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>19h48</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10129,7 +10126,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 19h37 à 20h30</span> <span>⌛ 0h53</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10143,7 +10140,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 19h37 à 20h25</span> <span>⌛ 0h48</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h25</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10154,7 +10151,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 19h21 à 19h52</span> <span>⌛ 0h30</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>19h52</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10165,7 +10162,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance dans un train à Maisons-Laffitte ( agression sur un conducteur)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 19h21 à 20h28</span> <span>⌛ 1h06</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h28</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10176,7 +10173,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance dans un train à Maisons-Laffitte ( agression sur un conducteur)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 19h21 à 20h32</span> <span>⌛ 1h10</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h32</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10187,7 +10184,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance dans un train à Maisons-Laffitte </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 19h14 à 20h22</span> <span>⌛ 1h07</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h22</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10198,7 +10195,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance en gare de Maisons-Laffitte.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 18h52 à 19h14</span> <span>⌛ 0h21</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>19h14</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10209,7 +10206,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance en gare de Maisons-Laffitte.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 18h38 à 20h22</span> <span>⌛ 1h43</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h22</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10222,7 +10219,7 @@ Risque d'affluence à bord du train suivant.<br />
 Motif : prolongation des travaux effectués par le gestionnaire de réseau (incident terminé).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 18h37 à 19h48</span> <span>⌛ 1h10</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>19h48</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10231,7 +10228,7 @@ Motif : prolongation des travaux effectués par le gestionnaire de réseau (inci
 Motif : panne d'un train.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 18h08 à 18h20</span> <span>⌛ 0h11</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10244,7 +10241,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 18h08 à 18h28</span> <span>⌛ 0h19</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h28</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10258,7 +10255,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 18h08 à 18h58</span> <span>⌛ 0h49</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h58</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10272,7 +10269,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 18h08 à 18h53</span> <span>⌛ 0h45</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h53</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10283,7 +10280,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 18h08 à 18h53</span> <span>⌛ 0h45</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h53</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10296,7 +10293,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 18h08 à 18h53</span> <span>⌛ 0h45</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h53</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10310,7 +10307,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 18h05 à 18h30</span> <span>⌛ 0h24</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10319,7 +10316,7 @@ Motif : affaires oubliées.</p></li>
 Motif : prolongation des travaux effectués par le gestionnaire de réseau.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 17h58 à 18h14</span> <span>⌛ 0h15</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h14</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10330,7 +10327,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées aux abords des voies entre Saint Michel-notre-Dame et Paris Austerlitz</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 17h58 à 18h20</span> <span>⌛ 0h21</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10343,7 +10340,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 17h58 à 18h28</span> <span>⌛ 0h29</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h28</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10357,7 +10354,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 17h58 à 18h58</span> <span>⌛ 0h59</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h58</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10371,7 +10368,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 17h58 à 19h44</span> <span>⌛ 1h45</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>19h44</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10382,7 +10379,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 17h58 à 19h48</span> <span>⌛ 1h49</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>19h48</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10395,7 +10392,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 17h58 à 20h30</span> <span>⌛ 2h31</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10409,7 +10406,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 17h58 à 21h36</span> <span>⌛ 3h37</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h36</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10420,7 +10417,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 17h48 à 18h38</span> <span>⌛ 0h49</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h38</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10431,7 +10428,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : conditions de départ non réunies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 17h48 à 19h38</span> <span>⌛ 1h49</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>19h38</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10442,7 +10439,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : conditions de départ non réunies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 17h48 à 19h52</span> <span>⌛ 2h03</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>19h52</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10453,7 +10450,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance dans un train à Maisons-Laffitte ( agression sur un conducteur)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 17h48 à 20h46</span> <span>⌛ 2h57</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h46</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10464,7 +10461,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de malveillance dans un train à Maisons-Laffitte</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 17h38 à 17h58</span> <span>⌛ 0h19</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h58</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10477,7 +10474,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 17h35 à 17h46</span> <span>⌛ 0h10</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h46</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10488,7 +10485,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 17h27 à 17h44</span> <span>⌛ 0h17</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h44</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10502,7 +10499,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 17h27 à 17h58</span> <span>⌛ 0h31</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h58</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10515,7 +10512,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 17h10 à 17h22</span> <span>⌛ 0h11</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h22</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10524,7 +10521,7 @@ Motif : affaires oubliées.</p></li>
 Motif : panne sur les installations du gestionnaire de réseau (incident de signalisation dans le secteur de Fontainebleau-Avon).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 17h10 à 17h54</span> <span>⌛ 0h43</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h54</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10532,7 +10529,7 @@ Motif : panne sur les installations du gestionnaire de réseau (incident de sign
 Prévoir des temps d'allongement de parcours jusqu'à 30 minutes ; des modifications de dessertes.Motif : panne sur les installations du gestionnaire de réseau (incident de signalisation dans le secteur de Fontainebleau-Avon).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 17h10 à 18h08</span> <span>⌛ 0h57</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h08</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10540,7 +10537,7 @@ Prévoir des temps d'allongement de parcours jusqu'à 30 minutes ; des modificat
 Prévoir des temps d'allongement de parcours jusqu'à 30 minutes ; des modifications de dessertes.Motif : panne sur les installations du gestionnaire de réseau (incident de signalisation dans le secteur de Fontainebleau-Avon).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 17h10 à 18h38</span> <span>⌛ 1h27</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h38</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10548,7 +10545,7 @@ Prévoir des temps d'allongement de parcours jusqu'à 30 minutes ; des modificat
 Prévoir des temps d'allongement de parcours jusqu'à 45 minutes ; des modifications de dessertes.Motif : panne sur les installations du gestionnaire de réseau (incident de signalisation dans le secteur de Fontainebleau-Avon).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 17h10 à 19h30</span> <span>⌛ 2h19</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>19h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10556,7 +10553,7 @@ Prévoir des temps d'allongement de parcours jusqu'à 45 minutes ; des modificat
 Prévoir des temps d'allongement de parcours jusqu'à 45 minutes ; des modifications de dessertes.Motif : panne sur les installations du gestionnaire de réseau (incident de signalisation dans le secteur de Fontainebleau-Avon) incident terminé.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 17h10 à 19h38</span> <span>⌛ 2h27</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>19h38</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10564,7 +10561,7 @@ Prévoir des temps d'allongement de parcours jusqu'à 45 minutes ; des modificat
 Prévoir des temps d'allongement de parcours jusqu'à 15 minutes ; des modifications de dessertes.Motif : panne sur les installations du gestionnaire de réseau (incident de signalisation dans le secteur de Fontainebleau-Avon) incident terminé.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 17h10 à 20h22</span> <span>⌛ 3h11</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h22</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10572,7 +10569,7 @@ Prévoir des temps d'allongement de parcours jusqu'à 15 minutes ; des modificat
 Prévoir des temps d'allongement de parcours jusqu'à 15 minutes ; des modifications de dessertes.Motif : panne sur les installations du gestionnaire de réseau (incident de signalisation dans le secteur de Fontainebleau-Avon) incident terminé.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 17h10 à 21h30</span> <span>⌛ 4h19</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10580,7 +10577,7 @@ Prévoir des temps d'allongement de parcours jusqu'à 15 minutes ; des modificat
 Prévoir des temps d'allongement de parcours jusqu'à 15 minutes ; des modifications de dessertes.Motif : panne sur les installations du gestionnaire de réseau (incident de signalisation dans le secteur de Fontainebleau-Avon) incident terminé.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 17h07 à 17h10</span> <span>⌛ 0h03</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h10</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10589,7 +10586,7 @@ Prévoir des temps d'allongement de parcours jusqu'à 15 minutes ; des modificat
 Motif : panne sur les installations du gestionnaire de réseau (incident de signalisation dans le secteur de Fontainebleau-Avon).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 17h07 à 17h10</span> <span>⌛ 0h03</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h10</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10597,7 +10594,7 @@ Motif : panne sur les installations du gestionnaire de réseau (incident de sign
 Prévoir des temps d'allongement de parcours jusqu'à 30 minutes ; des modifications de dessertes.Motif : panne sur les installations du gestionnaire de réseau (incident de signalisation dans le secteur de Fontainebleau-Avon).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 17h07 à 17h10</span> <span>⌛ 0h03</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h10</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10605,7 +10602,7 @@ Prévoir des temps d'allongement de parcours jusqu'à 30 minutes ; des modificat
 Prévoir des temps d'allongement de parcours jusqu'à 30 minutes ; des modifications de dessertes.Motif : panne sur les installations du gestionnaire de réseau (incident de signalisation dans le secteur de Fontainebleau-Avon).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 17h07 à 17h10</span> <span>⌛ 0h03</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h10</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10613,7 +10610,7 @@ Prévoir des temps d'allongement de parcours jusqu'à 30 minutes ; des modificat
 Prévoir des temps d'allongement de parcours jusqu'à 45 minutes ; des modifications de dessertes.Motif : panne sur les installations du gestionnaire de réseau (incident de signalisation dans le secteur de Fontainebleau-Avon).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 16h56 à 17h06</span> <span>⌛ 0h09</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h06</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10624,7 +10621,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées sur les voies entre St Michel-notre-Dame et Paris Austerlitz</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 16h56 à 17h38</span> <span>⌛ 0h41</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h38</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10635,7 +10632,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées aux abords des voies entre St Michel-notre-Dame et Paris Austerlitz</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 16h56 à 17h44</span> <span>⌛ 0h47</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h44</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10649,7 +10646,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 16h56 à 17h58</span> <span>⌛ 1h01</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h58</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10662,14 +10659,14 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 16h56 à 17h36</span> <span>⌛ 0h39</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h36</strong> <span></span>Fin de l'incident<p></p></li>
 <li><span class="pb"></span> <strong>16h56</strong> <span>⌛ 0h39</span> Ligne D : Corbeil-Ess. - Melun ralenti        <p>Le trafic est ralenti entre Corbeil-Essonnes et Melun.Prévoir des allongements de temps de parcours jusqu'à 30 minutes, des modifications et des suppressions sont à prévoir.Motif : prolongation des travaux effectués par le gestionnaire de réseau.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 16h56 à 18h00</span> <span>⌛ 1h03</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10680,7 +10677,7 @@ Pour connaître les itinéraires alternatifs des gares situées entre Corbeil Es
 Motif : prolongation des travaux effectués par le gestionnaire de réseau.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 16h56 à 18h02</span> <span>⌛ 1h06</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h02</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10689,7 +10686,7 @@ Motif : prolongation des travaux effectués par le gestionnaire de réseau.</p><
 Motif : prolongation des travaux effectués par le gestionnaire de réseau.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 16h49 à 17h22</span> <span>⌛ 0h32</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h22</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10700,7 +10697,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : malaise d'un voyageur à bord d'un train en gare de Noisiel.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 16h48 à 16h49</span> <span>⌛ 0h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h49</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10711,7 +10708,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : malaise d'un voyageur à bord d'un train en gare de Noisiel.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 16h38 à 17h40</span> <span>⌛ 1h01</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h40</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10720,7 +10717,7 @@ Motif : malaise d'un voyageur à bord d'un train en gare de Noisiel.</p></li>
 Motif : obstacle sur la voie dans le secteur de Ballancourt (incident terminé).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 16h05 à 16h48</span> <span>⌛ 0h42</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h48</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10733,7 +10730,7 @@ Risque d'affluence à bord du train suivant.<br />
 Motif : obstacle sur la voie. </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 15h59 à 16h10</span> <span>⌛ 0h10</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h10</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10742,7 +10739,7 @@ Motif : obstacle sur la voie. </p></li>
 Motif : obstacle sur la voie dans le secteur de Ballancourt.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 15h59 à 16h16</span> <span>⌛ 0h16</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h16</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10751,7 +10748,7 @@ Motif : obstacle sur la voie dans le secteur de Ballancourt.</p></li>
 Motif : obstacle sur la voie dans le secteur de Ballancourt.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 15h59 à 16h28</span> <span>⌛ 0h28</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h28</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10760,7 +10757,7 @@ Motif : obstacle sur la voie dans le secteur de Ballancourt.</p></li>
 Motif : obstacle sur la voie dans le secteur de Ballancourt.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 15h59 à 16h45</span> <span>⌛ 0h45</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h45</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10769,7 +10766,7 @@ Motif : obstacle sur la voie dans le secteur de Ballancourt.</p></li>
 Motif : obstacle sur la voie dans le secteur de Ballancourt (incident terminé).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 15h59 à 16h38</span> <span>⌛ 0h39</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h38</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10778,7 +10775,7 @@ Motif : obstacle sur la voie dans le secteur de Ballancourt (incident terminé).
 Motif : obstacle sur la voie dans le secteur de Ballancourt (incident terminé).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 15h29 à 16h04</span> <span>⌛ 0h34</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h04</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10789,7 +10786,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train entre les gares de St Germain en Laye et Le Vésinet Le Pecq.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 15h03 à 02h00</span> <span>⌛ 10h57</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10804,7 +10801,7 @@ le site Transilien.com, rubrique « Prochains départs »<br />
 l’application SNCF, rubrique « Gares et arrêts ».</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 14h40 à 14h54</span> <span>⌛ 0h13</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h54</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10815,7 +10812,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de vandalisme.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 14h40 à 15h30</span> <span>⌛ 0h50</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>15h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10826,7 +10823,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de vandalisme au passage à niveau entre Bessancourt et Frepillon</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 14h06 à 14h20</span> <span>⌛ 0h13</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10839,7 +10836,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 14h06 à 14h24</span> <span>⌛ 0h17</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h24</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10852,7 +10849,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 14h06 à 14h26</span> <span>⌛ 0h19</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h26</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10863,7 +10860,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy-Levallois.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 14h06 à 15h02</span> <span>⌛ 0h55</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>15h02</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10874,7 +10871,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy-Levallois.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 14h06 à 15h10</span> <span>⌛ 1h03</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>15h10</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10885,7 +10882,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy-Levallois.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 14h06 à 16h00</span> <span>⌛ 1h54</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10896,7 +10893,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy-Levallois.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="N" class="disruption  ">
 <h4><img src="/images/lignes//n.svg" /> <span>De 14h03 à 14h16</span> <span>⌛ 0h12</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h16</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10907,7 +10904,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées à Paris Montparnasse.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="N" class="disruption  ">
 <h4><img src="/images/lignes//n.svg" /> <span>De 14h03 à 15h26</span> <span>⌛ 1h22</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>15h26</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10919,7 +10916,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées à Paris Montparnasse.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="N" class="disruption  ">
 <h4><img src="/images/lignes//n.svg" /> <span>De 14h03 à 15h20</span> <span>⌛ 1h17</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>15h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10931,7 +10928,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées à Paris Montparnasse.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="N" class="disruption  ">
 <h4><img src="/images/lignes//n.svg" /> <span>De 13h39 à 14h10</span> <span>⌛ 0h31</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h10</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10942,7 +10939,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées à Paris Montparnasse.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="N" class="disruption  ">
 <h4><img src="/images/lignes//n.svg" /> <span>De 13h39 à 14h03</span> <span>⌛ 0h24</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h03</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10953,7 +10950,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées à Paris Montparnasse.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="N" class="disruption  ">
 <h4><img src="/images/lignes//n.svg" /> <span>De 13h39 à 14h03</span> <span>⌛ 0h24</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h03</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10965,7 +10962,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : affaires oubliées à Paris Montparnasse.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 13h06 à 13h36</span> <span>⌛ 0h29</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>13h36</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10978,7 +10975,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 13h06 à 13h54</span> <span>⌛ 0h47</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>13h54</strong> <span></span>Fin de l'incident<p></p></li>
@@ -10991,7 +10988,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 13h06 à 14h18</span> <span>⌛ 1h11</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h18</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11004,7 +11001,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 13h06 à 14h06</span> <span>⌛ 0h59</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h06</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11017,7 +11014,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 13h06 à 14h06</span> <span>⌛ 0h59</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h06</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11030,7 +11027,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 13h06 à 14h06</span> <span>⌛ 0h59</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h06</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11041,7 +11038,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy-Levallois.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 13h06 à 14h06</span> <span>⌛ 0h59</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h06</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11052,7 +11049,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy-Levallois.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 13h06 à 14h06</span> <span>⌛ 0h59</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h06</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11063,7 +11060,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy-Levallois.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 12h40 à 13h18</span> <span>⌛ 0h37</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>13h18</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11074,7 +11071,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 12h40 à 13h36</span> <span>⌛ 0h55</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>13h36</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11087,7 +11084,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 12h40 à 13h54</span> <span>⌛ 1h13</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>13h54</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11100,7 +11097,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 12h40 à 14h18</span> <span>⌛ 1h37</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h18</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11113,7 +11110,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 12h40 à 14h20</span> <span>⌛ 1h39</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11126,7 +11123,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 12h40 à 14h24</span> <span>⌛ 1h43</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h24</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11139,7 +11136,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 12h40 à 14h26</span> <span>⌛ 1h45</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h26</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11150,7 +11147,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy-Levallois.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 12h40 à 15h02</span> <span>⌛ 2h21</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>15h02</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11161,7 +11158,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy-Levallois.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 12h40 à 15h10</span> <span>⌛ 2h29</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>15h10</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11172,7 +11169,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy-Levallois.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 12h40 à 16h00</span> <span>⌛ 3h19</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11183,7 +11180,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident de personne à Clichy-Levallois.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 12h20 à 12h40</span> <span>⌛ 0h19</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>12h40</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11194,7 +11191,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident à un passage à niveau ( avec une voiture entre Gros Noyer et St Leu la Forêt).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 12h20 à 13h30</span> <span>⌛ 1h09</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>13h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11205,7 +11202,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident à un passage à niveau ( avec une voiture entre Gros Noyer et St Leu la Forêt).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 11h57 à 12h32</span> <span>⌛ 0h34</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>12h32</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11214,7 +11211,7 @@ Motif : accident à un passage à niveau ( avec une voiture entre Gros Noyer et 
 - POMA, départ Montargis 12h02, arrivée Paris Gare de Lyon 13h43.Motif : conditions de départ non réunies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 11h57 à 14h00</span> <span>⌛ 2h03</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11223,7 +11220,7 @@ Motif : accident à un passage à niveau ( avec une voiture entre Gros Noyer et 
 - POMA, départ Montargis 12h02, arrivée Paris Gare de Lyon 13h43.Motif : conditions de départ non réunies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="E" class="disruption  ">
 <h4><img src="/images/lignes//e.svg" /> <span>De 11h36 à 12h28</span> <span>⌛ 0h51</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>12h28</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11241,7 +11238,7 @@ Prochains trains à circuler :<br />
 Motif : panne d'un train.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 10h25 à 16h30</span> <span>⌛ 6h05</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11256,7 +11253,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux de maintenance.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="E" class="disruption  ">
 <h4><img src="/images/lignes//e.svg" /> <span>De 09h49 à 11h00</span> <span>⌛ 1h10</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>11h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11271,7 +11268,7 @@ Prochain train à circuler :<br />
 Motif : panne d'un train à Haussmann-Saint-Lazare.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 09h29 à 10h30</span> <span>⌛ 1h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>10h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11282,7 +11279,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident à un passage à niveau à Deuil Montmagny avec une voiture</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 09h21 à 10h16</span> <span>⌛ 0h54</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>10h16</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11293,7 +11290,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de vandalisme.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 09h21 à 11h28</span> <span>⌛ 2h06</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>11h28</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11304,7 +11301,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : acte de vandalisme.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 08h42 à 17h17</span> <span>⌛ 8h35</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h17</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11319,7 +11316,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux<br />
 Motif : travaux de maintenance.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 08h28 à 08h52</span> <span>⌛ 0h23</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>08h52</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11330,7 +11327,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident à un passage à niveau (heurt avec une voiture)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 08h28 à 09h00</span> <span>⌛ 0h31</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>09h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11343,7 +11340,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident à un passage à niveau (heurt avec une voiture)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 08h28 à 09h38</span> <span>⌛ 1h09</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>09h38</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11354,7 +11351,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident à un passage à niveau. (heurt avec une voiture).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 08h28 à 10h30</span> <span>⌛ 2h01</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>10h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11365,7 +11362,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : accident à un passage à niveau à Deuil Montmagny avec une voiture</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 08h12 à 08h36</span> <span>⌛ 0h23</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>08h36</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11378,7 +11375,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne sur les installations du gestionnaire de réseau (incident sur la voie à Versailles-Rive-Droite)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 08h12 à 08h54</span> <span>⌛ 0h41</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>08h54</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11391,7 +11388,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne sur les installations du gestionnaire de réseau (incident sur la voie à Versailles-Rive-Droite)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 08h12 à 08h58</span> <span>⌛ 0h45</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>08h58</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11404,7 +11401,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne sur les installations du gestionnaire de réseau (incident sur la voie à Versailles-Rive-Droite)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 08h12 à 09h14</span> <span>⌛ 1h01</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>09h14</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11417,7 +11414,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne sur les installations du gestionnaire de réseau (incident sur la voie à Versailles-Rive-Droite).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 08h12 à 09h07</span> <span>⌛ 0h55</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>09h07</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11430,7 +11427,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne sur les installations du gestionnaire de réseau (incident sur la voie à Versailles-Rive-Droite).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 08h12 à 09h07</span> <span>⌛ 0h55</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>09h07</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11441,7 +11438,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne sur les installations du gestionnaire de réseau (incident sur la voie à Versailles-Rive-Droite)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 07h56 à 08h20</span> <span>⌛ 0h23</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>08h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11452,7 +11449,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne sur les installations du gestionnaire de réseau (incident sur la voie à Versailles-Rive-Droite)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 07h56 à 08h36</span> <span>⌛ 0h39</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>08h36</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11465,7 +11462,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne sur les installations du gestionnaire de réseau (incident sur la voie à Versailles-Rive-Droite)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 07h56 à 08h54</span> <span>⌛ 0h57</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>08h54</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11478,7 +11475,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne sur les installations du gestionnaire de réseau (incident sur la voie à Versailles-Rive-Droite)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 07h56 à 08h58</span> <span>⌛ 1h01</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>08h58</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11491,7 +11488,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne sur les installations du gestionnaire de réseau (incident sur la voie à Versailles-Rive-Droite)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 07h56 à 09h14</span> <span>⌛ 1h17</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>09h14</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11504,7 +11501,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne sur les installations du gestionnaire de réseau (incident sur la voie à Versailles-Rive-Droite).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 07h56 à 09h18</span> <span>⌛ 1h21</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>09h18</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11517,7 +11514,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne sur les installations du gestionnaire de réseau (incident sur la voie à Versailles-Rive-Droite).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 07h56 à 10h00</span> <span>⌛ 2h04</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>10h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11528,7 +11525,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne sur les installations du gestionnaire de réseau (incident sur la voie à Versailles-Rive-Droite)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 07h30 à 10h14</span> <span>⌛ 2h43</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>10h14</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11543,14 +11540,14 @@ Risque d'affluence à bord du train suivant.<br />
 Motif : conditions de départ non réunies (problème d'acheminement du conducteur).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 07h16 à 07h34</span> <span>⌛ 0h17</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>07h34</strong> <span></span>Fin de l'incident<p></p></li>
 <li><span class="pb"></span> <strong>07h16</strong> <span>⌛ 0h17</span> Ligne P : Meaux - Paris-Est ralentissements.        <p>Le trafic est ralenti de Meaux vers Paris-Est.Risque de forte affluence dans les trains suivants.Motif : panne d'un train en gare de Meaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 07h16 à 08h04</span> <span>⌛ 0h47</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>08h04</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11566,7 +11563,7 @@ Vérifiez si votre train circule sur : <br />
 Motif : panne d'un train en gare de Meaux (acte de vandalisme à bord du train).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 07h14 à 07h24</span> <span>⌛ 0h09</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>07h24</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11579,7 +11576,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : Incident affectant la voie à Neuilly Plaisance.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 07h14 à 07h30</span> <span>⌛ 0h15</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>07h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11592,7 +11589,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : Incident affectant la voie à Neuilly Plaisance.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 07h14 à 07h28</span> <span>⌛ 0h14</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>07h28</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11603,7 +11600,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : Incident affectant la voie à Neuilly Plaisance (Fin d'incident).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 07h14 à 07h28</span> <span>⌛ 0h14</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>07h28</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11614,7 +11611,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : Incident affectant la voie à Neuilly Plaisance (Fin d'incident).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 06h55 à 07h20</span> <span>⌛ 0h24</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>07h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11624,7 +11621,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : Incident affectant la voie à Neuilly Plaisance.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 06h55 à 07h24</span> <span>⌛ 0h28</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>07h24</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11637,7 +11634,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : Incident affectant la voie à Neuilly Plaisance.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 06h55 à 07h36</span> <span>⌛ 0h40</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>07h36</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11650,7 +11647,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : Incident affectant la voie à Neuilly Plaisance.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 06h55 à 08h00</span> <span>⌛ 1h04</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>08h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11661,7 +11658,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : Incident affectant la voie à Neuilly Plaisance (Fin d'incident).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 06h55 à 08h30</span> <span>⌛ 1h34</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>08h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11672,7 +11669,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : Incident affectant la voie à Neuilly Plaisance (Fin d'incident).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 06h55 à 09h00</span> <span>⌛ 2h04</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>09h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11683,7 +11680,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : Incident affectant la voie à Neuilly-Plaisance (Fin d'incident).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 06h55 à 09h15</span> <span>⌛ 2h19</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>09h15</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11694,7 +11691,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : Incident affectant la voie à Neuilly-Plaisance (Fin d'incident).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 06h30 à 07h40</span> <span>⌛ 1h10</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>07h40</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11704,7 +11701,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 06h30 à 07h40</span> <span>⌛ 1h10</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>07h40</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11715,7 +11712,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 06h15 à 06h24</span> <span>⌛ 0h09</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>06h24</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11724,7 +11721,7 @@ Motif : travaux.</p></li>
 Motif : malaise voyageur Bry sur Marne</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 06h15 à 06h32</span> <span>⌛ 0h17</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>06h32</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11733,7 +11730,7 @@ Motif : malaise voyageur Bry sur Marne</p></li>
 Motif : malaise voyageur à Bry sur Marne</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 06h15 à 06h42</span> <span>⌛ 0h27</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>06h42</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11742,7 +11739,7 @@ Motif : malaise voyageur à Bry sur Marne</p></li>
 Motif : malaise voyageur à Bry sur Marne et incident affectant la voie entre Bry sur marne et Neuilly plaisance.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 06h15 à 07h00</span> <span>⌛ 0h44</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>07h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11751,7 +11748,7 @@ Motif : malaise voyageur à Bry sur Marne et incident affectant la voie entre Br
 Motif : malaise voyageur à Bry sur Marne et incident affectant la voie à Neuilly plaisance.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 06h15 à 06h55</span> <span>⌛ 0h40</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>06h55</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11761,7 +11758,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : Incident affectant la voie à Neuilly Plaisance.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 06h15 à 06h55</span> <span>⌛ 0h40</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>06h55</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11774,7 +11771,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : Incident affectant la voie à Neuilly Plaisance.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 06h15 à 06h55</span> <span>⌛ 0h40</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>06h55</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11787,7 +11784,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : Incident affectant la voie à Neuilly Plaisance.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 06h15 à 06h55</span> <span>⌛ 0h40</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>06h55</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11798,7 +11795,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : Incident affectant la voie à Neuilly Plaisance (Fin d'incident).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 05h00 à 09h30</span> <span>⌛ 4h30</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>09h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11816,7 +11813,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux de maintenance des voies de garage à Corbeil-Essonnes.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 04h30 à 05h45</span> <span>⌛ 1h15</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>05h45</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11828,7 +11825,7 @@ Un service de bus de remplacement est mis en place de Saint-Nom la Bretèche à 
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 23h30 à 03h30</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11838,7 +11835,7 @@ Dates : en semaine du jeudi 02 mai au vendredi 05 juillet, sauf les week-ends, l
   Le trafic est interrompu entre Paris Nord et Pontoise. Un service de bus de remplacement est mis en place, avec desserte des gares intermédiaires :- de Paris, rejoignez la ligne 5 du métro, jusqu'à Bobigny Pablo Picasso.- de Saint Denis, rendez-vous rue Charles Michels, au point d'arrêt bus RATP 274. Les horaires du calculateur d'itinéraire tiennent compte des travaux. Motif : travaux</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 23h30 à 03h30</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11856,7 +11853,7 @@ Motif : travaux.<br />
  </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 23h30 à 03h30</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11877,7 +11874,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="H" class="disruption  ">
 <h4><img src="/images/lignes//h.svg" /> <span>De 23h30 à 03h30</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11898,14 +11895,14 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 23h20 à 03h00</span> <span>⌛ 3h40</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
 <li><span class="tx"></span> <strong>23h20</strong> <span>⌛ 3h40</span> Ligne J: Paris-Conflans Ste Honorine 21/05 - 07/06        <p>Période : à partir de 23hDates : du mardi 21 mai au vendredi 07 juinLes trains de l'axe Paris Saint-Lazare - Conflans Sainte-Honorine ne marquent pas d'arrêts dans les gares de Bois Colombes, Colombes et Le Stade dans les 2 sens de circulation.Un service de bus de remplacement en mis en place entre les gares d'Asnières sur Seine et Argenteuil.Également :  Axe Paris Saint-Lazare - Ermont Eaubonne les trains ne desservent pas les gares de Colombes, Bois Colombes et le Stade, et le trafic est interrompu entre Argenteuil et Ermont Eaubonne.Les horaires du calculateur d'itinéraire tiennent compte des travaux.Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 23h20 à 03h00</span> <span>⌛ 3h40</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11916,7 +11913,7 @@ Dernier train en circulation normale de Paris Saint-Lazare à Pontoise : 21h27De
 Les horaires du calculateur d’itinéraire tiennent compte des travaux.Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 23h00 à 03h00</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11927,7 +11924,7 @@ Dernier train en circulation normale de Paris Saint-Lazare à Ermont Eaubonne : 
 Les horaires du calculateur d'itinéraire tiennent compte des travauxMotif : travaux</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 23h00 à 03h00</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11938,7 +11935,7 @@ Dernier train en circulation normale de Paris Saint-Lazare à Ermont Eaubonne : 
 Les horaires du calculateur d'itinéraire tiennent compte des travauxMotif : travaux</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 23h00 à 03h00</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11950,7 +11947,7 @@ Le trafic est interrompu entre Paris Saint-Lazare et Mantes-la-Jolie via Poissy.
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="B" class="disruption  ">
 <h4><img src="/images/lignes//b.svg" /> <span>De 22h45 à 03h45</span> <span>⌛ 5h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h45</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11959,7 +11956,7 @@ Motif : travaux.</p></li>
 Pour plus d'informations, rendez-vous sur le blog du RER B. Motif : travaux. </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 22h30 à 03h00</span> <span>⌛ 4h30</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11972,7 +11969,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="L" class="disruption  ">
 <h4><img src="/images/lignes//l.svg" /> <span>De 21h30 à 03h00</span> <span>⌛ 5h30</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -11990,7 +11987,7 @@ Les horaires du calculateur d'itinéraire tiennent compte des travaux.<br />
 Motif : travaux.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 17h11 à 02h00</span> <span>⌛ 8h49</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h00</strong> <span></span>Fin de l'incident<p></p></li>
