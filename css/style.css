@@ -212,7 +212,7 @@ a.disabled {
     position: fixed; bottom: 0; width: 100%;
 }
 
-#tooltipModal::after, #helpModal::after, #listModal::after {
+#helpModal::after, #listModal::after {
     content: 'X Fermer';
     position: absolute;
     top: 14px;
@@ -220,15 +220,6 @@ a.disabled {
     text-decoration: underline;
     cursor: pointer;
     text-transform: uppercase;
-}
-
-#tooltipModal {
-    max-width: 500px;
-    min-width: 200px;
-    font-family: monospace;
-    font-size: 14px;
-    background: rgba(255,255,255, 0.9);
-    border: none;
 }
 
 #helpModal, #listModal {
@@ -317,8 +308,12 @@ a.disabled {
     display: inline-block; width: 12px; height: 12px; border-radius: 2px;
 }
 
-#listModal ul li span:last-of-type {
+#listModal ul li span:nth-of-type(2) {
     float: right; text-align: center; border-radius: 2px;
+}
+
+#listModal ul li span:last-of-type {
+    display: none;
 }
 
 #listModal ul li strong:first-of-type {
@@ -326,6 +321,17 @@ a.disabled {
 }
 
 #listModal p {
+    color: #777;
+}
+
+#listModal ul li p:nth-of-type(2) {
+    text-align: center;
+    margin-top: -5px;
+    display: none;
+}
+
+#listModal p a {
+    text-decoration: underline;
     color: #777;
 }
 
@@ -346,6 +352,21 @@ a.disabled {
 }
 
 @media screen and (max-width: 980px) {
+    #listModal ul li span:last-of-type {
+        display: inline;
+    }
+    #listModal ul li p.ellips {
+        line-clamp: 8 "… (voir tout)";
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 10;
+        overflow: hidden;
+    }
+
+    #listModal ul li p:nth-of-type(2) {
+        display: inherit;
+    }
+
     .mobile_hidden {
         display: none;
     }
@@ -394,5 +415,5 @@ a.disabled {
     white-space: nowrap !important;
 }
 .hide {
-    display: none;
+    display: none !important;
 }

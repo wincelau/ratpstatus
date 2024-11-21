@@ -38,25 +38,27 @@ document.addEventListener('DOMContentLoaded', async function () {
         document.getElementById('listModal').scrollTo(0,0);
       }
   })
-  const modal = document.getElementById('tooltipModal')
-  modal.addEventListener('click', function(event) {
-      modal.close();
-  });
   const modalHelp = document.getElementById('helpModal')
   modalHelp.addEventListener('click', function(event) {
-      modalHelp.close();
+    if(event.target.nodeName != "A") {
+      modalList.close();
+    }
   });
   const modalList = document.getElementById('listModal')
   modalList.addEventListener('click', function(event) {
+    if(event.target.nodeName != "A") {
       modalList.close();
+    }
   });
-  modal.addEventListener('close', function(event) {
-      const item = document.querySelector('[data-title]')
-      if(item && item.title) {
-          item.title = item.dataset.title
-          delete item.dataset.title
-      }
-  })
+
+  document.querySelectorAll('.btn_toutvoir').forEach(function(item) {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      item.closest('.disruption').querySelector('p.ellips').classList.remove('ellips');
+      item.closest('p').classList.add('hide');
+      return false;
+    });
+  });
 })
 
 function replaceMessage(item) {

@@ -4,11 +4,14 @@
 <?php $isFirst = true; ?>
 <?php foreach($disruption->getImpactsOptimized() as $i): ?>
 <?php if($isFirst && $disruption->getDateEnd() < new DateTime()): ?>
-<li><span class="ok"></span> <strong><?php echo $i->getDateEnd()->format("H\hi") ?></strong> <span></span>Fin de l'incident<p></p></li>
+<li><span class="ok"></span> <strong><?php echo $i->getDateEnd()->format("H\hi") ?></strong> <span></span> <span><br /><br /></span>Fin de l'incident<p></p></li>
 <?php $isFirst = false; ?>
 <?php endif; ?>
-<li><span class="<?php echo $i->getColorClass() ?>"></span> <strong><?php echo $i->getDateStart()->format("H\hi") ?></strong> <span>⌛ <?php echo $i->getDuration()->format("%hh%I"); ?></span> <?php echo $i->getTitle() ?>
-        <p><?php echo nl2br(preg_replace("/[\n]+$/i", "", $i->getMessagePlainText())) ?></p></li>
+<li><span class="<?php echo $i->getColorClass() ?>"></span> <strong><?php echo $i->getDateStart()->format("H\hi") ?></strong> <span>⌛ <?php echo $i->getDuration()->format("%hh%I"); ?></span><span><br /><br /></span><?php echo $i->getTitle() ?>
+        <p class="ellips"><?php echo nl2br(preg_replace("/[\n]+$/i", "", $i->getMessagePlainText())) ?></p>
+        <p><a class="btn_toutvoir" href="">▼ tout voir</a></p>
+</li>
 <?php endforeach; ?>
 </ul>
+
 </div>
