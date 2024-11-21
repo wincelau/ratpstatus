@@ -7,18 +7,18 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_trains.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_trains.png" />
-<link rel="stylesheet" href="/css/style.css?202411172333">
+<link rel="stylesheet" href="/css/style.css?202411202353">
 <script>
     const urlJson = '/20240806.json';
 </script>
-<script src="/js/main.js?202411142342"></script>
+<script src="/js/main.js?202411202353"></script>
 </head>
 <body>
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
-<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
+<a id="btn_help" href="#aide" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a id="btn_list" href="#incidents" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
@@ -38,7 +38,7 @@
 </header>
 <main role="main">
 <div id="lignes">
-<div class="ligne"><div class="logo"><img alt="Ligne A" title="Ligne A" src="/images/lignes//a.svg"/></div>
+<div class="ligne" data-id="A"><div class="logo"><img alt="Ligne A" title="Ligne A" src="/images/lignes//a.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -730,7 +730,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne B" title="Ligne B" src="/images/lignes//b.svg"/></div>
+<div class="ligne" data-id="B"><div class="logo"><img alt="Ligne B" title="Ligne B" src="/images/lignes//b.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -1422,7 +1422,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne C" title="Ligne C" src="/images/lignes//c.svg"/></div>
+<div class="ligne" data-id="C"><div class="logo"><img alt="Ligne C" title="Ligne C" src="/images/lignes//c.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -2114,7 +2114,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne D" title="Ligne D" src="/images/lignes//d.svg"/></div>
+<div class="ligne" data-id="D"><div class="logo"><img alt="Ligne D" title="Ligne D" src="/images/lignes//d.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -2806,7 +2806,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne E" title="Ligne E" src="/images/lignes//e.svg"/></div>
+<div class="ligne" data-id="E"><div class="logo"><img alt="Ligne E" title="Ligne E" src="/images/lignes//e.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -3498,7 +3498,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne H" title="Ligne H" src="/images/lignes//h.svg"/></div>
+<div class="ligne" data-id="H"><div class="logo"><img alt="Ligne H" title="Ligne H" src="/images/lignes//h.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -4190,7 +4190,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne J" title="Ligne J" src="/images/lignes//j.svg"/></div>
+<div class="ligne" data-id="J"><div class="logo"><img alt="Ligne J" title="Ligne J" src="/images/lignes//j.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -4882,7 +4882,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne K" title="Ligne K" src="/images/lignes//k.svg"/></div>
+<div class="ligne" data-id="K"><div class="logo"><img alt="Ligne K" title="Ligne K" src="/images/lignes//k.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -5574,7 +5574,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne L" title="Ligne L" src="/images/lignes//l.svg"/></div>
+<div class="ligne" data-id="L"><div class="logo"><img alt="Ligne L" title="Ligne L" src="/images/lignes//l.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -6266,7 +6266,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne N" title="Ligne N" src="/images/lignes//n.svg"/></div>
+<div class="ligne" data-id="N"><div class="logo"><img alt="Ligne N" title="Ligne N" src="/images/lignes//n.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -6958,7 +6958,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne P" title="Ligne P" src="/images/lignes//p.svg"/></div>
+<div class="ligne" data-id="P"><div class="logo"><img alt="Ligne P" title="Ligne P" src="/images/lignes//p.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -7650,7 +7650,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne R" title="Ligne R" src="/images/lignes//r.svg"/></div>
+<div class="ligne" data-id="R"><div class="logo"><img alt="Ligne R" title="Ligne R" src="/images/lignes//r.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -8342,7 +8342,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="Ligne U" title="Ligne U" src="/images/lignes//u.svg"/></div>
+<div class="ligne" data-id="U"><div class="logo"><img alt="Ligne U" title="Ligne U" src="/images/lignes//u.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -9050,11 +9050,8 @@
 <dialog id="tooltipModal"></dialog>
 <dialog id="listModal">
 <h2>Incidents du 06/08/2024</h2>
-
-
-
 <h3>Terminés</h3>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 23h59 à 00h14</span> <span>⌛ 0h15</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>00h14</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9065,7 +9062,7 @@
  Motif : malaise voyageur à Châtelet.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 23h01 à 23h10</span> <span>⌛ 0h08</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>23h10</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9077,7 +9074,7 @@ Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire
 Motif : malaise voyageur à Châtelet.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 23h01 à 23h04</span> <span>⌛ 0h03</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>23h04</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9088,7 +9085,7 @@ Motif : malaise voyageur à Châtelet.</p></li>
 Motif : malaise voyageur à Châtelet.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 22h48 à 23h08</span> <span>⌛ 0h19</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>23h08</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9098,7 +9095,7 @@ Motif : malaise voyageur à Châtelet.</p></li>
 Motif : malaise voyageur à Châtelet.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 22h48 à 23h10</span> <span>⌛ 0h21</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>23h10</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9110,7 +9107,7 @@ Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire
 Motif : malaise voyageur à Châtelet.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 22h48 à 00h00</span> <span>⌛ 1h11</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>00h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9121,7 +9118,7 @@ Motif : malaise voyageur à Châtelet.</p></li>
 Motif : malaise voyageur à Châtelet.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 22h48 à 00h04</span> <span>⌛ 1h15</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>00h04</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9132,7 +9129,7 @@ Motif : malaise voyageur à Châtelet.</p></li>
  Motif : malaise voyageur à Châtelet.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="E" class="disruption  ">
 <h4><img src="/images/lignes//e.svg" /> <span>De 22h34 à 22h56</span> <span>⌛ 0h21</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h56</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9141,7 +9138,7 @@ Motif : malaise voyageur à Châtelet.</p></li>
 Motif : panne d'un train à Haussmann-St-Lazare.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="E" class="disruption  ">
 <h4><img src="/images/lignes//e.svg" /> <span>De 22h34 à 23h14</span> <span>⌛ 0h39</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>23h14</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9150,7 +9147,7 @@ Motif : panne d'un train à Haussmann-St-Lazare.</p></li>
 Motif : panne d'un train à Haussmann-St-Lazare.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="E" class="disruption  ">
 <h4><img src="/images/lignes//e.svg" /> <span>De 22h34 à 23h50</span> <span>⌛ 1h15</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>23h50</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9159,7 +9156,7 @@ Motif : panne d'un train à Haussmann-St-Lazare.</p></li>
 Motif : panne d'un train à Haussmann-St-Lazare.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 21h01 à 21h36</span> <span>⌛ 0h34</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h36</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9168,7 +9165,7 @@ Motif : panne d'un train à Haussmann-St-Lazare.</p></li>
 Motif : affaires oubliées à Val d'Europe. Incident terminé.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 20h41 à 20h52</span> <span>⌛ 0h10</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h52</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9178,7 +9175,7 @@ Motif : affaires oubliées à Val d'Europe. Incident terminé.</p></li>
 Motif : affaires oubliées à Val d'Europe.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 20h41 à 21h08</span> <span>⌛ 0h26</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h08</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9190,7 +9187,7 @@ Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire
 Motif : affaires oubliées à Val d'Europe.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 20h41 à 21h01</span> <span>⌛ 0h20</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h01</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9199,7 +9196,7 @@ Motif : affaires oubliées à Val d'Europe.</p></li>
 Motif : affaires oubliées à Val d'Europe. Incident terminé.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 20h41 à 20h52</span> <span>⌛ 0h10</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h52</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9209,7 +9206,7 @@ Motif : affaires oubliées à Val d'Europe. Incident terminé.</p></li>
 Motif : affaires oubliées à Val d'Europe.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 20h41 à 21h08</span> <span>⌛ 0h26</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h08</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9221,7 +9218,7 @@ Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire
 Motif : affaires oubliées à Val d'Europe.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 20h41 à 21h01</span> <span>⌛ 0h20</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>21h01</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9230,7 +9227,7 @@ Motif : affaires oubliées à Val d'Europe.</p></li>
 Motif : affaires oubliées à Val d'Europe. Incident terminé.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 20h05 à 20h18</span> <span>⌛ 0h12</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h18</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9241,7 +9238,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : obstacle sur la voie.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 20h05 à 20h34</span> <span>⌛ 0h28</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h34</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9252,7 +9249,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : obstacle sur la voie.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 20h05 à 20h28</span> <span>⌛ 0h22</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>20h28</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9263,7 +9260,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : obstacle sur la voie(incident terminé à 20H25)</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 17h41 à 18h00</span> <span>⌛ 0h18</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9281,7 +9278,7 @@ Risque d'affluence à bord des trains suivants.<br />
 Motif : conditions de départ non réunies à Cergy-le-Haut.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 17h30 à 18h08</span> <span>⌛ 0h37</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>18h08</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9292,7 +9289,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : conditions de départ non réunies à Cergy-le-Haut.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 16h49 à 17h18</span> <span>⌛ 0h28</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h18</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9310,7 +9307,7 @@ Risque d'affluence à bord des trains suivants.<br />
 Motif : panne d'un train à Houilles.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 16h49 à 17h26</span> <span>⌛ 0h36</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h26</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9328,7 +9325,7 @@ Risque d'affluence à bord des trains suivants.<br />
 Motif : panne d'un train à Houilles.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="C" class="disruption  ">
 <h4><img src="/images/lignes//c.svg" /> <span>De 16h48 à 19h35</span> <span>⌛ 2h46</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>19h35</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9345,7 +9342,7 @@ Risque d'affluence à bord des trains suivants.<br />
 Motif : panne sur les installations du gestionnaire de réseau (défaut d'alimentation électrique dans le secteur des Ardoines).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 16h47 à 17h54</span> <span>⌛ 1h06</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h54</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9355,7 +9352,7 @@ Motif : panne sur les installations du gestionnaire de réseau (défaut d'alimen
 Motif : attente d'autorisation d'accès au réseau (gêne de circulation avec un autre train à Melun).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 16h17 à 16h36</span> <span>⌛ 0h18</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h36</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9366,7 +9363,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train à Houilles.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 16h17 à 16h42</span> <span>⌛ 0h24</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h42</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9377,7 +9374,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train à Houilles. </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 16h17 à 16h54</span> <span>⌛ 0h36</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h54</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9388,7 +9385,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train à Houilles.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 16h17 à 17h26</span> <span>⌛ 1h08</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h26</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9399,7 +9396,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train à Houilles.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="A" class="disruption  ">
 <h4><img src="/images/lignes//a.svg" /> <span>De 16h17 à 17h30</span> <span>⌛ 1h12</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9410,7 +9407,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train à Houilles. Incident terminé.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 15h55 à 16h18</span> <span>⌛ 0h22</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h18</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9419,7 +9416,7 @@ Motif : panne d'un train à Houilles. Incident terminé.</p></li>
 Motif : conditions de départ non réunies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 15h55 à 16h42</span> <span>⌛ 0h46</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h42</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9428,7 +9425,7 @@ Motif : conditions de départ non réunies.</p></li>
 Motif : conditions de départ non réunies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 15h55 à 17h10</span> <span>⌛ 1h14</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h10</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9437,7 +9434,7 @@ Motif : conditions de départ non réunies.</p></li>
 Motif : conditions de départ non réunies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 15h09 à 15h24</span> <span>⌛ 0h14</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>15h24</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9446,7 +9443,7 @@ Motif : conditions de départ non réunies.</p></li>
 Motif : panne d'un train de marchandises aux abords des voies de Longueville.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 15h09 à 15h30</span> <span>⌛ 0h20</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>15h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9456,7 +9453,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train de marchandises aux abords des voies de Longueville.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 15h09 à 16h00</span> <span>⌛ 0h50</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9466,7 +9463,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train de marchandises aux abords des voies de Longueville.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 15h09 à 16h00</span> <span>⌛ 0h50</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9480,7 +9477,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train de marchandises aux abords des voies de Longueville.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="E" class="disruption  ">
 <h4><img src="/images/lignes//e.svg" /> <span>De 12h00 à 12h27</span> <span>⌛ 0h26</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>12h27</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9495,7 +9492,7 @@ Risque d'affluence à bord du train suivant.<br />
 Motif : panne d'un train à Magenta.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 11h23 à 11h34</span> <span>⌛ 0h11</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>11h34</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9506,7 +9503,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train de marchandises.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 11h23 à 12h12</span> <span>⌛ 0h49</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>12h12</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9516,7 +9513,7 @@ Les trains circulent entre Longueville et Provins dans les deux sens.Pour plus d
 Motif : panne d'un train de marchandises.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 11h23 à 12h16</span> <span>⌛ 0h53</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>12h16</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9528,7 +9525,7 @@ Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire
 Motif : panne d'un train de marchandises.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 11h23 à 12h32</span> <span>⌛ 1h09</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>12h32</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9540,7 +9537,7 @@ Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire
 Motif : panne d'un train de marchandises.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 11h23 à 14h30</span> <span>⌛ 3h07</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9553,7 +9550,7 @@ Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire
 Motif : panne d'un train de marchandises.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 11h23 à 14h54</span> <span>⌛ 3h31</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h54</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9567,7 +9564,7 @@ Vérifiez si votre train circule sur : <br />
 Motif : panne d'un train aux abords des voies de Longueville.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 11h23 à 15h00</span> <span>⌛ 3h37</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>15h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9580,7 +9577,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter du de 
 Motif : panne d'un train aux abords des voies de Longueville.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 11h23 à 15h20</span> <span>⌛ 3h57</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>15h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9593,7 +9590,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train aux abords des voies de Longueville.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 11h23 à 15h24</span> <span>⌛ 4h01</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>15h24</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9602,7 +9599,7 @@ Motif : panne d'un train aux abords des voies de Longueville.</p></li>
 Motif : panne d'un train de marchandises aux abords des voies de Longueville.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 11h23 à 15h30</span> <span>⌛ 4h07</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>15h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9612,7 +9609,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train de marchandises aux abords des voies de Longueville.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 11h23 à 16h14</span> <span>⌛ 4h51</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h14</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9622,7 +9619,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train de marchandises aux abords des voies de Longueville.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="P" class="disruption  ">
 <h4><img src="/images/lignes//p.svg" /> <span>De 11h23 à 17h00</span> <span>⌛ 5h37</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9636,7 +9633,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un train de marchandises aux abords des voies de Longueville.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="R" class="disruption  ">
 <h4><img src="/images/lignes//r.svg" /> <span>De 08h23 à 09h35</span> <span>⌛ 1h11</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>09h35</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9646,7 +9643,7 @@ Motif : panne d'un train de marchandises aux abords des voies de Longueville.</p
 Motif : attente d'autorisation d'accès au réseau.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="N" class="disruption  ">
 <h4><img src="/images/lignes//n.svg" /> <span>De 07h41 à 08h26</span> <span>⌛ 0h44</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>08h26</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9658,7 +9655,7 @@ Motif : attente d'autorisation d'accès au réseau.</p></li>
 Motif : conditions de départ non réunies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="N" class="disruption  ">
 <h4><img src="/images/lignes//n.svg" /> <span>De 07h41 à 08h44</span> <span>⌛ 1h02</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>08h44</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9668,7 +9665,7 @@ Motif : conditions de départ non réunies.</p></li>
 Motif : conditions de départ non réunies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="N" class="disruption  ">
 <h4><img src="/images/lignes//n.svg" /> <span>De 07h41 à 09h16</span> <span>⌛ 1h34</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>09h16</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9678,7 +9675,7 @@ Motif : conditions de départ non réunies.</p></li>
 Motif : conditions de départ non réunies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="N" class="disruption  ">
 <h4><img src="/images/lignes//n.svg" /> <span>De 07h37 à 07h41</span> <span>⌛ 0h04</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>07h41</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9690,7 +9687,7 @@ Motif : conditions de départ non réunies.</p></li>
 Motif : conditions de départ non réunies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="N" class="disruption  ">
 <h4><img src="/images/lignes//n.svg" /> <span>De 07h37 à 07h41</span> <span>⌛ 0h04</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>07h41</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9700,7 +9697,7 @@ Motif : conditions de départ non réunies.</p></li>
 Motif : conditions de départ non réunies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="D" class="disruption  ">
 <h4><img src="/images/lignes//d.svg" /> <span>De 06h16 à 06h43</span> <span>⌛ 0h26</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>06h43</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9715,7 +9712,7 @@ Risque d'affluence à bord du train suivant.<br />
 Motif : attente d'autorisation d'accès au réseau.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="J" class="disruption  ">
 <h4><img src="/images/lignes//j.svg" /> <span>De 03h00 à 03h00</span> <span>⌛ 0h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>03h00</strong> <span></span>Fin de l'incident<p></p></li>

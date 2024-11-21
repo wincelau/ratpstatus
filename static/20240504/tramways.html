@@ -7,18 +7,18 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_tramways.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_tramways.png" />
-<link rel="stylesheet" href="/css/style.css?202411172333">
+<link rel="stylesheet" href="/css/style.css?202411202353">
 <script>
     const urlJson = '/20240504.json';
 </script>
-<script src="/js/main.js?202411142342"></script>
+<script src="/js/main.js?202411202353"></script>
 </head>
 <body>
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
-<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
+<a id="btn_help" href="#aide" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a id="btn_list" href="#incidents" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
@@ -38,7 +38,7 @@
 </header>
 <main role="main">
 <div id="lignes">
-<div class="ligne"><div class="logo"><img alt="T1" title="T1" src="/images/lignes//t1.svg"/></div>
+<div class="ligne" data-id="T1"><div class="logo"><img alt="T1" title="T1" src="/images/lignes//t1.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -730,7 +730,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T2" title="T2" src="/images/lignes//t2.svg"/></div>
+<div class="ligne" data-id="T2"><div class="logo"><img alt="T2" title="T2" src="/images/lignes//t2.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -1422,7 +1422,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T3A" title="T3A" src="/images/lignes//t3a.svg"/></div>
+<div class="ligne" data-id="T3A"><div class="logo"><img alt="T3A" title="T3A" src="/images/lignes//t3a.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -2114,7 +2114,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T3B" title="T3B" src="/images/lignes//t3b.svg"/></div>
+<div class="ligne" data-id="T3B"><div class="logo"><img alt="T3B" title="T3B" src="/images/lignes//t3b.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -2806,7 +2806,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T4" title="T4" src="/images/lignes//t4.svg"/></div>
+<div class="ligne" data-id="T4"><div class="logo"><img alt="T4" title="T4" src="/images/lignes//t4.svg"/></div>
 <a class="i tx i1h" title="04h00;%c7bdae48-ae35-11ee-8c7d-0a58a9feac02%"></a>
 <a class="i tx " title="04h02;%c7bdae48-ae35-11ee-8c7d-0a58a9feac02%"></a>
 <a class="i tx " title="04h04;%c7bdae48-ae35-11ee-8c7d-0a58a9feac02%"></a>
@@ -3498,7 +3498,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T5" title="T5" src="/images/lignes//t5.svg"/></div>
+<div class="ligne" data-id="T5"><div class="logo"><img alt="T5" title="T5" src="/images/lignes//t5.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -4190,7 +4190,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T6" title="T6" src="/images/lignes//t6.svg"/></div>
+<div class="ligne" data-id="T6"><div class="logo"><img alt="T6" title="T6" src="/images/lignes//t6.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -4882,7 +4882,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T7" title="T7" src="/images/lignes//t7.svg"/></div>
+<div class="ligne" data-id="T7"><div class="logo"><img alt="T7" title="T7" src="/images/lignes//t7.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -5574,7 +5574,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T8" title="T8" src="/images/lignes//t8.svg"/></div>
+<div class="ligne" data-id="T8"><div class="logo"><img alt="T8" title="T8" src="/images/lignes//t8.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -6266,7 +6266,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T9" title="T9" src="/images/lignes//t9.svg"/></div>
+<div class="ligne" data-id="T9"><div class="logo"><img alt="T9" title="T9" src="/images/lignes//t9.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -6958,7 +6958,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T10" title="T10" src="/images/lignes//t10.svg"/></div>
+<div class="ligne" data-id="T10"><div class="logo"><img alt="T10" title="T10" src="/images/lignes//t10.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -7650,7 +7650,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T11" title="T11" src="/images/lignes//t11.svg"/></div>
+<div class="ligne" data-id="T11"><div class="logo"><img alt="T11" title="T11" src="/images/lignes//t11.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -8342,7 +8342,7 @@
 <a class="i tx " title="02h56;%67965634-f7e9-11ee-a614-0a58a9feac02%"></a>
 <a class="i tx " title="02h58;%67965634-f7e9-11ee-a614-0a58a9feac02%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T12" title="T12" src="/images/lignes//t12.svg"/></div>
+<div class="ligne" data-id="T12"><div class="logo"><img alt="T12" title="T12" src="/images/lignes//t12.svg"/></div>
 <a class="i tx i1h" title="04h00;%0bf7f564-fb3e-11ee-8953-0a58a9feac02%"></a>
 <a class="i tx " title="04h02;%0bf7f564-fb3e-11ee-8953-0a58a9feac02%"></a>
 <a class="i tx " title="04h04;%0bf7f564-fb3e-11ee-8953-0a58a9feac02%"></a>
@@ -9034,7 +9034,7 @@
 <a class="i ok " title="02h56%ok%"></a>
 <a class="i ok " title="02h58%ok%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T13" title="T13" src="/images/lignes//t13.svg"/></div>
+<div class="ligne" data-id="T13"><div class="logo"><img alt="T13" title="T13" src="/images/lignes//t13.svg"/></div>
 <a class="i ok i1h" title="04h00%ok%"></a>
 <a class="i ok " title="04h02%ok%"></a>
 <a class="i ok " title="04h04%ok%"></a>
@@ -9742,11 +9742,8 @@
 <dialog id="tooltipModal"></dialog>
 <dialog id="listModal">
 <h2>Incidents du 04/05/2024</h2>
-
-
-
 <h3>Terminés</h3>
-<div class="disruption  ">
+<div data-line="T4" class="disruption  ">
 <h4><img src="/images/lignes//t4.svg" /> <span>De 21h16 à 22h15</span> <span>⌛ 0h59</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>22h15</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9760,7 +9757,7 @@ Motif : malaise voyageur à la station Allée de la Tour Rendez-Vous.</p></li>
 Motif : malaise voyageur à la station Allée de la Tour Rendez-Vous.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T3A" class="disruption  ">
 <h4><img src="/images/lignes//t3a.svg" /> <span>De 15h47 à 16h00</span> <span>⌛ 0h13</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9772,7 +9769,7 @@ Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapproch
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T13" class="disruption  ">
 <h4><img src="/images/lignes//t13.svg" /> <span>De 12h47 à 15h30</span> <span>⌛ 2h43</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>15h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9781,7 +9778,7 @@ Plus d'informations sur le site ratp.fr</p></li>
 Motif : difficultés liées à un manque de personnel.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T5" class="disruption  ">
 <h4><img src="/images/lignes//t5.svg" /> <span>De 12h04 à 12h06</span> <span>⌛ 0h02</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>12h06</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9791,14 +9788,14 @@ Nous vous invitons à emprunter des itinéraires alternatifs et à vous rapproch
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T10" class="disruption  ">
 <h4><img src="/images/lignes//t10.svg" /> <span>De 09h00 à 13h00</span> <span>⌛ 4h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>13h00</strong> <span></span>Fin de l'incident<p></p></li>
 <li><span class="bq"></span> <strong>09h00</strong> <span>⌛ 4h00</span> Arrêt de la ligne T10, le Samedi 4 mai 2024 de 9h à 13h.        <p>En raison de tests d'exploitation, le tramway circulera à vide.Des bus de remplacement seront mis à votre disposition à proximité de chaque station.Nous vous présentons nos excuses pour la gêne occasionnée.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T12" class="disruption  ">
 <h4><img src="/images/lignes//t12.svg" /> <span>De 04h47 à 06h50</span> <span>⌛ 2h03</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>06h50</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9811,7 +9808,7 @@ Plus d'informations sur le site ratp.fr</p></li>
 Motif : panne d'un tramway.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T11" class="disruption  ">
 <h4><img src="/images/lignes//t11.svg" /> <span>De 04h30 à 01h30</span> <span>⌛ 21h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>01h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9829,7 +9826,7 @@ Des bus de remplacement sont mis en place toute la journée du samedi et dimanch
 Motif : travaux de maintenance des voies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T4" class="disruption  ">
 <h4><img src="/images/lignes//t4.svg" /> <span>De 04h00 à 05h00</span> <span>⌛ 1h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>05h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9849,7 +9846,7 @@ Motif : travaux.<br />
  </p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T12" class="disruption  ">
 <h4><img src="/images/lignes//t12.svg" /> <span>De 04h00 à 02h00</span> <span>⌛ 22h00</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>02h00</strong> <span></span>Fin de l'incident<p></p></li>

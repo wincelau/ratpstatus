@@ -7,18 +7,18 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_tramways.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_tramways.png" />
-<link rel="stylesheet" href="/css/style.css?202411172333">
+<link rel="stylesheet" href="/css/style.css?202411202353">
 <script>
     const urlJson = '/20241029.json';
 </script>
-<script src="/js/main.js?202411142342"></script>
+<script src="/js/main.js?202411202353"></script>
 </head>
 <body>
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a onclick="document.getElementById('helpModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
-<a onclick="document.getElementById('listModal').showModal(); return false;" href="https://github.com/wincelau/ratpstatus" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
+<a id="btn_help" href="#aide" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<a id="btn_list" href="#incidents" title="Liste des incidents">📑<i class="mobile_hidden"> </i><span class="mobile_hidden">Liste des incidents</span></a>
 </nav>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
@@ -38,7 +38,7 @@
 </header>
 <main role="main">
 <div id="lignes">
-<div class="ligne"><div class="logo"><img alt="T1" title="T1" src="/images/lignes//t1.svg"/></div>
+<div class="ligne" data-id="T1"><div class="logo"><img alt="T1" title="T1" src="/images/lignes//t1.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -730,7 +730,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T2" title="T2" src="/images/lignes//t2.svg"/></div>
+<div class="ligne" data-id="T2"><div class="logo"><img alt="T2" title="T2" src="/images/lignes//t2.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -1422,7 +1422,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T3A" title="T3A" src="/images/lignes//t3a.svg"/></div>
+<div class="ligne" data-id="T3A"><div class="logo"><img alt="T3A" title="T3A" src="/images/lignes//t3a.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -2114,7 +2114,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T3B" title="T3B" src="/images/lignes//t3b.svg"/></div>
+<div class="ligne" data-id="T3B"><div class="logo"><img alt="T3B" title="T3B" src="/images/lignes//t3b.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -2806,7 +2806,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T4" title="T4" src="/images/lignes//t4.svg"/></div>
+<div class="ligne" data-id="T4"><div class="logo"><img alt="T4" title="T4" src="/images/lignes//t4.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -3498,7 +3498,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T5" title="T5" src="/images/lignes//t5.svg"/></div>
+<div class="ligne" data-id="T5"><div class="logo"><img alt="T5" title="T5" src="/images/lignes//t5.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -4190,7 +4190,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T6" title="T6" src="/images/lignes//t6.svg"/></div>
+<div class="ligne" data-id="T6"><div class="logo"><img alt="T6" title="T6" src="/images/lignes//t6.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -4882,7 +4882,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T7" title="T7" src="/images/lignes//t7.svg"/></div>
+<div class="ligne" data-id="T7"><div class="logo"><img alt="T7" title="T7" src="/images/lignes//t7.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -5574,7 +5574,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T8" title="T8" src="/images/lignes//t8.svg"/></div>
+<div class="ligne" data-id="T8"><div class="logo"><img alt="T8" title="T8" src="/images/lignes//t8.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -6266,7 +6266,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T9" title="T9" src="/images/lignes//t9.svg"/></div>
+<div class="ligne" data-id="T9"><div class="logo"><img alt="T9" title="T9" src="/images/lignes//t9.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -6958,7 +6958,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T10" title="T10" src="/images/lignes//t10.svg"/></div>
+<div class="ligne" data-id="T10"><div class="logo"><img alt="T10" title="T10" src="/images/lignes//t10.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -7650,7 +7650,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T11" title="T11" src="/images/lignes//t11.svg"/></div>
+<div class="ligne" data-id="T11"><div class="logo"><img alt="T11" title="T11" src="/images/lignes//t11.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -8342,7 +8342,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T12" title="T12" src="/images/lignes//t12.svg"/></div>
+<div class="ligne" data-id="T12"><div class="logo"><img alt="T12" title="T12" src="/images/lignes//t12.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -9034,7 +9034,7 @@
 <a class="i no " title="02h56%no%"></a>
 <a class="i no " title="02h58%no%"></a>
 </div>
-<div class="ligne"><div class="logo"><img alt="T13" title="T13" src="/images/lignes//t13.svg"/></div>
+<div class="ligne" data-id="T13"><div class="logo"><img alt="T13" title="T13" src="/images/lignes//t13.svg"/></div>
 <a class="i no i1h" title="04h00%no%"></a>
 <a class="i no " title="04h02%no%"></a>
 <a class="i no " title="04h04%no%"></a>
@@ -9742,9 +9742,8 @@
 <dialog id="tooltipModal"></dialog>
 <dialog id="listModal">
 <h2>Incidents du 29/10/2024</h2>
-
 <h3>En cours</h3>
-<div class="disruption  tx">
+<div data-line="T1" class="disruption  tx">
 <h4><img src="/images/lignes//t1.svg" /> <span>Depuis 04h45</span> <span>⌛ 22h21</span></h4>
 <ul>
 <li><span class="tx"></span> <strong>04h45</strong> <span>⌛ 22h21</span> Tramway T1 : Travaux - Trafic interrompu        <p>Jusqu'au lundi 31 mars 2025, le trafic est interrompu entre Gare de Noisy-le-Sec et Escadrille Normandie-Niémen en raison de travaux.<br />
@@ -9752,10 +9751,8 @@ Bus de remplacement.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
 </div>
-
-
 <h3>Terminés</h3>
-<div class="disruption  ">
+<div data-line="T1" class="disruption  ">
 <h4><img src="/images/lignes//t1.svg" /> <span>De 00h19 à 01h34</span> <span>⌛ 1h15</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>01h34</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9764,7 +9761,7 @@ Heure de reprise estimée : 01:00.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T1" class="disruption  ">
 <h4><img src="/images/lignes//t1.svg" /> <span>De 00h03 à 00h26</span> <span>⌛ 0h22</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>00h26</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9772,7 +9769,7 @@ Plus d'informations sur le site ratp.fr</p></li>
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T13" class="disruption  ">
 <h4><img src="/images/lignes//t13.svg" /> <span>De 21h00 à 01h30</span> <span>⌛ 4h30</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>01h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9791,7 +9788,7 @@ Un service de bus de remplacement est mis en place.<br />
 Motif : travaux sur la ligne L impactant les circulations du T13.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T12" class="disruption  ">
 <h4><img src="/images/lignes//t12.svg" /> <span>De 17h50 à 19h38</span> <span>⌛ 1h48</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h50</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9803,7 +9800,7 @@ Motif : incident affectant la signalisation.</p></li>
 Motif : incident affectant la signalisation.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T12" class="disruption  ">
 <h4><img src="/images/lignes//t12.svg" /> <span>De 17h50 à 19h31</span> <span>⌛ 1h41</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>19h31</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9815,7 +9812,7 @@ Motif : incident affectant la signalisation.</p></li>
 Motif : incident affectant la signalisation.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T3A" class="disruption  ">
 <h4><img src="/images/lignes//t3a.svg" /> <span>De 16h02 à 16h22</span> <span>⌛ 0h20</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h22</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9826,7 +9823,7 @@ Heure de reprise estimée : 17:30.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T12" class="disruption  ">
 <h4><img src="/images/lignes//t12.svg" /> <span>De 16h00 à 17h20</span> <span>⌛ 1h20</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>17h20</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9840,7 +9837,7 @@ Plus d'informations sur le site ratp.fr</p></li>
 Motif : conditions de départ non réunies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T3A" class="disruption  ">
 <h4><img src="/images/lignes//t3a.svg" /> <span>De 12h49 à 14h24</span> <span>⌛ 1h35</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>14h24</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9853,7 +9850,7 @@ Heure de reprise estimée : 13:30.<br />
 Plus d'informations sur le site ratp.fr</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T4" class="disruption  ">
 <h4><img src="/images/lignes//t4.svg" /> <span>De 10h40 à 11h44</span> <span>⌛ 1h04</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>11h44</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9864,7 +9861,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un tramway à Maurice Audin.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T4" class="disruption  ">
 <h4><img src="/images/lignes//t4.svg" /> <span>De 10h40 à 13h30</span> <span>⌛ 2h50</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>13h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9875,7 +9872,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un tramway à Maurice Audin (incident terminé).</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T4" class="disruption  ">
 <h4><img src="/images/lignes//t4.svg" /> <span>De 07h14 à 10h30</span> <span>⌛ 3h16</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>10h30</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9886,7 +9883,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un tramway à La Remise à Jorelle.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T4" class="disruption  ">
 <h4><img src="/images/lignes//t4.svg" /> <span>De 07h14 à 08h22</span> <span>⌛ 1h08</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>08h22</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9897,7 +9894,7 @@ Pour plus d'informations sur cette perturbation, consultez le fil Twitter de la 
 Motif : panne d'un tramway à La Remise à Jorelle.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T12" class="disruption  ">
 <h4><img src="/images/lignes//t12.svg" /> <span>De 06h26 à 16h00</span> <span>⌛ 9h34</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>16h00</strong> <span></span>Fin de l'incident<p></p></li>
@@ -9906,7 +9903,7 @@ Motif : panne d'un tramway à La Remise à Jorelle.</p></li>
 Motif : conditions de départ non réunies.</p></li>
 </ul>
 </div>
-<div class="disruption  ">
+<div data-line="T13" class="disruption  ">
 <h4><img src="/images/lignes//t13.svg" /> <span>De 06h21 à 09h00</span> <span>⌛ 2h39</span></h4>
 <ul>
 <li><span class="ok"></span> <strong>09h00</strong> <span></span>Fin de l'incident<p></p></li>
