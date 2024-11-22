@@ -8,9 +8,7 @@
 <?php $isFirst = false; ?>
 <?php endif; ?>
 <li><span class="<?php echo $i->getColorClass() ?>"></span> <strong><?php echo $i->getDateStart()->format("H\hi") ?></strong> <span>⌛ <?php echo $i->getDuration()->format("%hh%I"); ?></span><span><br /><br /></span><?php echo $i->getTitle() ?>
-        <p class="ellips"><?php echo nl2br(preg_replace("/[\n]+$/i", "", $i->getMessagePlainText())) ?></p>
-        <p><a class="btn_toutvoir" href="">▼ tout voir</a></p>
-</li>
+<p class="ellips"><?php echo nl2br(preg_replace("/[\n]+$/i", "", $i->getMessagePlainText())) ?></p></li>
 <?php endforeach; ?>
 </ul>
 

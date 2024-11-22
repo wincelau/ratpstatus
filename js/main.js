@@ -14,9 +14,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   });
 
   document.querySelector('#btn_list').addEventListener('click', function(e) {
-      filtreListeDisruption();
       document.getElementById('listModal').showModal();
-      document.getElementById('listModal').scrollTo(0,0);
       return false;
   });
 
@@ -35,7 +33,6 @@ document.addEventListener('DOMContentLoaded', async function () {
       if(e.target.closest('.ligne')) {
         filtreListeDisruption(e.target.closest('.ligne').dataset.id);
         document.getElementById('listModal').showModal();
-        document.getElementById('listModal').scrollTo(0,0);
       }
   })
   const modalHelp = document.getElementById('helpModal')
@@ -46,18 +43,22 @@ document.addEventListener('DOMContentLoaded', async function () {
   });
   const modalList = document.getElementById('listModal')
   modalList.addEventListener('click', function(event) {
-    if(event.target.nodeName != "A") {
-      modalList.close();
-    }
+      if(event.target.classList.contains('ellips')) {
+          event.target.classList.remove('ellips');
+          return;
+      }
+
+      if(event.target.nodeName != "A") {
+          modalList.close();
+      }
   });
 
-  document.querySelectorAll('.btn_toutvoir').forEach(function(item) {
-    item.addEventListener('click', function(e) {
-      e.preventDefault();
-      item.closest('.disruption').querySelector('p.ellips').classList.remove('ellips');
-      item.closest('p').classList.add('hide');
-      return false;
-    });
+  modalList.addEventListener("close", function(e) {
+      filtreListeDisruption();
+      document.getElementById('listModal').scrollTo(0,0);
+      document.querySelectorAll('#listModal .disruption ul  li p').forEach(function(item) {
+          item.classList.add('ellips');
+      });
   });
 })
 
