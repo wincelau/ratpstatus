@@ -12,7 +12,7 @@
 <script>
     const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
 </script>
-<script src="/js/main.js?202411202354"></script>
+<script src="/js/main.js?202411202355"></script>
 </head>
 <body>
 <div id="container">

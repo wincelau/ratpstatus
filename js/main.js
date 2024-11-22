@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   const modalHelp = document.getElementById('helpModal')
   modalHelp.addEventListener('click', function(event) {
     if(event.target.nodeName != "A") {
-      modalList.close();
+      modalHelp.close();
     }
   });
   const modalList = document.getElementById('listModal')
