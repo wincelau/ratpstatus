@@ -11,5 +11,4 @@
 <p class="ellips"><?php echo nl2br(preg_replace("/[\n]+$/i", "", $i->getMessagePlainText())) ?></p></li>
 <?php endforeach; ?>
 </ul>
-
 </div>

@@ -14,7 +14,8 @@ document.addEventListener('DOMContentLoaded', async function () {
   });
 
   document.querySelector('#btn_list').addEventListener('click', function(e) {
-      document.getElementById('listModal').showModal();
+      modalList.showModal();
+      modalList.scrollTo(0,0);
       return false;
   });
 
@@ -32,7 +33,9 @@ document.addEventListener('DOMContentLoaded', async function () {
   document.querySelector('#lignes').addEventListener('click', function(e) {
       if(e.target.closest('.ligne')) {
         filtreListeDisruption(e.target.closest('.ligne').dataset.id);
-        document.getElementById('listModal').showModal();
+        modalList.showModal();
+        modalList.scrollTo(0,0);
+        modalList.blur();
       }
   })
   const modalHelp = document.getElementById('helpModal')
@@ -44,8 +47,11 @@ document.addEventListener('DOMContentLoaded', async function () {
   const modalList = document.getElementById('listModal')
   modalList.addEventListener('click', function(event) {
       if(event.target.classList.contains('ellips')) {
+          let beforeheight = event.target.offsetHeight;
           event.target.classList.remove('ellips');
-          return;
+          if(beforeheight != event.target.offsetHeight) {
+              return;
+          }
       }
 
       if(event.target.nodeName != "A") {
@@ -55,8 +61,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   modalList.addEventListener("close", function(e) {
       filtreListeDisruption();
-      document.getElementById('listModal').scrollTo(0,0);
-      document.querySelectorAll('#listModal .disruption ul  li p').forEach(function(item) {
+      this.querySelectorAll('.disruption ul  li p').forEach(function(item) {
           item.classList.add('ellips');
       });
   });
