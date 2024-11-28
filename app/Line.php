@@ -27,8 +27,8 @@ class Line
         foreach($this->disruptions as $disruption) {
             $dateStart = $impact->getDateStart();
             $dateEnd = $impact->getDateEnd();
-            $dateStart = $dateStart->modify('-5 minutes');
-            $dateEnd = $dateEnd->modify('+5 minutes');
+            $dateStart = $dateStart->modify('-10 minutes');
+            $dateEnd = $dateEnd->modify('+10 minutes');
             if($dateStart > $disruption->getDateEnd() || $dateEnd < $disruption->getDateStart()) {
                 continue;
             }

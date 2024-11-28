@@ -27,6 +27,11 @@ class Impact
     const TYPE_CHANGEMENT_COMPOSITION = 'CHANGEMENT_COMPOSITION';
     const TYPE_AUCUNE = 'AUCUNE';
 
+    const MODE_RER = 'RapidTransit';
+    const MODE_TRAIN = 'LocalTrain';
+    const MODE_METRO = 'Metro';
+    const MODE_TRAMWAY = 'Tramway';
+
     protected $dateStart = null;
     protected $dateEnd = null;
     protected $type = null;
@@ -59,10 +64,19 @@ class Impact
     }
 
     public function getDistruptionId() {
-        if(!preg_match('/(Métro| T[0-9]+)/', $this->getTitle())) {
-            return md5($this->getId());
+        if(isset($this->data->disruption_id)) {
+
+            return "distruption_id:".$this->data->disruption_id;
         }
-        return md5($this->getUniqueTitle());
+
+        return $this->getDistruptionIdCalculate();
+    }
+
+    public function getDistruptionIdCalculate() {
+        if(in_array($this->getMode(), [self::MODE_RER, self::MODE_TRAIN])) {
+             return "distruption_id_calculate:".md5($this->getId());
+        }
+        return "distruption_id_calculate:".md5($this->getUniqueTitle());
     }
 
     public function setDateCreation($date) {
@@ -78,6 +92,18 @@ class Impact
     public function getTitle() {
 
         return $this->data->title;
+    }
+
+    public function isSameImpact($impact) {
+        if(in_array($this->getMode(), [self::MODE_METRO, self::MODE_TRAMWAY])) {
+
+            return $this->getUniqueTitle() == $impact->getUniqueTitle();
+        }
+
+        if(in_array($this->getMode(), [self::MODE_RER, self::MODE_TRAIN])) {
+
+            return $this->getTitle().$this->getSeverity() == $impact->getTitle().$impact->getSeverity();
+        }
     }
 
     public function getUniqueTitle() {
@@ -246,6 +272,10 @@ class Impact
 
     public function getLigneId() {
         return preg_replace('/^[^ ]+ /', '', strtoupper(implode("", $this->getLignes())));
+    }
+
+    public function getMode() {
+        return preg_replace('/ [^ ]+$/', '', implode("", $this->getLignes()));
     }
 
     public function getLignes() {

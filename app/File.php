@@ -5,7 +5,7 @@ class File
     protected $data = null;
     protected $filePath = null;
     protected $filename = null;
-    protected $distruptions = [];
+    protected $impacts = [];
 
     public function __construct($filePath) {
         $this->filePath = $filePath;
@@ -29,7 +29,7 @@ class File
             if($impact->isToExclude()) {
                 continue;
             }
-            $this->distruptions[$dataDistruption->id] = $impact;
+            $this->impacts[$dataDistruption->id] = $impact;
         }
     }
 
@@ -44,9 +44,9 @@ class File
         return $dateUpdated;
     }
 
-    public function getDistruptions() {
+    public function getImpacts() {
 
-        return $this->distruptions;
+        return $this->impacts;
     }
 
     public function getFilePath() {

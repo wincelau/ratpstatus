@@ -37,9 +37,14 @@ class Disruption
     }
 
     public function getDateEnd() {
+        $dateEnd = null;
         foreach($this->impacts as $i) {
-            return $i->getDateEnd();
+            if($i->getDateEnd() > $dateEnd) {
+                $dateEnd = $i->getDateEnd();
+            }
         }
+
+        return $dateEnd;
     }
 
     public function getDateStart() {
@@ -93,20 +98,20 @@ class Disruption
         $nextImpact = null;
         krsort($this->impacts);
         foreach($this->impacts as $impact) {
-            if($nextImpact && $impact->getDateEnd() > $nextImpact->getDateEnd()) {
+            if($nextImpact && $nextImpact->isSameImpact($impact) && $impact->getDateEnd() > $nextImpact->getDateEnd()) {
                 $impact->setDateEnd($nextImpact->getDateStart()->format('Ymd\THis'));
             }
 
-            if($nextImpact && $nextImpact->getDateStart() > $impact->getDateEnd()) {
+            if($nextImpact && $nextImpact->isSameImpact($impact) && $nextImpact->getDateStart() > $impact->getDateEnd()) {
                 $nextImpact = $impact;
                 continue;
             }
 
-            if($nextImpact && $impact->getDateEnd() > $nextImpact->getDateEnd()) {
+            if($nextImpact && $nextImpact->isSameImpact($impact) && $impact->getDateEnd() > $nextImpact->getDateEnd()) {
                 $impact->setDateEnd($nextImpact->getDateEnd()->format('Ymd\THis'));
             }
 
-            if($nextImpact && $impact->getDateEnd() > $nextImpact->getDateStart()) {
+            if($nextImpact && $nextImpact->isSameImpact($impact) && $impact->getDateEnd() > $nextImpact->getDateStart()) {
                 $impact->setDateEnd($nextImpact->getDateStart()->format('Ymd\THis'));
             }
 
@@ -130,6 +135,7 @@ class Disruption
                 }
                 if($otherImpact->isInPeriod($impact->getDateStart()) && $impact->getSeverity() == $otherImpact->getSeverity() && $impact->getTitle() == $otherImpact->getTitle()) {
                     $otherImpact->setDateEnd($impact->getDateEnd()->format('Ymd\THis'));
+                    $otherImpact->data->message = $impact->data->message;
                     unset($this->impacts_optimized[$key]);
                 }
             }

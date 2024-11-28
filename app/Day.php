@@ -69,13 +69,17 @@ class Day
 
     protected function loadDisruptions() {
         $files = $this->getDistruptionsFiles();
+        $ids = $this->getDistruptionsIds();
         $previousDisruptions = [];
         foreach($files as $file) {
             $file = new File($file);
             $currentDisruptions = [];
-            foreach($file->getDistruptions() as $disruption) {
-                $this->addImpact($disruption);
-                $currentDisruptions[$disruption->getId()] = $disruption;
+            foreach($file->getImpacts() as $impact) {
+                if(isset($ids[$impact->getId()])) {
+                    $impact->data->disruption_id = $ids[$impact->getId()];
+                }
+                $this->addImpact($impact);
+                $currentDisruptions[$impact->getId()] = $impact;
             }
             foreach($previousDisruptions as $previousDisruption) {
                 if(!isset($currentDisruptions[$previousDisruption->getId()]) && $previousDisruption->getDateEnd() > $file->getDate()) {
@@ -87,6 +91,24 @@ class Day
         if(isset($file)) {
             $this->lastFile = $file;
         }
+    }
+
+    protected function getDistruptionsIds() {
+        $idsCsvFile = __DIR__.'/../datas/disruptions_ids/'.$this->getDateStart()->format('Ymd').'_disruptions_ids.csv';
+        if(!is_file($idsCsvFile)) {
+            return [];
+        }
+
+        $ids = [];
+        foreach(file($idsCsvFile) as $line) {
+            $line = str_replace("\n", "", $line);
+            if(!$line) {
+                continue;
+            }
+            $ids[explode(",", $line)[0]] = explode(",", $line)[1];
+        }
+
+        return $ids;
     }
 
     protected function getDistruptionsFiles() {
