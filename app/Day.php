@@ -75,7 +75,7 @@ class Day
             $file = new File($file);
             $currentDisruptions = [];
             foreach($file->getImpacts() as $impact) {
-                if(isset($ids[$impact->getId()])) {
+                if(!isset($impact->data->disruption_id) && isset($ids[$impact->getId()])) {
                     $impact->data->disruption_id = $ids[$impact->getId()];
                 }
                 $this->addImpact($impact);

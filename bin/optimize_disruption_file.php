@@ -3,12 +3,24 @@
 date_default_timezone_set('Europe/Paris');
 
 $jsonFile = $argv[1];
+$csvIdsFile = isset($argv[2]) ? $argv[2] : null;
 
 $json = json_decode(file_get_contents($jsonFile));
 $jsonOriginal = json_decode(file_get_contents($jsonFile));
 
 $dateFile = new DateTime($json->lastUpdatedDate, new DateTimeZone("UTC"));
 $dateFile->setTimeZone(new DateTimeZone(date_default_timezone_get()));
+
+$ids = [];
+if($csvIdsFile && is_file($csvIdsFile)) {
+    foreach(file($csvIdsFile) as $line) {
+        $line = str_replace("\n", "", $line);
+        if(!$line) {
+            continue;
+        }
+        $ids[explode(",", $line)[0]] = explode(",", $line)[1];
+    }
+}
 
 $disruptionIdsDeleted = [];
 
@@ -29,6 +41,9 @@ foreach($json->disruptions as $indexDisruption => $disruption) {
     if(in_array($disruption->id, $disruptionIdsDeleted)) {
         unset($json->disruptions[$indexDisruption]);
         continue;
+    }
+    if(isset($ids[$disruption->id])) {
+        $disruption->disruption_id = $ids[$disruption->id];
     }
     foreach($disruption->applicationPeriods as $indexPeriod => $period) {
         $dateBegin = new DateTime($period->begin);
