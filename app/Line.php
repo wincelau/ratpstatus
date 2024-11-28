@@ -29,7 +29,7 @@ class Line
             $dateEnd = $impact->getDateEnd();
             $dateStart = $dateStart->modify('-10 minutes');
             $dateEnd = $dateEnd->modify('+10 minutes');
-            if($dateStart > $disruption->getDateEnd() || $dateEnd < $disruption->getDateStart()) {
+            if(!$impact->hasRealDisruptionId() && ($dateStart > $disruption->getDateEnd() || $dateEnd < $disruption->getDateStart())) {
                 continue;
             }
 

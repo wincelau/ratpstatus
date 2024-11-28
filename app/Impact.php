@@ -63,8 +63,13 @@ class Impact
         return $this->data->id;
     }
 
+    public function hasRealDisruptionId() {
+
+        return isset($this->data->disruption_id);
+    }
+
     public function getDistruptionId() {
-        if(isset($this->data->disruption_id)) {
+        if($this->hasRealDisruptionId()) {
 
             return "distruption_id:".$this->data->disruption_id;
         }
@@ -102,7 +107,7 @@ class Impact
 
         if(in_array($this->getMode(), [self::MODE_RER, self::MODE_TRAIN])) {
 
-            return $this->getTitle().$this->getSeverity() == $impact->getTitle().$impact->getSeverity();
+            return $this->getTitle().$this->getSeverity() == $impact->getTitle().$impact->getSeverity() && ($this->isInPeriod($impact->getDateStart()) || $this->isInPeriod($impact->getDateEnd()));
         }
     }
 
