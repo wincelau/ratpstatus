@@ -24,4 +24,4 @@ git commit $fileoptimized -m "Récupération du dernier fichier disruption.json"
 git push
 
 gzip datas/jsonbrut/$todaydate/*.json &
-gzip datas/jsonbrut/$todaydate/*.csv && zcat datas/jsonbrut/$todaydate/*.csv.gz | sort | uniq > $filedisruptionids.tmp && mv $filedisruptionids.tmp $filedisruptionids &
+gzip datas/jsonbrut/$todaydate/*.csv; zcat datas/jsonbrut/$todaydate/*.csv.gz | sort | uniq > $filedisruptionids.tmp && mv $filedisruptionids.tmp $filedisruptionids &
