@@ -194,7 +194,7 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
-        if(preg_match("/(trafic sera très perturbé|trafic sera interrompu)/i", $this->getMessagePlainText())) {
+        if(preg_match("/(trafic sera très perturbé|trafic sera interrompu|le trafic de la ligne [A-Z0-9]+ sera perturbé|trafic sera également interrompu|trafic de la ligne sera légèrement perturbé)/i", $this->getMessagePlainText())) {
 
             return self::TYPE_AUCUNE;
         }
