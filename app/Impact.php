@@ -116,6 +116,11 @@ class Impact
     }
 
     public function getSuggestionType() {
+        if(preg_match("/(trafic sera très perturbé|trafic sera interrompu|le trafic de la ligne [A-Z0-9]+ sera perturbé|trafic sera également interrompu|trafic de la ligne sera légèrement perturbé)/i", $this->getMessagePlainText())) {
+
+            return self::TYPE_AUCUNE;
+        }
+
         if(preg_match("/Le trafic est fortement perturbé[àéèîếa-zA-z\ '0-9]*entre/i", $this->getMessagePlainText())) {
 
             return self::TYPE_PERTURBATION_PARTIELLE_FORTE;
@@ -194,11 +199,6 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
-        if(preg_match("/(trafic sera très perturbé|trafic sera interrompu|le trafic de la ligne [A-Z0-9]+ sera perturbé|trafic sera également interrompu|trafic de la ligne sera légèrement perturbé)/i", $this->getMessagePlainText())) {
-
-            return self::TYPE_AUCUNE;
-        }
-
         if(preg_match('/Modifications de compositions/', $this->getTitle())) {
             return self::TYPE_AUCUNE;
         }
@@ -211,7 +211,7 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
-        if(preg_match("/(modifications horaires|horaires modifiés|Modifications d'horaires|Changement d'horaires|modification horaire)/i", $this->getTitle())) {
+        if(preg_match("/(modifications horaires|horaires modifiés|Modifications d'horaires|Changement d'horaires|modification horaire|Changement de service)/i", $this->getTitle())) {
             return self::TYPE_CHANGEMENT_HORAIRES;
         }
 
