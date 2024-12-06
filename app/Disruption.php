@@ -63,6 +63,11 @@ class Disruption
         return $dateEnd->diff($this->getDateStart());
     }
 
+    public function getDurationText() {
+
+        return Impact::generateDurationText($this->getDuration());
+    }
+
     public function getCause() {
         foreach($this->impacts as $i) {
             return $i->getCause();

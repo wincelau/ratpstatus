@@ -347,6 +347,23 @@ class Impact
         return $dateEnd->diff($this->getDateStart());
     }
 
+    public static function generateDurationText(DateInterval $duration) {
+        $nbMinutes = ($duration->d * 24 * 60) + ($duration->h * 60) + $duration->i;
+        $nbHours = ($duration->d * 24) + ($duration->h);
+
+        if($nbMinutes < 180) {
+
+            return sprintf("%d min", $nbMinutes);
+        }
+
+        return sprintf("%d h", $nbHours);
+    }
+
+    public function getDurationText() {
+
+        return self::generateDurationText($this->getDuration());
+    }
+
     public function isInPeriod(DateTime $date) {
 
         return $date >= $this->getDateStart() && $date <= $this->getDateEnd();
