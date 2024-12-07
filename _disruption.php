@@ -5,7 +5,7 @@
 <li><span class="ok"></span> <strong><?php echo $disruption->getDateEnd()->format("H\hi") ?></strong> <span></span> <span><br /><br /></span>Fin de l'incident<p></p></li>
 <?php endif; ?>
 <?php foreach($disruption->getImpacts() as $i): ?>
-<li><span class="<?php echo $i->getColorClass() ?>"></span> <strong><?php echo $i->getDateStart()->format("H\hi") ?></strong> <span style="opacity: 0.75;"><?php echo $i->getDurationText(); ?></span><span><br /><br /></span><?php echo $i->getTitle() ?>
+<li><span class="<?php echo $i->getColorClass() ?>"></span> <strong><?php echo $i->getDateStart()->format("H\hi") ?></strong> <span style="opacity: <?php if(!$disruption->isInProgress()): ?>0.75<?php endif; ?>;"><?php if($disruption->isInProgress()): ?>⏳ <?php endif; ?><?php echo $i->getDurationText(); ?></span><span><br /><br /></span><?php echo $i->getTitle() ?>
 <p class="ellips"><?php echo nl2br(preg_replace("/[\n]+$/i", "", $i->getMessagePlainText())) ?></p>
 </li>
 <?php endforeach; ?>

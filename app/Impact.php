@@ -364,6 +364,12 @@ class Impact
         return self::generateDurationText($this->getDuration());
     }
 
+    public function isInProgress() {
+        $current = new DateTime();
+
+        return $current > $this->getDateStart() && $current < $this->getDateEnd();
+    }
+
     public function isInPeriod(DateTime $date) {
 
         return $date >= $this->getDateStart() && $date <= $this->getDateEnd();
