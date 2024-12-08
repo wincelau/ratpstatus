@@ -33,6 +33,10 @@ class File
         }
     }
 
+    public function isValid() {
+        return isset($this->data->disruptions);
+    }
+
     public function getDate() {
 
         return new DateTime(preg_replace("/^([0-9]{8})/", '\1T', preg_replace("/_.*.json/", "", $this->filename)));
