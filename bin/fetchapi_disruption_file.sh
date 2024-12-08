@@ -18,10 +18,5 @@ done;
 
 php bin/optimize_disruption_file.php $filebrut $filebrut.ids.csv > $fileoptimized
 
-git pull --commit
-git add $fileoptimized
-git commit $fileoptimized -m "Récupération du dernier fichier disruption.json"
-git push
-
 gzip datas/jsonbrut/$todaydate/*.json &
 gzip datas/jsonbrut/$todaydate/*.csv; zcat datas/jsonbrut/$todaydate/*.csv.gz | sort | uniq > $filedisruptionids.tmp && mv $filedisruptionids.tmp $filedisruptionids &
