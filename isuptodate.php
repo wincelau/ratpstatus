@@ -13,21 +13,21 @@ foreach(scandir(__DIR__.'/datas/json', SCANDIR_SORT_DESCENDING) as $folder) {
     if(!is_dir(__DIR__.'/datas/json/'.$folder) ){
         continue;
     }
-    foreach(scandir(__DIR__.'/datas/json/'.$folder, SCANDIR_SORT_DESCENDING) as $file) {
-        $file = new File(__DIR__.'/datas/json/'.$folder.'/'.$file);
+    foreach(scandir(__DIR__.'/datas/json/'.$folder, SCANDIR_SORT_DESCENDING) as $filename) {
+        $file = new File(__DIR__.'/datas/json/'.$folder.'/'.$filename);
         if(!$file->isValid()) {
             http_response_code('500');
-            echo "Le dernier fichier récupéré date d'il y a moins de 2 minutes : ERROR (Fichier non conforme)\n";
+            echo "Le dernier fichier est conforme : ERROR ($filename)\n";
             exit;
         }
+        echo "Le dernier fichier est conforme : SUCCESS ($filename)\n";
         if($today > $file->getDate()) {
             http_response_code('500');
             echo "Le dernier fichier récupéré date d'il y a moins de 2 minutes : ERROR (".$file->getDate()->format('Y-m-d H:i:s').")\n";
             exit;
         }
+        echo "Le dernier fichier récupéré date d'il y a moins de 2 minutes : SUCCESS (".$file->getDate()->format('Y-m-d H:i:s').")\n";
         break;
     }
     break;
 }
-
-echo "Le dernier fichier récupéré date d'il y a moins de 2 minutes : SUCCESS (".$file->getDate()->format('Y-m-d H:i:s').")\n";
