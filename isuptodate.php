@@ -30,4 +30,4 @@ foreach(scandir(__DIR__.'/datas/json', SCANDIR_SORT_DESCENDING) as $folder) {
     break;
 }
 
-echo "Le dernier fichier récupéré date d'il y a moins de 2 minutes : SUCCESS\n";
+echo "Le dernier fichier récupéré date d'il y a moins de 2 minutes : SUCCESS (".$file->getDate()->format('Y-m-d H:i:s').")\n";
