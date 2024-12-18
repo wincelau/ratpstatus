@@ -6,6 +6,27 @@ class Config
         return ["metros" => "Ⓜ️ <span>Métros</span>", "trains" => "🚆 <span>RER/Trains</span>", "tramways" => "🚈 <span>Tramways</span>"];
     }
 
+    public static function getOpeningTime() {
+        return [
+            "metros" => [
+                "*"       => ["05:30:00", "01:15:00"],
+                "(Fri|Sat)" => ["05:30:00", "02:15:00"]
+            ],
+            "Métro 3B" => [
+                "*"       => ["05:27:00", "01:15:00"],
+                "(Fri|Sat)" => ["05:27:00", "02:15:00"]
+            ],
+            "Métro 7" => [
+                "*"       => ["05:28:00", "01:15:00"],
+                "(Fri|Sat)" => ["05:28:00", "02:15:00"]
+            ],
+            "Métro 8" => [
+                "*"       => ["05:21:00", "01:15:00"],
+                "(Fri|Sat)" => ["05:21:00", "02:15:00"]
+            ]
+        ];
+    }
+
     public static function getLignes() {
         $baseUrlLogo = "/images/lignes/";
 

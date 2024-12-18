@@ -21,7 +21,7 @@ class Day
     protected function loadLines() {
         foreach(Config::getLignes() as $mode => $lignes) {
             foreach($lignes as $ligneName => $ligneImg) {
-                $ligne = new Line($ligneName, $this->dateStart);
+                $ligne = new Line($ligneName, $mode, $this->dateStart);
                 $ligne->setImage($ligneImg);
                 $this->lignes[$ligne->getId()] = $ligne;
             }
@@ -56,6 +56,27 @@ class Day
             $ligne = $this->lignes[strtoupper($dataLine->name)];
             $ligne->setOpeningDateTime(DateTime::createFromFormat('YmdHis', $this->getDateStart()->format('Ymd').$dataLine->opening_time));
             $ligne->setClosingDateTime(DateTime::createFromFormat('YmdHis', $this->getDateEnd()->format('Ymd').$dataLine->closing_time));
+        }
+
+        $config = Config::getOpeningTime();
+        foreach($this->lignes as $ligne) {
+            $configLine = null;
+            if(isset($config[$ligne->getMode()])) {
+                $configLine = $config[$ligne->getMode()];
+            }
+            if(isset($config[$ligne->getName()])) {
+                $configLine = $config[$ligne->getName()];
+            }
+
+            if(!$configLine) {
+                continue;
+            }
+            $configLineKey = '*';
+            if(preg_match('/^(Fri|Sat)$/', $this->getDateStart()->format('D'))) {
+                $configLineKey = '(Fri|Sat)';
+            }
+            $ligne->setOpeningDateTime(DateTime::createFromFormat('Y-m-d H:i:s', $this->getDateStart()->format('Y-m-d')." ".$configLine[$configLineKey][0]));
+            $ligne->setClosingDateTime(DateTime::createFromFormat('Y-m-d H:i:s', $this->getDateEnd()->format('Y-m-d')." ".$configLine[$configLineKey][1]));
         }
     }
 

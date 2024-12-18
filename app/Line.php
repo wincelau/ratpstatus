@@ -4,13 +4,15 @@ class Line
 {
     protected $image = null;
     protected $name = null;
+    protected $mode = null;
     protected $openingDateTime = null;
     protected $closingDateTime = null;
     protected $disruptions = [];
     protected $dateDayStart;
 
-    public function __construct($name, $dateDayStart) {
+    public function __construct($name, $mode, $dateDayStart) {
         $this->name = $name;
+        $this->mode = $mode;
         $this->dateDayStart = $dateDayStart;
     }
 
@@ -57,6 +59,11 @@ class Line
     public function getName() {
 
         return $this->name;
+    }
+
+    public function getMode() {
+
+        return $this->mode;
     }
 
     public function setImage($image) {
