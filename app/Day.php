@@ -53,28 +53,42 @@ class Day
             if(!isset($this->lignes[strtoupper($dataLine->name)])) {
                 continue;
             }
+            if($dataLine->opening_time == "000000") {
+                continue;
+            }
             $ligne = $this->lignes[strtoupper($dataLine->name)];
             $ligne->setOpeningDateTime(DateTime::createFromFormat('YmdHis', $this->getDateStart()->format('Ymd').$dataLine->opening_time));
-            $ligne->setClosingDateTime(DateTime::createFromFormat('YmdHis', $this->getDateEnd()->format('Ymd').$dataLine->closing_time));
+            if($dataLine->closing_time > "120000") {
+                $ligne->setClosingDateTime(DateTime::createFromFormat('YmdHis', $this->getDateStart()->format('Ymd').$dataLine->closing_time));
+            } else {
+                $ligne->setClosingDateTime(DateTime::createFromFormat('YmdHis', $this->getDateEnd()->format('Ymd').$dataLine->closing_time));
+            }
         }
 
         $config = Config::getOpeningTime();
         foreach($this->lignes as $ligne) {
-            $configLine = null;
+            $configLine = [];
             if(isset($config[$ligne->getMode()])) {
-                $configLine = $config[$ligne->getMode()];
+                $configLine = array_merge($configLine, $config[$ligne->getMode()]);
             }
             if(isset($config[$ligne->getName()])) {
-                $configLine = $config[$ligne->getName()];
+                $configLine = array_merge($configLine, $config[$ligne->getName()]);
             }
 
-            if(!$configLine) {
+            if(!count($configLine)) {
                 continue;
             }
             $configLineKey = '*';
-            if(preg_match('/^(Fri|Sat)$/', $this->getDateStart()->format('D'))) {
+            if(isset($configLine['(Fri|Sat)']) && preg_match('/^(Fri|Sat)$/', $this->getDateStart()->format('D'))) {
                 $configLineKey = '(Fri|Sat)';
             }
+            if(!is_null($ligne->getOpeningDateTime()) && $configLine[$configLineKey][0] == 'API') {
+                continue;
+            }
+            if(is_null($ligne->getOpeningDateTime()) && $configLine[$configLineKey][0] == 'API') {
+                $configLineKey = 'FALLBACK';
+            }
+
             $ligne->setOpeningDateTime(DateTime::createFromFormat('Y-m-d H:i:s', $this->getDateStart()->format('Y-m-d')." ".$configLine[$configLineKey][0]));
             $ligne->setClosingDateTime(DateTime::createFromFormat('Y-m-d H:i:s', $this->getDateEnd()->format('Y-m-d')." ".$configLine[$configLineKey][1]));
         }
