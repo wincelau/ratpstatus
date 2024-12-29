@@ -48,8 +48,16 @@ class Disruption
     }
 
     public function getDateStart() {
-
         return end($this->impacts)->getDateStart();
+
+        $dateStart = null;
+        foreach($this->impacts as $i) {
+            if(!$dateStart || $i->getDateStart() < $dateStart) {
+                $dateStart = $i->getDateStart();
+            }
+        }
+
+        return $dateStart;
     }
 
     public function getDuration() {

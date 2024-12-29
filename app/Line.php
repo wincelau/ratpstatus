@@ -53,6 +53,7 @@ class Line
             $this->disruptions[] = $disruption;
         }
 
+        $impact->setLigne($this);
         $disruption->addImpact($impact);
     }
 

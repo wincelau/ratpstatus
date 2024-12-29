@@ -3,6 +3,7 @@
 class Impact
 {
     public $data = null;
+    public $ligne = null;
 
     const CAUSE_TRAVAUX = 'TRAVAUX';
     const CAUSE_PERTURBATION = 'PERTURBATION';
@@ -61,6 +62,16 @@ class Impact
     public function getId() {
 
         return $this->data->id;
+    }
+
+    public function setLigne($ligne) {
+
+        $this->ligne = $ligne;
+    }
+
+    public function getLigne() {
+
+        return $this->ligne;
     }
 
     public function hasRealDisruptionId() {
@@ -321,8 +332,13 @@ class Impact
     }
 
     public function getDateStart() {
+        $date = DateTime::createFromFormat('Ymd\THis', $this->dateStart);
 
-        return DateTime::createFromFormat('Ymd\THis', $this->dateStart);
+        if($this->getLigne() && $this->getLigne()->getOpeningDateTime() && $date < $this->getLigne()->getOpeningDateTime()) {
+            return $this->getLigne()->getOpeningDateTime();
+        }
+
+        return $date;
     }
 
     public function setDateStart($date) {
@@ -331,8 +347,13 @@ class Impact
     }
 
     public function getDateEnd() {
+        $date = DateTime::createFromFormat('Ymd\THis', $this->dateEnd);
 
-        return DateTime::createFromFormat('Ymd\THis', $this->dateEnd);
+        if($this->getLigne() && $this->getLigne()->getClosingDateTime() && $date > $this->getLigne()->getClosingDateTime()) {
+            return $this->getLigne()->getClosingDateTime();
+        }
+
+        return $date;
     }
 
     public function setDateEnd($date) {
