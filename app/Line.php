@@ -46,6 +46,9 @@ class Line
     }
 
     public function addImpact($impact) {
+        if($impact->getDateEnd() < $this->getOpeningDateTime()) {
+            return;
+        }
         $disruption = $this->findDisruption($impact);
 
         if(!$disruption) {
