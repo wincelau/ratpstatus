@@ -98,4 +98,20 @@ function filtreListeDisruption(ligneId = null) {
       item.classList.remove('hide');
     });
   }
+  if(document.querySelector('#listModal #title_disruptions_inprogress')) {
+    document.querySelector('#listModal #title_disruptions_inprogress').classList.remove('hide');
+    if(!document.querySelectorAll('#listModal #disruptions_inprogress .disruption:not(.hide)').length) {
+      document.querySelector('#listModal #title_disruptions_inprogress').classList.add('hide');
+    }
+  }
+  if(document.querySelector('#listModal #title_disruptions_finishes')) {
+    document.querySelector('#listModal #title_disruptions_finishes').classList.remove('hide');
+    if(!document.querySelectorAll('#listModal #disruptions_finishes .disruption:not(.hide)').length) {
+      document.querySelector('#listModal #title_disruptions_finishes').classList.add('hide');
+    }
+  }
+  document.querySelector('#listModal #sentence_nothing_disruptions').classList.add('hide');
+  if(!document.querySelectorAll('#listModal .disruption:not(.hide)').length) {
+    document.querySelector('#listModal #sentence_nothing_disruptions').classList.remove('hide');
+  }
 }

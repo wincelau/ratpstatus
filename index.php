@@ -8,11 +8,11 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_<?php echo $mode ?>.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_<?php echo $mode ?>.png" />
-<link rel="stylesheet" href="/css/style.css?202412292331">
+<link rel="stylesheet" href="/css/style.css?202412300018">
 <script>
     const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
 </script>
-<script src="/js/main.js?202412292253"></script>
+<script src="/js/main.js?202412300018"></script>
 </head>
 <body>
 <div id="container">
@@ -70,25 +70,23 @@
 <h2>Incidents du <?php echo $day->getDateStart()->format("d/m/Y"); ?></h2>
 <?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isInProgress();}) ?>
 <?php if(count($disruptions)): ?>
-<h3>En cours</h3>
+<h3 id="title_disruptions_inprogress">En cours</h3>
+<div id="disruptions_inprogress">
 <?php foreach($disruptions as $disruption): ?>
 <?php include(__DIR__.'/_disruption.php') ?>
 <?php endforeach; ?>
-<?php endif; ?>
-<?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isInFuture();}); ?>
-<?php if(count($disruptions)): ?>
-<h3>À venir</h3>
-<?php foreach($disruptions as $disruption): ?>
-<?php include(__DIR__.'/_disruption.php') ?>
-<?php endforeach; ?>
+</div>
 <?php endif; ?>
 <?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isPast();}); ?>
 <?php if(count($disruptions)): ?>
-<h3>Terminés</h3>
+<h3 id="title_disruptions_finishes">Terminés</h3>
+<div id="disruptions_finishes">
 <?php foreach($disruptions as $disruption): ?>
 <?php include(__DIR__.'/_disruption.php') ?>
 <?php endforeach; ?>
+</div>
 <?php endif; ?>
+<p id="sentence_nothing_disruptions" class="hide">Il n'y a aucun incident en cours ou terminé</p>
 </dialog>
 <dialog id="helpModal">
     <h2>Aide et informations</h2>
