@@ -49,8 +49,8 @@
 <div id="lignes">
 <?php foreach(Config::getLignes()[$mode] as $ligne => $logo): ?>
 <div class="ligne" data-id="<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>"><div class="logo"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>"/></div>
-<?php for($i = 0; $i < 1380; $i = $i + 2): ?><a class="i <?php echo $day->getColorClass($i, $ligne) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?>" title="<?php echo sprintf("%02d", (intval($i / 60) + 4) % 24) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?><?php echo $day->getInfo($i, $ligne) ?>"></a>
-<?php endfor; ?></div>
+<?php for($i = 0; $i < 1380; $i = $i + 2): $isSameForFive = ($i % 10 == 0 && $day->isSameColorClassForFive($i, $ligne)); ?><a class="i <?php echo $day->getColorClass($i, $ligne) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?><?php if($isSameForFive): ?> i5sa<?php endif; ?>" title="<?php echo sprintf("%02d", (intval($i / 60) + 4) % 24) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?><?php if($isSameForFive): ?> - <?php echo sprintf("%02d", (intval(($i+(5*2)) / 60) + 4) % 24) ?>h<?php echo sprintf("%02d", (($i+(5*2)) % 60)) ?><?php endif; ?><?php echo $day->getInfo($i, $ligne, ($isSameForFive) ? 5 : 1) ?>"></a>
+<?php if($isSameForFive): $i=$i+(4*2); endif;endfor; ?></div>
 <?php endforeach; ?>
 </div>
 </main>

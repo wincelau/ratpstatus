@@ -211,7 +211,17 @@ class Day
         uasort($disruptions, function($a, $b) { return $a->getDateStart() < $b->getDateStart(); });
         return $disruptions;
     }
-
+    public function isSameColorClassForFive($nbMinutes, $ligneName) {
+        $class = null;
+        for($i = 0; $i < 5; $i++) {
+            $newClass = $this->getColorClass($nbMinutes + ($i*2), $ligneName);
+            if($class && $newClass && $newClass != $class) {
+                return false;
+            }
+            $class = $newClass;
+        }
+        return true;
+    }
     public function getColorClass($nbMinutes, $ligneName) {
         $ligne = $this->lignes[strtoupper(str_replace(['Métro ', 'Ligne ' ], null, $ligneName))];
         $date = (clone $this->getDateStart())->modify("+ ".$nbMinutes." minutes");
@@ -237,7 +247,7 @@ class Day
         return $cssClass;
     }
 
-    public function getInfo($nbMinutes, $ligneName) {
+    public function getInfo($nbMinutes, $ligneName, $length = 1) {
         $ligne = $this->lignes[strtoupper(str_replace(['Métro ', 'Ligne ' ], null, $ligneName))];
         $date = (clone $this->getDateStart())->modify("+ ".$nbMinutes." minutes");
         if($date > (new DateTime())) {
@@ -246,9 +256,16 @@ class Day
         if(!$ligne->isLigneOpen($date)) {
             return '%no%';
         }
+        $ids = null;
+        for($i=1; $i <= $length; $i++) {
+            foreach($ligne->getImpactsInPeriod($date) as $impact) {
+                $ids[$impact->getId()] = $impact->getId();
+            }
+            $date = $date->modify("+ 2 minutes");
+        }
         $message = null;
-        foreach($ligne->getImpactsInPeriod($date) as $impact) {
-            $message .= ";%".$impact->getId()."%";
+        foreach($ids as $id) {
+            $message .= ";%".$id."%";
         }
 
         if($message) {
