@@ -334,6 +334,10 @@ class Impact
     public function getDateStart() {
         $date = DateTime::createFromFormat('Ymd\THis', $this->dateStart);
 
+        if($this->getLigne() && $this->getLigne()->getOpeningDateTime() && $this->getDateEnd() < $this->getLigne()->getOpeningDateTime()) {
+            return $this->getDateEnd();
+        }
+
         if($this->getLigne() && $this->getLigne()->getOpeningDateTime() && $date < $this->getLigne()->getOpeningDateTime()) {
             return $this->getLigne()->getOpeningDateTime();
         }
