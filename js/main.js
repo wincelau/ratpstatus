@@ -71,13 +71,14 @@ function replaceMessage(item) {
     item.dataset.title = item.title;
     item.title = item.title.replace("%ok%", "\n\nRien à signaler");
     item.title = item.title.replace("%no%", "\n\nLe service est terminé ou pas encore commencé");
+    let disruptionsMessages = [];
     for(let disruptionId of item.title.split(";")) {
         if(disruptionId.match(/^%/)) {
             disruptionId=disruptionId.replace(/%/g, '')
-            if(disruptionId && disruptions[disruptionId]) {
+            if(!disruptionsMessages.includes(disruptions[disruptionId]) && disruptionId && disruptions[disruptionId]) {
                 item.title = item.title.replace(';%'+disruptionId+'%', "\n\n"+disruptions[disruptionId].replace(/[\n]+$/, ""))
-            }
-            if(disruptionId && disruptions[disruptionId] == null) {
+                disruptionsMessages.push(disruptions[disruptionId])
+            } else if(disruptionId) {
                 item.title = item.title.replace(';%'+disruptionId+'%', "")
             }
         }

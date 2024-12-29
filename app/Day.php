@@ -285,7 +285,7 @@ class Day
         $doublons = [];
         foreach($this->lignes as $ligne) {
             foreach($ligne->getImpacts() as $disruption) {
-                $json[$disruption->getId()] = "# ".$disruption->getTitle()."\n\n".$disruption->getMessagePlainText();
+                $json[$disruption->getId()] = $disruption->getTitle();
             }
         }
 
