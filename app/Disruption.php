@@ -60,6 +60,10 @@ class Disruption
         return $dateStart;
     }
 
+    public function isDurationEmpty() {
+        return $this->getDateStart() == $this->getDateEnd();
+    }
+
     public function getDuration() {
         $dateEnd = $this->getDateEnd();
 

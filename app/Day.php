@@ -208,6 +208,7 @@ class Day
             }
             $disruptions = array_merge($disruptions, $ligne->getDisruptions());
         }
+        $disruptions = array_filter($disruptions, function ($a) { return !$a->isDurationEmpty(); });
         uasort($disruptions, function($a, $b) { return $a->getDateStart() < $b->getDateStart(); });
         return $disruptions;
     }
