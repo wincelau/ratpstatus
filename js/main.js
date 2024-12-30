@@ -32,7 +32,11 @@ document.addEventListener('DOMContentLoaded', async function () {
   })
   document.querySelector('#lignes').addEventListener('click', function(e) {
       if(e.target.closest('.ligne')) {
-        filtreListeDisruption(e.target.closest('.ligne').dataset.id);
+        let ligne = e.target.closest('.ligne');
+        let img = ligne.querySelector('.logo img');
+        let modalTitle = document.querySelector('#listModal #listModal_title_line');
+        filtreListeDisruption(ligne.dataset.id);
+        modalTitle.innerHTML = '<img src="'+img.src+'" style="height: 20px;" /> '+img.alt;
         modalList.showModal();
         modalList.scrollTo(0,0);
         modalList.blur();
@@ -86,6 +90,9 @@ function replaceMessage(item) {
 }
 
 function filtreListeDisruption(ligneId = null) {
+  document.querySelector('#listModal #listModal_title_line').classList.toggle('hide', !ligneId);
+  document.querySelector('#listModal #listModal_title_all').classList.toggle('hide', ligneId);
+
   document.querySelectorAll('#listModal .disruption').forEach(function(item) {
     if(ligneId) {
       item.classList.add('hide');

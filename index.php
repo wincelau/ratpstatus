@@ -8,11 +8,11 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_<?php echo $mode ?>.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_<?php echo $mode ?>.png" />
-<link rel="stylesheet" href="/css/style.css?202412300018">
+<link rel="stylesheet" href="/css/style.css?202412300101">
 <script>
     const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
 </script>
-<script src="/js/main.js?202412300018"></script>
+<script src="/js/main.js?202412300101"></script>
 </head>
 <body>
 <div id="container">
@@ -67,7 +67,7 @@
 </p>
 </footer>
 <dialog id="listModal">
-<h2>Incidents du <?php echo $day->getDateStart()->format("d/m/Y"); ?></h2>
+<h2><span id="listModal_title_line"></span><span id="listModal_title_all"><?php echo Config::getModeLibelles()[$mode] ?></span> - Incidents du <?php echo $day->getDateStart()->format("d/m/Y"); ?></h2>
 <?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isInProgress();}) ?>
 <?php if(count($disruptions)): ?>
 <h3 id="title_disruptions_inprogress">En cours</h3>
