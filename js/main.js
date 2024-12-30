@@ -106,14 +106,18 @@ function filtreListeDisruption(ligneId = null) {
     });
   }
   if(document.querySelector('#listModal #title_disruptions_inprogress')) {
+    let nbIncidentsInProgress = document.querySelectorAll('#listModal #title_disruptions_inprogress .disruption:not(.hide)').length;
+    document.querySelector('#listModal #title_disruptions_inprogress span.badge').innerText = nbIncidentsInProgress+' incidents';
     document.querySelector('#listModal #title_disruptions_inprogress').classList.remove('hide');
-    if(!document.querySelectorAll('#listModal #disruptions_inprogress .disruption:not(.hide)').length) {
+    if(!nbIncidentsInProgress) {
       document.querySelector('#listModal #title_disruptions_inprogress').classList.add('hide');
     }
   }
   if(document.querySelector('#listModal #title_disruptions_finishes')) {
+    let nbIncidentsFinish = document.querySelectorAll('#listModal #disruptions_finishes .disruption:not(.hide)').length;
+    document.querySelector('#listModal #title_disruptions_finishes span.badge').innerText = nbIncidentsFinish+' incidents';
     document.querySelector('#listModal #title_disruptions_finishes').classList.remove('hide');
-    if(!document.querySelectorAll('#listModal #disruptions_finishes .disruption:not(.hide)').length) {
+    if(!nbIncidentsFinish) {
       document.querySelector('#listModal #title_disruptions_finishes').classList.add('hide');
     }
   }
