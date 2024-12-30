@@ -106,7 +106,7 @@ function filtreListeDisruption(ligneId = null) {
     });
   }
   if(document.querySelector('#listModal #title_disruptions_inprogress')) {
-    let nbIncidentsInProgress = document.querySelectorAll('#listModal #title_disruptions_inprogress .disruption:not(.hide)').length;
+    let nbIncidentsInProgress = document.querySelectorAll('#listModal #disruptions_inprogress .disruption:not(.hide)').length;
     document.querySelector('#listModal #title_disruptions_inprogress span.badge').innerText = nbIncidentsInProgress+' incidents';
     document.querySelector('#listModal #title_disruptions_inprogress').classList.remove('hide');
     if(!nbIncidentsInProgress) {
