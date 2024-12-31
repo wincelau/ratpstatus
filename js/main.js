@@ -108,6 +108,7 @@ function filtreListeDisruption(ligneId = null) {
   if(document.querySelector('#listModal #title_disruptions_inprogress')) {
     let nbIncidentsInProgress = document.querySelectorAll('#listModal #disruptions_inprogress .disruption:not(.hide)').length;
     document.querySelector('#listModal #title_disruptions_inprogress span.badge').innerText = nbIncidentsInProgress+' incidents';
+    document.querySelector('#listModal #title_disruptions_inprogress span.badge').classList.remove('hide')
     document.querySelector('#listModal #title_disruptions_inprogress').classList.remove('hide');
     if(!nbIncidentsInProgress) {
       document.querySelector('#listModal #title_disruptions_inprogress').classList.add('hide');
@@ -115,6 +116,7 @@ function filtreListeDisruption(ligneId = null) {
   }
   if(document.querySelector('#listModal #title_disruptions_finishes')) {
     let nbIncidentsFinish = document.querySelectorAll('#listModal #disruptions_finishes .disruption:not(.hide)').length;
+    document.querySelector('#listModal #title_disruptions_finishes span.badge').classList.remove('hide')
     document.querySelector('#listModal #title_disruptions_finishes span.badge').innerText = nbIncidentsFinish+' incidents';
     document.querySelector('#listModal #title_disruptions_finishes').classList.remove('hide');
     if(!nbIncidentsFinish) {

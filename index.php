@@ -12,7 +12,7 @@
 <script>
     const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
 </script>
-<script src="/js/main.js?202412300102"></script>
+<script src="/js/main.js?202412300106"></script>
 </head>
 <body>
 <div id="container">
@@ -72,7 +72,7 @@
 <h2><span id="listModal_title_line"></span><span id="listModal_title_all"><?php echo Config::getModeLibelles()[$mode] ?></span> - Incidents du <?php echo $day->getDateStart()->format("d/m/Y"); ?></h2>
 <?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isInProgress();}) ?>
 <?php if(count($disruptions)): ?>
-<h3 id="title_disruptions_inprogress">En cours <span class="badge"><?php echo count($day->getDisruptions($mode)) ?> incidents</span></h3>
+<h3 id="title_disruptions_inprogress">En cours <span class="badge hide">0 incidents</span></h3>
 <div id="disruptions_inprogress">
 <?php foreach($disruptions as $disruption): ?>
 <?php include(__DIR__.'/_disruption.php') ?>
@@ -81,7 +81,7 @@
 <?php endif; ?>
 <?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isPast();}); ?>
 <?php if(count($disruptions)): ?>
-<h3 id="title_disruptions_finishes">Terminés <span class="badge">X incidents</span></h3>
+<h3 id="title_disruptions_finishes">Terminés <span class="badge hide">0 incidents</span></h3>
 <div id="disruptions_finishes">
 <?php foreach($disruptions as $disruption): ?>
 <?php include(__DIR__.'/_disruption.php') ?>
