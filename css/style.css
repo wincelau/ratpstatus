@@ -64,11 +64,18 @@ a.disabled {
     top: 10px;
 }
 
-#header #nav_liens a:active, #header h2 a:active {
+#header #nav_liens_right {
+    position:absolute;
+    right: 10px;
+    top: 10px;
+    text-align: right;
+}
+
+#header #nav_liens a:active, #header #nav_liens_right a:active, #header h2 a:active {
     opacity: 0.5;
 }
 
-#header #nav_liens a {
+#header #nav_liens a, #header #nav_liens_right a {
     padding: 0 8px;
     color: #333;
     text-decoration: none;
@@ -78,8 +85,27 @@ a.disabled {
     text-transform: uppercase;
 }
 
+a#btn_list {
+    padding: 3px 6px !important;
+    background: #fafafa;
+    border: 1px solid #e2e2e2;
+    color: #444 !important;
+}
+
+a#btn_list span {
+    text-transform: none !important;
+}
+
+a#btn_list:hover {
+    background: #f2f2f2;
+    color: #000 !important;
+}
+a#btn_list:hover span {
+    text-decoration: none !important;
+}
+
 #header a#lien_refresh {
-    position:absolute; right: 14px; top: 10px; display: inline-block; color: #666666; text-decoration: none; font-family: monospace; font-size: 16px;
+    display: inline-block; color: #666666; text-decoration: none; font-family: monospace; font-size: 16px;
 }
 .ligne {
     margin-bottom: 5px;
@@ -382,7 +408,7 @@ a.disabled {
     display:inline-block; width: 12px; height: 12px;
 }
 
-@media screen and (min-width: 980px) {
+@media screen and (min-width: 900px) {
     .mobile_hidden {
         display: inherit;
     }
@@ -394,7 +420,7 @@ a.disabled {
     }
 }
 
-@media screen and (max-width: 980px) {
+@media screen and (max-width: 900px) {
     #listModal ul li span:last-of-type {
         display: inline;
     }
@@ -421,17 +447,17 @@ a.disabled {
     #legende {
         display: none;
     }
+}
+
+@media screen and (max-width: 1576px) {
+    #header #nav_liens, #header #nav_liens_right {
+        position: fixed;
+    }
     #header {
         box-shadow: 0px 10px 15px -3px rgba(0,0,0,0.1);
     }
     .ih {
         margin-bottom: 10px;
-    }
-    #header #nav_liens {
-        position: fixed;
-    }
-    #header a#lien_refresh {
-        position: fixed;
     }
 }
 
