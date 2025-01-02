@@ -23,6 +23,7 @@ if(!isset($_GET['date'])) {
 $mode = isset($_GET['mode']) ? $_GET['mode'] : 'metros';
 
 $day = new Day($_GET['date']);
+$pourcentages = $day->getPourcentages($mode);
 
 $GLOBALS['isStaticResponse'] = isset($_SERVER['argv']) && !is_null($_SERVER['argv']);
 

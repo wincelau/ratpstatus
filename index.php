@@ -13,6 +13,14 @@
     const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
 </script>
 <script src="/js/main.js?202412300106"></script>
+<style>
+    .donutG:after {
+        content: "<?php echo $pourcentages['OK'] ?>";
+    }
+    .donutG {
+        background: radial-gradient(white 45%, transparent 41%), conic-gradient(#c0e39d 0% <?php echo $pourcentages['OK'] ?>%, #ffb225 <?php echo $pourcentages['OK'] ?>% <?php echo $pourcentages['OK'] + $pourcentages['PB'] ?>%, #f44646 <?php echo $pourcentages['OK'] + $pourcentages['PB'] ?>% <?php echo $pourcentages['OK'] + $pourcentages['PB'] + $pourcentages['BQ'] ?>%, #aeaeae <?php echo $pourcentages['OK'] + $pourcentages['PB'] + $pourcentages['BQ'] ?>% 100%);
+    }
+</style>
 </head>
 <body>
 <div id="container">
@@ -21,7 +29,7 @@
 <a id="btn_help" href="#aide" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
 </nav>
 <nav id="nav_liens_right">
-    <a id="btn_list" class="badge" href="#incidents" title="Voir la liste des incidents">⚫ <?php echo count($day->getDisruptions($mode)) ?><span class="mobile_hidden"> incidents</span></a>
+    <a id="btn_list" class="badge" href="#incidents" title="Voir la liste des incidents"><span title="Aucune perturbation pour <?php echo $day->getPourcentages($mode)['OK'] ?>% du trafic" class="donutG"></span> <?php echo count($day->getDisruptions($mode)) ?><span class="mobile_hidden"> incidents</span><span class="mobile_visible"> ⚠️</span></a>
     <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
