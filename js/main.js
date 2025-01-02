@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   });
 
   document.querySelector('#btn_list').addEventListener('click', function(e) {
+      filtreListeDisruption();
       modalList.showModal();
       modalList.scrollTo(0,0);
       return false;
