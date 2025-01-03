@@ -8,7 +8,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_<?php echo $mode ?>.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_<?php echo $mode ?>.png" />
-<link rel="stylesheet" href="/css/style.css?202501030043">
+<link rel="stylesheet" href="/css/style.css?202501030111">
 <script>
     const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
 </script>
@@ -29,7 +29,7 @@
 <a id="btn_help" href="#aide" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
 </nav>
 <nav id="nav_liens_right">
-    <a id="btn_list" class="badge" href="#incidents" title="Voir la liste des incidents"><span title="Aucune perturbation pour <?php echo $day->getPourcentages($mode)['OK'] ?>% du trafic" class="donutG"></span> <?php echo str_replace(" ", "&nbsp;", sprintf("% 2d", count($day->getDisruptions($mode)))) ?><span class="mobile_hidden"> incidents</span><span class="mobile_visible"> ⚠️</span></a>
+    <a id="btn_list" class="badge" href="#incidents" title="Voir la liste des incidents"><span title="Aucune perturbation pour <?php echo $day->getPourcentages($mode)['OK'] ?>% du trafic" class="donutG"></span> <?php echo str_replace(" ", "&nbsp;", sprintf("% 2d", count($day->getDisruptions($mode)))) ?><span class="mobile_hidden"> incidents</span></a>
     <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
