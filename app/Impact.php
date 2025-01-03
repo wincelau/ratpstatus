@@ -251,12 +251,12 @@ class Impact
     }
 
     public function getSuggestionOrigine() {
-        if(in_array($this->getMode(), [self::MODE_METRO, self::MODE_TRAMWAY])) {
+        if(in_array($this->getMode(), [self::MODE_METRO, self::MODE_TRAMWAY]) && preg_match("/:[^:]* - /", $this->getTitle())) {
 
             return preg_replace('/ - .*$/', '', preg_replace('/^[^:]*: /', '', $this->getTitle()));
         }
 
-        if(in_array($this->getMode(), [self::MODE_RER, self::MODE_TRAIN]) && preg_match("/Motif : ([^\n]*)(\n|$)/i", $this->getMessagePlainText(), $matches)) {
+        if(preg_match("/Motif : ([^\n]*)(\n|$)/i", $this->getMessagePlainText(), $matches)) {
 
             return preg_replace("/( dans le secteur.*$| en gare d.*$| dans un train à.*$| à bord du train.*$|aux abords d.*$|\(.*$|\..*$)/i", '', $matches[1]);
         }
