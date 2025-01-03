@@ -80,10 +80,25 @@ class Disruption
         return Impact::generateDurationText($this->getDuration());
     }
 
-    public function getCause() {
-        foreach($this->impacts as $i) {
-            return $i->getCause();
+    public function getDurationMinutes() {
+
+        return Impact::generateDurationMinutes($this->getDuration());
+    }
+
+    public function getDurationStatutMinutes($statut) {
+        $minutes = 0;
+        foreach($this->getImpactsOptimized() as $i) {
+            if($i->getColorClass() != $statut) {
+                continue;
+            }
+            $minutes += $i->getDurationMinutes();
         }
+        return $minutes;
+    }
+
+    public function getOrigine() {
+
+        return end($this->impacts_optimized)->getOrigine();
     }
 
     public function getLigne() {

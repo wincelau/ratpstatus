@@ -262,7 +262,7 @@ class Day
         if(!$ligne->isLigneOpen($date)) {
             return '%no%';
         }
-        $ids = null;
+        $ids = [];
         for($i=1; $i <= $length; $i++) {
             foreach($ligne->getImpactsInPeriod($date) as $impact) {
                 $ids[$impact->getId()] = $impact->getId();
@@ -313,20 +313,68 @@ class Day
         return json_encode($json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 
-    public function toCsv() {
-        $csv = "Date,Ligne,Type de perturbation,Api disruption id\n";
-        for($i = 0; $i < 1380; $i=$i+2) {
-            $date = (clone $this->getDateStart())->modify("+ ".$i." minutes");
-            foreach(Config::getLignes() as $mode => $lignes) {
-                foreach($lignes as $ligne => $ligneImg) {
-                    $statut = strtoupper($this->getColorClass($i, $ligne));
-                    if(in_array($statut, ['NO', 'E'])) {
-                        continue;
-                    }
-                    $csv .= $date->format('Y-m-d H:i:s').",".str_replace(['Métro ', 'Ligne ' ], ['M', 'L'], $ligne).",".$statut .",".str_replace(["%ok%", "%", ";"], ["", "", "|"], preg_replace('/^;/', '', $this->getInfo($i, $ligne)))."\n";                }
+    public function toCsvIncidents() {
+        $csv = "date journee;mode;ligne;date de début de l'incident;date de fin de l'incident;duree incident total (minutes);duree perturbation total (minutes);duree blocage total (minutes);duree travaux total (minutes);origine incident;index evenement;date de début evenement;date de fin evenement;duree evenement total (minutes);statut evenement;origine evenement;titre evenement;message evenement;id incident;id evenement\n";
+        foreach(array_reverse($this->getDisruptions("metros")) as $disruption) {
+            $i = 0;
+            foreach(array_reverse($disruption->getImpactsOptimized()) as $impact) {
+                $csv .= implode(";",[
+                    $this->getDateStart()->format('Y-m-d'),
+                    "metros",
+                    $impact->getLigne()->getName(),
+                    $disruption->getDateStart()->format('Y-m-d H:i:s'),
+                    $disruption->getDateEnd()->format('Y-m-d H:i:s'),
+                    $disruption->getDurationMinutes(),
+                    $disruption->getDurationStatutMinutes('pb'),
+                    $disruption->getDurationStatutMinutes('bq'),
+                    $disruption->getDurationStatutMinutes('tx'),
+                    '"'.str_replace(['"', "\n"], ['\"', '\n'], $disruption->getOrigine()).'"',
+                    $i,
+                    $impact->getDateStart()->format('Y-m-d H:i:s'),
+                    $impact->getDateEnd()->format('Y-m-d H:i:s'),
+                    $impact->getDurationMinutes(),
+                    $impact->getColorClass(),
+                    $impact->getOrigine(),
+                    '"'.str_replace(['"', "\n"], ['\"', '\n'], $impact->getTitle()).'"',
+                    '"'.str_replace(['"', "\n"], ['\"', '\n'], $impact->getMessagePlainText()).'"',
+                    explode(":", $disruption->getId())[1],
+                    $impact->getId(),
+                ])."\n";
+                $i++;
             }
         }
+        echo $csv;
+    }
 
+    public function toCsvTimeline() {
+        $csv = "date journee;mode;ligne;date de début du statut;date de fin du statut;statut;id evenement\n";
+        foreach(Config::getLignes() as $mode => $lignes) {
+            foreach($lignes as $ligne => $ligneImg) {
+                $statut = null;
+                $dateStart = null;
+                $infos = null;
+                for($i = 0; $i < 1380; $i=$i+2) {
+                    $date = (clone $this->getDateStart())->modify("+ ".$i." minutes");
+                    $newStatut = strtoupper($this->getColorClass($i, $ligne));
+                    $newInfos = str_replace(["%ok%", "%", ";"], ["", "", "|"], preg_replace('/^;/', '', $this->getInfo($i, $ligne)));
+                    if($statut == $newStatut && $infos == $newInfos) {
+                        continue;
+                    }
+                    if($dateStart && $statut) {
+                        $csv .= $this->getDateStart()->format('Y-m-d').";".$mode.";".$ligne.";".$dateStart->format('Y-m-d H:i:s').";".(clone $date)->modify('-1 second')->format('Y-m-d H:i:s').";".$statut.";".$infos."\n";
+                    }
+                    if(in_array($newStatut, ['NO', 'E'])) {
+                        $statut = null;
+                        $infos = null;
+                        $dateStart = null;
+                        continue;
+                    }
+                    $statut = $newStatut;
+                    $infos = $newInfos;
+                    $dateStart = $date;
+                }
+            }
+        }
         return $csv;
     }
 

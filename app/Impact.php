@@ -245,6 +245,11 @@ class Impact
         return null;
     }
 
+    public function getOrigine() {
+
+        return $this->getSuggestionOrigine();
+    }
+
     public function getSuggestionOrigine() {
         if(preg_match('/(Métro|Tramway)/', $this->getTitle())) {
 
@@ -388,9 +393,19 @@ class Impact
         return sprintf("%d h", $nbHours);
     }
 
+    public static function generateDurationMinutes(DateInterval $duration) {
+
+        return ($duration->d * 24 * 60) + ($duration->h * 60) + $duration->i + round($duration->s / 60, 2);
+    }
+
     public function getDurationText() {
 
         return self::generateDurationText($this->getDuration());
+    }
+
+    public function getDurationMinutes() {
+
+        return self::generateDurationMinutes($this->getDuration());
     }
 
     public function isInProgress() {
