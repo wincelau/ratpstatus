@@ -294,7 +294,7 @@ class Day
         }
 
         $total = array_sum($repartitions);
-        $pourcentages = array_map(function($a) use ($total) { return round($a / $total * 100); }, $repartitions);
+        $pourcentages = array_map(function($a) use ($total) { return round($a / $total * 100, 2); }, $repartitions);
 
         $pourcentages["OK"] = round(100 - $pourcentages["PB"] - $pourcentages["BQ"] - $pourcentages["TX"], 2);
 
