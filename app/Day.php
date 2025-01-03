@@ -335,9 +335,9 @@ class Day
                         $impact->getDateEnd()->format('Y-m-d H:i:s'),
                         $impact->getDurationMinutes(),
                         $impact->getColorClass(),
-                        $impact->getOrigine(),
-                        '"'.str_replace(['"', "\n"], ['\"', '\n'], $impact->getTitle()).'"',
-                        '"'.str_replace(['"', "\n"], ['\"', '\n'], $impact->getMessagePlainText()).'"',
+                        '"'.str_replace(['"', "\n", ";"], ['\"', '\n', '.'], $impact->getOrigine()).'"',
+                        '"'.str_replace(['"', "\n", ";"], ['\"', '\n', '.'], $impact->getTitle()).'"',
+                        '"'.str_replace(['"', "\n", ";"], ['\"', '\n', '.'], $impact->getMessagePlainText()).'"',
                         explode(":", $disruption->getId())[1],
                         $impact->getId(),
                     ])."\n";
