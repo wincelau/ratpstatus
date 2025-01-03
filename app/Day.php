@@ -315,32 +315,34 @@ class Day
 
     public function toCsvIncidents() {
         $csv = "date journee;mode;ligne;date de début de l'incident;date de fin de l'incident;duree incident total (minutes);duree perturbation total (minutes);duree blocage total (minutes);duree travaux total (minutes);origine incident;index evenement;date de début evenement;date de fin evenement;duree evenement total (minutes);statut evenement;origine evenement;titre evenement;message evenement;id incident;id evenement\n";
-        foreach(array_reverse($this->getDisruptions("metros")) as $disruption) {
-            $i = 0;
-            foreach(array_reverse($disruption->getImpactsOptimized()) as $impact) {
-                $csv .= implode(";",[
-                    $this->getDateStart()->format('Y-m-d'),
-                    "metros",
-                    $impact->getLigne()->getName(),
-                    $disruption->getDateStart()->format('Y-m-d H:i:s'),
-                    $disruption->getDateEnd()->format('Y-m-d H:i:s'),
-                    $disruption->getDurationMinutes(),
-                    $disruption->getDurationStatutMinutes('pb'),
-                    $disruption->getDurationStatutMinutes('bq'),
-                    $disruption->getDurationStatutMinutes('tx'),
-                    '"'.str_replace(['"', "\n"], ['\"', '\n'], $disruption->getOrigine()).'"',
-                    $i,
-                    $impact->getDateStart()->format('Y-m-d H:i:s'),
-                    $impact->getDateEnd()->format('Y-m-d H:i:s'),
-                    $impact->getDurationMinutes(),
-                    $impact->getColorClass(),
-                    $impact->getOrigine(),
-                    '"'.str_replace(['"', "\n"], ['\"', '\n'], $impact->getTitle()).'"',
-                    '"'.str_replace(['"', "\n"], ['\"', '\n'], $impact->getMessagePlainText()).'"',
-                    explode(":", $disruption->getId())[1],
-                    $impact->getId(),
-                ])."\n";
-                $i++;
+        foreach(Config::getLignes() as $mode => $lignes) {
+            foreach(array_reverse($this->getDisruptions($mode)) as $disruption) {
+                $i = 0;
+                foreach(array_reverse($disruption->getImpactsOptimized()) as $impact) {
+                    $csv .= implode(";",[
+                        $this->getDateStart()->format('Y-m-d'),
+                        $mode,
+                        $impact->getLigne()->getName(),
+                        $disruption->getDateStart()->format('Y-m-d H:i:s'),
+                        $disruption->getDateEnd()->format('Y-m-d H:i:s'),
+                        $disruption->getDurationMinutes(),
+                        $disruption->getDurationStatutMinutes('pb'),
+                        $disruption->getDurationStatutMinutes('bq'),
+                        $disruption->getDurationStatutMinutes('tx'),
+                        '"'.str_replace(['"', "\n"], ['\"', '\n'], $disruption->getOrigine()).'"',
+                        $i,
+                        $impact->getDateStart()->format('Y-m-d H:i:s'),
+                        $impact->getDateEnd()->format('Y-m-d H:i:s'),
+                        $impact->getDurationMinutes(),
+                        $impact->getColorClass(),
+                        $impact->getOrigine(),
+                        '"'.str_replace(['"', "\n"], ['\"', '\n'], $impact->getTitle()).'"',
+                        '"'.str_replace(['"', "\n"], ['\"', '\n'], $impact->getMessagePlainText()).'"',
+                        explode(":", $disruption->getId())[1],
+                        $impact->getId(),
+                    ])."\n";
+                    $i++;
+                }
             }
         }
         echo $csv;
