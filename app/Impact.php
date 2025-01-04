@@ -258,7 +258,7 @@ class Impact
 
         if(preg_match("/Motif[ ]*:[ ]*([^\n]*)(\n|$)/i", $this->getMessagePlainText(), $matches)) {
 
-            return ucfirst(preg_replace('/ à [A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| dans un train à.*$| à bord du train.*$|aux abords d.*$|\(.*$|\..*$)/i", '', $matches[1])));
+            return ucfirst(trim(preg_replace('/à [A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| dans un train à.*$| à bord du train.*$|aux abords d.*$|\(.*$|\..*$)/i", '', $matches[1]))));
         }
 
         return null;

@@ -97,8 +97,12 @@ class Disruption
     }
 
     public function getOrigine() {
+        $impacts = $this->getImpactsOptimized();
 
-        return end($this->impacts_optimized)->getOrigine();
+        if(end($impacts)) {
+
+            return end($impacts)->getOrigine();
+        }
     }
 
     public function getLigne() {
