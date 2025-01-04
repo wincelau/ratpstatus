@@ -45,23 +45,21 @@ class Day
             break;
         }
 
-        if(is_null($data))  {
-            return;
-        }
-
-        foreach($data->lines as $dataLine) {
-            if(!isset($this->lignes[strtoupper($dataLine->name)])) {
-                continue;
-            }
-            if($dataLine->opening_time == "000000") {
-                continue;
-            }
-            $ligne = $this->lignes[strtoupper($dataLine->name)];
-            $ligne->setOpeningDateTime(DateTime::createFromFormat('YmdHis', $this->getDateStart()->format('Ymd').$dataLine->opening_time));
-            if($dataLine->closing_time > "120000") {
-                $ligne->setClosingDateTime(DateTime::createFromFormat('YmdHis', $this->getDateStart()->format('Ymd').$dataLine->closing_time));
-            } else {
-                $ligne->setClosingDateTime(DateTime::createFromFormat('YmdHis', $this->getDateEnd()->format('Ymd').$dataLine->closing_time));
+        if(!is_null($data))  {
+            foreach($data->lines as $dataLine) {
+                if(!isset($this->lignes[strtoupper($dataLine->name)])) {
+                    continue;
+                }
+                if($dataLine->opening_time == "000000") {
+                    continue;
+                }
+                $ligne = $this->lignes[strtoupper($dataLine->name)];
+                $ligne->setOpeningDateTime(DateTime::createFromFormat('YmdHis', $this->getDateStart()->format('Ymd').$dataLine->opening_time));
+                if($dataLine->closing_time > "120000") {
+                    $ligne->setClosingDateTime(DateTime::createFromFormat('YmdHis', $this->getDateStart()->format('Ymd').$dataLine->closing_time));
+                } else {
+                    $ligne->setClosingDateTime(DateTime::createFromFormat('YmdHis', $this->getDateEnd()->format('Ymd').$dataLine->closing_time));
+                }
             }
         }
 
