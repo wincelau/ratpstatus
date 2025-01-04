@@ -348,7 +348,7 @@ class Day
         echo $csv;
     }
 
-    public function toCsvTimeline() {
+    public function toCsvStatuts() {
         $csv = "date journee;mode;ligne;date de début du statut;date de fin du statut;statut;id evenement\n";
         foreach(Config::getLignes() as $mode => $lignes) {
             foreach($lignes as $ligne => $ligneImg) {
@@ -374,6 +374,9 @@ class Day
                     $statut = $newStatut;
                     $infos = $newInfos;
                     $dateStart = $date;
+                }
+                if($dateStart && $statut) {
+                    $csv .= $this->getDateStart()->format('Y-m-d').";".$mode.";".$ligne.";".$dateStart->format('Y-m-d H:i:s').";".(clone $date)->modify('-1 second')->format('Y-m-d H:i:s').";".$statut.";".$infos."\n";
                 }
             }
         }
