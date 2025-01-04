@@ -425,7 +425,7 @@ class Impact
     }
 
     public function getMessagePlainText() {
-        return str_replace('"', '', html_entity_decode(strip_tags(str_replace("<br>", "\n", $this->getMessage()))));
+        return trim(preg_replace('/\s+/', ' ', str_replace(chr(194).chr(160), " ", str_replace('"', '', html_entity_decode(strip_tags(str_replace("<br>", "\n", $this->getMessage())))))));
     }
 
     public function getLastUpdate() {
