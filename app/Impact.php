@@ -256,9 +256,9 @@ class Impact
             return preg_replace('/ - .*$/', '', preg_replace('/^[^:]*: /', '', $this->getTitle()));
         }
 
-        if(preg_match("/Motif[ ]*:[ ]*([^\n]*)(\n|$)/i", $this->getMessagePlainText(), $matches)) {
+        if(preg_match("/Motif[\s]*:[\s]*([^\n]*)(\n|$)/i", $this->getMessagePlainText(), $matches)) {
 
-            return ucfirst(trim(preg_replace('/à [A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| dans un train à.*$| à bord du train.*$|aux abords d.*$|\(.*$|\..*$)/i", '', $matches[1]))));
+            return ucfirst(trim(preg_replace('/(à|entre)\s+[A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| dans un train à.*$| à bord du train.*$|aux abords d.*$|\(.*$|\..*$)/i", '', $matches[1]))));
         }
 
         return null;
