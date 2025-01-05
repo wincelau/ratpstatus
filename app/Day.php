@@ -280,21 +280,27 @@ class Day
     }
 
     public function getPourcentages($mode) {
-        $repartitions = ["OK" => 0, "PB" => 0, "BQ" => 0, "TX" => 0];
+        $repartitions = [$mode => ["OK" => 0, "PB" => 0, "BQ" => 0, "TX" => 0]];
         for($i = 0; $i < 1380; $i=$i+2) {
             foreach(Config::getLignes()[$mode] as $ligne => $ligneImg) {
+                if(!isset($repartitions[$ligne])) {
+                    $repartitions[$ligne] = ["OK" => 0, "PB" => 0, "BQ" => 0, "TX" => 0];
+                }
                 $statut = strtoupper($this->getColorClass($i, $ligne));
                 if(in_array($statut, ['NO', 'E'])) {
                     continue;
                 }
-                $repartitions[$statut]++;
+                $repartitions[$ligne][$statut]++;
+                $repartitions[$mode][$statut]++;
             }
         }
+        $pourcentage = [];
+        foreach($repartitions as $key => $repartition) {
+            $total = array_sum($repartition);
+            $pourcentages[$key] = array_map(function($a) use ($total) { return round($a / $total * 100, 2); }, $repartition);
 
-        $total = array_sum($repartitions);
-        $pourcentages = array_map(function($a) use ($total) { return round($a / $total * 100, 2); }, $repartitions);
-
-        $pourcentages["OK"] = round(100 - $pourcentages["PB"] - $pourcentages["BQ"] - $pourcentages["TX"], 2);
+            $pourcentages[$key]["OK"] = round(100 - $pourcentages[$key]["PB"] - $pourcentages[$key]["BQ"] - $pourcentages[$key]["TX"], 2);
+        }
 
         return $pourcentages;
     }
