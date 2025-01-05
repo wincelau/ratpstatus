@@ -297,7 +297,7 @@ class Day
         $pourcentage = [];
         foreach($repartitions as $key => $repartition) {
             $total = array_sum($repartition);
-            $pourcentages[$key] = array_map(function($a) use ($total) { return round($a / $total * 100, 2); }, $repartition);
+            $pourcentages[$key] = array_map(function($a) use ($total) { return $total > 0 ? round($a / $total * 100, 2) : 0; }, $repartition);
 
             $pourcentages[$key]["OK"] = round(100 - $pourcentages[$key]["PB"] - $pourcentages[$key]["BQ"] - $pourcentages[$key]["TX"], 2);
         }
