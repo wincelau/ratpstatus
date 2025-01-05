@@ -212,7 +212,7 @@ class Day
     }
     public function isSameColorClassForFive($nbMinutes, $ligneName) {
         $dateInf = (clone $this->getDateStart())->modify("+ ".($nbMinutes + 5)." minutes");
-        $dateSup = (clone $this->getDateStart())->modify("+ ".($nbMinutes - 5)." minutes");
+        $dateSup = (clone $this->getDateStart())->modify("+ ".max($nbMinutes - 5, 0)." minutes");
         if($dateInf > new DateTime() && $dateSup < new DateTime()) {
             return false;
         }
