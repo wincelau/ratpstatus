@@ -425,7 +425,11 @@ class Impact
     }
 
     public function getMessagePlainText() {
-        return trim(preg_replace('/\s+/', ' ', str_replace(chr(194).chr(160), " ", str_replace('"', '', html_entity_decode(strip_tags(str_replace("<br>", "\n", $this->getMessage())))))));
+        $message = trim(preg_replace('/[^\S\n]+/', ' ', str_replace(chr(194).chr(160), " ", str_replace('"', '', html_entity_decode(strip_tags(str_replace("<br>", "\n", $this->getMessage())))))));
+
+        $message = preg_replace("/(Pour plus d'informations sur cette perturbation, consultez le fil Twitter de[^\.]+\.|Plus d'informations sur le site ratp\.fr|Rendez-vous sur la rubrique Recherche Itinéraire, pour retrouver un itinéraire prenant en compte cette perturbation\.)[^\n]*[\n]*/", "", $message);
+
+        return $message;
     }
 
     public function getLastUpdate() {
