@@ -8,7 +8,7 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_<?php echo $mode ?>.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_<?php echo $mode ?>.png" />
-<link rel="stylesheet" href="/css/style.css?202501050242">
+<link rel="stylesheet" href="/css/style.css?202501050243">
 <script>
     const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
 </script>
@@ -60,8 +60,7 @@
 <?php foreach(Config::getLignes()[$mode] as $ligne => $logo): ?>
 <div style="position:relative;" class="ligne" data-id="<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>"><div class="logo"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>"/></div>
 <?php for($i = 0; $i < 1380; $i = $i + 2): $isSameForFive = ($i % 10 == 0 && $day->isSameColorClassForFive($i, $ligne)); ?><a class="i <?php echo $day->getColorClass($i, $ligne) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?><?php if($isSameForFive): ?> i5sa<?php endif; ?>" title="<?php echo sprintf("%02d", (intval($i / 60) + 4) % 24) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?><?php if($isSameForFive): ?> - <?php echo sprintf("%02d", (intval(($i+(5*2)) / 60) + 4) % 24) ?>h<?php echo sprintf("%02d", (($i+(5*2)) % 60)) ?><?php endif; ?><?php echo $day->getInfo($i, $ligne, ($isSameForFive) ? 5 : 1) ?>"></a>
-<?php if($isSameForFive): $i=$i+(4*2); endif;endfor; ?><span class="dispoligne" style="color: rgba(135,135,
-135,<?php echo max(round($pourcentages[$ligne]['OK']/100, 2), 0.5) ?>); position: relative;" title="Aucune perturbation pour <?php echo $pourcentages[$ligne]['OK'] ?>% du trafic"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" style="opacity: <?php echo max(round($pourcentages[$ligne]['OK']/100, 2), 0.5) - 0.1 ?>;"/><?php echo str_replace(" ", "&nbsp;", sprintf("% 3d", $pourcentages[$ligne]['OK'])) ?>%</span></div>
+<?php if($isSameForFive): $i=$i+(4*2); endif;endfor; ?><span class="dispoligne" title="Aucune perturbation pour <?php echo $pourcentages[$ligne]['OK'] ?>% du trafic"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /><?php echo str_replace(" ", "&nbsp;", sprintf("% 3d", $pourcentages[$ligne]['OK'])) ?>%</span></div>
 
 <?php endforeach; ?>
 </div>
