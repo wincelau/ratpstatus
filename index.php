@@ -29,7 +29,7 @@
 <a id="btn_help" href="#aide" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
 </nav>
 <nav id="nav_liens_right">
-    <a id="btn_list" class="badge" href="#incidents" title="Voir la liste des incidents"><span title="Aucune perturbation pour <?php echo $pourcentages[$mode]['OK'] ?>% du trafic" class="donutG"></span> <?php echo str_replace(" ", "&nbsp;", sprintf("% 2d", count($day->getDisruptions($mode)))) ?><span class="mobile_hidden"> incidents</span></a>
+    <a id="btn_list" class="badge" href="#incidents" title="Voir la liste des incidents"><span title="Aucune perturbation pour <?php echo $pourcentages[$mode]['OK'] ?>% du trafic de tout la journée" class="donutG"></span> <?php echo str_replace(" ", "&nbsp;", sprintf("% 2d", count($day->getDisruptions($mode)))) ?><span class="mobile_hidden"> incidents</span></a>
     <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
@@ -60,7 +60,7 @@
 <?php foreach(Config::getLignes()[$mode] as $ligne => $logo): ?>
 <div style="position:relative;" class="ligne" data-id="<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>"><div class="logo"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>"/></div>
 <?php for($i = 0; $i < 1380; $i = $i + 2): $isSameForFive = ($i % 10 == 0 && $day->isSameColorClassForFive($i, $ligne)); ?><a class="i <?php echo $day->getColorClass($i, $ligne) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?><?php if($isSameForFive): ?> i5sa<?php endif; ?>" title="<?php echo sprintf("%02d", (intval($i / 60) + 4) % 24) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?><?php if($isSameForFive): ?> - <?php echo sprintf("%02d", (intval(($i+(5*2)) / 60) + 4) % 24) ?>h<?php echo sprintf("%02d", (($i+(5*2)) % 60)) ?><?php endif; ?><?php echo $day->getInfo($i, $ligne, ($isSameForFive) ? 5 : 1) ?>"></a>
-<?php if($isSameForFive): $i=$i+(4*2); endif;endfor; ?><span class="dispoligne" title="Aucune perturbation pour <?php echo $pourcentages[$ligne]['OK'] ?>% du trafic"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /><?php echo str_replace(" ", "&nbsp;", sprintf("% 3d", $pourcentages[$ligne]['OK'])) ?>%</span></div>
+<?php if($isSameForFive): $i=$i+(4*2); endif;endfor; ?><span class="dispoligne" title="Aucune perturbation pour <?php echo $pourcentages[$ligne]['OK'] ?>% du trafic de toute la journée"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /><?php echo str_replace(" ", "&nbsp;", sprintf("% 3d", $pourcentages[$ligne]['OK'])) ?>%</span></div>
 
 <?php endforeach; ?>
 </div>
