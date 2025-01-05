@@ -116,7 +116,7 @@
     <p>La dernière récupération pour ce jour date du <a href="https://github.com/wincelau/ratpstatus/blob/main/<?php echo str_replace(__DIR__.DIRECTORY_SEPARATOR, '', $day->getLastFile()->getFilePath()) ?>"><?php echo $day->getLastFile()->getDate()->format('d/m/Y H:i:s') ?></a>.</p>
     <?php endif; ?>
 
-    <p>Chaque nuit l'historique des informations présentées sur cette page sont <a href="/export/">exportées au format CSV</a>. Ces exports sont librement exploitables dans le respect de la licence <a href="https://opendatacommons.org/licenses/odbl/summary/">ODbL</a>.</p>
+    <p>Chaque nuit l'historique des informations présentées sur cette page sont <a href="/export/">exportées au format CSV</a> (librement exploitables dans le respect de la licence <a href="https://opendatacommons.org/licenses/odbl/summary/">ODbL</a>).
 
     <p>Le projet initié par <a href="https://piaille.fr/@winy">winy</a> est publié sous licence libre AGPL-3.0 : <a href="https://github.com/wincelau/ratpstatus">https://github.com/wincelau/ratpstatus</a>.</p>
     <p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.</p>
