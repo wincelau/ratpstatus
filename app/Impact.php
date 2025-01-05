@@ -127,7 +127,7 @@ class Impact
     }
 
     public function getSuggestionType() {
-        if(preg_match("/(trafic sera très perturbé|trafic sera interrompu|le trafic de la ligne [A-Z0-9]+ sera perturbé|trafic sera également interrompu|trafic de la ligne sera légèrement perturbé|rendez-vous la veille|pourraient perturber la circulation)/i", $this->getMessagePlainText())) {
+        if(preg_match("/(trafic sera très perturbé|trafic sera interrompu|le trafic de la ligne [A-Z0-9]+ sera perturbé|le trafic de la ligne [A-Z0-9]+ sera interrompu|trafic sera également interrompu|trafic de la ligne sera légèrement perturbé|rendez-vous la veille|pourraient perturber la circulation|pourrait perturber la circulation)/i", $this->getMessagePlainText())) {
 
             return self::TYPE_AUCUNE;
         }
