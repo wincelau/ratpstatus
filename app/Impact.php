@@ -230,6 +230,10 @@ class Impact
             return self::TYPE_CHANGEMENT_HORAIRES;
         }
 
+        if(preg_match("/L'horaire de certains trains[^\n\.]*est avancé ou retardé/", $this->getMessagePlainText())) {
+            return self::TYPE_CHANGEMENT_HORAIRES;
+        }
+
         if(preg_match('/Modification de desserte/', $this->getTitle())) {
             return self::TYPE_AUCUNE;
         }
