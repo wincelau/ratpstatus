@@ -32,7 +32,7 @@
     <?php if(count($statutsCount)): ?>
     <a id="btn_list_now" class="badge openincident" href="#incidents" title="Voir la liste des incidents" style="margin-right: 4px;"><span style="border-right: 1px solid #ececec; padding-right: 8px;">🔥</span><?php foreach($statutsCount as $statut => $count): ?><strong style="padding-left: 8px; padding-right: 6px;"><?php echo $count ?></strong><span class="<?php echo $statut ?>" style="border-radius: 4px;">&nbsp;</span><?php endforeach ?></a>
     <?php endif; ?>
-    <a id="btn_list" class="badge openincident" href="#incidents" title="Voir la liste des incidents de la journée"><span title="Aucune perturbation pour <?php echo $pourcentages[$mode]['OK'] ?>% du trafic de tout la journée" class="donutG"></span> <span>📅</span> <span style="border-left: 1px solid #ececec; padding-left: 8px;"><?php echo str_replace(" ", "&nbsp;", sprintf("% 2d", count($day->getDisruptions($mode)))) ?> incidents</span></a>
+    <a id="btn_list" class="badge openincident" href="#incidents" title="Voir la liste des incidents de la journée"><span title="Aucune perturbation pour <?php echo $pourcentages[$mode]['OK'] ?>% du trafic de tout la journée" class="donutG"></span> <span>📅</span> <span style="border-left: 1px solid #ececec; padding-left: 8px;"><?php echo count($day->getDisruptions($mode)) ?> incidents</span></a>
     <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>
