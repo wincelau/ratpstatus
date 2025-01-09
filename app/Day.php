@@ -279,6 +279,27 @@ class Day
         return "%ok%";
     }
 
+    public function getCurrentStatutsCount($mode) {
+        if(!$this->isToday()) {
+            return [];
+        }
+        $statuts = [];
+        $currentStatut = null;
+        foreach(Config::getLignes()[$mode] as $ligne => $ligneImg) {
+            for($i = 0; $i < 1380; $i=$i+2) {
+                $newStatut = $this->getColorClass($i, $ligne);
+                if($currentStatut && $newStatut == 'e') {
+                    $statuts[$currentStatut] += 1;
+                    break;
+                }
+                $currentStatut = $newStatut;
+            }
+        }
+        arsort($statuts);
+
+        return $statuts;
+    }
+
     public function getPourcentages($mode) {
         $repartitions = [$mode => ["OK" => 0, "PB" => 0, "BQ" => 0, "TX" => 0]];
         for($i = 0; $i < 1380; $i=$i+2) {

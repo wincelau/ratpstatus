@@ -8,13 +8,13 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_<?php echo $mode ?>.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_<?php echo $mode ?>.png" />
-<link rel="stylesheet" href="/css/style.css?202501050243">
+<link rel="stylesheet" href="/css/style.css?202501050244">
 <script>
     const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
 </script>
 <script src="/js/main.js?202501030043"></script>
 <style>
-    .donutG:after {
+    .donutG:before {
         content: "<?php echo round($pourcentages[$mode]['OK']) ?>";
     }
     .donutG {
@@ -29,7 +29,10 @@
 <a id="btn_help" href="#aide" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
 </nav>
 <nav id="nav_liens_right">
-    <a id="btn_list" class="badge" href="#incidents" title="Voir la liste des incidents"><span title="Aucune perturbation pour <?php echo $pourcentages[$mode]['OK'] ?>% du trafic de tout la journée" class="donutG"></span> <?php echo str_replace(" ", "&nbsp;", sprintf("% 2d", count($day->getDisruptions($mode)))) ?><span class="mobile_hidden"> incidents</span></a>
+    <?php if(count($statutsCount)): ?>
+    <a id="btn_list_now" class="badge openincident" href="#incidents" title="Voir la liste des incidents" style="margin-right: 4px;"><span style="border-right: 1px solid #ececec; padding-right: 8px;">🔥</span><?php foreach($statutsCount as $statut => $count): ?><strong style="padding-left: 8px; padding-right: 6px;"><?php echo $count ?></strong><span class="<?php echo $statut ?>" style="border-radius: 4px;">&nbsp;</span><?php endforeach ?></a>
+    <?php endif; ?>
+    <a id="btn_list" class="badge openincident" href="#incidents" title="Voir la liste des incidents de la journée"><span title="Aucune perturbation pour <?php echo $pourcentages[$mode]['OK'] ?>% du trafic de tout la journée" class="donutG"></span> <span>📅</span> <span style="border-left: 1px solid #ececec; padding-left: 8px;"><?php echo str_replace(" ", "&nbsp;", sprintf("% 2d", count($day->getDisruptions($mode)))) ?> incidents</span></a>
     <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic des transports IDF</span><span class="mobile_visible">État du trafic</span></h1>

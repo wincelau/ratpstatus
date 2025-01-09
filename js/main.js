@@ -13,12 +13,13 @@ document.addEventListener('DOMContentLoaded', async function () {
       return false;
   });
 
-  document.querySelector('#btn_list').addEventListener('click', function(e) {
+  document.querySelectorAll('.openincident').forEach(function(button) {
+    button.addEventListener('click', function(e) {
       filtreListeDisruption();
       modalList.showModal();
       modalList.scrollTo(0,0);
       return false;
-  });
+  })});
 
   document.querySelector('#lignes').addEventListener('mouseover', function(e) {
       if(e.target.title) {

@@ -85,7 +85,7 @@ a.disabled {
     text-transform: uppercase;
 }
 
-.donutG:after {
+.donutG:before {
     content: "97";
     color: #64aa1e;
     font-size: 14px;
@@ -99,7 +99,7 @@ a.disabled {
   display: inline-block;
   border-radius: 50%;
   position:absolute;
-  left: 0;
+  right: 0;
   top: -7px;
   display: flex;
   align-items: center;
@@ -130,22 +130,27 @@ a.disabled {
     opacity: 0.75 !important;
 }
 
-a#btn_list {
-    padding: 4px 12px 4px 42px !important;
-    background: #fafafa;
+a#btn_list, a#btn_list_now {
+    padding: 4px 42px 4px 12px !important;
+    border: 1px solid #ececec;
+    background: #fff;
     color: #555 !important;
     font-size: 14px !important;
 }
 
-a#btn_list span {
+a#btn_list_now {
+    padding: 4px 12px 4px 12px !important;
+}
+
+a#btn_list span, a#btn_list_now span {
     text-transform: none !important;
 }
 
-a#btn_list:hover {
+a#btn_list:hover, a#btn_list_now:hover {
     background: #f2f2f2;
     color: #000 !important;
 }
-a#btn_list:hover span {
+a#btn_list:hover span, a#btn_list_now:hover span {
     text-decoration: none !important;
 }
 
@@ -465,6 +470,13 @@ a#btn_list:hover span {
     margin-top: 20px;
 }
 
+#listModal ul li p.ellips {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 10;
+    overflow: hidden;
+}
+
 #helpModal span {
     display:inline-block; width: 12px; height: 12px;
 }
@@ -484,12 +496,6 @@ a#btn_list:hover span {
 @media screen and (max-width: 900px) {
     #listModal ul li span:last-of-type {
         display: inline;
-    }
-    #listModal ul li p.ellips {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: 10;
-        overflow: hidden;
     }
 
     #listModal ul li p:nth-of-type(2) {
@@ -516,6 +522,14 @@ a#btn_list:hover span {
       width: 29px;
       height: 29px;
       top: -4px;
+    }
+
+    #btn_list {
+        display: none;
+    }
+
+    #btn_list_now {
+        display: none;
     }
 
     a#btn_list {

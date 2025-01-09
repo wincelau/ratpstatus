@@ -36,6 +36,7 @@ if(isset($cacheFile) && file_exists($cacheFile) && !getenv('RESETCACHE')) {
 }
 
 $pourcentages = $day->getPourcentages($mode);
+$statutsCount = $day->getCurrentStatutsCount($mode);
 
 $GLOBALS['isStaticResponse'] = isset($_SERVER['argv']) && !is_null($_SERVER['argv']);
 
