@@ -187,7 +187,9 @@ class Day
 
     public function isToday() {
 
-        return $this->getDateStart()->format('Ymd') == date('Ymd');
+        $date = (new DateTime())->modify('-3 hours');
+
+        return $this->getDateStart()->format('Ymd') == $date->format('Ymd');
     }
 
     public function isTomorrow() {
