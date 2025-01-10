@@ -8,11 +8,11 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_<?php echo $mode ?>.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_<?php echo $mode ?>.png" />
-<link rel="stylesheet" href="/css/style.css?202501050249">
+<link rel="stylesheet" href="/css/style.css?202501100924">
 <script>
     const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
 </script>
-<script src="/js/main.js?202501030043"></script>
+<script src="/js/main.js?202501030044"></script>
 <style>
     .donutG:before {
         content: "<?php echo round($pourcentages[$mode]['OK']) ?>";
@@ -27,15 +27,15 @@
 <header role="banner" id="header">
 <nav id="nav_liens">
 <a id="btn_help" href="#aide" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<?php if($day->isToday()): ?>
+<a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
+<?php endif; ?>
 </nav>
 <nav id="nav_liens_right">
     <?php if(count($statutsCount)): ?>
     <a id="btn_list_now" class="badge openincident" href="#incidents" title="Voir la liste des incidents"><span class="picto">🔥</span><?php foreach($statutsCount as $statut => $count): ?><strong><?php echo $count ?></strong><span class="<?php echo $statut ?> barre">&nbsp;</span><?php endforeach ?></a>
     <?php endif; ?>
     <a id="btn_list" class="badge openincident" href="#incidents" title="Voir la liste des incidents de la journée"><span title="Aucune perturbation pour <?php echo $pourcentages[$mode]['OK'] ?>% du trafic de tout la journée" class="donutG"></span><span class="picto">📅</span><span class="text_incidents"><?php echo count($day->getDisruptions($mode)) ?> <span class="long">incidents</span><span class="short">inc.</span></span></a>
-    <?php if($day->isToday()): ?>
-    <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
-    <?php endif; ?>
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
