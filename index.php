@@ -8,11 +8,11 @@
 <meta name="description" content="Page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France">
 <link rel="icon" href="/images/favicon_<?php echo $mode ?>.ico" />
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_<?php echo $mode ?>.png" />
-<link rel="stylesheet" href="/css/style.css?202501100927">
+<link rel="stylesheet" href="/css/style.css?202501100928">
 <script>
     const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
 </script>
-<script src="/js/main.js?202501030044"></script>
+<script src="/js/main.js?202501030045"></script>
 <style>
     .donutG:before {
         content: "<?php echo round($pourcentages[$mode]['OK']) ?>";
@@ -104,7 +104,7 @@
 <?php endif; ?>
 <p id="sentence_nothing_disruptions" class="hide">Il n'y a aucun incident en cours ou terminé</p>
 </dialog>
-<dialog id="helpModal">
+<dialog id="aide">
     <h2>Aide et informations</h2>
     <p>RATPstatus.fr est une page de suivi et d'historisation de l'état du trafic des Ⓜ️ Métros, 🚆 RER / Transiliens et 🚈 Tramways d'Île de France.</p>
     <p>L'état du trafic est récupéré toutes les 2 minutes à partir du 23 avril 2024.</p>

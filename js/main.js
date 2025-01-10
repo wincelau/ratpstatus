@@ -8,8 +8,12 @@ document.addEventListener('DOMContentLoaded', async function () {
       window.scrollTo({ left: document.querySelector('.ligne .e').offsetLeft - window.innerWidth + 66 });
   }
 
+  if(window.location.hash == "#aide") {
+      document.getElementById('aide').showModal();
+  }
+
   document.querySelector('#btn_help').addEventListener('click', function(e) {
-      document.getElementById('helpModal').showModal();
+      document.getElementById('aide').showModal();
       return false;
   });
 
@@ -44,7 +48,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         modalList.blur();
       }
   })
-  const modalHelp = document.getElementById('helpModal')
+  const modalHelp = document.getElementById('aide')
   modalHelp.addEventListener('click', function(event) {
     if(event.target.nodeName != "A") {
       modalHelp.close();
