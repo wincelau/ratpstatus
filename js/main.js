@@ -8,12 +8,12 @@ document.addEventListener('DOMContentLoaded', async function () {
       window.scrollTo({ left: document.querySelector('.ligne .e').offsetLeft - window.innerWidth + 66 });
   }
 
-  if(window.location.hash == "#aide") {
-      document.getElementById('aide').showModal();
+  if(document.location.hash == "#aide") {
+      document.getElementById('modalHelp').showModal();
   }
 
   document.querySelector('#btn_help').addEventListener('click', function(e) {
-      document.getElementById('aide').showModal();
+      document.getElementById('modalHelp').showModal();
       return false;
   });
 
@@ -48,11 +48,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         modalList.blur();
       }
   })
-  const modalHelp = document.getElementById('aide')
+  const modalHelp = document.getElementById('modalHelp')
   modalHelp.addEventListener('click', function(event) {
     if(event.target.nodeName != "A") {
       modalHelp.close();
     }
+  });
+  modalHelp.addEventListener("close", function(e) {
+    history.replaceState(null, null, ' ');
   });
   const modalList = document.getElementById('listModal')
   modalList.addEventListener('click', function(event) {
