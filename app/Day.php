@@ -291,6 +291,9 @@ class Day
             for($i = 0; $i < 1380; $i=$i+2) {
                 $newStatut = $this->getColorClass($i, $ligne);
                 if($currentStatut && $newStatut == 'e') {
+                    if(!isset($statuts[$currentStatut])) {
+                        $statuts[$currentStatut] = 0;
+                    }
                     $statuts[$currentStatut] += 1;
                     break;
                 }
