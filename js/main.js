@@ -7,23 +7,46 @@ document.addEventListener('DOMContentLoaded', async function () {
   if(document.querySelector('.ligne .e')) {
       window.scrollTo({ left: document.querySelector('.ligne .e').offsetLeft - window.innerWidth + 66 });
   }
+  const modalHelp = document.getElementById('modalHelp')
+  const modalList = document.getElementById('listModal')
 
-  if(document.location.hash == "#aide") {
-      document.getElementById('modalHelp').showModal();
-  }
 
-  document.querySelector('#btn_help').addEventListener('click', function(e) {
-      document.getElementById('modalHelp').showModal();
-      return false;
-  });
+  function checkLocationHash() {
+    if(document.location.hash == "#aide") {
+        modalHelp.showModal();
 
-  document.querySelectorAll('.openincident').forEach(function(button) {
-    button.addEventListener('click', function(e) {
+    } else {
+        modalHelp.close();
+    }
+    if(document.location.hash == "#incidents") {
       filtreListeDisruption();
       modalList.showModal();
       modalList.scrollTo(0,0);
-      return false;
-  })});
+    } else if(document.location.hash.indexOf("#incidents_") == 0) {
+      let ligne = document.querySelector('.ligne[data-id="'+document.location.hash.split("_")[1]+'"]');
+      let img = ligne.querySelector('.logo img');
+      let modalTitle = document.querySelector('#listModal #listModal_title_line');
+      filtreListeDisruption(ligne.dataset.id);
+      modalTitle.innerHTML = '<img src="'+img.src+'" style="height: 20px;" /> '+img.alt;
+      modalList.showModal();
+      modalList.scrollTo(0,0);
+      modalList.blur();
+    } else {
+      modalList.close();
+    }
+  }
+
+  checkLocationHash();
+
+  window.addEventListener('hashchange', function() {
+    checkLocationHash();
+  });
+
+  document.querySelector('#lignes').addEventListener('click', function(e) {
+      if(e.target.closest('.ligne')) {
+          document.location.hash = e.target.closest('.ligne').querySelector('.logo a').hash;
+      }
+  })
 
   document.querySelector('#lignes').addEventListener('mouseover', function(e) {
       if(e.target.title) {
@@ -36,19 +59,6 @@ document.addEventListener('DOMContentLoaded', async function () {
           delete e.target.dataset.title
       }
   })
-  document.querySelector('#lignes').addEventListener('click', function(e) {
-      if(e.target.closest('.ligne')) {
-        let ligne = e.target.closest('.ligne');
-        let img = ligne.querySelector('.logo img');
-        let modalTitle = document.querySelector('#listModal #listModal_title_line');
-        filtreListeDisruption(ligne.dataset.id);
-        modalTitle.innerHTML = '<img src="'+img.src+'" style="height: 20px;" /> '+img.alt;
-        modalList.showModal();
-        modalList.scrollTo(0,0);
-        modalList.blur();
-      }
-  })
-  const modalHelp = document.getElementById('modalHelp')
   modalHelp.addEventListener('click', function(event) {
     if(event.target.nodeName != "A") {
       modalHelp.close();
@@ -57,7 +67,6 @@ document.addEventListener('DOMContentLoaded', async function () {
   modalHelp.addEventListener("close", function(e) {
     history.replaceState(null, null, ' ');
   });
-  const modalList = document.getElementById('listModal')
   modalList.addEventListener('click', function(event) {
       if(event.target.classList.contains('ellips')) {
           let beforeheight = event.target.offsetHeight;
@@ -77,6 +86,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       this.querySelectorAll('.disruption ul  li p').forEach(function(item) {
           item.classList.add('ellips');
       });
+      history.replaceState(null, null, ' ');
   });
 })
 
