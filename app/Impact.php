@@ -215,7 +215,7 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
-        if(preg_match('/Modifications de compositions/', $this->getTitle())) {
+        if(preg_match('/Modifications? de compositions?/i', $this->getTitle())) {
             return self::TYPE_AUCUNE;
         }
 
