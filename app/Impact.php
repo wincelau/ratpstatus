@@ -223,6 +223,10 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
+        if(preg_match('/adaptation des circulations/i', $this->getOrigine())) {
+            return self::TYPE_AUCUNE;
+        }
+
         if(preg_match('/offre de transport est adaptée/i', $this->getTitle())) {
             return self::TYPE_AUCUNE;
         }
