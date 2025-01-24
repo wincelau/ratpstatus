@@ -2,7 +2,7 @@
 require __DIR__.'/app/Config.php';
 
 $handle = fopen(__DIR__.'/datas/export/historique_statuts.csv', "r");
-$mode="trains";
+$mode="metros";
 if(!isset($_GET['date'])) {
     $_GET['date'] = date('Ym');
 }
@@ -59,6 +59,14 @@ function url($url) {
 
     return "index.php?".http_build_query(['date' => $matches[1], 'mode' => $matches[2]]);
 }
+$dateMonth = DateTime::createFromFormat("Ymd", $_GET['date'].'01');
+$date = DateTime::createFromFormat("Ymd", $_GET['date'].'01');
+$dates = [];
+$nbDays = cal_days_in_month(CAL_GREGORIAN, $date->format('n'), $date->format('Y'));
+for($i = 0; $i < $nbDays; $i++) {
+    $dates[] = clone $date;
+    $date->modify('+1 day');
+}
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
@@ -81,18 +89,19 @@ function url($url) {
 <nav id="nav_liens_right">
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
-<h2>Mai 2024</h2>
+<h2><?php echo $dateMonth->format('M Y') ?></h2>
 <nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href=""><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
-<div class="hline"><?php for($i = 0; $i <= 30; $i = $i + 60): ?><div class="ih"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", (intval($i / 60) + 4) % 24) ?>h</small><?php endif; ?></div><?php endfor; ?></div>
+<div class="hline" style="margin-top: 80px;"><?php foreach($dates as $date): ?><div class="ih" style="width: 40px; <?php if($date->format('N') ==  2): ?>border-right: 4px solid #fff;<?php else: ?>border-right: 1px solid #fff;<?php endif; ?> text-align: center;"><small style="position: relative; left: inherit; top: inherit;"><span style="position:absolute; top: -8px; left: 50%; transform: translate(-50%,-50%);"><?php if($date->format('N') ==  3): ?>LUN<?php elseif($date->format('N') ==  5): ?>MER<?php elseif($date->format('N') ==  7): ?>VEN<?php elseif($date->format('N') ==  2): ?>DIM<?php endif; ?></span><?php echo $date->format('j') ?></small></div><?php endforeach; ?></div>
 </header>
 <main role="main">
 <div id="lignes">
 <?php foreach(Config::getLignes()[$mode] as $ligne => $logo): ?>
 <div class="ligne" data-id="<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>"><div class="logo"><a href="#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" width="30" height="30" style="margin-top: 5px;"/></a></div>
 <?php $j=1; ?>
-<?php foreach($statuts[$ligne] as $date => $data): ?>
+    <?php foreach($dates as $date): ?>
+    <?php $data = $statuts[$ligne][$date->format('Y-m-d')]; ?>
     <?php if($date == "total"): continue; endif; ?>
-    <a href="<?php echo url("/".str_replace('-', '', $date)."/".$mode.".html") ?>#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="display: block; float:left; height: 40px; width: 40px; <?php if($j % 7 == 0): ?>border-right: 4px solid #fff;<?php else: ?>border-right: 1px solid #fff;<?php endif; ?> position: relative;" title="<?php echo $date; ?>">
+    <a href="<?php echo url("/".$date->format('Ymd')."/".$mode.".html") ?>#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="display: block; float:left; height: 40px; width: 40px; <?php if($date->format('N') ==  2): ?>border-right: 4px solid #fff;<?php else: ?>border-right: 1px solid #fff;<?php endif; ?> position: relative;" title="<?php echo $date->format('d/m/Y'); ?>">
         <?php $rest = 0; ?>
         <?php foreach(["OK", "TX", "PB", "BQ"] as $statut): ?>
             <?php if($rest > 0 && $data["pourcentages"][$statut] > $rest): ?>
@@ -115,7 +124,7 @@ function url($url) {
     <?php $j++; ?>
 <?php endforeach; ?>
 <?php /*for($i = 0; $i < 1380; $i = $i + 2): $isSameForFive = ($i % 10 == 0 && $day->isSameColorClassForFive($i, $ligne)); ?><i class="i <?php echo $day->getColorClass($i, $ligne) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?><?php if($isSameForFive): ?> i5sa<?php endif; ?>" title="<?php echo sprintf("%02d", (intval($i / 60) + 4) % 24) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?><?php if($isSameForFive): ?> - <?php echo sprintf("%02d", (intval(($i+(5*2)) / 60) + 4) % 24) ?>h<?php echo sprintf("%02d", (($i+(5*2)) % 60)) ?><?php endif; ?><?php echo $day->getInfo($i, $ligne, ($isSameForFive) ? 5 : 1) ?>"></i>
-<?php if($isSameForFive): $i=$i+(4*2); endif;endfor; */ ?><span class="dispoligne" style="padding-top: 5px; padding-bottom: 5px;" title="Aucune perturbation pour <?php echo $statuts[$ligne]["total"] ?>% du trafic de toute la journée"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" style="height: 24px; left: -18px; top: 7px;" /><?php echo str_replace(" ", "&nbsp;", sprintf("% 3d", $statuts[$ligne]["total"])) ?>%</span></div>
+<?php if($isSameForFive): $i=$i+(4*2); endif;endfor; */ ?><span class="dispoligne" style="padding-top: 5px; padding-bottom: 5px; padding-left: 30px;" title="Aucune perturbation pour <?php echo $statuts[$ligne]["total"] ?>% du trafic de toute la journée"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" style="height: 24px; left: 6px; top: 7px;" /><?php echo str_replace(" ", "&nbsp;", sprintf("% 3d", $statuts[$ligne]["total"])) ?>%</span></div>
 
 <?php endforeach; ?>
 </div>
