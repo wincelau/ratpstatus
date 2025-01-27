@@ -89,9 +89,9 @@ for($i = 0; $i < $nbDays; $i++) {
 <nav id="nav_liens_right">
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
-<h2><?php echo $dateMonth->format('M Y') ?></h2>
+<h2><a title="Voir le mois précédent" href="">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>&nbsp;&nbsp;<?php echo $dateMonth->format('M Y') ?>&nbsp;&nbsp;<a title="Voir le jour suivant" href="">➡️<span class="visually-hidden">Voir le jour suivant</span></a></h2>
 <nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href=""><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
-<div class="hline" style="margin-top: 80px;"><?php foreach($dates as $date): ?><div class="ih" style="width: 40px; <?php if($date->format('N') ==  2): ?>border-right: 4px solid #fff;<?php else: ?>border-right: 1px solid #fff;<?php endif; ?> text-align: center;"><small style="position: relative; left: inherit; top: inherit;"><span style="position:absolute; top: -8px; left: 50%; transform: translate(-50%,-50%);"><?php if($date->format('N') ==  3): ?>LUN<?php elseif($date->format('N') ==  5): ?>MER<?php elseif($date->format('N') ==  7): ?>VEN<?php elseif($date->format('N') ==  2): ?>DIM<?php endif; ?></span><?php echo $date->format('j') ?></small></div><?php endforeach; ?></div>
+<div class="hline" style="margin-top: 80px;"><?php foreach($dates as $date): ?><div class="ih" style="width: 40px; display: block; <?php if($date->format('N') ==  2): ?>border-right: 4px solid #fff;<?php else: ?>border-right: 1px solid #fff;<?php endif; ?> text-align: center;"><small style="position: relative; left: inherit; top: inherit;"><span style="position:absolute; top: -10px; left: 50%; transform: translate(-50%,-50%); font-size: 12px; opacity: 0.5;"><?php if($date->format('N') ==  3): ?>Lun<?php elseif($date->format('N') ==  5): ?>Mer<?php elseif($date->format('N') ==  7): ?>Ven<?php elseif($date->format('N') ==  2): ?>Dim<?php endif; ?></span><?php echo $date->format('j') ?></small></div><?php endforeach; ?></div>
 </header>
 <main role="main">
 <div id="lignes">
@@ -103,6 +103,9 @@ for($i = 0; $i < $nbDays; $i++) {
     <?php if($date == "total"): continue; endif; ?>
     <a href="<?php echo url("/".$date->format('Ymd')."/".$mode.".html") ?>#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="display: block; float:left; height: 40px; width: 40px; <?php if($date->format('N') ==  2): ?>border-right: 4px solid #fff;<?php else: ?>border-right: 1px solid #fff;<?php endif; ?> position: relative;" title="<?php echo $date->format('d/m/Y'); ?>">
         <?php $rest = 0; ?>
+        <?php if(!$data): ?>
+            <div class="no" style="display: block; float:right; height: 40px; width: 40px;"></div>
+        <?php endif; ?>
         <?php foreach(["OK", "TX", "PB", "BQ"] as $statut): ?>
             <?php if($rest > 0 && $data["pourcentages"][$statut] > $rest): ?>
                 <div class="<?php echo strtolower($statut) ?>" style="display: block; float:right; height: 4px; width: <?php echo $rest * 4 ?>px;"></div>
