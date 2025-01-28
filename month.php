@@ -2,10 +2,20 @@
 require __DIR__.'/app/Config.php';
 
 $handle = fopen(__DIR__.'/datas/export/historique_statuts.csv', "r");
-$mode="metros";
-if(!isset($_GET['date'])) {
-    $_GET['date'] = date('Ym');
+
+if(isset($argv[1]) && $argv[1]) {
+    $_GET['date'] = $argv[1];
 }
+
+if(isset($argv[2]) && $argv[2]) {
+    $_GET['mode'] = $argv[2];
+}
+
+if(!isset($_GET['date'])) {
+    $_GET['date'] = null;
+}
+$mode = isset($_GET['mode']) ? $_GET['mode'] : 'metros';
+
 $statuts = [];
 while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
     if(strpos($data[0], 'date') === 0) {
@@ -91,7 +101,7 @@ for($i = 0; $i < $nbDays; $i++) {
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
 <h2><a title="Voir le mois précédent" href="">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>&nbsp;&nbsp;<?php echo $dateMonth->format('M Y') ?>&nbsp;&nbsp;<a title="Voir le jour suivant" href="">➡️<span class="visually-hidden">Voir le jour suivant</span></a></h2>
 <nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href=""><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
-<div class="hline" style="margin-top: 80px;"><?php foreach($dates as $date): ?><div class="ih" style="width: 40px; display: block; <?php if($date->format('N') ==  2): ?>border-right: 4px solid #fff;<?php else: ?>border-right: 1px solid #fff;<?php endif; ?> text-align: center;"><small style="position: relative; left: inherit; top: inherit;"><span style="position:absolute; top: -10px; left: 50%; transform: translate(-50%,-50%); font-size: 12px; opacity: 0.5;"><?php if($date->format('N') ==  3): ?>Lun<?php elseif($date->format('N') ==  5): ?>Mer<?php elseif($date->format('N') ==  7): ?>Ven<?php elseif($date->format('N') ==  2): ?>Dim<?php endif; ?></span><?php echo $date->format('j') ?></small></div><?php endforeach; ?></div>
+<div class="hline" style="margin-top: 80px;"><?php foreach($dates as $date): ?><div class="ih" style="width: 40px; display: block; <?php if($date->format('N') == 7): ?>border-right: 4px solid #fff;<?php else: ?>border-right: 1px solid #fff;<?php endif; ?> text-align: center;"><small style="position: relative; left: inherit; top: inherit;"><span style="position:absolute; top: -10px; left: 50%; transform: translate(-50%,-50%); font-size: 12px; opacity: 0.5;"><?php if($date->format('N') ==  1): ?>Lun<?php elseif($date->format('N') ==  3): ?>Mer<?php elseif($date->format('N') ==  5): ?>Ven<?php elseif($date->format('N') ==  7): ?>Dim<?php endif; ?></span><?php echo $date->format('j') ?></small></div><?php endforeach; ?></div>
 </header>
 <main role="main">
 <div id="lignes">
@@ -101,7 +111,7 @@ for($i = 0; $i < $nbDays; $i++) {
     <?php foreach($dates as $date): ?>
     <?php $data = $statuts[$ligne][$date->format('Y-m-d')]; ?>
     <?php if($date == "total"): continue; endif; ?>
-    <a href="<?php echo url("/".$date->format('Ymd')."/".$mode.".html") ?>#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="display: block; float:left; height: 40px; width: 40px; <?php if($date->format('N') ==  2): ?>border-right: 4px solid #fff;<?php else: ?>border-right: 1px solid #fff;<?php endif; ?> position: relative;" title="<?php echo $date->format('d/m/Y'); ?>">
+    <a href="<?php echo url("/".$date->format('Ymd')."/".$mode.".html") ?>#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="display: block; float:left; height: 40px; width: 40px; <?php if($date->format('N') ==  7): ?>border-right: 4px solid #fff;<?php else: ?>border-right: 1px solid #fff;<?php endif; ?> position: relative;" title="<?php echo $date->format('d/m/Y'); ?>">
         <?php $rest = 0; ?>
         <?php if(!$data): ?>
             <div class="no" style="display: block; float:right; height: 40px; width: 40px;"></div>
