@@ -59,6 +59,8 @@ foreach($statuts as $ligne => $dates) {
     $statuts[$ligne]["total"] = round($dispoOK / $nbDates);
 }
 fclose($handle);
+
+$GLOBALS['isStaticResponse'] = isset($_SERVER['argv']) && !is_null($_SERVER['argv']);
 function url($url) {
     if($GLOBALS['isStaticResponse']) {
 
@@ -91,7 +93,7 @@ for($i = 0; $i < $nbDays; $i++) {
 <script src="/js/main.js?<?php echo filemtime(__DIR__.'/js/main.js') ?>"></script>
 </head>
 <body>
-<div id="container" style="width: 1460px;">
+<div id="container_month">
 <header role="banner" id="header">
 <nav id="nav_liens">
 <a id="btn_help" href="#aide" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
@@ -101,50 +103,47 @@ for($i = 0; $i < $nbDays; $i++) {
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
 <h2><a title="Voir le mois précédent" href="">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>&nbsp;&nbsp;<?php echo $dateMonth->format('M Y') ?>&nbsp;&nbsp;<a title="Voir le jour suivant" href="">➡️<span class="visually-hidden">Voir le jour suivant</span></a></h2>
 <nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href=""><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
-<div class="hline" style="margin-top: 80px;"><?php foreach($dates as $date): ?><div class="ih" style="width: 40px; display: block; <?php if($date->format('N') == 7): ?>border-right: 4px solid #fff;<?php else: ?>border-right: 1px solid #fff;<?php endif; ?> text-align: center;"><small style="position: relative; left: inherit; top: inherit;"><span style="position:absolute; top: -10px; left: 50%; transform: translate(-50%,-50%); font-size: 12px; opacity: 0.5;"><?php if($date->format('N') ==  1): ?>Lun<?php elseif($date->format('N') ==  3): ?>Mer<?php elseif($date->format('N') ==  5): ?>Ven<?php elseif($date->format('N') ==  7): ?>Dim<?php endif; ?></span><?php echo $date->format('j') ?></small></div><?php endforeach; ?></div>
+<div class="hline"><?php foreach($dates as $date): ?><div class="ih <?php if($date->format('N') == 7): ?>ihew<?php endif; ?>"><small><span><?php if($date->format('N') ==  1): ?>Lun<?php elseif($date->format('N') ==  3): ?>Mer<?php elseif($date->format('N') ==  5): ?>Ven<?php elseif($date->format('N') ==  7): ?>Dim<?php endif; ?></span><?php echo $date->format('j') ?></small></div><?php endforeach; ?></div>
 </header>
 <main role="main">
 <div id="lignes">
 <?php foreach(Config::getLignes()[$mode] as $ligne => $logo): ?>
-<div class="ligne" data-id="<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>"><div class="logo"><a href="#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" width="30" height="30" style="margin-top: 5px;"/></a></div>
+<div class="ligne" data-id="<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>"><div class="logo"><a href="#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" width="30" height="30" /></a></div>
 <?php $j=1; ?>
-    <?php foreach($dates as $date): ?>
-    <?php $data = $statuts[$ligne][$date->format('Y-m-d')]; ?>
-    <?php if($date == "total"): continue; endif; ?>
-    <a href="<?php echo url("/".$date->format('Ymd')."/".$mode.".html") ?>#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="display: block; float:left; height: 40px; width: 40px; <?php if($date->format('N') ==  7): ?>border-right: 4px solid #fff;<?php else: ?>border-right: 1px solid #fff;<?php endif; ?> position: relative;" title="<?php echo $date->format('d/m/Y'); ?>">
-        <?php $rest = 0; ?>
-        <?php if(!$data): ?>
-            <div class="no" style="display: block; float:right; height: 40px; width: 40px;"></div>
-        <?php endif; ?>
-        <?php foreach(["OK", "TX", "PB", "BQ"] as $statut): ?>
-            <?php if($rest > 0 && $data["pourcentages"][$statut] > $rest): ?>
-                <div class="<?php echo strtolower($statut) ?>" style="display: block; float:right; height: 4px; width: <?php echo $rest * 4 ?>px;"></div>
-                <?php $data["pourcentages"][$statut] = $data["pourcentages"][$statut] - $rest; $rest = 0; ?>
-            <?php endif; ?>
-            <?php if(intdiv($data["pourcentages"][$statut], 10) > 0): ?>
-            <div class="<?php echo strtolower($statut) ?>" style="display: block; float:right; height: <?php echo 4*(intdiv($data["pourcentages"][$statut], 10)) ?>px; width: 40px;"></div>
-            <?php endif; ?>
-            <?php if($data["pourcentages"][$statut] % 10 > 0): ?>
-            <div class="<?php echo strtolower($statut) ?>" style="display: block; float:right; height: 4px; width: <?php echo ($data["pourcentages"][$statut] % 10) * 4 ?>px;"></div>
-            <?php endif; ?>
-            <?php if($rest > 0): ?>
-            <?php $rest = $rest - ($data["pourcentages"][$statut] % 10); ?>
-            <?php else: ?>
-            <?php $rest = 10 - ($data["pourcentages"][$statut] % 10); ?>
-            <?php endif; ?>
-        <?php endforeach; ?>
-    </a>
-    <?php $j++; ?>
+<?php foreach($dates as $date): ?>
+<?php $data = $statuts[$ligne][$date->format('Y-m-d')]; ?>
+<?php if($date == "total"): continue; endif; ?>
+<a class="bm <?php if($date->format('N') ==  7): ?>bmew<?php endif; ?>" href="<?php echo url("/".$date->format('Ymd')."/".$mode.".html") ?>#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" title="<?php echo $date->format('d/m/Y'); ?>">
+<?php $rest = 0; ?>
+<?php if(!$data): ?><div class="no"></div><?php endif; ?>
+<?php foreach(["OK", "TX", "PB", "BQ"] as $statut): ?>
+<?php if($rest > 0 && $data["pourcentages"][$statut] > $rest): ?>
+<div class="<?php echo strtolower($statut) ?> bml" style="width: <?php echo $rest * 4 ?>px;"></div>
+<?php $data["pourcentages"][$statut] = $data["pourcentages"][$statut] - $rest; $rest = 0; ?>
+<?php endif; ?>
+<?php if(intdiv($data["pourcentages"][$statut], 10) > 0): ?>
+<div class="<?php echo strtolower($statut) ?> bmb" style="height: <?php echo 4*(intdiv($data["pourcentages"][$statut], 10)) ?>px;"></div>
+<?php endif; ?>
+<?php if($data["pourcentages"][$statut] % 10 > 0): ?>
+<div class="<?php echo strtolower($statut) ?> bml" style="width: <?php echo ($data["pourcentages"][$statut] % 10) * 4 ?>px;"></div>
+<?php endif; ?>
+<?php if($rest > 0): ?>
+<?php $rest = $rest - ($data["pourcentages"][$statut] % 10); ?>
+<?php else: ?>
+<?php $rest = 10 - ($data["pourcentages"][$statut] % 10); ?>
+<?php endif; ?>
 <?php endforeach; ?>
-<?php /*for($i = 0; $i < 1380; $i = $i + 2): $isSameForFive = ($i % 10 == 0 && $day->isSameColorClassForFive($i, $ligne)); ?><i class="i <?php echo $day->getColorClass($i, $ligne) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?><?php if($isSameForFive): ?> i5sa<?php endif; ?>" title="<?php echo sprintf("%02d", (intval($i / 60) + 4) % 24) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?><?php if($isSameForFive): ?> - <?php echo sprintf("%02d", (intval(($i+(5*2)) / 60) + 4) % 24) ?>h<?php echo sprintf("%02d", (($i+(5*2)) % 60)) ?><?php endif; ?><?php echo $day->getInfo($i, $ligne, ($isSameForFive) ? 5 : 1) ?>"></i>
-<?php if($isSameForFive): $i=$i+(4*2); endif;endfor; */ ?><span class="dispoligne" style="padding-top: 5px; padding-bottom: 5px; padding-left: 30px;" title="Aucune perturbation pour <?php echo $statuts[$ligne]["total"] ?>% du trafic de toute la journée"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" style="height: 24px; left: 6px; top: 7px;" /><?php echo str_replace(" ", "&nbsp;", sprintf("% 3d", $statuts[$ligne]["total"])) ?>%</span></div>
-
+</a>
+<?php $j++; ?>
+<?php endforeach; ?>
+<span class="dispoligne" title="Aucune perturbation pour <?php echo $statuts[$ligne]["total"] ?>% du trafic de toute la journée"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" style="height: 24px; left: 6px; top: 7px;" /><?php echo str_replace(" ", "&nbsp;", sprintf("% 3d", $statuts[$ligne]["total"])) ?>%</span></div>
 <?php endforeach; ?>
 </div>
 </main>
 </div>
 <div id="legende">
 <p><span class="ok"></span> % Rien à signaler <span class="pb" style="margin-left: 20px;"></span> % Perturbation <span class="bq" style="margin-left: 20px;"></span> % Blocage / Interruption <span class="tx" style="margin-left: 20px;"></span> % Travaux <span class="no" style="margin-left: 20px;"></span> Aucune donnée</p>
+<p></p>
 </div>
 <footer role="contentinfo" id="footer">
 <p>
