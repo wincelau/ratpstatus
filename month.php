@@ -69,9 +69,17 @@ function url($url) {
 
     preg_match('|/?([^/]*)/([^/]*).html|', $url, $matches);
 
-    return "index.php?".http_build_query(['date' => $matches[1], 'mode' => $matches[2]]);
+    $script = "index.php";
+
+    if(strlen($matches[1]) == "6") {
+        $script = "month.php";
+    }
+
+    return $script."?".http_build_query(['date' => $matches[1], 'mode' => $matches[2]]);
 }
 $dateMonth = DateTime::createFromFormat("Ymd", $_GET['date'].'01');
+$datePreviousMonth = (clone $dateMonth)->modify('-1 month');
+$dateNextMonth = (clone $dateMonth)->modify('+1 month');
 $date = DateTime::createFromFormat("Ymd", $_GET['date'].'01');
 $dates = [];
 $nbDays = cal_days_in_month(CAL_GREGORIAN, $date->format('n'), $date->format('Y'));
@@ -101,8 +109,8 @@ for($i = 0; $i < $nbDays; $i++) {
 <nav id="nav_liens_right">
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
-<h2><a title="Voir le mois précédent" href="">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>&nbsp;&nbsp;<?php echo $dateMonth->format('M Y') ?>&nbsp;&nbsp;<a title="Voir le jour suivant" href="">➡️<span class="visually-hidden">Voir le jour suivant</span></a></h2>
-<nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href=""><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
+<h2><a title="Voir le mois précédent" href="<?php echo url("/".$datePreviousMonth->format('Ym')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>&nbsp;&nbsp;<?php echo $dateMonth->format('M Y') ?>&nbsp;&nbsp;<a title="Voir le jour suivant" href="<?php echo url("/".$dateNextMonth->format('Ym')."/".$mode.".html") ?>">➡️<span class="visually-hidden">Voir le jour suivant</span></a></h2>
+<nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="<?php echo url("/".$dateMonth->format('Ym')."/".$m.".html") ?>"><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
 <div class="hline"><?php foreach($dates as $date): ?><div class="ih <?php if($date->format('N') == 7): ?>ihew<?php endif; ?>"><small><span><?php if($date->format('N') ==  1): ?>Lun<?php elseif($date->format('N') ==  3): ?>Mer<?php elseif($date->format('N') ==  5): ?>Ven<?php elseif($date->format('N') ==  7): ?>Dim<?php endif; ?></span><?php echo $date->format('j') ?></small></div><?php endforeach; ?></div>
 </header>
 <main role="main">
@@ -136,7 +144,7 @@ for($i = 0; $i < $nbDays; $i++) {
 </a>
 <?php $j++; ?>
 <?php endforeach; ?>
-<span class="dispoligne" title="Aucune perturbation pour <?php echo $statuts[$ligne]["total"] ?>% du trafic de toute la journée"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" style="height: 24px; left: 6px; top: 7px;" /><?php echo str_replace(" ", "&nbsp;", sprintf("% 3d", $statuts[$ligne]["total"])) ?>%</span></div>
+<span class="dispoligne" title="Aucune perturbation pour <?php echo $statuts[$ligne]["total"] ?>% du trafic de toute la journée"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /><?php echo str_replace(" ", "&nbsp;", sprintf("% 3d", $statuts[$ligne]["total"])) ?>%</span></div>
 <?php endforeach; ?>
 </div>
 </main>

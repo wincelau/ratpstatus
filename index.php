@@ -51,7 +51,7 @@
     <?php if($day->isTomorrow()): ?>
     <a class="disabled">➡️</a>
     <?php else: ?>
-    <a title="Voir le jour suivant" style="" href="<?php echo url("/".((!$day->isTodayTomorrow()) ? $day->getDateStartTomorrow()->format('Ymd')."/" : null).$mode.".html") ?>">
+    <a title="Voir le jour suivant" href="<?php echo url("/".((!$day->isTodayTomorrow()) ? $day->getDateStartTomorrow()->format('Ymd')."/" : null).$mode.".html") ?>">
         ➡️
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
