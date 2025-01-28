@@ -119,7 +119,7 @@ for($i = 0; $i < $nbDays; $i++) {
 <div class="ligne" data-id="<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>"><div class="logo"><a href="#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" width="30" height="30" /></a></div>
 <?php $j=1; ?>
 <?php foreach($dates as $date): ?>
-<?php $data = $statuts[$ligne][$date->format('Y-m-d')]; ?>
+<?php $data = (isset($statuts[$ligne][$date->format('Y-m-d')])) ? $statuts[$ligne][$date->format('Y-m-d')] : null; ?>
 <?php if($date == "total"): continue; endif; ?>
 <a class="bm <?php if($date->format('N') ==  7): ?>bmew<?php endif; ?>" href="<?php echo url("/".$date->format('Ymd')."/".$mode.".html") ?>#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" title="<?php echo $date->format('d/m/Y'); ?>">
 <?php $rest = 0; ?>
