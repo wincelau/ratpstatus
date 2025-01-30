@@ -123,7 +123,8 @@ for($i = 0; $i < $nbDays; $i++) {
 <?php $data = (isset($statuts[$ligne][$date->format('Y-m-d')])) ? $statuts[$ligne][$date->format('Y-m-d')] : null; ?>
 <a class="bm <?php if($date->format('N') ==  7): ?>bmew<?php endif; ?>" href="<?php echo url("/".$date->format('Ymd')."/".$mode.".html") ?>#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" title="<?php echo $date->format('d/m/Y'); ?>">
 <?php $rest = 0; ?>
-<?php if(!$data): ?><div class="no"></div><?php continue; endif; ?>
+<?php if(!$data): ?><div class="no"></div><?php endif; ?>
+<?php if($data): ?>
 <?php foreach(["OK", "TX", "PB", "BQ"] as $statut): ?>
 <?php if($rest > 0 && $data["pourcentages"][$statut] > $rest): ?>
 <div class="<?php echo strtolower($statut) ?> bml" style="width: <?php echo $rest * 4 ?>px;"></div>
@@ -141,6 +142,7 @@ for($i = 0; $i < $nbDays; $i++) {
 <?php $rest = 10 - ($data["pourcentages"][$statut] % 10); ?>
 <?php endif; ?>
 <?php endforeach; ?>
+<?php endif; ?>
 </a>
 <?php $j++; ?>
 <?php endforeach; ?>
