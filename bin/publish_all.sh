@@ -8,7 +8,7 @@ cat static/20*/incidents.csv | head -n 1 > datas/export/historique_incidents.csv
 cat static/20*/incidents.csv | grep -v "^date" >> datas/export/historique_incidents.csv
 
 cat static/20*/timeline.csv | head -n 1 > datas/export/historique_statuts.csv
-cat static/20*/timeline.csv | grep -v "^date" >> data/exports/historique_statuts.csv
+cat static/20*/timeline.csv | grep -v "^date" >> datas/export/historique_statuts.csv
 
 find static/[0-9]* -type d | grep -E "static/[0-9]{8}" | cut -d "/" -f 2 | cut -c -6 | sort | uniq | sort -r | while read month; do
     mkdir static/$month 2> /dev/null
