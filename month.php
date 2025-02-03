@@ -109,7 +109,7 @@ for($i = 0; $i < $nbDays; $i++) {
 <nav id="nav_liens_right">
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
-<h2><a title="Voir le mois précédent" href="<?php echo url("/".$datePreviousMonth->format('Ym')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>&nbsp;&nbsp;<?php echo $dateMonth->format('M Y') ?>&nbsp;&nbsp;<a title="Voir le jour suivant" href="<?php echo url("/".$dateNextMonth->format('Ym')."/".$mode.".html") ?>">➡️<span class="visually-hidden">Voir le jour suivant</span></a></h2>
+<h2><a title="Voir le mois précédent" href="<?php echo url("/".$datePreviousMonth->format('Ym')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>&nbsp;&nbsp;<a href="<?php echo url("/".$dateMonth->format('Ym')."01/".$mode.".html") ?>">🗓️</a> <?php echo $dateMonth->format('M Y') ?>&nbsp;&nbsp;<a title="Voir le jour suivant" href="<?php echo url("/".$dateNextMonth->format('Ym')."/".$mode.".html") ?>">➡️<span class="visually-hidden">Voir le jour suivant</span></a></h2>
 <nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="<?php echo url("/".$dateMonth->format('Ym')."/".$m.".html") ?>"><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
 <div class="hline"><?php foreach($dates as $date): ?><div class="ih <?php if($date->format('N') == 7): ?>ihew<?php endif; ?>"><small><span><?php if($date->format('N') ==  1): ?>Lun<?php elseif($date->format('N') ==  3): ?>Mer<?php elseif($date->format('N') ==  5): ?>Ven<?php elseif($date->format('N') ==  7): ?>Dim<?php endif; ?></span><?php echo $date->format('j') ?></small></div><?php endforeach; ?></div>
 </header>
@@ -160,5 +160,8 @@ for($i = 0; $i < $nbDays; $i++) {
     <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
 </p>
 </footer>
+<dialog id="modalHelp">
+    <?php include(__DIR__.'/templates/_help.php') ?>
+</dialog>
 </body>
 </html>

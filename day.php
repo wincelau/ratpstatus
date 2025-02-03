@@ -48,5 +48,11 @@ function url($url) {
 
     preg_match('|/?([^/]*)/([^/]*).html|', $url, $matches);
 
-    return "?".http_build_query(['date' => $matches[1], 'mode' => $matches[2]]);
+    $script = "index.php";
+
+    if(strlen($matches[1]) == "6") {
+        $script = "month.php";
+    }
+
+    return $script."?".http_build_query(['date' => $matches[1], 'mode' => $matches[2]]);
 }

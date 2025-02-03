@@ -1,12 +1,15 @@
 let disruptions = null;
 
 document.addEventListener('DOMContentLoaded', async function () {
-  const response = await fetch(urlJson.replace('.json', '.json?'+Date.now()));
-  disruptions = await response.json();
+  if(typeof urlJson !== 'undefined') {
+    const response = await fetch(urlJson.replace('.json', '.json?'+Date.now()));
+    disruptions = await response.json();
+  }
 
   if(document.querySelector('.ligne .e')) {
       window.scrollTo({ left: document.querySelector('.ligne .e').offsetLeft - window.innerWidth + 66 });
   }
+
   const modalHelp = document.getElementById('modalHelp')
   const modalList = document.getElementById('listModal')
 
@@ -18,11 +21,12 @@ document.addEventListener('DOMContentLoaded', async function () {
     } else {
         modalHelp.close();
     }
-    if(document.location.hash == "#incidents") {
+
+    if(modalList && document.location.hash == "#incidents") {
       filtreListeDisruption();
       modalList.showModal();
       modalList.scrollTo(0,0);
-    } else if(document.location.hash.indexOf("#incidents_") == 0) {
+    } else if(modalList && document.location.hash.indexOf("#incidents_") == 0) {
       let ligne = document.querySelector('.ligne[data-id="'+document.location.hash.split("_")[1]+'"]');
       let img = ligne.querySelector('.logo img');
       let modalTitle = document.querySelector('#listModal #listModal_title_line');
@@ -31,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       modalList.showModal();
       modalList.scrollTo(0,0);
       modalList.blur();
-    } else {
+    } else if(modalList) {
       modalList.close();
     }
   }
@@ -67,27 +71,28 @@ document.addEventListener('DOMContentLoaded', async function () {
   modalHelp.addEventListener("close", function(e) {
     history.replaceState(null, null, ' ');
   });
-  modalList.addEventListener('click', function(event) {
-      if(event.target.classList.contains('ellips')) {
-          let beforeheight = event.target.offsetHeight;
-          event.target.classList.remove('ellips');
-          if(beforeheight != event.target.offsetHeight) {
-              return;
-          }
-      }
+  if(modalList) {
+    modalList.addEventListener('click', function(event) {
+        if(event.target.classList.contains('ellips')) {
+            let beforeheight = event.target.offsetHeight;
+            event.target.classList.remove('ellips');
+            if(beforeheight != event.target.offsetHeight) {
+                return;
+            }
+        }
 
-      if(event.target.nodeName != "A") {
-          modalList.close();
-      }
-  });
-
-  modalList.addEventListener("close", function(e) {
-      filtreListeDisruption();
-      this.querySelectorAll('.disruption ul  li p').forEach(function(item) {
-          item.classList.add('ellips');
-      });
-      history.replaceState(null, null, ' ');
-  });
+        if(event.target.nodeName != "A") {
+            modalList.close();
+        }
+    });
+    modalList.addEventListener("close", function(e) {
+        filtreListeDisruption();
+        this.querySelectorAll('.disruption ul  li p').forEach(function(item) {
+            item.classList.add('ellips');
+        });
+        history.replaceState(null, null, ' ');
+    });
+  }
 })
 
 function replaceMessage(item) {
