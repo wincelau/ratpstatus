@@ -109,7 +109,7 @@ for($i = 0; $i < $nbDays; $i++) {
 <nav id="nav_liens_right">
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
-<h2><a title="Voir le mois précédent" href="<?php echo url("/".$datePreviousMonth->format('Ym')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>&nbsp;&nbsp;<?php echo $dateMonth->format('M Y') ?>&nbsp;&nbsp;<a title="Voir le jour suivant" href="<?php echo url("/".$dateNextMonth->format('Ym')."/".$mode.".html") ?>">➡️<span class="visually-hidden">Voir le jour suivant</span></a><select style="position: absolute; margin-left: 10px; background: #fff; border: none; cursor: pointer;" onchange="document.location.href=this.value">
+<h2><a title="Voir le mois précédent" href="<?php echo url("/".$datePreviousMonth->format('Ym')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>&nbsp;&nbsp;<?php echo $dateMonth->format('M Y') ?>&nbsp;&nbsp;<a title="Voir le jour suivant" href="<?php echo url("/".$dateNextMonth->format('Ym')."/".$mode.".html") ?>">➡️<span class="visually-hidden">Voir le jour suivant</span></a><select style="position: absolute; margin-left: 10px; background: #fff; border: none; cursor: pointer;" onchange="document.location.href=this.value" autocomplete="off">
     <option value="<?php echo url("/".$dateMonth->format('Ym')."01/".$mode.".html") ?>">VUE JOUR</option>
     <option value="" selected>VUE MOIS</option>
 </select></h2>

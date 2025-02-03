@@ -56,7 +56,7 @@
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     <?php endif; ?>
-    <select style="position: absolute; margin-left: 10px; background: #fff; border: none; cursor: pointer;" onchange="document.location.href=this.value">
+    <select style="position: absolute; margin-left: 10px; background: #fff; border: none; cursor: pointer;" onchange="document.location.href=this.value" autocomplete="off">
         <option value="">VUE JOUR</option>
         <option value="<?php echo url("/".$day->getDateStart()->format('Ym')."/".$mode.".html") ?>">VUE MOIS</option>
     </select>
