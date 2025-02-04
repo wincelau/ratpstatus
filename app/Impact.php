@@ -259,6 +259,10 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
+        if(preg_match("/L'arrêt des bus de remplacement.*est déplacé/", $this->getMessagePlainText())) {
+            return self::TYPE_AUCUNE;
+        }
+
         return null;
     }
 
