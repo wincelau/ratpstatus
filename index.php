@@ -47,7 +47,11 @@
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
     <?php endif; ?>
-    <span class="<?php if($day->isToday()):?>strong<?php endif;?>"><?php echo $day->getDateStart()->format("d/m/Y"); ?></span>
+    <select style="margin-left: 10px; background: #fff; border: none; cursor: pointer; font-size: 16px; color: #333; width: 124px; font-family: monospace; <?php if($day->isToday()):?>font-weight: bold;<?php endif;?>" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
+        <option value="<?php echo url("/".date('Ymd')."/".$mode.".html") ?>">Aujourd'hui</option>
+        <option value="" selected="selected"><?php echo $day->getDateStart()->format("d/m/Y"); ?></option>
+        <option value="<?php echo url("/".$day->getDateStart()->format('Ym')."/".$mode.".html") ?>"><?php echo $day->getDateStart()->format('M Y') ?></option>
+    </select>
     <?php if($day->isTomorrow()): ?>
     <a class="disabled">➡️</a>
     <?php else: ?>
@@ -56,10 +60,6 @@
         <span class="visually-hidden">Voir le jour suivant</span>
     </a>
     <?php endif; ?>
-    <select style="position: absolute; margin-left: 10px; background: #fff; border: none; cursor: pointer;" onchange="document.location.href=this.value" autocomplete="off">
-        <option value="">VUE JOUR</option>
-        <option value="<?php echo url("/".$day->getDateStart()->format('Ym')."/".$mode.".html") ?>">VUE MOIS</option>
-    </select>
 </h2>
 <nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="<?php echo url("/".((!$day->isToday()) ? $day->getDateStart()->format('Ymd')."/" : null).$m.".html") ?>"><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
 <div class="hline"><?php for($i = 0; $i <= 1380; $i = $i + 60): ?><div class="ih"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", (intval($i / 60) + 4) % 24) ?>h</small><?php endif; ?></div><?php endfor; ?></div>
