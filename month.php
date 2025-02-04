@@ -110,7 +110,7 @@ for($i = 0; $i < $nbDays; $i++) {
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
 <h2><a title="Voir le mois précédent" href="<?php echo url("/".$datePreviousMonth->format('Ym')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>
-<select style="margin-left: 10px; background: #fff; border: none; cursor: pointer; font-size: 16px; color: #333; width: 124px; font-family: monospace;" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
+<select style="margin-left: 10px; background: #fff; border: none; cursor: pointer; font-size: 16px; color: #333; width: 124px; font-family: monospace; text-align:center;" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
     <option value="<?php echo url("/".date('Ymd')."/".$mode.".html") ?>">Aujourd'hui</option>
     <option value="<?php echo url("/".$dateMonth->format('Ymd')."/".$mode.".html") ?>"><?php echo $dateMonth->format("d/m/Y"); ?></option>
     <option value="" selected="selected"><?php echo $dateMonth->format('M Y') ?></option>

@@ -47,7 +47,7 @@
         <span class="visually-hidden">Voir le jour précédent</span>
     </a>
     <?php endif; ?>
-    <select style="margin-left: 10px; background: #fff; border: none; cursor: pointer; font-size: 16px; color: #333; width: 124px; font-family: monospace; <?php if($day->isToday()):?>font-weight: bold;<?php endif;?>" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
+    <select style="margin-left: 10px; background: #fff; border: none; cursor: pointer; font-size: 16px; color: #333; width: 124px; font-family: monospace; <?php if($day->isToday()):?>font-weight: bold;<?php endif;?> text-align:center;" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
         <option value="<?php echo url("/".date('Ymd')."/".$mode.".html") ?>">Aujourd'hui</option>
         <option value="" selected="selected"><?php echo $day->getDateStart()->format("d/m/Y"); ?></option>
         <option value="<?php echo url("/".$day->getDateStart()->format('Ym')."/".$mode.".html") ?>"><?php echo $day->getDateStart()->format('M Y') ?></option>
