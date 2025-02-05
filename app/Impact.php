@@ -259,7 +259,7 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
-        if(preg_match("/L'arrêt des bus de remplacement.*(est déplacé|se situe désormais)/", $this->getMessagePlainText())) {
+        if(preg_match("/L'arrêt des bus de remplacement.*(est déplacé|se situe désormais|est définitivement reporté)/", $this->getMessagePlainText())) {
             return self::TYPE_AUCUNE;
         }
 
