@@ -1,5 +1,6 @@
 <?php
 require __DIR__.'/app/Config.php';
+require __DIR__.'/app/View.php';
 
 $handle = fopen(__DIR__.'/datas/export/historique_statuts.csv', "r");
 
@@ -61,22 +62,7 @@ foreach($statuts as $ligne => $dates) {
 fclose($handle);
 
 $GLOBALS['isStaticResponse'] = isset($_SERVER['argv']) && !is_null($_SERVER['argv']);
-function url($url) {
-    if($GLOBALS['isStaticResponse']) {
 
-        return $url;
-    }
-
-    preg_match('|/?([^/]*)/([^/]*).html|', $url, $matches);
-
-    $script = "index.php";
-
-    if(strlen($matches[1]) == "6") {
-        $script = "month.php";
-    }
-
-    return $script."?".http_build_query(['date' => $matches[1], 'mode' => $matches[2]]);
-}
 $dateMonth = DateTime::createFromFormat("Ymd", $_GET['date'].'01');
 $datePreviousMonth = (clone $dateMonth)->modify('-1 month');
 $dateNextMonth = (clone $dateMonth)->modify('+1 month');
@@ -109,14 +95,19 @@ for($i = 0; $i < $nbDays; $i++) {
 <nav id="nav_liens_right">
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
-<h2><a title="Voir le mois précédent" href="<?php echo url("/".$datePreviousMonth->format('Ym')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>
-<select style="margin-left: 10px; background: #fff; border: none; cursor: pointer; font-size: 16px; color: #333; width: 124px; font-family: monospace; text-align:center;" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
-    <option value="<?php echo url("/".date('Ymd')."/".$mode.".html") ?>">Aujourd'hui</option>
-    <option value="<?php echo url("/".$dateMonth->format('Ymd')."/".$mode.".html") ?>"><?php echo $dateMonth->format("d/m/Y"); ?></option>
-    <option value="" selected="selected"><?php echo $dateMonth->format('M Y') ?></option>
-</select>
-<a title="Voir le jour suivant" href="<?php echo url("/".$dateNextMonth->format('Ym')."/".$mode.".html") ?>">➡️<span class="visually-hidden">Voir le jour suivant</span></a></h2>
-<nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="<?php echo url("/".$dateMonth->format('Ym')."/".$m.".html") ?>"><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
+<h2><a title="Voir le mois précédent" href="<?php echo View::url("/".$datePreviousMonth->format('Ym')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>
+    <select id="select-day" style="<?php if($dateMonth->format('Ym') == date('Ym')):?>font-weight: bold;<?php endif;?>" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
+        <option style="display: none;" value="" selected="selected"><?php echo View::convertMonthToFr($dateMonth->format("M Y")); ?></option>
+        <?php foreach(View::getDatesChoices() as $dateChoiceKey => $dateChoiceLibelle): ?>
+        <option value="<?php echo View::url("/".$dateChoiceKey."/".$mode.".html") ?>"><?php echo $dateChoiceLibelle ?></option>
+        <?php endforeach; ?>
+    </select>
+<?php if($dateMonth->format('Ym') >= date('Ym')):?>
+<a class="disabled">➡️</a>
+<?php else: ?>
+<a title="Voir le jour suivant" href="<?php echo View::url("/".$dateNextMonth->format('Ym')."/".$mode.".html") ?>">➡️<span class="visually-hidden">Voir le jour suivant</span></a><?php
+endif; ?></h2>
+<nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="<?php echo View::url("/".$dateMonth->format('Ym')."/".$m.".html") ?>"><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
 <div class="hline"><?php foreach($dates as $date): ?><div class="ih <?php if($date->format('N') == 7): ?>ihew<?php endif; ?>"><small><span><?php if($date->format('N') ==  1): ?>Lun<?php elseif($date->format('N') ==  3): ?>Mer<?php elseif($date->format('N') ==  5): ?>Ven<?php elseif($date->format('N') ==  7): ?>Dim<?php endif; ?></span><?php echo $date->format('j') ?></small></div><?php endforeach; ?></div>
 </header>
 <main role="main">
@@ -127,7 +118,7 @@ for($i = 0; $i < $nbDays; $i++) {
 <?php foreach($dates as $date): ?>
 <?php if($date == "total"): continue; endif; ?>
 <?php $data = (isset($statuts[$ligne][$date->format('Y-m-d')])) ? $statuts[$ligne][$date->format('Y-m-d')] : null; ?>
-<a class="bm <?php if($date->format('N') ==  7): ?>bmew<?php endif; ?>" href="<?php echo url("/".$date->format('Ymd')."/".$mode.".html") ?>#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" title="<?php echo $date->format('d/m/Y'); ?>">
+<a class="bm <?php if($date->format('N') ==  7): ?>bmew<?php endif; ?>" href="<?php echo View::url("/".$date->format('Ymd')."/".$mode.".html") ?>#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" title="<?php echo $date->format('d/m/Y'); ?>">
 <?php $rest = 0; ?>
 <?php if(!$data): ?><div class="no"></div><?php endif; ?>
 <?php if($data): ?>

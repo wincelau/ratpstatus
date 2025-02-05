@@ -8,6 +8,7 @@ require __DIR__.'/app/File.php';
 require __DIR__.'/app/Line.php';
 require __DIR__.'/app/Impact.php';
 require __DIR__.'/app/Disruption.php';
+require __DIR__.'/app/View.php';
 
 if(isset($argv[1]) && $argv[1]) {
     $_GET['date'] = $argv[1];
@@ -39,20 +40,3 @@ $pourcentages = $day->getPourcentages($mode);
 $statutsCount = $day->getCurrentStatutsCount($mode);
 
 $GLOBALS['isStaticResponse'] = isset($_SERVER['argv']) && !is_null($_SERVER['argv']);
-
-function url($url) {
-    if($GLOBALS['isStaticResponse']) {
-
-        return $url;
-    }
-
-    preg_match('|/?([^/]*)/([^/]*).html|', $url, $matches);
-
-    $script = "index.php";
-
-    if(strlen($matches[1]) == "6") {
-        $script = "month.php";
-    }
-
-    return $script."?".http_build_query(['date' => $matches[1], 'mode' => $matches[2]]);
-}
