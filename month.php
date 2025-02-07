@@ -22,6 +22,9 @@ while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
     if(strpos($data[0], 'date') === 0) {
         continue;
     }
+    if($data[1] != $mode) {
+        continue;
+    }
     if(strpos(str_replace("-", "", $data[0]), $_GET['date']) !== 0) {
         continue;
     }
@@ -31,12 +34,23 @@ while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
     if(!isset($statuts[$data[2]][$data[0]]["minutes"][$data[5]])) {
         $statuts[$data[2]][$data[0]]["minutes"][$data[5]] = 0;
     }
+    if(!isset($statuts[$data[2]]["total"]["minutes"][$data[5]])) {
+        $statuts[$data[2]]["total"]["minutes"][$data[5]] = 0;
+    }
+    if(!isset($statuts["total"][$data[0]]["minutes"][$data[5]])) {
+        $statuts["total"][$data[0]]["minutes"][$data[5]] = 0;
+    }
+    if(!isset($statuts["total"]["total"]["minutes"][$data[5]])) {
+        $statuts["total"]["total"]["minutes"][$data[5]] = 0;
+    }
 
-    $statuts[$data[2]][$data[0]]["minutes"][$data[5]] += ($duration->d * 24 * 60) + ($duration->h * 60) + $duration->i;
+    $nbMinutes = ($duration->d * 24 * 60) + ($duration->h * 60) + $duration->i;
+    $statuts[$data[2]][$data[0]]["minutes"][$data[5]] += $nbMinutes;
+    $statuts[$data[2]]["total"]["minutes"][$data[5]] += $nbMinutes;
+    $statuts["total"][$data[0]]["minutes"][$data[5]] += $nbMinutes;
+    $statuts["total"]["total"]["minutes"][$data[5]] += $nbMinutes;
 }
 foreach($statuts as $ligne => $dates) {
-    $dispoOK = 0;
-    $nbDates = 0;
     foreach($dates as $date => $data) {
         $total = array_sum($data["minutes"]);
         $pourcentages = array_map(function($a) use ($total) { return $total > 0 ? round($a / $total * 100) : 0; }, $data["minutes"]);
@@ -54,10 +68,7 @@ foreach($statuts as $ligne => $dates) {
         }
         $pourcentages["OK"] = round(100 - $pourcentages["PB"] - $pourcentages["BQ"] - $pourcentages["TX"], 2);
         $statuts[$ligne][$date]["pourcentages"] = $pourcentages;
-        $dispoOK+=$pourcentages["OK"];
-        $nbDates++;
     }
-    $statuts[$ligne]["total"] = round($dispoOK / $nbDates);
 }
 fclose($handle);
 
@@ -73,6 +84,29 @@ for($i = 0; $i < $nbDays; $i++) {
     $dates[] = clone $date;
     $date->modify('+1 day');
 }
+
+$handle = fopen(__DIR__.'/datas/export/historique_incidents.csv', "r");
+$motifs = [];
+while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
+    if(strpos($data[0], 'date') === 0) {
+        continue;
+    }
+    if(strpos(str_replace("-", "", $data[0]), $_GET['date']) !== 0) {
+        continue;
+    }
+    if($data[10] != 0) {
+        continue;
+    }
+    if($mode != $data[1]) {
+        continue;
+    }
+    $motifs["TOTAL"]['count']++;
+    $motifs[$data[9]]['count']++;
+    $motifs[$data[9]]['total_duration']+=$data[5];
+}
+fclose($handle);
+$motifs = array_map(function($a) { $a['total_duration'] = round($a['total_duration']); $a['average_duration'] = round($a['total_duration'] / $a['count']);  return $a;}, $motifs);
+uasort($motifs, function($a, $b) { return $a['total_duration'] > $b['total_duration']; });
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
@@ -85,6 +119,14 @@ for($i = 0; $i < $nbDays; $i++) {
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_<?php echo $mode ?>.png" />
 <link rel="stylesheet" href="/css/style.css?<?php echo filemtime(__DIR__.'/css/style.css') ?>">
 <script src="/js/main.js?<?php echo filemtime(__DIR__.'/js/main.js') ?>"></script>
+<style>
+    .donutG:before {
+        content: "<?php echo round($statuts["total"]["total"]["pourcentages"]['OK']) ?>";
+    }
+    .donutG {
+        background: radial-gradient(white 45%, transparent 41%), conic-gradient(#c0e39d 0% <?php echo $statuts["total"]["total"]["pourcentages"]['OK'] ?>%, #ffb225 <?php echo $statuts["total"]["total"]["pourcentages"]['OK'] ?>% <?php echo $statuts["total"]["total"]["pourcentages"]['OK'] + $statuts["total"]["total"]["pourcentages"]['PB'] ?>%, #f44646 <?php echo $statuts["total"]["total"]["pourcentages"]['OK'] + $statuts["total"]["total"]["pourcentages"]['PB'] ?>% <?php echo $statuts["total"]["total"]["pourcentages"]['OK'] + $statuts["total"]["total"]["pourcentages"]['PB'] + $statuts["total"]["total"]["pourcentages"]['BQ'] ?>%, #aeaeae <?php echo $statuts["total"]["total"]["pourcentages"]['OK'] + $statuts["total"]["total"]["pourcentages"]['PB'] + $statuts["total"]["total"]["pourcentages"]['BQ'] ?>% 100%);
+    }
+</style>
 </head>
 <body>
 <div id="container_month">
@@ -93,6 +135,7 @@ for($i = 0; $i < $nbDays; $i++) {
 <a id="btn_help" href="#aide" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
 </nav>
 <nav id="nav_liens_right">
+<a id="btn_list" class="badge openincident" href="#incidents" title="Voir la liste des incidents de la journée"><span title="Aucune perturbation pour <?php echo $statuts["total"]["total"]["pourcentages"]["OK"] ?>% du trafic de tout la journée" class="donutG"></span><span class="picto">📅</span><span class="text_incidents"><?php echo $motifs["TOTAL"]['count'] ?> <span class="long">incidents</span><span class="short">inc.</span></span></a>
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
 <h2><a title="Voir le mois précédent" href="<?php echo View::url("/".$datePreviousMonth->format('Ym')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>
@@ -143,7 +186,7 @@ endif; ?></h2>
 </a>
 <?php $j++; ?>
 <?php endforeach; ?>
-<span class="dispoligne" title="Aucune perturbation pour <?php echo $statuts[$ligne]["total"] ?>% du trafic de toute la journée"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /><?php echo str_replace(" ", "&nbsp;", sprintf("% 3d", $statuts[$ligne]["total"])) ?>%</span></div>
+<span class="dispoligne" title="Aucune perturbation pour <?php echo $statuts[$ligne]["total"] ?>% du trafic de toute la journée"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /><?php echo str_replace(" ", "&nbsp;", sprintf("% 3d", $statuts[$ligne]["total"]["pourcentages"]["OK"])) ?>%</span></div>
 <?php endforeach; ?>
 </div>
 </main>
