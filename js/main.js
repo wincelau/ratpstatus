@@ -114,8 +114,10 @@ function replaceMessage(item) {
 }
 
 function filtreListeDisruption(ligneId = null) {
-  document.querySelector('#listModal #listModal_title_line').classList.toggle('hide', !ligneId);
-  document.querySelector('#listModal #listModal_title_all').classList.toggle('hide', ligneId);
+  if(document.querySelector('#listModal #listModal_title_line')) {
+    document.querySelector('#listModal #listModal_title_line').classList.toggle('hide', !ligneId);
+    document.querySelector('#listModal #listModal_title_all').classList.toggle('hide', ligneId);
+  }
 
   document.querySelectorAll('#listModal .disruption').forEach(function(item) {
     if(ligneId) {
@@ -147,8 +149,10 @@ function filtreListeDisruption(ligneId = null) {
       document.querySelector('#listModal #title_disruptions_finishes').classList.add('hide');
     }
   }
-  document.querySelector('#listModal #sentence_nothing_disruptions').classList.add('hide');
-  if(!document.querySelectorAll('#listModal .disruption:not(.hide)').length) {
-    document.querySelector('#listModal #sentence_nothing_disruptions').classList.remove('hide');
+  if(document.querySelector('#listModal #sentence_nothing_disruptions')) {
+    document.querySelector('#listModal #sentence_nothing_disruptions').classList.add('hide');
+    if(!document.querySelectorAll('#listModal .disruption:not(.hide)').length) {
+      document.querySelector('#listModal #sentence_nothing_disruptions').classList.remove('hide');
+    }
   }
 }

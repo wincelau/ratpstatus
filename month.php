@@ -106,7 +106,7 @@ while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
 }
 fclose($handle);
 $motifs = array_map(function($a) { $a['total_duration'] = round($a['total_duration']); $a['average_duration'] = round($a['total_duration'] / $a['count']);  return $a;}, $motifs);
-uasort($motifs, function($a, $b) { return $a['total_duration'] > $b['total_duration']; });
+uasort($motifs, function($a, $b) { return $a['count'] < $b['count']; });
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
@@ -202,6 +202,30 @@ endif; ?></h2>
 </footer>
 <dialog id="modalHelp">
     <?php include(__DIR__.'/templates/_help.php') ?>
+</dialog>
+<dialog id="listModal">
+    <h2><span id="listModal_title_all"><?php echo Config::getModeLibelles()[$mode] ?></span> - Incidents du mois <?php echo $dateMonth->format("M Y"); ?></h2>
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align: left;">Motif</th>
+                <th style="text-align: right;">Nombre</th>
+                <th style="text-align: right;">Durée Moyenne</th>
+                <th style="text-align: right;">Durée Totale</th>
+            </tr>
+        </thead>
+        <tbody>
+    <?php foreach($motifs as $motif => $stats): ?>
+        <?php if($motif == "TOTAL"): continue; endif; ?>
+        <tr>
+            <td><?php echo $motif; ?></td>
+            <td style="text-align: right;"><?php echo $stats['count']; ?></td>
+            <td style="text-align: right;"><?php echo intdiv($stats['average_duration'], 60); ?>h<?php echo sprintf("%02d", $stats['average_duration'] % 60); ?></td>
+            <td style="text-align: right;"><?php echo intdiv($stats['total_duration'], 60); ?>h<?php echo sprintf("%02d", $stats['total_duration'] % 60); ?></td>
+        </tr>
+    <?php endforeach; ?>
+        </tbody>
+    </table>
 </dialog>
 </body>
 </html>

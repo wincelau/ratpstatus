@@ -34,18 +34,18 @@ class View {
 
     public static function convertMonthToFr($label) {
         $labels = [
-            "Jan" => "Janvier",
-            "Feb" => "Février",
+            "Jan" => "Janv",
+            "Feb" => "Févr",
             "Mar" => "Mars",
-            "Apr" => "Avril",
+            "Apr" => "Avr.",
             "May" => "Mai",
             "Jun" => "Juin",
-            "Jul" => "Juillet",
+            "Jul" => "Juil",
             "Aug" => "Août",
-            "Sep" => "Septembre",
-            "Oct" => "Octobre",
-            "Nov" => "Novembre",
-            "Dec" => "Décembre",
+            "Sep" => "Sept",
+            "Oct" => "Oct.",
+            "Nov" => "Nov.",
+            "Dec" => "Déc.",
         ];
 
         return str_replace(array_keys($labels), array_values($labels), $label);
