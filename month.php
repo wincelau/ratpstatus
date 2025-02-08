@@ -186,7 +186,7 @@ endif; ?></h2>
 </a>
 <?php $j++; ?>
 <?php endforeach; ?>
-<span class="dispoligne" title="Aucune perturbation pour <?php echo $statuts[$ligne]["total"] ?>% du trafic de toute la journée"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /><?php echo str_replace(" ", "&nbsp;", sprintf("% 3d", $statuts[$ligne]["total"]["pourcentages"]["OK"])) ?>%</span></div>
+<span class="dispoligne" title="Aucune perturbation pour <?php echo $statuts[$ligne]["total"]["pourcentages"]["OK"] ?>% du trafic de toute la journée"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /><?php echo str_replace(" ", "&nbsp;", sprintf("% 3d", $statuts[$ligne]["total"]["pourcentages"]["OK"])) ?>%</span></div>
 <?php endforeach; ?>
 </div>
 </main>
