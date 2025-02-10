@@ -100,13 +100,36 @@ while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
     if($mode != $data[1]) {
         continue;
     }
-    $motifs["TOTAL"]['count']++;
-    $motifs[$data[9]]['count']++;
-    $motifs[$data[9]]['total_duration']+=$data[5];
+
+    $motifs["TOTAL"]["TOTAL"]['count']++;
+    $motifs["TOTAL"][$data[9]]['count']++;
+    $motifs["TOTAL"][$data[9]]['total_duration']+=$data[5];
+
+    $motifs[$data[2]]["TOTAL"]['count']++;
+    $motifs[$data[2]][$data[9]]['count']++;
+    $motifs[$data[2]][$data[9]]['total_duration']+=$data[5];
 }
 fclose($handle);
-$motifs = array_map(function($a) { $a['total_duration'] = round($a['total_duration']); $a['average_duration'] = round($a['total_duration'] / $a['count']);  return $a;}, $motifs);
-uasort($motifs, function($a, $b) { return $a['count'] < $b['count']; });
+foreach($motifs as $ligne => $motifsLigne) {
+    $motifs[$ligne] = array_map(function($a) { $a['total_duration'] = round($a['total_duration']); $a['average_duration'] = round($a['total_duration'] / $a['count']);  return $a;}, $motifsLigne);
+    uasort($motifs[$ligne], function($a, $b) { return $a['count'] < $b['count']; });
+}
+
+uksort($motifs, function($a, $b) use ($mode) {
+    if($a == "TOTAL") {
+        return false;
+    }
+
+    if($b == "TOTAL") {
+        return true;
+    }
+
+    $indexA = array_search($a, array_keys(Config::getLignes()[$mode]));
+    $indexB = array_search($b, array_keys(Config::getLignes()[$mode]));
+
+    return $indexA > $indexB;
+});
+
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
@@ -135,7 +158,7 @@ uasort($motifs, function($a, $b) { return $a['count'] < $b['count']; });
 <a id="btn_help" href="#aide" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
 </nav>
 <nav id="nav_liens_right">
-<a id="btn_list" class="badge openincident" href="#incidents" title="Voir la liste des incidents de la journée"><span title="Aucune perturbation pour <?php echo $statuts["total"]["total"]["pourcentages"]["OK"] ?>% du trafic de tout la journée" class="donutG"></span><span class="picto">📅</span><span class="text_incidents"><?php echo $motifs["TOTAL"]['count'] ?><span class="long"> incidents</span><span class="short">inc.</span></span></a>
+<a id="btn_list" class="badge openincident" href="#incidents" title="Voir la liste des incidents de la journée"><span title="Aucune perturbation pour <?php echo $statuts["total"]["total"]["pourcentages"]["OK"] ?>% du trafic de tout la journée" class="donutG"></span><span class="picto">📅</span><span class="text_incidents"><?php echo $motifs["TOTAL"]["TOTAL"]['count'] ?><span class="long"> incidents</span><span class="short">inc.</span></span></a>
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
 <h2><a title="Voir le mois précédent" href="<?php echo View::url("/".$datePreviousMonth->format('Ym')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>
@@ -204,8 +227,12 @@ endif; ?></h2>
     <?php include(__DIR__.'/templates/_help.php') ?>
 </dialog>
 <dialog id="listModal">
-    <h2><span id="listModal_title_all"><?php echo Config::getModeLibelles()[$mode] ?></span> - Incidents du mois <?php echo $dateMonth->format("M Y"); ?></h2>
-    <table>
+    <h2><span id="listModal_title_all"><?php echo Config::getModeLibelles()[$mode] ?></span> - Incidents du mois de <?php echo View::displayDateMonthToFr($dateMonth); ?></h2>
+    <?php foreach($motifs as $ligne => $motifsLigne): ?>
+    <?php if($ligne != "TOTAL"): ?>
+    <h3 style="margin-bottom: 10px;"><?php if(isset(Config::getLignes()[$mode][$ligne])): ?><img height="20" src="<?php echo Config::getLignes()[$mode][$ligne] ?>" alt="<?php echo $ligne ?>" /> <?php endif; ?><?php echo $ligne; ?></h3>
+    <?php endif; ?>
+    <table style="margin-bottom: 30px;">
         <thead>
             <tr>
                 <th style="text-align: left;">Motif</th>
@@ -215,7 +242,7 @@ endif; ?></h2>
             </tr>
         </thead>
         <tbody>
-    <?php foreach($motifs as $motif => $stats): ?>
+    <?php foreach($motifsLigne as $motif => $stats): ?>
         <?php if($motif == "TOTAL"): continue; endif; ?>
         <tr>
             <td><?php echo $motif; ?></td>
@@ -226,6 +253,7 @@ endif; ?></h2>
     <?php endforeach; ?>
         </tbody>
     </table>
+    <?php endforeach; ?>
 </dialog>
 </body>
 </html>
