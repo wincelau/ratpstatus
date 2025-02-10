@@ -140,7 +140,7 @@ uasort($motifs, function($a, $b) { return $a['count'] < $b['count']; });
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
 <h2><a title="Voir le mois précédent" href="<?php echo View::url("/".$datePreviousMonth->format('Ym')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>
     <select id="select-day" style="<?php if($dateMonth->format('Ym') == date('Ym')):?>font-weight: bold;<?php endif;?>" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
-        <option style="display: none;" value="" selected="selected"><?php echo View::convertMonthToFr($dateMonth->format("M Y")); ?></option>
+        <option style="display: none;" value="" selected="selected"><?php echo View::displayDateMonthToFr($dateMonth, 4); ?></option>
         <?php foreach(View::getDatesChoices() as $dateChoiceKey => $dateChoiceLibelle): ?>
         <option value="<?php echo View::url("/".$dateChoiceKey."/".$mode.".html") ?>"><?php echo $dateChoiceLibelle ?></option>
         <?php endforeach; ?>
