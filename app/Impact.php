@@ -239,7 +239,7 @@ class Impact
             return self::TYPE_CHANGEMENT_HORAIRES;
         }
 
-        if(preg_match("/(L'|Les )horaires? (de certains|des) trains[^\n\.]*(sont|est) avancés? ou retardé?s/", $this->getMessagePlainText())) {
+        if(preg_match("/(L'|Les )horaires? (de certains|des) trains[^\n\.]*(sont|est) avancés? ou retardés?/", $this->getMessagePlainText())) {
             return self::TYPE_CHANGEMENT_HORAIRES;
         }
 
