@@ -26,28 +26,33 @@ class View {
         $date->modify('-1 day');
         $dates[$date->format('Ymd')] = "Hier";
         while($date->format('Ym') >= "202404") {
-            $dates[$date->format('Ym')] = self::convertMonthToFr($date->format('M Y'));
+            $dates[$date->format('Ym')] = self::displayDateMonthToFr($date);
             $date->modify('-1 month');
         }
         return $dates;
     }
 
-    public static function convertMonthToFr($label) {
+    public static function displayDateMonthToFr($date, $substr = null) {
         $labels = [
-            "Jan" => "Janv",
-            "Feb" => "Févr",
-            "Mar" => "Mars",
-            "Apr" => "Avr.",
-            "May" => "Mai",
-            "Jun" => "Juin",
-            "Jul" => "Juil",
-            "Aug" => "Août",
-            "Sep" => "Sept",
-            "Oct" => "Oct.",
-            "Nov" => "Nov.",
-            "Dec" => "Déc.",
+            "01" => "Janvier",
+            "02" => "Février",
+            "03" => "Mars",
+            "04" => "Avril",
+            "05" => "Mai",
+            "06" => "Juin",
+            "07" => "Juil",
+            "08" => "Août",
+            "09" => "Septembre",
+            "10" => "Octobre",
+            "11" => "Novembre",
+            "12" => "Décembre",
         ];
 
-        return str_replace(array_keys($labels), array_values($labels), $label);
+        $label = str_replace(array_keys($labels), array_values($labels), $date->format('m'));
+        if($substr) {
+            $label = mb_substr($label, 0, $substr);
+        }
+
+        return $label.' '.$date->format('Y');
     }
 }
