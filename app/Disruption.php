@@ -86,12 +86,29 @@ class Disruption
     }
 
     public function getDurationStatutMinutes($statut) {
-        $minutes = 0;
+        $dateStart = null;
+        $dateEnd = null;
+        $impacts = [];
         foreach($this->getImpactsOptimized() as $i) {
             if($i->getColorClass() != $statut) {
                 continue;
             }
+            $impacts[] = $i;
+        }
+        $dateStart = null;
+        $dateEnd = null;
+        usort($impacts, function($a, $b) { return $a->getDurationMinutes() < $b->getDurationMinutes(); });
+        foreach($impacts as $i) {
+            if($dateStart >= $i->getDateStart() && $dateStart <= $i->getDateEnd()) {
+                continue;
+            }
             $minutes += $i->getDurationMinutes();
+            if(!$dateStart || $i->getDateStart() < $dateStart) {
+                $dateStart = $i->getDateStart();
+            }
+            if(!$dateEnd ||  $i->getDateEnd() > $dateEnd) {
+                $dateEnd = $i->getDateEnd();
+            }
         }
         return $minutes;
     }
