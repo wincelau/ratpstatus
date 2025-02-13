@@ -237,12 +237,12 @@ endif; ?></h2>
     <h2><span id="listModal_title_all"><?php echo Config::getModeLibelles()[$mode] ?></span> - Incidents du mois de <?php echo View::displayDateMonthToFr($dateMonth); ?></h2>
     <?php foreach($motifs as $ligne => $motifsLigne): ?>
     <?php if($ligne != "TOTAL"): ?>
-    <h3 style="margin-bottom: 10px;"><?php if(isset(Config::getLignes()[$mode][$ligne])): ?><img height="20" src="<?php echo Config::getLignes()[$mode][$ligne] ?>" alt="<?php echo $ligne ?>" /> <?php endif; ?><?php echo $ligne; ?></h3>
+    <h3 style="margin-bottom: 0;"><?php if(isset(Config::getLignes()[$mode][$ligne])): ?><img height="20" src="<?php echo Config::getLignes()[$mode][$ligne] ?>" alt="<?php echo $ligne ?>" /> <?php endif; ?><?php echo $ligne; ?></h3>
     <?php endif; ?>
     <table style="margin-bottom: 30px;">
         <thead>
             <tr>
-                <th style="text-align: left;">Motif</th>
+                <th style="text-align: right;">Motif</th>
                 <th style="text-align: center;">Nombre</th>
                 <th style="text-align: center;" colspan="2">Durée Moyenne</th>
                 <th style="text-align: center;" colspan="2">Durée Totale</th>
@@ -252,7 +252,7 @@ endif; ?></h2>
     <?php foreach($motifsLigne as $motif => $stats): ?>
         <?php if($motif == "TOTAL"): continue; endif; ?>
         <tr>
-            <td><?php echo $motif; ?></td>
+            <td><?php if($motif): ?><?php echo $motif; ?><?php else: ?><em style="color: #444;">Aucun motif détécté</em><?php endif; ?></td>
             <td style="text-align: right; width: 70px;"><?php echo $stats['count']; ?></td>
             <td style="text-align: right; width: 70px;"><?php echo intdiv($stats['average_duration'], 60); ?>h<?php echo sprintf("%02d", $stats['average_duration'] % 60); ?></td>
             <td style="text-align: left; width: 70px;"><?php if($stats['average_duration_bloquant']): ?><small title="dont <?php echo intdiv($stats['average_duration_bloquant'], 60); ?>h<?php echo sprintf("%02d", $stats['average_duration_bloquant'] % 60); ?> en moyenne de blocage ou d'interruption"><i class="bq"></i><?php echo intdiv($stats['average_duration_bloquant'], 60); ?>h<?php echo sprintf("%02d", $stats['average_duration_bloquant'] % 60); ?></small><?php endif; ?></td>
