@@ -104,14 +104,21 @@ while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
     $motifs["TOTAL"]["TOTAL"]['count']++;
     $motifs["TOTAL"][$data[9]]['count']++;
     $motifs["TOTAL"][$data[9]]['total_duration']+=$data[5];
+    $motifs["TOTAL"][$data[9]]['total_duration_bloquant']+=$data[7];
 
     $motifs[$data[2]]["TOTAL"]['count']++;
     $motifs[$data[2]][$data[9]]['count']++;
     $motifs[$data[2]][$data[9]]['total_duration']+=$data[5];
+    $motifs[$data[2]][$data[9]]['total_duration_bloquant']+=$data[7];
 }
 fclose($handle);
 foreach($motifs as $ligne => $motifsLigne) {
-    $motifs[$ligne] = array_map(function($a) { $a['total_duration'] = round($a['total_duration']); $a['average_duration'] = round($a['total_duration'] / $a['count']);  return $a;}, $motifsLigne);
+    $motifs[$ligne] = array_map(function($a) {
+        $a['total_duration'] = round($a['total_duration']);
+        $a['total_duration_bloquant'] = round($a['total_duration_bloquant']);
+        $a['average_duration'] = round($a['total_duration'] / $a['count']);
+        $a['average_duration_bloquant'] = round($a['total_duration_bloquant'] / $a['count']);
+        return $a;}, $motifsLigne);
     uasort($motifs[$ligne], function($a, $b) { return $a['count'] < $b['count']; });
 }
 
@@ -236,9 +243,9 @@ endif; ?></h2>
         <thead>
             <tr>
                 <th style="text-align: left;">Motif</th>
-                <th style="text-align: right;">Nombre</th>
-                <th style="text-align: right;">Durée Moyenne</th>
-                <th style="text-align: right;">Durée Totale</th>
+                <th style="text-align: center;">Nombre</th>
+                <th style="text-align: center;" colspan="2">Durée Moyenne</th>
+                <th style="text-align: center;" colspan="2">Durée Totale</th>
             </tr>
         </thead>
         <tbody>
@@ -246,9 +253,11 @@ endif; ?></h2>
         <?php if($motif == "TOTAL"): continue; endif; ?>
         <tr>
             <td><?php echo $motif; ?></td>
-            <td style="text-align: right;"><?php echo $stats['count']; ?></td>
-            <td style="text-align: right;"><?php echo intdiv($stats['average_duration'], 60); ?>h<?php echo sprintf("%02d", $stats['average_duration'] % 60); ?></td>
-            <td style="text-align: right;"><?php echo intdiv($stats['total_duration'], 60); ?>h<?php echo sprintf("%02d", $stats['total_duration'] % 60); ?></td>
+            <td style="text-align: right; width: 70px;"><?php echo $stats['count']; ?></td>
+            <td style="text-align: right; width: 70px;"><?php echo intdiv($stats['average_duration'], 60); ?>h<?php echo sprintf("%02d", $stats['average_duration'] % 60); ?></td>
+            <td style="text-align: left; width: 70px;"><?php if($stats['average_duration_bloquant']): ?><small title="dont <?php echo intdiv($stats['average_duration_bloquant'], 60); ?>h<?php echo sprintf("%02d", $stats['average_duration_bloquant'] % 60); ?> en moyenne de blocage ou d'interruption"><i class="bq"></i><?php echo intdiv($stats['average_duration_bloquant'], 60); ?>h<?php echo sprintf("%02d", $stats['average_duration_bloquant'] % 60); ?></small><?php endif; ?></td>
+            <td style="text-align: right; width: 70px;"><?php echo intdiv($stats['total_duration'], 60); ?>h<?php echo sprintf("%02d", $stats['total_duration'] % 60); ?></td>
+            <td style="text-align: left; width: 70px;"><?php if($stats['total_duration_bloquant']): ?><small title="dont <?php echo intdiv($stats['total_duration_bloquant'], 60); ?>h<?php echo sprintf("%02d", $stats['total_duration_bloquant'] % 60); ?> de blocage ou d'interruption"><i class="bq"></i><?php echo intdiv($stats['total_duration_bloquant'], 60); ?>h<?php echo sprintf("%02d", $stats['total_duration_bloquant'] % 60); ?></small><?php endif; ?></td>
         </tr>
     <?php endforeach; ?>
         </tbody>
