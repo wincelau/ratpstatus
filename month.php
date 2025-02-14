@@ -242,7 +242,7 @@ endif; ?></h2>
     <table style="margin-bottom: 30px;">
         <thead>
             <tr>
-                <th style="text-align: right;">Motif</th>
+                <th style="text-align: left;">Motif</th>
                 <th style="text-align: center;">Nombre</th>
                 <th style="text-align: center;" colspan="2">Durée Moyenne</th>
                 <th style="text-align: center;" colspan="2">Durée Totale</th>
@@ -253,11 +253,11 @@ endif; ?></h2>
         <?php if($motif == "TOTAL"): continue; endif; ?>
         <tr>
             <td><?php if($motif): ?><?php echo $motif; ?><?php else: ?><em style="color: #444;">Aucun motif détécté</em><?php endif; ?></td>
-            <td style="text-align: right; width: 70px;"><?php echo $stats['count']; ?></td>
-            <td style="text-align: right; width: 70px;"><?php echo intdiv($stats['average_duration'], 60); ?>h<?php echo sprintf("%02d", $stats['average_duration'] % 60); ?></td>
-            <td style="text-align: left; width: 70px;"><?php if($stats['average_duration_bloquant']): ?><small title="dont <?php echo intdiv($stats['average_duration_bloquant'], 60); ?>h<?php echo sprintf("%02d", $stats['average_duration_bloquant'] % 60); ?> en moyenne de blocage ou d'interruption"><i class="bq"></i><?php echo intdiv($stats['average_duration_bloquant'], 60); ?>h<?php echo sprintf("%02d", $stats['average_duration_bloquant'] % 60); ?></small><?php endif; ?></td>
-            <td style="text-align: right; width: 70px;"><?php echo intdiv($stats['total_duration'], 60); ?>h<?php echo sprintf("%02d", $stats['total_duration'] % 60); ?></td>
-            <td style="text-align: left; width: 70px;"><?php if($stats['total_duration_bloquant']): ?><small title="dont <?php echo intdiv($stats['total_duration_bloquant'], 60); ?>h<?php echo sprintf("%02d", $stats['total_duration_bloquant'] % 60); ?> de blocage ou d'interruption"><i class="bq"></i><?php echo intdiv($stats['total_duration_bloquant'], 60); ?>h<?php echo sprintf("%02d", $stats['total_duration_bloquant'] % 60); ?></small><?php endif; ?></td>
+            <td class="num-right"><?php echo $stats['count']; ?></td>
+            <td class="num-right"><?php echo intdiv($stats['average_duration'], 60); ?>h<?php echo sprintf("%02d", $stats['average_duration'] % 60); ?></td>
+            <td class="num-left"><?php if($stats['average_duration_bloquant']): ?><small title="dont <?php echo intdiv($stats['average_duration_bloquant'], 60); ?>h<?php echo sprintf("%02d", $stats['average_duration_bloquant'] % 60); ?> en moyenne de blocage ou d'interruption"><i class="bq"></i><?php echo intdiv($stats['average_duration_bloquant'], 60); ?>h<?php echo sprintf("%02d", $stats['average_duration_bloquant'] % 60); ?></small><?php endif; ?></td>
+            <td class="num-right"><?php echo intdiv($stats['total_duration'], 60); ?>h<?php echo sprintf("%02d", $stats['total_duration'] % 60); ?></td>
+            <td class="num-left"><?php if($stats['total_duration_bloquant']): ?><small title="dont <?php echo intdiv($stats['total_duration_bloquant'], 60); ?>h<?php echo sprintf("%02d", $stats['total_duration_bloquant'] % 60); ?> de blocage ou d'interruption"><i class="bq"></i><?php echo intdiv($stats['total_duration_bloquant'], 60); ?>h<?php echo sprintf("%02d", $stats['total_duration_bloquant'] % 60); ?></small><?php endif; ?></td>
         </tr>
     <?php endforeach; ?>
         </tbody>
