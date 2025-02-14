@@ -97,6 +97,7 @@ class Disruption
         }
         $dateStart = null;
         $dateEnd = null;
+        $minutes = null;
         usort($impacts, function($a, $b) { return $a->getDurationMinutes() < $b->getDurationMinutes(); });
         foreach($impacts as $i) {
             if($dateStart >= $i->getDateStart() && $dateStart <= $i->getDateEnd()) {
