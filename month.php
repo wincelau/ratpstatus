@@ -103,13 +103,13 @@ while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
 
     $motifs["TOTAL"]["TOTAL"]['count']++;
     $motifs["TOTAL"][$data[9]]['count']++;
-    $motifs["TOTAL"][$data[9]]['total_duration']+=$data[5];
-    $motifs["TOTAL"][$data[9]]['total_duration_bloquant']+=$data[7];
+    $motifs["TOTAL"][$data[9]]['total_duration']+=floatval($data[5]);
+    $motifs["TOTAL"][$data[9]]['total_duration_bloquant']+=floatval($data[7]);
 
     $motifs[$data[2]]["TOTAL"]['count']++;
     $motifs[$data[2]][$data[9]]['count']++;
-    $motifs[$data[2]][$data[9]]['total_duration']+=$data[5];
-    $motifs[$data[2]][$data[9]]['total_duration_bloquant']+=$data[7];
+    $motifs[$data[2]][$data[9]]['total_duration']+=floatval($data[5]);
+    $motifs[$data[2]][$data[9]]['total_duration_bloquant']+=floatval($data[7]);
 }
 fclose($handle);
 foreach($motifs as $ligne => $motifsLigne) {
