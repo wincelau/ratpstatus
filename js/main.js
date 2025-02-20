@@ -12,21 +12,20 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   const modalHelp = document.getElementById('modalHelp')
   const modalList = document.getElementById('listModal')
-
+  const modalListTab = document.querySelector('#listModal #tabLigne')
 
   function checkLocationHash() {
     if(document.location.hash == "#aide") {
         modalHelp.showModal();
-
     } else {
         modalHelp.close();
     }
 
-    if(modalList && document.location.hash == "#incidents") {
+    if(modalList && !modalListTab && document.location.hash == "#incidents") {
       filtreListeDisruption();
       modalList.showModal();
       modalList.scrollTo(0,0);
-    } else if(modalList && document.location.hash.indexOf("#incidents_") == 0) {
+    } else if(modalList && !modalListTab && document.location.hash.indexOf("#incidents_") == 0) {
       let ligne = document.querySelector('.ligne[data-id="'+document.location.hash.split("_")[1]+'"]');
       let img = ligne.querySelector('.logo img');
       let modalTitle = document.querySelector('#listModal #listModal_title_line');
@@ -35,6 +34,38 @@ document.addEventListener('DOMContentLoaded', async function () {
       modalList.showModal();
       modalList.scrollTo(0,0);
       modalList.blur();
+    } else if(modalList && modalListTab && document.location.hash.indexOf("#incidents_") == 0) {
+      document.querySelectorAll('.liste_ligne').forEach(function(item) {
+        item.style.display = 'none';
+      });
+      document.querySelectorAll('#tabLigne a').forEach(function(item) {
+        item.classList.remove('active');
+      });
+      document.querySelector('#liste_'+document.location.hash.split("_")[1]).style.display = 'block';
+      document.querySelector('#tabLigne a[href="'+document.location.hash+'"]').classList.add('active');
+      if(!modalList.open) {
+        modalList.showModal();
+        modalList.blur();
+        document.querySelector('#tabLigne a').blur();
+        setTimeout(function() {  document.querySelector('#tabLigne a.active').scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }, 500);
+      }
+      modalList.scrollTo(0,0);
+
+    } else if(modalList && modalListTab && document.location.hash == '#incidents') {
+      document.querySelectorAll('.liste_ligne').forEach(function(item) {
+        item.style.display = 'none';
+      });
+      document.querySelectorAll('#tabLigne a').forEach(function(item) {
+        item.classList.remove('active');
+      });
+      document.querySelector('#liste_TOTAL').style.display = 'block';
+      document.querySelector('#tabLigne a[href="'+document.location.hash+'"]').classList.add('active');
+      if(!modalList.open) {
+        modalList.showModal();
+        modalList.blur();
+        document.querySelector('#tabLigne a').blur();
+      }
+      modalList.scrollTo(0,0);
     } else if(modalList) {
       modalList.close();
     }
@@ -81,7 +112,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
         }
 
-        if(event.target.nodeName != "A") {
+        if(event.target.nodeName != "A" && event.target.parentElement.nodeName != "A") {
             modalList.close();
         }
     });

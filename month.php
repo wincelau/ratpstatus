@@ -235,7 +235,17 @@ endif; ?></h2>
 </dialog>
 <dialog id="listModal">
     <h2><span id="listModal_title_all"><?php echo Config::getModeLibelles()[$mode] ?></span> - Incidents du mois de <?php echo View::displayDateMonthToFr($dateMonth); ?></h2>
+
+    <div id="tabLigneContainer">
+    <div id="tabLigne">
+        <a class="active" href="#incidents">Tous</a>
+    <?php foreach(Config::getLignes()[$mode] as $ligne => $img): ?>
+        <a href="#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>"><img height="24" src="<?php echo $img ?>" alt="<?php echo $ligne ?>" /><div class="barre"></div></a>
+    <?php endforeach; ?>
+    </div>
+    </div>
     <?php foreach($motifs as $ligne => $motifsLigne): ?>
+    <div id="liste_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="<?php if($ligne != "TOTAL"): ?>display: none;<?php endif; ?>" class="liste_ligne">
     <?php if($ligne != "TOTAL"): ?>
     <h3 style="margin-bottom: 0;"><?php if(isset(Config::getLignes()[$mode][$ligne])): ?><img height="20" src="<?php echo Config::getLignes()[$mode][$ligne] ?>" alt="<?php echo $ligne ?>" /> <?php endif; ?><?php echo $ligne; ?></h3>
     <?php endif; ?>
@@ -262,6 +272,7 @@ endif; ?></h2>
     <?php endforeach; ?>
         </tbody>
     </table>
+    </div>
     <?php endforeach; ?>
 </dialog>
 </body>
