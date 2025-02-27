@@ -246,9 +246,6 @@ endif; ?></h2>
     </div>
     <?php foreach($motifs as $ligne => $motifsLigne): ?>
     <div id="liste_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="<?php if($ligne != "TOTAL"): ?>display: none;<?php endif; ?>" class="liste_ligne">
-    <?php if($ligne != "TOTAL"): ?>
-    <h3 style="margin-bottom: 0;"><?php if(isset(Config::getLignes()[$mode][$ligne])): ?><img height="20" src="<?php echo Config::getLignes()[$mode][$ligne] ?>" alt="<?php echo $ligne ?>" /> <?php endif; ?><?php echo $ligne; ?></h3>
-    <?php endif; ?>
     <table>
         <thead>
             <tr>
