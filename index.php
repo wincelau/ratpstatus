@@ -88,7 +88,8 @@
 </p>
 </footer>
 <dialog id="listModal">
-<h2><span id="listModal_title_line"></span><span id="listModal_title_all"><?php echo Config::getModeLibelles()[$mode] ?></span> - Incidents du <?php echo $day->getDateStart()->format("d/m/Y"); ?></h2>
+<h2><?php echo Config::getModeLibelles()[$mode] ?> - Incidents du <?php echo $day->getDateStart()->format("d/m/Y"); ?></h2>
+<?php include(__DIR__.'/templates/_navLignes.php') ?>
 <?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isInProgress();}) ?>
 <?php if(count($disruptions)): ?>
 <h3 id="title_disruptions_inprogress">En cours <span class="badge hide">0 incidents</span></h3>
