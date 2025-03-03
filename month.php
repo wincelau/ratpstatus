@@ -141,14 +141,8 @@ uksort($motifs, function($a, $b) use ($mode) {
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <title>Suivi de l'état du trafic - RATP Status</title>
-<meta name="description" content="Page de suivi et d'historisation de l'état du trafic et des incidents des Métros, RER / Transiliens et Tramways d'Île de France">
-<link rel="icon" href="/images/favicon_<?php echo $mode ?>.ico" />
-<link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_<?php echo $mode ?>.png" />
-<link rel="stylesheet" href="/css/style.css?<?php echo filemtime(__DIR__.'/css/style.css') ?>">
-<script src="/js/main.js?<?php echo filemtime(__DIR__.'/js/main.js') ?>"></script>
+<?php include(__DIR__.'/templates/_header.php') ?>
 <style>
     .donutG:before {
         content: "<?php echo round($statuts["total"]["total"]["pourcentages"]['OK']) ?>";
@@ -162,23 +156,27 @@ uksort($motifs, function($a, $b) use ($mode) {
 <div id="container_month">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a id="btn_help" href="#aide" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<?php include(__DIR__.'/templates/_nav.php') ?>
 </nav>
 <nav id="nav_liens_right">
 <a id="btn_list" class="badge openincident" href="#incidents" title="Voir la liste des incidents de la journée"><span title="Aucune perturbation pour <?php echo $statuts["total"]["total"]["pourcentages"]["OK"] ?>% du trafic de tout la journée" class="donutG"></span><span class="picto">📅</span><span class="text_incidents"><?php echo $motifs["TOTAL"]["TOTAL"]['count'] ?><span class="long"> incidents</span><span class="short">inc.</span></span></a>
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
 <h2><a title="Voir le mois précédent" href="<?php echo View::url("/".$datePreviousMonth->format('Ym')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>
-    <select id="select-day" style="<?php if($dateMonth->format('Ym') == date('Ym')):?>font-weight: bold;<?php endif;?>" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
-        <option style="display: none;" value="" selected="selected"><?php echo View::displayDateMonthToFr($dateMonth, 4); ?></option>
-        <?php foreach(View::getDatesChoices() as $dateChoiceKey => $dateChoiceLibelle): ?>
-        <option value="<?php echo View::url("/".$dateChoiceKey."/".$mode.".html") ?>"><?php echo $dateChoiceLibelle ?></option>
-        <?php endforeach; ?>
-    </select>
+<select id="select-day" style="<?php if($dateMonth->format('Ym') == date('Ym')):?>font-weight: bold;<?php endif;?>" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
+    <option style="display: none;" value="" selected="selected"><?php echo View::displayDateMonthToFr($dateMonth, 4); ?></option>
+    <?php foreach(View::getDatesChoices() as $group => $choices): ?>
+    <optgroup label="<?php echo $group ?>">
+    <?php foreach($choices as $dateChoiceKey => $dateChoiceLibelle): ?>
+    <option value="<?php echo View::url("/".$dateChoiceKey."/".$mode.".html") ?>"><?php if($dateMonth->format('Ym') == $dateChoiceKey):?>🔘<?php else: ?>⚪<?php endif; ?> <?php echo $dateChoiceLibelle ?> <?php if($dateChoiceKey == date('Ymd')): ?>🔥<?php endif; ?></option>
+    <?php endforeach; ?>
+    </optgroup>
+    <?php endforeach; ?>
+</select>
 <?php if($dateMonth->format('Ym') >= date('Ym')):?>
 <a class="disabled">➡️</a>
 <?php else: ?>
-<a title="Voir le jour suivant" href="<?php echo View::url("/".$dateNextMonth->format('Ym')."/".$mode.".html") ?>">➡️<span class="visually-hidden">Voir le jour suivant</span></a><?php
+<a title="Voir le jour suivant" href="<?php echo View::url("/".$dateNextMonth->format('Ym')."/".$mode.".html") ?>">➡️<span class="visually-hidden">Voir le mois suivant</span></a><?php
 endif; ?></h2>
 <nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="<?php echo View::url("/".$dateMonth->format('Ym')."/".$m.".html") ?>"><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
 <div class="hline"><?php foreach($dates as $date): ?><div class="ih <?php if($date->format('N') == 7): ?>ihew<?php endif; ?>"><small><span><?php if($date->format('N') ==  1): ?>Lun<?php elseif($date->format('N') ==  3): ?>Mer<?php elseif($date->format('N') ==  5): ?>Ven<?php elseif($date->format('N') ==  7): ?>Dim<?php endif; ?></span><?php echo sprintf("%02d", $date->format('j')) ?></small></div><?php endforeach; ?></div>
@@ -226,9 +224,7 @@ endif; ?></h2>
 <p></p>
 </div>
 <footer role="contentinfo" id="footer">
-<p>
-    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
-</p>
+    <?php include(__DIR__.'/templates/_footer.php') ?>
 </footer>
 <dialog id="modalHelp">
     <?php include(__DIR__.'/templates/_help.php') ?>

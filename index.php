@@ -2,17 +2,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0">
 <title><?php echo preg_replace("/^[^ ]+ /", "", strip_tags(Config::getModeLibelles()[$mode])) ?><?php if(!$day->isToday()): ?> le <?php echo $day->getDateStart()->format("d/m/Y"); ?><?php endif; ?> - Suivi de l'état du trafic - RATP Status</title>
-<meta name="description" content="Page de suivi et d'historisation de l'état du trafic et des incidents des Métros, RER / Transiliens et Tramways d'Île de France">
-<link rel="icon" href="/images/favicon_<?php echo $mode ?>.ico" />
-<link rel="icon" type="image/png" sizes="192x192" href="/images/favicon_<?php echo $mode ?>.png" />
-<link rel="stylesheet" href="/css/style.css?<?php echo filemtime(__DIR__.'/css/style.css') ?>">
+<?php include(__DIR__.'/templates/_header.php') ?>
 <script>
     const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
 </script>
-<script src="/js/main.js?<?php echo filemtime(__DIR__.'/js/main.js') ?>"></script>
 <style>
     .donutG:before {
         content: "<?php echo round($pourcentages[$mode]['OK']) ?>";
@@ -26,7 +20,7 @@
 <div id="container">
 <header role="banner" id="header">
 <nav id="nav_liens">
-<a id="btn_help" href="#aide" title="Aide et informations">ℹ️<i class="mobile_hidden"> </i><span class="mobile_hidden">Aide et Infos</span></a>
+<?php include(__DIR__.'/templates/_nav.php') ?>
 <?php if($day->isToday()): ?>
 <a id="lien_refresh" href="" onclick="location.reload(); return false;">🔃</a>
 <?php endif; ?>
@@ -42,24 +36,22 @@
     <?php if($day->getDateStartYesterday() < new DateTime('2024-04-23')): ?>
     <a class="disabled">⬅️</a>
     <?php else: ?>
-    <a title="Voir le jour précédent" href="<?php echo View::url("/".$day->getDateStartYesterday()->format('Ymd')."/".$mode.".html") ?>">
-        ⬅️
-        <span class="visually-hidden">Voir le jour précédent</span>
-    </a>
+    <a title="Voir le jour précédent" href="<?php echo View::url("/".$day->getDateStartYesterday()->format('Ymd')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le jour précédent</span></a>
     <?php endif; ?>
     <select id="select-day" style="<?php if($day->isToday()):?>font-weight: bold;<?php endif;?>" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
         <option style="display: none;" value="" selected="selected"><?php echo $day->getDateStart()->format("d/m/Y"); ?></option>
-        <?php foreach(View::getDatesChoices() as $dateChoiceKey => $dateChoiceLibelle): ?>
-        <option value="<?php echo View::url("/".$dateChoiceKey."/".$mode.".html") ?>"><?php echo $dateChoiceLibelle ?></option>
+        <?php foreach(View::getDatesChoices() as $group => $choices): ?>
+        <optgroup label="<?php echo $group ?>">
+        <?php foreach($choices as $dateChoiceKey => $dateChoiceLibelle): ?>
+        <option value="<?php echo View::url("/".$dateChoiceKey."/".$mode.".html") ?>"><?php if($day->getDateStart()->format("Ymd") == $dateChoiceKey): ?>🔘<?php else: ?>⚪<?php endif; ?> <?php echo $dateChoiceLibelle ?> <?php if($dateChoiceKey == date('Ymd')): ?>🔥<?php endif; ?></option>
+        <?php endforeach; ?>
+        </optgroup>
         <?php endforeach; ?>
     </select>
     <?php if($day->isTomorrow()): ?>
     <a class="disabled">➡️</a>
     <?php else: ?>
-    <a title="Voir le jour suivant" href="<?php echo View::url("/".((!$day->isTodayTomorrow()) ? $day->getDateStartTomorrow()->format('Ymd')."/" : null).$mode.".html") ?>">
-        ➡️
-        <span class="visually-hidden">Voir le jour suivant</span>
-    </a>
+    <a title="Voir le jour suivant" href="<?php echo View::url("/".((!$day->isTodayTomorrow()) ? $day->getDateStartTomorrow()->format('Ymd')."/" : null).$mode.".html") ?>">➡️<span class="visually-hidden">Voir le jour suivant</span></a>
     <?php endif; ?>
 </h2>
 <nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="<?php echo View::url("/".((!$day->isToday()) ? $day->getDateStart()->format('Ymd')."/" : null).$m.".html") ?>"><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
@@ -83,9 +75,7 @@
 </p>
 </div>
 <footer role="contentinfo" id="footer">
-<p>
-    <a href="">RATPStatus.fr</a> est publié sous licence libre AGPL-3.0 (<a href="https://github.com/wincelau/ratpstatus">voir les sources</a>), ce n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.
-</p>
+    <?php include(__DIR__.'/templates/_footer.php') ?>
 </footer>
 <dialog id="listModal">
 <h2><?php echo Config::getModeLibelles()[$mode] ?> - Incidents du <?php echo $day->getDateStart()->format("d/m/Y"); ?></h2>

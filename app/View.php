@@ -22,11 +22,11 @@ class View {
     public static function getDatesChoices() {
         $date = (new DateTime())->modify('-3 hours');
         $dates = [];
-        $dates[$date->format('Ymd')] = "Aujourd'hui";
+        $dates["Par minute"][$date->format('Ymd')] = "Aujourd'hui";
         $date->modify('-1 day');
-        $dates[$date->format('Ymd')] = "Hier";
+        $dates["Par minute"][$date->format('Ymd')] = "Hier";
         while($date->format('Ym') >= "202404") {
-            $dates[$date->format('Ym')] = self::displayDateMonthToFr($date);
+            $dates["Par jour"][$date->format('Ym')] = self::displayDateMonthToFr($date);
             $date->modify('-1 month');
         }
         return $dates;
@@ -40,7 +40,7 @@ class View {
             "04" => "Avril",
             "05" => "Mai",
             "06" => "Juin",
-            "07" => "Juil",
+            "07" => "Juillet",
             "08" => "Août",
             "09" => "Septembre",
             "10" => "Octobre",
@@ -48,9 +48,24 @@ class View {
             "12" => "Décembre",
         ];
 
+        $labelShort = [
+            "01" => "Janv",
+            "02" => "Févr",
+            "03" => "Mars",
+            "04" => "Avril",
+            "05" => "Mai",
+            "06" => "Juin",
+            "07" => "Juil",
+            "08" => "Août",
+            "09" => "Sept",
+            "10" => "Oct",
+            "11" => "Nov",
+            "12" => "Déc",
+        ];
+
         $label = str_replace(array_keys($labels), array_values($labels), $date->format('m'));
         if($substr) {
-            $label = mb_substr($label, 0, $substr);
+            $label = str_replace(array_keys($labelShort), array_values($labelShort), $date->format('m'));
         }
 
         return $label.' '.$date->format('Y');
