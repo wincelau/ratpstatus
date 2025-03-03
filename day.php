@@ -38,5 +38,8 @@ if(isset($cacheFile) && file_exists($cacheFile) && !getenv('RESETCACHE')) {
 
 $pourcentages = $day->getPourcentages($mode);
 $statutsCount = $day->getCurrentStatutsCount($mode);
+$isToday = $day->isToday();
+$libelleToday = $day->getDateStart()->format("d/m/Y");
+$keyToday = $day->getDateStart()->format("Ymd");
 
 $GLOBALS['isStaticResponse'] = isset($_SERVER['argv']) && !is_null($_SERVER['argv']);

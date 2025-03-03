@@ -38,16 +38,7 @@
     <?php else: ?>
     <a title="Voir le jour précédent" href="<?php echo View::url("/".$day->getDateStartYesterday()->format('Ymd')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le jour précédent</span></a>
     <?php endif; ?>
-    <select id="select-day" style="<?php if($day->isToday()):?>font-weight: bold;<?php endif;?>" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
-        <option style="display: none;" value="" selected="selected"><?php echo $day->getDateStart()->format("d/m/Y"); ?></option>
-        <?php foreach(View::getDatesChoices() as $group => $choices): ?>
-        <optgroup label="<?php echo $group ?>">
-        <?php foreach($choices as $dateChoiceKey => $dateChoiceLibelle): ?>
-        <option value="<?php echo View::url("/".$dateChoiceKey."/".$mode.".html") ?>"><?php if($day->getDateStart()->format("Ymd") == $dateChoiceKey): ?>🔘<?php else: ?>⚪<?php endif; ?> <?php echo $dateChoiceLibelle ?> <?php if($dateChoiceKey == date('Ymd')): ?>🔥<?php endif; ?></option>
-        <?php endforeach; ?>
-        </optgroup>
-        <?php endforeach; ?>
-    </select>
+    <?php include(__DIR__.'/templates/_navDate.php') ?>
     <?php if($day->isTomorrow()): ?>
     <a class="disabled">➡️</a>
     <?php else: ?>

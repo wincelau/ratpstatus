@@ -78,6 +78,9 @@ $dateMonth = DateTime::createFromFormat("Ymd", $_GET['date'].'01');
 $datePreviousMonth = (clone $dateMonth)->modify('-1 month');
 $dateNextMonth = (clone $dateMonth)->modify('+1 month');
 $date = DateTime::createFromFormat("Ymd", $_GET['date'].'01');
+$isToday = $dateMonth->format('Ym') == date('Ym');
+$libelleToday = View::displayDateMonthToFr($dateMonth, 4);
+$keyToday = $dateMonth->format('Ym');
 $dates = [];
 $nbDays = cal_days_in_month(CAL_GREGORIAN, $date->format('n'), $date->format('Y'));
 for($i = 0; $i < $nbDays; $i++) {
@@ -163,16 +166,7 @@ uksort($motifs, function($a, $b) use ($mode) {
 </nav>
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
 <h2><a title="Voir le mois précédent" href="<?php echo View::url("/".$datePreviousMonth->format('Ym')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>
-<select id="select-day" style="<?php if($dateMonth->format('Ym') == date('Ym')):?>font-weight: bold;<?php endif;?>" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
-    <option style="display: none;" value="" selected="selected"><?php echo View::displayDateMonthToFr($dateMonth, 4); ?></option>
-    <?php foreach(View::getDatesChoices() as $group => $choices): ?>
-    <optgroup label="<?php echo $group ?>">
-    <?php foreach($choices as $dateChoiceKey => $dateChoiceLibelle): ?>
-    <option value="<?php echo View::url("/".$dateChoiceKey."/".$mode.".html") ?>"><?php if($dateMonth->format('Ym') == $dateChoiceKey):?>🔘<?php else: ?>⚪<?php endif; ?> <?php echo $dateChoiceLibelle ?> <?php if($dateChoiceKey == date('Ymd')): ?>🔥<?php endif; ?></option>
-    <?php endforeach; ?>
-    </optgroup>
-    <?php endforeach; ?>
-</select>
+<?php include(__DIR__.'/templates/_navDate.php') ?>
 <?php if($dateMonth->format('Ym') >= date('Ym')):?>
 <a class="disabled">➡️</a>
 <?php else: ?>
