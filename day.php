@@ -3,6 +3,7 @@
 date_default_timezone_set('Europe/Paris');
 
 require __DIR__.'/app/Config.php';
+require __DIR__.'/app/Period.php';
 require __DIR__.'/app/Day.php';
 require __DIR__.'/app/File.php';
 require __DIR__.'/app/Line.php';
@@ -35,6 +36,8 @@ if(isset($cacheFile) && file_exists($cacheFile) && !getenv('RESETCACHE')) {
         file_put_contents($cacheFile, serialize($day));
     }
 }
+
+$period = &$day;
 
 $pourcentages = $day->getPourcentages($mode);
 $statutsCount = $day->getCurrentStatutsCount($mode);

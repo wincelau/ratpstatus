@@ -1,8 +1,7 @@
 <?php
 
-class Day
+class Day extends Period
 {
-    protected $dateStart = null;
     protected $dateEnd = null;
     protected $lignes = [];
     protected $lastFile = null;
@@ -183,13 +182,6 @@ class Day
     public function getLastFile() {
 
         return $this->lastFile;
-    }
-
-    public function isToday() {
-
-        $date = (new DateTime())->modify('-3 hours');
-
-        return $this->getDateStart()->format('Ymd') == $date->format('Ymd');
     }
 
     public function isTomorrow() {

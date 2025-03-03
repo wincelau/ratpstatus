@@ -1,5 +1,7 @@
 <?php
 require __DIR__.'/app/Config.php';
+require __DIR__.'/app/Period.php';
+require __DIR__.'/app/MonthPeriod.php';
 require __DIR__.'/app/View.php';
 
 $handle = fopen(__DIR__.'/datas/export/historique_statuts.csv', "r");
@@ -73,6 +75,8 @@ foreach($statuts as $ligne => $dates) {
 fclose($handle);
 
 $GLOBALS['isStaticResponse'] = isset($_SERVER['argv']) && !is_null($_SERVER['argv']);
+
+$period = new MonthPeriod($_GET['date']);
 
 $dateMonth = DateTime::createFromFormat("Ymd", $_GET['date'].'01');
 $datePreviousMonth = (clone $dateMonth)->modify('-1 month');

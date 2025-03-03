@@ -1,4 +1,4 @@
-<select id="select-day" style="<?php if($isToday):?>font-weight: bold;<?php endif;?>" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
+<select id="select-day" style="<?php if($period->isToday()):?>font-weight: bold;<?php endif;?>" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
     <option style="display: none;" value="" selected="selected"><?php echo $libelleToday; ?></option>
     <?php foreach(View::getDatesChoices() as $group => $choices): ?>
     <optgroup label="<?php echo $group ?>">
