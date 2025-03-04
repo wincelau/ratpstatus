@@ -19,130 +19,23 @@ if(!isset($_GET['date'])) {
 }
 $mode = isset($_GET['mode']) ? $_GET['mode'] : 'metros';
 
-$statuts = [];
-while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
-    if(strpos($data[0], 'date') === 0) {
-        continue;
-    }
-    if($data[1] != $mode) {
-        continue;
-    }
-    if(strpos(str_replace("-", "", $data[0]), $_GET['date']) !== 0) {
-        continue;
-    }
-    $dateStart = new DateTime($data[3]);
-    $dateEnd = new DateTime($data[4]);
-    $duration = $dateEnd->diff($dateStart);
-    if(!isset($statuts[$data[2]][$data[0]]["minutes"][$data[5]])) {
-        $statuts[$data[2]][$data[0]]["minutes"][$data[5]] = 0;
-    }
-    if(!isset($statuts[$data[2]]["total"]["minutes"][$data[5]])) {
-        $statuts[$data[2]]["total"]["minutes"][$data[5]] = 0;
-    }
-    if(!isset($statuts["total"][$data[0]]["minutes"][$data[5]])) {
-        $statuts["total"][$data[0]]["minutes"][$data[5]] = 0;
-    }
-    if(!isset($statuts["total"]["total"]["minutes"][$data[5]])) {
-        $statuts["total"]["total"]["minutes"][$data[5]] = 0;
-    }
-
-    $nbMinutes = ($duration->d * 24 * 60) + ($duration->h * 60) + $duration->i;
-    $statuts[$data[2]][$data[0]]["minutes"][$data[5]] += $nbMinutes;
-    $statuts[$data[2]]["total"]["minutes"][$data[5]] += $nbMinutes;
-    $statuts["total"][$data[0]]["minutes"][$data[5]] += $nbMinutes;
-    $statuts["total"]["total"]["minutes"][$data[5]] += $nbMinutes;
-}
-foreach($statuts as $ligne => $dates) {
-    foreach($dates as $date => $data) {
-        $total = array_sum($data["minutes"]);
-        $pourcentages = array_map(function($a) use ($total) { return $total > 0 ? round($a / $total * 100) : 0; }, $data["minutes"]);
-        if(!isset($pourcentages["OK"])) {
-            $pourcentages["OK"] = 0;
-        }
-        if(!isset($pourcentages["PB"])) {
-            $pourcentages["PB"] = 0;
-        }
-        if(!isset($pourcentages["TX"])) {
-            $pourcentages["TX"] = 0;
-        }
-        if(!isset($pourcentages["BQ"])) {
-            $pourcentages["BQ"] = 0;
-        }
-        $pourcentages["OK"] = round(100 - $pourcentages["PB"] - $pourcentages["BQ"] - $pourcentages["TX"], 2);
-        $statuts[$ligne][$date]["pourcentages"] = $pourcentages;
-    }
-}
-fclose($handle);
 
 $GLOBALS['isStaticResponse'] = isset($_SERVER['argv']) && !is_null($_SERVER['argv']);
 
 $period = new MonthPeriod($_GET['date']);
+$statuts = $period->getStatuts($mode);
 
-$dateMonth = DateTime::createFromFormat("Ymd", $_GET['date'].'01');
-$datePreviousMonth = (clone $dateMonth)->modify('-1 month');
-$dateNextMonth = (clone $dateMonth)->modify('+1 month');
-$date = DateTime::createFromFormat("Ymd", $_GET['date'].'01');
-$isToday = $dateMonth->format('Ym') == date('Ym');
-$libelleToday = View::displayDateMonthToFr($dateMonth, 4);
-$keyToday = $dateMonth->format('Ym');
+$datePreviousMonth = (clone $period->getDateStart())->modify('-1 month');
+$dateNextMonth = (clone $period->getDateStart())->modify('+1 month');
+
+$nbDays = cal_days_in_month(CAL_GREGORIAN, $period->getDateStart()->format('n'), $period->getDateStart()->format('Y'));
+$date = clone $period->getDateStart();
 $dates = [];
-$nbDays = cal_days_in_month(CAL_GREGORIAN, $date->format('n'), $date->format('Y'));
 for($i = 0; $i < $nbDays; $i++) {
     $dates[] = clone $date;
     $date->modify('+1 day');
 }
-
-$handle = fopen(__DIR__.'/datas/export/historique_incidents.csv', "r");
-$motifs = [];
-while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
-    if(strpos($data[0], 'date') === 0) {
-        continue;
-    }
-    if(strpos(str_replace("-", "", $data[0]), $_GET['date']) !== 0) {
-        continue;
-    }
-    if($data[10] != 0) {
-        continue;
-    }
-    if($mode != $data[1]) {
-        continue;
-    }
-
-    $motifs["TOTAL"]["TOTAL"]['count']++;
-    $motifs["TOTAL"][$data[9]]['count']++;
-    $motifs["TOTAL"][$data[9]]['total_duration']+=floatval($data[5]);
-    $motifs["TOTAL"][$data[9]]['total_duration_bloquant']+=floatval($data[7]);
-
-    $motifs[$data[2]]["TOTAL"]['count']++;
-    $motifs[$data[2]][$data[9]]['count']++;
-    $motifs[$data[2]][$data[9]]['total_duration']+=floatval($data[5]);
-    $motifs[$data[2]][$data[9]]['total_duration_bloquant']+=floatval($data[7]);
-}
-fclose($handle);
-foreach($motifs as $ligne => $motifsLigne) {
-    $motifs[$ligne] = array_map(function($a) {
-        $a['total_duration'] = round($a['total_duration']);
-        $a['total_duration_bloquant'] = round($a['total_duration_bloquant']);
-        $a['average_duration'] = round($a['total_duration'] / $a['count']);
-        $a['average_duration_bloquant'] = round($a['total_duration_bloquant'] / $a['count']);
-        return $a;}, $motifsLigne);
-    uasort($motifs[$ligne], function($a, $b) { return $a['count'] < $b['count']; });
-}
-
-uksort($motifs, function($a, $b) use ($mode) {
-    if($a == "TOTAL") {
-        return false;
-    }
-
-    if($b == "TOTAL") {
-        return true;
-    }
-
-    $indexA = array_search($a, array_keys(Config::getLignes()[$mode]));
-    $indexB = array_search($b, array_keys(Config::getLignes()[$mode]));
-
-    return $indexA > $indexB;
-});
+$motifs = $period->getMotifs($mode);
 
 ?>
 <!DOCTYPE html>
@@ -168,15 +61,8 @@ uksort($motifs, function($a, $b) use ($mode) {
 <nav id="nav_liens_right">
 <a id="btn_list" class="badge openincident" href="#incidents" title="Voir la liste des incidents de la journée"><span title="Aucune perturbation pour <?php echo $statuts["total"]["total"]["pourcentages"]["OK"] ?>% du trafic de tout la journée" class="donutG"></span><span class="picto">📅</span><span class="text_incidents"><?php echo $motifs["TOTAL"]["TOTAL"]['count'] ?><span class="long"> incidents</span><span class="short">inc.</span></span></a>
 </nav>
-<h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
-<h2><a title="Voir le mois précédent" href="<?php echo View::url("/".$datePreviousMonth->format('Ym')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le mois précédent</span></a>
 <?php include(__DIR__.'/templates/_navDate.php') ?>
-<?php if($dateMonth->format('Ym') >= date('Ym')):?>
-<a class="disabled">➡️</a>
-<?php else: ?>
-<a title="Voir le jour suivant" href="<?php echo View::url("/".$dateNextMonth->format('Ym')."/".$mode.".html") ?>">➡️<span class="visually-hidden">Voir le mois suivant</span></a><?php
-endif; ?></h2>
-<nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="<?php echo View::url("/".$dateMonth->format('Ym')."/".$m.".html") ?>"><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
+<nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="<?php echo View::url("/".$period->getDateStart()->format('Ym')."/".$m.".html") ?>"><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
 <div class="hline"><?php foreach($dates as $date): ?><div class="ih <?php if($date->format('N') == 7): ?>ihew<?php endif; ?>"><small><span><?php if($date->format('N') ==  1): ?>Lun<?php elseif($date->format('N') ==  3): ?>Mer<?php elseif($date->format('N') ==  5): ?>Ven<?php elseif($date->format('N') ==  7): ?>Dim<?php endif; ?></span><?php echo sprintf("%02d", $date->format('j')) ?></small></div><?php endforeach; ?></div>
 </header>
 <main role="main">
@@ -228,7 +114,7 @@ endif; ?></h2>
     <?php include(__DIR__.'/templates/_help.php') ?>
 </dialog>
 <dialog id="listModal">
-    <h2><span id="listModal_title_all"><?php echo Config::getModeLibelles()[$mode] ?></span> - Incidents du mois de <?php echo View::displayDateMonthToFr($dateMonth); ?></h2>
+    <h2><span id="listModal_title_all"><?php echo Config::getModeLibelles()[$mode] ?></span> - Incidents du mois de <?php echo View::displayDateMonthToFr($period->getDateStart()); ?></h2>
     <?php include(__DIR__.'/templates/_navLignes.php') ?>
     <?php foreach($motifs as $ligne => $motifsLigne): ?>
     <div id="liste_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="<?php if($ligne != "TOTAL"): ?>display: none;<?php endif; ?>" class="liste_ligne">

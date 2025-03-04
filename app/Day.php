@@ -161,18 +161,14 @@ class Day extends Period
         return $files;
     }
 
-    public function getDateStartYesterday() {
+    public function getDateFormat() {
 
-        return (clone $this->getDateStart())->modify('-1 day');
+        return 'Ymd';
     }
 
-    public function getDateStartTomorrow() {
+    public function getDateStartLabel() {
 
-        return (clone $this->getDateStart())->modify('+1 day');
-    }
-
-    public function getDateStart() {
-        return $this->dateStart;
+        return $this->getDateStart()->format("d/m/Y");
     }
 
     public function getDateEnd() {
@@ -184,12 +180,14 @@ class Day extends Period
         return $this->lastFile;
     }
 
-    public function isTomorrow() {
-        return $this->getDateStartTomorrow() > (new DateTime())->modify('+1 hours');
+    public function getDatePrevious() {
+
+        return (clone $this->getDateStart())->modify('-1 day');
     }
 
-    public function isTodayTomorrow() {
-        return date_format($this->getDateStartTomorrow(), "Ymd") == date_format((new DateTime()), "Ymd");
+    public function getDateNext() {
+
+        return (clone $this->getDateStart())->modify('+1 day');
     }
 
     public function getDisruptions($mode) {

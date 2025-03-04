@@ -6,8 +6,23 @@ class MonthPeriod extends Period
         $this->dateStart = DateTime::createFromFormat("Ymd", $_GET['date'].'01');
     }
 
-    public function getDateStart() {
+    public function getDateFormat() {
 
-        return $this->dateStart;
+        return 'Ym';
+    }
+
+    public function getDateStartLabel() {
+
+        return View::displayDateMonthToFr($this->getDateStart(), 4);
+    }
+
+    public function getDatePrevious() {
+
+        return (clone $this->getDateStart())->modify('-1 month');
+    }
+
+    public function getDateNext() {
+
+        return (clone $this->getDateStart())->modify('+1 month');
     }
 }

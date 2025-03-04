@@ -31,20 +31,7 @@
     <?php endif; ?>
     <a id="btn_list" class="badge openincident" href="#incidents" title="Voir la liste des incidents de la journée"><span title="Aucune perturbation pour <?php echo $pourcentages[$mode]['OK'] ?>% du trafic de tout la journée" class="donutG"></span><span class="picto">📅</span><span class="text_incidents"><?php echo count($day->getDisruptions($mode)) ?><span class="long"> incidents</span><span class="short">inc.</span></span></a>
 </nav>
-<h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
-<h2>
-    <?php if($day->getDateStartYesterday() < new DateTime('2024-04-23')): ?>
-    <a class="disabled">⬅️</a>
-    <?php else: ?>
-    <a title="Voir le jour précédent" href="<?php echo View::url("/".$day->getDateStartYesterday()->format('Ymd')."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir le jour précédent</span></a>
-    <?php endif; ?>
-    <?php include(__DIR__.'/templates/_navDate.php') ?>
-    <?php if($day->isTomorrow()): ?>
-    <a class="disabled">➡️</a>
-    <?php else: ?>
-    <a title="Voir le jour suivant" href="<?php echo View::url("/".((!$day->isTodayTomorrow()) ? $day->getDateStartTomorrow()->format('Ymd')."/" : null).$mode.".html") ?>">➡️<span class="visually-hidden">Voir le jour suivant</span></a>
-    <?php endif; ?>
-</h2>
+<?php include(__DIR__.'/templates/_navDate.php') ?>
 <nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="<?php echo View::url("/".((!$day->isToday()) ? $day->getDateStart()->format('Ymd')."/" : null).$m.".html") ?>"><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
 <div class="hline"><?php for($i = 0; $i <= 1380; $i = $i + 60): ?><div class="ih"><?php if($i % 60 == 0): ?><small><?php echo sprintf("%02d", (intval($i / 60) + 4) % 24) ?>h</small><?php endif; ?></div><?php endfor; ?></div>
 </header>
