@@ -1,7 +1,7 @@
 <?php
 require __DIR__.'/app/Config.php';
 require __DIR__.'/app/Period.php';
-require __DIR__.'/app/MonthPeriod.php';
+require __DIR__.'/app/YearPeriod.php';
 require __DIR__.'/app/View.php';
 
 $handle = fopen(__DIR__.'/datas/export/historique_statuts.csv', "r");
@@ -22,18 +22,18 @@ $mode = isset($_GET['mode']) ? $_GET['mode'] : 'metros';
 
 $GLOBALS['isStaticResponse'] = isset($_SERVER['argv']) && !is_null($_SERVER['argv']);
 
-$period = new MonthPeriod($_GET['date']);
+$period = new YearPeriod($_GET['date']);
 $statuts = $period->getStatuts($mode);
 
-$nbDays = cal_days_in_month(CAL_GREGORIAN, $period->getDateStart()->format('n'), $period->getDateStart()->format('Y'));
+$nbMonths = 12;
 $date = clone $period->getDateStart();
 $dates = [];
-for($i = 0; $i < $nbDays; $i++) {
+for($i = 0; $i < $nbMonths; $i++) {
     $dates[] = clone $date;
-    $date->modify('+1 day');
+    $date->modify('+1 month');
 }
 $motifs = $period->getMotifs($mode);
-$wblock = 4;
+$wblock = 7;
 ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
@@ -50,7 +50,7 @@ $wblock = 4;
 </style>
 </head>
 <body>
-<div id="container_month">
+<div id="container_month" class="container_year">
 <header role="banner" id="header">
 <nav id="nav_liens">
 <?php include(__DIR__.'/templates/_nav.php') ?>
@@ -60,7 +60,7 @@ $wblock = 4;
 </nav>
 <?php include(__DIR__.'/templates/_navDate.php') ?>
 <nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="<?php echo View::url("/".$period->getDateStartKey()."/".$m.".html") ?>"><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
-<div class="hline"><?php foreach($dates as $date): ?><div class="ih <?php if($date->format('N') == 7): ?>ihew<?php endif; ?>"><small><span><?php if($date->format('N') ==  1): ?>Lun<?php elseif($date->format('N') ==  3): ?>Mer<?php elseif($date->format('N') ==  5): ?>Ven<?php elseif($date->format('N') ==  7): ?>Dim<?php endif; ?></span><?php echo sprintf("%02d", $date->format('j')) ?></small></div><?php endforeach; ?></div>
+<div class="hline"><?php foreach($dates as $date): ?><div class="ih <?php if($date->format('m') == 12): ?>ihew<?php endif; ?>"><small><span><?php if($date->format('m') == 1): ?><?php echo $date->format('Y') ?><?php endif; ?></span><?php echo View::displayDateMonthToFr($date, true) ?></small></div><?php endforeach; ?></div>
 </header>
 <main role="main">
 <div id="lignes">
@@ -69,8 +69,8 @@ $wblock = 4;
 <?php $j=1; ?>
 <?php foreach($dates as $date): ?>
 <?php if($date == "total"): continue; endif; ?>
-<?php $data = (isset($statuts[$ligne][$date->format('Y-m-d')])) ? $statuts[$ligne][$date->format('Y-m-d')] : null; ?>
-<a class="bm <?php if($date->format('N') ==  7): ?>bmew<?php endif; ?>" href="<?php echo View::url("/".$date->format('Ymd')."/".$mode.".html") ?>#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" title="<?php echo $date->format('d/m/Y'); ?>">
+<?php $data = (isset($statuts[$ligne][$date->format('Y-m')])) ? $statuts[$ligne][$date->format('Y-m')] : null; ?>
+<a class="bm <?php if($date->format('N') ==  12): ?>bmew<?php endif; ?>" href="<?php echo View::url("/".$date->format('Ym')."/".$mode.".html") ?>#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" title="<?php echo $date->format('d/m/Y'); ?>">
 <?php $rest = 0; ?>
 <?php if(!$data): ?><div class="no"></div><?php endif; ?>
 <?php if($data): ?>

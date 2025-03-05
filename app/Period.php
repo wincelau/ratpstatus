@@ -94,23 +94,29 @@ abstract class Period
             $dateStart = new DateTime($data[3]);
             $dateEnd = new DateTime($data[4]);
             $duration = $dateEnd->diff($dateStart);
-            if(!isset($statuts[$data[2]][$data[0]]["minutes"][$data[5]])) {
-                $statuts[$data[2]][$data[0]]["minutes"][$data[5]] = 0;
+            if($this->getDateFormat() == 'Y') {
+                $dateKey = explode("-", $data[0])[0]."-".explode("-", $data[0])[1];
+            } else {
+                $dateKey = $data[0];
+            }
+
+            if(!isset($statuts[$data[2]][$dateKey]["minutes"][$data[5]])) {
+                $statuts[$data[2]][$dateKey]["minutes"][$data[5]] = 0;
             }
             if(!isset($statuts[$data[2]]["total"]["minutes"][$data[5]])) {
                 $statuts[$data[2]]["total"]["minutes"][$data[5]] = 0;
             }
-            if(!isset($statuts["total"][$data[0]]["minutes"][$data[5]])) {
-                $statuts["total"][$data[0]]["minutes"][$data[5]] = 0;
+            if(!isset($statuts["total"][$dateKey]["minutes"][$data[5]])) {
+                $statuts["total"][$dateKey]["minutes"][$data[5]] = 0;
             }
             if(!isset($statuts["total"]["total"]["minutes"][$data[5]])) {
                 $statuts["total"]["total"]["minutes"][$data[5]] = 0;
             }
 
             $nbMinutes = ($duration->d * 24 * 60) + ($duration->h * 60) + $duration->i;
-            $statuts[$data[2]][$data[0]]["minutes"][$data[5]] += $nbMinutes;
+            $statuts[$data[2]][$dateKey]["minutes"][$data[5]] += $nbMinutes;
             $statuts[$data[2]]["total"]["minutes"][$data[5]] += $nbMinutes;
-            $statuts["total"][$data[0]]["minutes"][$data[5]] += $nbMinutes;
+            $statuts["total"][$dateKey]["minutes"][$data[5]] += $nbMinutes;
             $statuts["total"]["total"]["minutes"][$data[5]] += $nbMinutes;
         }
         foreach($statuts as $ligne => $dates) {

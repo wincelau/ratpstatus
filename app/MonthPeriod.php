@@ -3,7 +3,7 @@
 class MonthPeriod extends Period
 {
     public function __construct($date) {
-        $this->dateStart = DateTime::createFromFormat("Ymd", $_GET['date'].'01');
+        $this->dateStart = DateTime::createFromFormat("Ymd", $date.'01');
     }
 
     public function getDateFormat() {
@@ -13,7 +13,7 @@ class MonthPeriod extends Period
 
     public function getDateStartLabel() {
 
-        return View::displayDateMonthToFr($this->getDateStart(), 4);
+        return View::displayDateMonthToFr($this->getDateStart(), true)." ".$this->getDateStart()->format('Y');
     }
 
     public function getDatePrevious() {

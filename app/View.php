@@ -16,17 +16,22 @@ class View {
             $script = "month.php";
         }
 
+        if(strlen($matches[1]) == "4") {
+            $script = "year.php";
+        }
+
         return $script."?".http_build_query(['date' => $matches[1], 'mode' => $matches[2]]);
     }
 
     public static function getDatesChoices() {
         $date = (new DateTime())->modify('-3 hours');
         $dates = [];
-        $dates["Par minute"][$date->format('Ymd')] = "Aujourd'hui";
+        $dates["Par jour"][$date->format('Ymd')] = "Aujourd'hui";
         $date->modify('-1 day');
-        $dates["Par minute"][$date->format('Ymd')] = "Hier";
+        $dates["Par jour"][$date->format('Ymd')] = "Hier";
         while($date->format('Ym') >= "202404") {
-            $dates["Par jour"][$date->format('Ym')] = self::displayDateMonthToFr($date);
+            $dates["Par année"][$date->format('Y')] = $date->format('Y');
+            $dates["Par mois"][$date->format('Ym')] = self::displayDateMonthToFr($date).' '.$date->format('Y');
             $date->modify('-1 month');
         }
         return $dates;
@@ -68,6 +73,6 @@ class View {
             $label = str_replace(array_keys($labelShort), array_values($labelShort), $date->format('m'));
         }
 
-        return $label.' '.$date->format('Y');
+        return $label;
     }
 }
