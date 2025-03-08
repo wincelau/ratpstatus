@@ -70,7 +70,7 @@ $wblock = 7;
 <?php foreach($dates as $date): ?>
 <?php if($date == "total"): continue; endif; ?>
 <?php $data = (isset($statuts[$ligne][$date->format('Y-m')])) ? $statuts[$ligne][$date->format('Y-m')] : null; ?>
-<a class="bm <?php if($date->format('N') ==  12): ?>bmew<?php endif; ?>" href="<?php echo View::url("/".$date->format('Ym')."/".$mode.".html") ?>#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" title="<?php echo $date->format('d/m/Y'); ?>">
+<a class="bm <?php if($date->format('N') ==  12): ?>bmew<?php endif; ?>" href="<?php echo View::url("/".$date->format('Ym')."/".$mode.".html") ?>" title="<?php echo $date->format('d/m/Y'); ?>">
 <?php $rest = 0; ?>
 <?php if(!$data): ?><div class="no"></div><?php endif; ?>
 <?php if($data): ?>
