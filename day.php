@@ -1,7 +1,5 @@
 <?php
 
-date_default_timezone_set('Europe/Paris');
-
 require __DIR__.'/app/Config.php';
 require __DIR__.'/app/Period.php';
 require __DIR__.'/app/Day.php';
