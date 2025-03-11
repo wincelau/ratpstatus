@@ -75,4 +75,18 @@ class View {
 
         return $label;
     }
+
+    public static function formatDuration($nbMinutes) {
+        if($nbMinutes < 60) {
+
+            return sprintf("%d min", $nbMinutes);
+        }
+
+        if($nbMinutes < 1440) {
+
+            return sprintf("%d h", round($nbMinutes / 60));
+        }
+
+        return sprintf("%d j", round($nbMinutes / 1440));
+    }
 }

@@ -56,7 +56,7 @@ abstract class Period
                 $a['average_duration'] = round($a['total_duration'] / $a['count']);
                 $a['average_duration_bloquant'] = round($a['total_duration_bloquant'] / $a['count']);
                 return $a;}, $motifsLigne);
-            uasort($motifs[$ligne], function($a, $b) { return $a['count'] < $b['count']; });
+            uasort($motifs[$ligne], function($a, $b) { return $a['total_duration'] < $b['total_duration']; });
         }
 
         uksort($motifs, function($a, $b) use ($mode) {
