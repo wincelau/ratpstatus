@@ -77,12 +77,12 @@ class View {
     }
 
     public static function formatDuration($nbMinutes) {
-        if($nbMinutes < 60) {
+        if($nbMinutes < 180) {
 
             return sprintf("%d min", $nbMinutes);
         }
 
-        if($nbMinutes < 1440) {
+        if($nbMinutes < 2880) {
 
             return sprintf("%d h", round($nbMinutes / 60));
         }
