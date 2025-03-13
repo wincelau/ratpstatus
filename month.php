@@ -136,7 +136,7 @@ $wblock = 4;
                 </tr>
             </tbody>
         </table>
-        <h3>Motifs des incidents</h3>
+        <h3>Origines des incidents</h3>
         <?php include(__DIR__.'/templates/_motifs.php') ?>
     </div>
     <?php endforeach; ?>
