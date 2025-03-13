@@ -115,7 +115,7 @@ $wblock = 4;
     <?php include(__DIR__.'/templates/_navLignes.php') ?>
     <?php foreach($motifs as $ligne => $motifsLigne): ?>
     <div id="liste_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="<?php if($ligne != "TOTAL"): ?>display: none;<?php endif; ?>" class="liste_ligne">
-        <h3>Résumé</h3>
+        <!-- <h3>Résumé</h3>
         <table>
             <tbody>
                 <tr>
@@ -135,7 +135,7 @@ $wblock = 4;
                     <td style="width: 180px; text-align: center;"><?php if($statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['TX']): ?><?php echo View::formatDuration($statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['TX']) ?><?php else: ?><small>Aucun</small><?php endif; ?></td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
         <h3>Origines des incidents</h3>
         <?php include(__DIR__.'/templates/_motifs.php') ?>
     </div>
