@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         modalHelp.close();
     }
 
-    if(modalList && modalListTab && document.location.hash.indexOf("#incidents_") == 0) {
+    if(modalList && modalListTab && document.location.hash.indexOf("#incidents_") === 0) {
       document.querySelectorAll('.liste_ligne').forEach(function(item) {
         item.style.display = 'none';
       });

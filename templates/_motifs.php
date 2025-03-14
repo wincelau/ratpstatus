@@ -2,9 +2,9 @@
 
 <p style="color: black;">
 <?php if($ligne == "TOTAL"): ?><?php echo Config::getModeLibelles()[$mode] ?> <small>(toutes les lignes)</small><?php else: ?><img height="14" src="<?php echo Config::getLignes()[$mode][$ligne] ?>" alt="<?php echo $ligne ?>" /> <?php echo $ligne; ?><?php endif ?><br style="margin-bottom: 5px" />
-📅 <?php echo $period->getDateStartLabel(); ?> <br style="margin-bottom: 20px" />
+📅 <?php echo $period->getDateStartLabel(); ?> <br style="margin-bottom: 10px" />
 📊 <?php echo $statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]["pourcentages"]["OK"] ?>% du temps sans perturbation<br style="margin-bottom: 5px" />
-🧮 <?php echo $motifs[$ligne]["TOTAL"]['count'] ?> incidents<br style="margin-bottom: 20px"  />
+🧮 <?php echo $motifs[$ligne]["TOTAL"]['count'] ?> incidents<br style="margin-bottom: 10px"  />
 ⌛ <?php echo View::formatDuration($statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['PB'] + $statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['BQ']) ?> de perturbations <small>(hors travaux)</small><br style="margin-bottom: 5px" />
 🟥 <?php echo View::formatDuration($statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['BQ']) ?> de blocage ou interruption<br style="margin-bottom: 5px" />
 🚧 <?php echo View::formatDuration($statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['TX']) ?> de travaux<br style="margin-bottom: 10px" />
