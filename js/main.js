@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   });
 
   document.querySelector('#lignes').addEventListener('click', function(e) {
-      if(e.target.closest('.ligne')) {
+      if((!e.target.closest('a') || !e.target.closest('a').href) && e.target.closest('.ligne')) {
           document.location.hash = e.target.closest('.ligne').querySelector('.logo a').hash;
       }
   })
