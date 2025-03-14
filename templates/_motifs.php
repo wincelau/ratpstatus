@@ -10,7 +10,7 @@
 🚧 <?php echo View::formatDuration($statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['TX']) ?> de travaux<br style="margin-bottom: 10px" />
 <small style="color: #777; font-style: italic;">L'état étant suivi toutes les 2 minutes, un écart de quelques minutes peut être constaté par rapport aux heures relevées dans les incidents.</small>
 </p>
-<h3>Origines</h3>
+<h3 style="margin-top: 20px; margin-bottom: 0px;">Origines</h3>
 <table>
     <thead>
         <tr>
