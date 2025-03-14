@@ -333,6 +333,20 @@ class Day extends Period
         return json_encode($json, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
     }
 
+    public function fopenIncidentsCsvFile() {
+        $handle = fopen("php://memory", "rw");
+        fwrite($handle, $this->toCsvIncidents());
+        rewind($handle);
+        return $handle;
+    }
+
+    public function fopenStatutsCsvFile() {
+        $handle = fopen("php://memory", "rw");
+        fwrite($handle, $this->toCsvStatuts());
+        rewind($handle);
+        return $handle;
+    }
+
     public function toCsvIncidents() {
         $csv = "date journee;mode;ligne;date de début de l'incident;date de fin de l'incident;duree incident total (minutes);duree perturbation total (minutes);duree blocage total (minutes);duree travaux total (minutes);origine incident;index evenement;date de début evenement;date de fin evenement;duree evenement total (minutes);statut evenement;origine evenement;titre evenement;message evenement;id incident;id evenement\n";
         foreach(Config::getLignes() as $mode => $lignes) {
@@ -365,7 +379,7 @@ class Day extends Period
                 }
             }
         }
-        echo $csv;
+        return $csv;
     }
 
     public function toCsvStatuts() {
@@ -383,7 +397,7 @@ class Day extends Period
                         continue;
                     }
                     if($dateStart && $statut) {
-                        $csv .= $this->getDateStart()->format('Y-m-d').";".$mode.";".$ligne.";".$dateStart->format('Y-m-d H:i:s').";".(clone $date)->modify('-1 second')->format('Y-m-d H:i:s').";".$statut.";".$infos."\n";
+                        $csv .= $this->getDateStart()->format('Y-m-d').";".$mode.";".$ligne.";".$dateStart->format('Y-m-d H:i:s').";".(clone $date)->format('Y-m-d H:i:s').";".$statut.";".$infos."\n";
                     }
                     if(in_array($newStatut, ['NO', 'E'])) {
                         $statut = null;

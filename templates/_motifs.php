@@ -1,3 +1,16 @@
+<h3>Résumé</h3>
+
+<p style="color: black;">
+📊 <?php echo $statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]["pourcentages"]["OK"] ?>% du temps sans perturbation<br style="margin-bottom: 5px" />
+🧮 <?php echo $motifs[$ligne]["TOTAL"]['count'] ?> incidents<br style="margin-bottom: 5px"  />
+⌛ <?php echo View::formatDuration($statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['PB'] + $statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['BQ']) ?> de perturbations <br style="margin-bottom: 5px" />
+🟥 <?php echo View::formatDuration($statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['BQ']) ?> de blocage ou interruption<br style="margin-bottom: 5px" />
+🚧 <?php echo View::formatDuration($statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['TX']) ?> de travaux
+<br />
+<br />
+<small style="color: #777; font-style: italic;">L'état étant suivi toutes les 2 minutes, un écart de quelques minutes peut être constaté par rapport aux heures relevées dans les incidents et le bilan par origine.</small>
+</p>
+<h3>Origines</h3>
 <table>
     <thead>
         <tr>

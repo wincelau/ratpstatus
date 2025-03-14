@@ -21,9 +21,17 @@ abstract class Period
         return $this->getDateStart()->format($this->getDateFormat());
     }
 
+    public function fopenIncidentsCsvFile() {
+        return fopen(__DIR__.'/../datas/export/historique_incidents.csv', 'r');
+    }
+
+    public function fopenStatutsCsvFile() {
+        return fopen(__DIR__.'/../datas/export/historique_statuts.csv', 'r');
+    }
+
     public function getMotifs($mode) {
         $motifs = [];
-        $handle = fopen(__DIR__.'/../datas/export/historique_incidents.csv', "r");
+        $handle = $this->fopenIncidentsCsvFile();
         while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
             if(strpos($data[0], 'date') === 0) {
                 continue;
@@ -78,7 +86,7 @@ abstract class Period
     }
 
     public function getStatuts($mode) {
-        $handle = fopen(__DIR__.'/../datas/export/historique_statuts.csv', "r");
+        $handle = $this->fopenStatutsCsvFile();
 
         $statuts = [];
         while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {

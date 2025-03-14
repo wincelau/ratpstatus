@@ -115,28 +115,6 @@ $wblock = 4;
     <?php include(__DIR__.'/templates/_navLignes.php') ?>
     <?php foreach($motifs as $ligne => $motifsLigne): ?>
     <div id="liste_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="<?php if($ligne != "TOTAL"): ?>display: none;<?php endif; ?>" class="liste_ligne">
-        <!-- <h3>Résumé</h3>
-        <table>
-            <tbody>
-                <tr>
-                    <td>Période sans aucune perturbation</td>
-                    <td style="width: 180px; text-align: center;"><?php echo $statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]["pourcentages"]["OK"] ?>% du temps</td>
-                </tr>
-                <tr>
-                    <td>Nombre d'incidents</td>
-                    <td style="width: 180px; text-align: center;"><?php echo $motifs[$ligne]["TOTAL"]['count'] ?> incidents</td>
-                </tr>
-                <tr>
-                    <td>Durée des perturbations</td>
-                    <td style="width: 180px; text-align: center;"><?php echo View::formatDuration($statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['PB'] + $statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['BQ']) ?><small> dont <?php echo View::formatDuration($statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['BQ']) ?><i class="bq"></i></small></td>
-                </tr>
-                <tr>
-                    <td>Durée des travaux</td>
-                    <td style="width: 180px; text-align: center;"><?php if($statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['TX']): ?><?php echo View::formatDuration($statuts[($ligne == "TOTAL") ? "total" : $ligne]["total"]['minutes']['TX']) ?><?php else: ?><small>Aucun</small><?php endif; ?></td>
-                </tr>
-            </tbody>
-        </table> -->
-        <h3>Origines des incidents</h3>
         <?php include(__DIR__.'/templates/_motifs.php') ?>
     </div>
     <?php endforeach; ?>
