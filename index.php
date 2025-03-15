@@ -59,29 +59,30 @@
 <h2><?php echo Config::getModeLibelles()[$mode] ?> - Incidents du <?php echo $day->getDateStart()->format("d/m/Y"); ?></h2>
 <?php include(__DIR__.'/templates/_navLignes.php') ?>
 <?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isInProgress();}) ?>
-<?php if(count($disruptions)): ?>
+<?php if($day->isToday()): ?>
 <h3 id="title_disruptions_inprogress">En cours <span class="badge hide">0 incidents</span></h3>
 <div id="disruptions_inprogress">
 <?php foreach($disruptions as $disruption): ?>
 <?php include(__DIR__.'/_disruption.php') ?>
 <?php endforeach; ?>
+<p id="sentence_nothing_disruptions" class="hide">Il n'y a aucun incident</p>
 </div>
 <?php endif; ?>
-<?php foreach($motifs as $ligne => $motifsLigne): ?>
+<?php foreach($statuts as $ligne => $statusLigne): ?>
+<?php $ligne = str_replace("total", "TOTAL", $ligne); ?>
+<?php $motifsLigne = $motifs[$ligne]; ?>
 <div id="liste_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="<?php if($ligne != "TOTAL"): ?>display: none;<?php endif; ?>; margin-bottom: 30px;" class="liste_ligne">
     <?php include(__DIR__.'/templates/_motifs.php') ?>
 </div>
 <?php endforeach; ?>
 <?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isPast();}); ?>
-<?php if(count($disruptions)): ?>
 <h3 id="title_disruptions_finishes">Terminés <span class="badge hide">0 incidents</span></h3>
 <div id="disruptions_finishes">
 <?php foreach($disruptions as $disruption): ?>
 <?php include(__DIR__.'/_disruption.php') ?>
 <?php endforeach; ?>
+<p id="sentence_nothing_disruptions_finish" class="hide">Il n'y a aucun incident</p>
 </div>
-<?php endif; ?>
-<p id="sentence_nothing_disruptions" class="hide">Il n'y a aucun incident en cours ou terminé</p>
 </dialog>
 <dialog id="modalHelp">
     <?php include(__DIR__.'/templates/_help.php') ?>

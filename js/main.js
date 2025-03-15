@@ -155,8 +155,9 @@ function filtreListeDisruption(ligneId = null) {
     document.querySelector('#listModal #title_disruptions_inprogress span.badge').innerText = nbIncidentsInProgress+' incidents';
     document.querySelector('#listModal #title_disruptions_inprogress span.badge').classList.remove('hide')
     document.querySelector('#listModal #title_disruptions_inprogress').classList.remove('hide');
+    document.querySelector('#listModal #sentence_nothing_disruptions').classList.add('hide');
     if(!nbIncidentsInProgress) {
-      document.querySelector('#listModal #title_disruptions_inprogress').classList.add('hide');
+      document.querySelector('#listModal #sentence_nothing_disruptions').classList.remove('hide');
     }
   }
   if(document.querySelector('#listModal #title_disruptions_finishes')) {
@@ -164,14 +165,9 @@ function filtreListeDisruption(ligneId = null) {
     document.querySelector('#listModal #title_disruptions_finishes span.badge').classList.remove('hide')
     document.querySelector('#listModal #title_disruptions_finishes span.badge').innerText = nbIncidentsFinish+' incidents';
     document.querySelector('#listModal #title_disruptions_finishes').classList.remove('hide');
+    document.querySelector('#listModal #sentence_nothing_disruptions_finish').classList.add('hide');
     if(!nbIncidentsFinish) {
-      document.querySelector('#listModal #title_disruptions_finishes').classList.add('hide');
-    }
-  }
-  if(document.querySelector('#listModal #sentence_nothing_disruptions')) {
-    document.querySelector('#listModal #sentence_nothing_disruptions').classList.add('hide');
-    if(!document.querySelectorAll('#listModal .disruption:not(.hide)').length) {
-      document.querySelector('#listModal #sentence_nothing_disruptions').classList.remove('hide');
+      document.querySelector('#listModal #sentence_nothing_disruptions_finish').classList.remove('hide');
     }
   }
 }
