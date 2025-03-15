@@ -70,10 +70,12 @@
 <?php endif; ?>
 <?php foreach($statuts as $ligne => $statusLigne): ?>
 <?php $ligne = str_replace("total", "TOTAL", $ligne); ?>
+<?php if(isset($motifs[$ligne])): ?>
 <?php $motifsLigne = $motifs[$ligne]; ?>
 <div id="liste_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="<?php if($ligne != "TOTAL"): ?>display: none;<?php endif; ?>; margin-bottom: 30px;" class="liste_ligne">
     <?php include(__DIR__.'/templates/_motifs.php') ?>
 </div>
+<?php endif; ?>
 <?php endforeach; ?>
 <?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isPast();}); ?>
 <h3 id="title_disruptions_finishes">Terminés <span class="badge hide">0 incidents</span></h3>
