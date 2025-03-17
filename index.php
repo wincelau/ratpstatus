@@ -72,9 +72,9 @@
 <?php $ligne = str_replace("total", "TOTAL", $ligne); ?>
 <?php if(isset($motifs[$ligne])): ?>
 <?php $motifsLigne = $motifs[$ligne]; ?>
-<div id="liste_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="<?php if($ligne != "TOTAL"): ?>display: none;<?php endif; ?>; margin-bottom: 30px;" class="liste_ligne">
+<!--<div id="liste_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="<?php if($ligne != "TOTAL"): ?>display: none;<?php endif; ?>; margin-bottom: 30px;" class="liste_ligne">
     <?php include(__DIR__.'/templates/_motifs.php') ?>
-</div>
+</div>-->
 <?php endif; ?>
 <?php endforeach; ?>
 <?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isPast();}); ?>
