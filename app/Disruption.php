@@ -243,7 +243,7 @@ class Disruption
                 if($this->getRelatedDisruption() && $this->getRelatedDisruption()->getId() == $disruption->getId()) {
                     continue;
                 }
-                if($this->isInSameTime($disruption) && $this->getOrigine() == $disruption->getOrigine()) {
+                if($this->getOrigine() == $disruption->getOrigine() && $this->isInSameTime($disruption, 15)) {
                     $disruption->setRelatedDisruption($this->getRelatedDisruption() ? $this->getRelatedDisruption() : $this);
                     $this->relatedDisruptions[$disruption->getId()] = $disruption;
                     $this->relatedDisruptions = array_merge($this->relatedDisruptions, $disruption->getRelatedDisruptions());
@@ -254,9 +254,12 @@ class Disruption
         return $this->relatedDisruptions;
     }
 
-    public function isInSameTime($disruption) {
+    public function isInSameTime($disruption, $margeMinute = 0) {
         $dateStart = clone $this->getDateStart();
         $dateEnd = clone $this->getDateEnd();
+
+        $dateStart->modify('-'.$margeMinute.' minutes');
+        $dateEnd->modify('+'.$margeMinute.' minutes');
 
         if($dateStart >= $disruption->getDateStart() && $dateStart <= $disruption->getDateEnd()) {
 
