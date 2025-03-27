@@ -22,7 +22,14 @@ class Line
     }
 
     public function getDisruptions() {
-        return $this->disruptions;
+        $disruptions = [];
+        foreach($this->disruptions as $key => $disruption) {
+            if($disruption->getRelatedDisruption()) {
+                continue;
+            }
+            $disruptions[$key] = $disruption;
+        }
+        return $disruptions;
     }
 
     public function findDisruption($impact) {

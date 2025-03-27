@@ -7,6 +7,8 @@ class Disruption
     protected $id;
     protected $dateDayStart;
     protected $ligne;
+    protected $relatedDisruption = null;
+    protected $relatedDisruptions = null;
 
     public function __construct($id, $dateDayStart, $ligne) {
         $this->id = $id;
@@ -37,8 +39,14 @@ class Disruption
     }
 
     public function getDateEnd() {
+        $impacts = $this->impacts;
+
+        if(!is_null($this->impacts_optimized)) {
+            $impacts = $this->impacts_optimized;
+        }
+
         $dateEnd = null;
-        foreach($this->impacts as $i) {
+        foreach($impacts as $i) {
             if($i->getDateEnd() > $dateEnd) {
                 $dateEnd = $i->getDateEnd();
             }
@@ -48,10 +56,16 @@ class Disruption
     }
 
     public function getDateStart() {
-        return end($this->impacts)->getDateStart();
+        $impacts = $this->impacts;
+
+        if(!is_null($this->impacts_optimized)) {
+            $impacts = $this->impacts_optimized;
+        }
+
+        return end($impacts)->getDateStart();
 
         $dateStart = null;
-        foreach($this->impacts as $i) {
+        foreach($impacts as $i) {
             if(!$dateStart || $i->getDateStart() < $dateStart) {
                 $dateStart = $i->getDateStart();
             }
@@ -115,7 +129,11 @@ class Disruption
     }
 
     public function getOrigine() {
-        $impacts = $this->getImpactsOptimized();
+        $impacts = $this->impacts;
+
+        if(!is_null($this->impacts_optimized)) {
+            $impacts = $this->impacts_optimized;
+        }
 
         if(end($impacts)) {
 
@@ -199,9 +217,63 @@ class Disruption
     public function getImpactsOptimized() {
         if(is_null($this->impacts_optimized)) {
             $this->optimize();
+            foreach($this->getRelatedDisruptions() as $disruption) {
+                foreach($disruption->getImpactsOptimized() as $key => $impact) {
+                    $this->impacts_optimized[$key] = $impact;
+                }
+            }
+            uasort($this->impacts_optimized, function($a, $b) { return $a->getDateStart() < $b->getDateStart();  });
         }
 
         return $this->impacts_optimized;
+    }
+    public function getRelatedDisruption() {
+        return $this->relatedDisruption;
+    }
+    public function setRelatedDisruption($disruption) {
+        $this->relatedDisruption = $disruption;
+    }
+    public function getRelatedDisruptions() {
+        if(is_null($this->relatedDisruptions)) {
+            $this->relatedDisruptions = [];
+            foreach($this->getLigne()->getDisruptions() as $disruption) {
+                if($disruption->getId() == $this->getId()) {
+                    continue;
+                }
+                if($this->getRelatedDisruption() && $this->getRelatedDisruption()->getId() == $disruption->getId()) {
+                    continue;
+                }
+                if($this->isInSameTime($disruption) && $this->getOrigine() == $disruption->getOrigine()) {
+                    $disruption->setRelatedDisruption($this->getRelatedDisruption() ? $this->getRelatedDisruption() : $this);
+                    $this->relatedDisruptions[$disruption->getId()] = $disruption;
+                    $this->relatedDisruptions = array_merge($this->relatedDisruptions, $disruption->getRelatedDisruptions());
+                }
+            }
+        }
+
+        return $this->relatedDisruptions;
+    }
+
+    public function isInSameTime($disruption) {
+        $dateStart = clone $this->getDateStart();
+        $dateEnd = clone $this->getDateEnd();
+
+        if($dateStart >= $disruption->getDateStart() && $dateStart <= $disruption->getDateEnd()) {
+
+            return true;
+        }
+
+        if($dateEnd >= $disruption->getDateStart() && $dateEnd <= $disruption->getDateEnd()) {
+
+            return true;
+        }
+
+        if($dateStart <= $disruption->getDateStart() && $dateEnd >= $disruption->getDateEnd()) {
+
+            return true;
+        }
+
+        return false;
     }
 
     public function getImpactsInPeriod($date) {
