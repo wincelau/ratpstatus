@@ -81,7 +81,11 @@ class Disruption
     public function getDuration() {
         $intervales = [];
         foreach($this->getImpactsOptimized() as $i) {
-            $intervales[] = ['start' => $i->getDateStart()->format('Y-m-d H:i:s'), 'end' => $i->getDateEnd()->format('Y-m-d H:i:s')];
+            $dateEnd = $i->getDateEnd();
+            if($i->getDateEnd() > new DateTime()) {
+               $dateEnd = new DateTime();
+            }
+            $intervales[] = ['start' => $i->getDateStart()->format('Y-m-d H:i:s'), 'end' => $dateEnd->format('Y-m-d H:i:s')];
         }
 
         return self::calculateTotalDuration($intervales);
@@ -103,7 +107,11 @@ class Disruption
             if($i->getColorClass() != $statut) {
                 continue;
             }
-            $intervales[] = ['start' => $i->getDateStart()->format('Y-m-d H:i:s'), 'end' => $i->getDateEnd()->format('Y-m-d H:i:s')];
+            $dateEnd = $i->getDateEnd();
+            if($i->getDateEnd() > new DateTime()) {
+               $dateEnd = new DateTime();
+            }
+            $intervales[] = ['start' => $i->getDateStart()->format('Y-m-d H:i:s'), 'end' => $dateEnd->format('Y-m-d H:i:s')];
         }
 
         return Impact::generateDurationMinutes(self::calculateTotalDuration($intervales));
