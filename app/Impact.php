@@ -397,8 +397,11 @@ class Impact
     }
 
     public function getDuration() {
-
-        return Disruption::calculateTotalDuration([['start' => $this->getDateStart()->format('Y-m-d H:i:s'), 'end' => $this->getDateEnd()->format('Y-m-d H:i:s')]]);
+        $dateEnd = $this->getDateEnd();
+        if($this->getDateEnd() > new DateTime()) {
+           $dateEnd = new DateTime();
+        }
+        return Disruption::calculateTotalDuration([['start' => $this->getDateStart()->format('Y-m-d H:i:s'), 'end' => $dateEnd->format('Y-m-d H:i:s')]]);
     }
 
     public static function generateDurationText($second) {
