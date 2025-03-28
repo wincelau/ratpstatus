@@ -79,14 +79,12 @@ class Disruption
     }
 
     public function getDuration() {
-        $dateEnd = $this->getDateEnd();
-
-        if($this->getDateEnd() > new DateTime()) {
-
-            $dateEnd = new DateTime();
+        $intervales = [];
+        foreach($this->getImpactsOptimized() as $i) {
+            $intervales[] = ['start' => $i->getDateStart()->format('Y-m-d H:i:s'), 'end' => $i->getDateEnd()->format('Y-m-d H:i:s')];
         }
 
-        return $dateEnd->diff($this->getDateStart());
+        return self::calculateTotalDuration($intervales);
     }
 
     public function getDurationText() {
@@ -100,32 +98,48 @@ class Disruption
     }
 
     public function getDurationStatutMinutes($statut) {
-        $dateStart = null;
-        $dateEnd = null;
-        $impacts = [];
+        $intervales = [];
         foreach($this->getImpactsOptimized() as $i) {
             if($i->getColorClass() != $statut) {
                 continue;
             }
-            $impacts[] = $i;
+            $intervales[] = ['start' => $i->getDateStart()->format('Y-m-d H:i:s'), 'end' => $i->getDateEnd()->format('Y-m-d H:i:s')];
         }
-        $dateStart = null;
-        $dateEnd = null;
-        $minutes = null;
-        usort($impacts, function($a, $b) { return $a->getDurationMinutes() < $b->getDurationMinutes(); });
-        foreach($impacts as $i) {
-            if($dateStart >= $i->getDateStart() && $dateStart <= $i->getDateEnd()) {
-                continue;
-            }
-            $minutes += $i->getDurationMinutes();
-            if(!$dateStart || $i->getDateStart() < $dateStart) {
-                $dateStart = $i->getDateStart();
-            }
-            if(!$dateEnd ||  $i->getDateEnd() > $dateEnd) {
-                $dateEnd = $i->getDateEnd();
+
+        return Impact::generateDurationMinutes(self::calculateTotalDuration($intervales));
+    }
+
+    public static function calculateTotalDuration($intervalles) {
+        if (empty($intervalles)) return 0;
+
+        // Trier les intervalles par date de début
+        usort($intervalles, function($a, $b) {
+            return strtotime($a['start']) - strtotime($b['start']);
+        });
+
+        $fusionnes = [];
+        $intervalleCourant = $intervalles[0];
+
+        foreach ($intervalles as $intervalle) {
+            if (strtotime($intervalle['start']) <= strtotime($intervalleCourant['end'])) {
+                // Fusionner les intervalles qui se chevauchent
+                $intervalleCourant['end'] = max($intervalleCourant['end'], $intervalle['end']);
+            } else {
+                // Ajouter l'intervalle fusionné et commencer un nouveau
+                $fusionnes[] = $intervalleCourant;
+                $intervalleCourant = $intervalle;
             }
         }
-        return $minutes;
+        // Ajouter le dernier intervalle fusionné
+        $fusionnes[] = $intervalleCourant;
+
+        // Calculer la durée totale
+        $dureeTotale = 0;
+        foreach ($fusionnes as $intervalle) {
+            $dureeTotale += strtotime($intervalle['end']) - strtotime($intervalle['start']);
+        }
+
+        return $dureeTotale; // Durée en secondes
     }
 
     public function getOrigine() {

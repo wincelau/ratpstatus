@@ -397,19 +397,13 @@ class Impact
     }
 
     public function getDuration() {
-        $dateEnd = $this->getDateEnd();
 
-        if($this->getDateEnd() > new DateTime()) {
-
-            $dateEnd = new DateTime();
-        }
-
-        return $dateEnd->diff($this->getDateStart());
+        return Disruption::calculateTotalDuration([['start' => $this->getDateStart()->format('Y-m-d H:i:s'), 'end' => $this->getDateEnd()->format('Y-m-d H:i:s')]]);
     }
 
-    public static function generateDurationText(DateInterval $duration) {
-        $nbMinutes = ($duration->d * 24 * 60) + ($duration->h * 60) + $duration->i;
-        $nbHours = ($duration->d * 24) + ($duration->h);
+    public static function generateDurationText($second) {
+        $nbMinutes = round($second / 60);
+        $nbHours = round($second / 3600);
 
         if($nbMinutes < 180) {
 
@@ -419,9 +413,14 @@ class Impact
         return sprintf("%d h", $nbHours);
     }
 
-    public static function generateDurationMinutes(DateInterval $duration) {
+    public static function generateDurationMinutes($second) {
+        $nbMinutes = round($second / 60, 2);
 
-        return ($duration->d * 24 * 60) + ($duration->h * 60) + $duration->i + round($duration->s / 60, 2);
+        if(!$nbMinutes) {
+            return null;
+        }
+
+        return $nbMinutes;
     }
 
     public function getDurationText() {
