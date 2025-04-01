@@ -1,4 +1,6 @@
 <?php require __DIR__.'/day.php'; ?>
+<?php $statuts = $period->getStatuts($mode); ?>
+<?php $motifs = $period->getMotifs($mode); ?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
 <head>
