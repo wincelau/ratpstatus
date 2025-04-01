@@ -37,9 +37,6 @@ if(isset($cacheFile) && file_exists($cacheFile) && !getenv('RESETCACHE')) {
 
 $period = &$day;
 
-$statuts = $period->getStatuts($mode);
-$motifs = $period->getMotifs($mode);
-
 $pourcentages = $day->getPourcentages($mode);
 $statutsCount = $day->getCurrentStatutsCount($mode);
 
