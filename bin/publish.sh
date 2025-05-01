@@ -7,6 +7,8 @@ if test $1; then
     currentdate=$1
 fi
 
+git sparse-checkout set --no-cone '/*' '!/datas/json/' "/datas/json/$currentdate"
+
 mkdir static/$currentdate 2> /dev/null
 
 USECACHE=1 RESETCACHE=1 php index.php $currentdate metros > static/$currentdate/metros.html.tmp

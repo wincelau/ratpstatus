@@ -1,6 +1,6 @@
 #!/bin/bash
 
-find datas/json/[0-9]* -type d | grep -E "datas/json/[0-9]{8}" | cut -d "/" -f 3 | sort -r | while read day; do bash bin/publish.sh $day 1; done
+find static/[0-9]* -type d | grep -E "static/[0-9]{8}" | cut -d "/" -f 2 | sort -r | while read day; do bash bin/publish.sh $day 1; done
 
 mkdir datas/export 2> /dev/null
 
