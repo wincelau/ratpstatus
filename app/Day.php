@@ -145,7 +145,11 @@ class Day extends Period
 
     protected function getDistruptionsFiles() {
         $files = [];
-        foreach(glob("{".__DIR__."/../datas/json/*.json,".__DIR__."/../datas/json/*/*.json}", GLOB_BRACE) as $file) {
+        $previousFilesize = null;
+        foreach(glob("{".__DIR__."/../datas/json/*/*.json,".__DIR__."/../datas/json/*/*.json.gz}", GLOB_BRACE) as $file) {
+            if($previousFilesize && filesize($file) == $previousFilesize) {
+                //continue;
+            }
             $dateFile = DateTime::createFromFormat('YmdHis', explode('_', basename($file))[0]);
             if($dateFile < $this->getDateStart()) {
                 continue;
@@ -154,6 +158,7 @@ class Day extends Period
                 continue;
             }
             $files[$dateFile->format('YmdHis')] = $file;
+            $previousFilesize = filesize($file);
         }
 
         ksort($files);

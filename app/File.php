@@ -10,7 +10,11 @@ class File
     public function __construct($filePath) {
         $this->filePath = $filePath;
         $this->filename = basename($filePath);
-        $this->data = json_decode(file_get_contents($filePath));
+        $fileContent = file_get_contents($filePath);
+        if(strpos($filePath, '.gz') !== false) {
+            $fileContent = gzdecode($fileContent);
+        }
+        $this->data = json_decode($fileContent);
         if(is_null($this->data) || is_null($this->data->disruptions)) {
             return;
         }
@@ -39,7 +43,7 @@ class File
 
     public function getDate() {
 
-        return new DateTime(preg_replace("/^([0-9]{8})/", '\1T', preg_replace("/_.*.json/", "", $this->filename)));
+        return new DateTime(preg_replace("/^([0-9]{8})/", '\1T', preg_replace("/_.*.json(.gz|)/", "", $this->filename)));
     }
 
     public function getLastUpdatedDate() {
