@@ -1,6 +1,6 @@
 #!/bin/bash
 
-find static/[0-9]* -type d | grep -E "static/[0-9]{8}" | cut -d "/" -f 2 | sort -r | while read day; do bash bin/publish.sh $day 1; done
+git ls-tree --name-only main datas/json/ | cut -d "/" -f 3 | sort -r | while read day; do bash bin/publish.sh $day; done
 
 mkdir datas/export 2> /dev/null
 
