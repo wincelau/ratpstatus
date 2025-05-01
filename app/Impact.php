@@ -347,11 +347,13 @@ class Impact
             return true;
         }
 
-        if($this->getSuggestionType() == self::TYPE_AUCUNE) {
+        $suggestionType = $this->getSuggestionType();
+
+        if($suggestionType == self::TYPE_AUCUNE) {
             return true;
         }
 
-        if($this->getSuggestionType() == self::TYPE_CHANGEMENT_HORAIRES) {
+        if($suggestionType == self::TYPE_CHANGEMENT_HORAIRES) {
             return true;
         }
 

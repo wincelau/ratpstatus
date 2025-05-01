@@ -7,6 +7,8 @@ class File
     protected $filename = null;
     protected $impacts = [];
 
+    public static $impactsIdExclude = [];
+
     public function __construct($filePath) {
         $this->filePath = $filePath;
         $this->filename = basename($filePath);
@@ -29,10 +31,15 @@ class File
                     }
                 }
             }
-            $impact = new Impact($dataDistruption, $this);
-            if($impact->isToExclude()) {
+            if(array_key_exists($dataDistruption->id, self::$impactsIdExclude) && self::$impactsIdExclude[$dataDistruption->id]) {
                 continue;
             }
+            $impact = new Impact($dataDistruption, $this);
+            if(!array_key_exists($dataDistruption->id, self::$impactsIdExclude) && $impact->isToExclude()) {
+                self::$impactsIdExclude[$dataDistruption->id] = true;
+                continue;
+            }
+            self::$impactsIdExclude[$dataDistruption->id] = false;
             $this->impacts[$dataDistruption->id] = $impact;
         }
     }
