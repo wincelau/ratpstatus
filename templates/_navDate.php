@@ -10,7 +10,6 @@
     </optgroup>
     <?php endforeach; ?>
 </select>
-<div style="position: absolute; width: 21px; height: 29px; top: 0; right: 25px; border-left: 1px solid #e2e2e2; z-index: -1; background-color: #f2f2f2; border-radius: 0 4px 4px 0;"></div>
 <?php if($period->getDateStart()->format($period->getDateFormat()) >= date($period->getDateFormat())):?>
 <a class="disabled">➡️</a>
 <?php else: ?>
