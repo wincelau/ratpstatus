@@ -1,7 +1,7 @@
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
 <h2><a title="Voir le mois précédent" href="<?php echo View::url("/".$period->getDatePrevious()->format($period->getDateFormat())."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir la période précédente</span></a>
 <select id="select-day" style="<?php if($period->isToday()):?>font-weight: bold;<?php endif;?>" onchange="document.location.href=this.value; this.value='';" autocomplete="off">
-    <option style="display: none;" value="" selected="selected"><?php echo $period->getDateStartLabel(); ?></option>
+    <option style="display: none;" value="" selected="selected">🗓️ <?php echo $period->getDateStartLabel(); ?>&nbsp;</option>
     <?php foreach(View::getDatesChoices() as $group => $choices): ?>
     <optgroup label="<?php echo $group ?>">
     <?php foreach($choices as $dateChoiceKey => $dateChoiceLibelle): ?>
