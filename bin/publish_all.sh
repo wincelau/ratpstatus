@@ -20,6 +20,14 @@ find static/[0-9]* -type d | grep -E "static/[0-9]{8}" | cut -d "/" -f 2 | cut -
     mv static/$month/tramways.html{.tmp,}
 done
 
+mkdir static/12lastmonth 2> /dev/null
+php year.php 12lastmonth metros > static/12lastmonth/metros.html.tmp
+php year.php 12lastmonth trains > static/12lastmonth/trains.html.tmp
+php year.php 12lastmonth tramways > static/12lastmonth/tramways.html.tmp
+mv static/12lastmonth/metros.html{.tmp,}
+mv static/12lastmonth/trains.html{.tmp,}
+mv static/12lastmonth/tramways.html{.tmp,}
+
 find static/[0-9]* -type d | grep -E "static/[0-9]{8}" | cut -d "/" -f 2 | cut -c -4 | sort | uniq | sort -r | while read year; do
     mkdir static/$year 2> /dev/null
     php year.php $year metros > static/$year/metros.html.tmp
