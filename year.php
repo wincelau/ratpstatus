@@ -60,7 +60,7 @@ $wblock = 7;
 </nav>
 <?php include(__DIR__.'/templates/_navDate.php') ?>
 <nav id="nav_mode"><?php foreach(Config::getLignes() as $m => $ligne): ?><a class="<?php if($mode == $m): ?>active<?php endif; ?>" href="<?php echo View::url("/".$period->getDateStartKey()."/".$m.".html") ?>"><?php echo Config::getModeLibelles()[$m] ?></a><?php endforeach; ?></nav>
-<div class="hline"><?php foreach($dates as $date): ?><div class="ih <?php if($date->format('m') == 12): ?>ihew<?php endif; ?>"><small><span><?php if($date->format('m') == 1): ?><?php echo $date->format('Y') ?><?php endif; ?></span><?php echo View::displayDateMonthToFr($date, true) ?></small></div><?php endforeach; ?></div>
+<div class="hline"><?php $isFirst = true; foreach($dates as $date): ?><div class="ih <?php if($date->format('m') == 12): ?>ihew<?php endif; ?>"><small><span><?php if($date->format('m') == 1 || $isFirst): ?><?php echo $date->format('Y') ?><?php endif; ?></span><?php echo View::displayDateMonthToFr($date, true) ?></small></div><?php $isFirst = false; endforeach; ?></div>
 </header>
 <main role="main">
 <div id="lignes">

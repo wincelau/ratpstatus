@@ -20,6 +20,10 @@ class View {
             $script = "year.php";
         }
 
+        if($matches[1] == "12lastmonth") {
+            $script = "year.php";
+        }
+
         return $script."?".http_build_query(['date' => $matches[1], 'mode' => $matches[2]]);
     }
 
@@ -29,6 +33,9 @@ class View {
         $dates["Par jour"][$date->format('Ymd')] = "Aujourd'hui";
         $date->modify('-1 day');
         $dates["Par jour"][$date->format('Ymd')] = "Hier";
+        $date->modify('-1 day');
+        $dates["Par jour"][$date->format('Ymd')] = "Avant hier";
+        $dates["Par année"]["12lastmonth"] = "12 derniers mois";
         while($date->format('Ym') >= "202404") {
             $dates["Par année"][$date->format('Y')] = $date->format('Y');
             $dates["Par mois"][$date->format('Ym')] = self::displayDateMonthToFr($date).' '.$date->format('Y');

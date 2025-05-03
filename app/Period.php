@@ -16,6 +16,14 @@ abstract class Period
         return $this->dateStart;
     }
 
+    public function getDateEnd() {
+
+        $dateEnd = $this->getDateNext();
+        $dateEnd->modify('-1 second');
+
+        return $dateEnd;
+    }
+
     public function getDateStartKey() {
 
         return $this->getDateStart()->format($this->getDateFormat());
@@ -36,7 +44,7 @@ abstract class Period
             if(strpos($data[0], 'date') === 0) {
                 continue;
             }
-            if(strpos(str_replace("-", "", $data[0]), $this->getDateStartKey()) !== 0) {
+            if($data[0] < $this->getDateStart()->format('Y-m-d') || $data[0] > $this->getDateEnd()->format('Y-m-d')) {
                 continue;
             }
             if($data[10] != 0) {
@@ -96,7 +104,7 @@ abstract class Period
             if($data[1] != $mode) {
                 continue;
             }
-            if(strpos(str_replace('-', '', $data[0]), $this->getDateStartKey()) !== 0) {
+            if($data[0] < $this->getDateStart()->format('Y-m-d') || $data[0] > $this->getDateEnd()->format('Y-m-d')) {
                 continue;
             }
             $dateStart = new DateTime($data[3]);

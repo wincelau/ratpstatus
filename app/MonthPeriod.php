@@ -3,7 +3,7 @@
 class MonthPeriod extends Period
 {
     public function __construct($date) {
-        $this->dateStart = DateTime::createFromFormat("Ymd", $date.'01');
+        $this->dateStart = DateTime::createFromFormat("YmdHis", $date.'01000000');
     }
 
     public function getDateFormat() {
