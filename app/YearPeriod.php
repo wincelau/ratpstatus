@@ -17,6 +17,14 @@ class YearPeriod extends Period
         $this->dateStart = DateTime::createFromFormat("YmdHis", $date.'000000');
     }
 
+    public function isToday() {
+        if($this->key == "12derniersmois") {
+            return true;
+        }
+
+        return parent::isToday();
+    }
+
     public function getDateFormat() {
 
         return 'Y';
