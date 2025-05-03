@@ -1,6 +1,6 @@
 <h1><span class="mobile_hidden">Suivi de l'état du trafic<span> des transports IDF</span></span><span class="mobile_visible">État du trafic</span></h1>
 <h2>
-<?php if($period->getDateStartKey() == '12lastmonth'):?>
+<?php if($period->getDateStartKey() == '12derniersmois'):?>
 <a class="disabled">⬅️</a>
 <?php else: ?>
 <a title="Voir le mois précédent" href="<?php echo View::url("/".$period->getDatePrevious()->format($period->getDateFormat())."/".$mode.".html") ?>">⬅️<span class="visually-hidden">Voir la période précédente</span></a>
@@ -15,7 +15,7 @@
     </optgroup>
     <?php endforeach; ?>
 </select>
-<?php if($period->getDateStart()->format($period->getDateFormat()) >= date($period->getDateFormat()) || $period->getDateStartKey() == '12lastmonth'):?>
+<?php if($period->getDateStart()->format($period->getDateFormat()) >= date($period->getDateFormat()) || $period->getDateStartKey() == '12derniersmois'):?>
 <a class="disabled">➡️</a>
 <?php else: ?>
 <a title="Voir le jour suivant" href="<?php echo View::url("/".$period->getDateNext()->format($period->getDateFormat())."/".$mode.".html") ?>">➡️<span class="visually-hidden">Voir la période suivante</span></a><?php

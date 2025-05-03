@@ -5,12 +5,12 @@ class YearPeriod extends Period
     protected $key = null;
 
     public function __construct($date) {
-        if($date == '12lastmonth') {
+        if($date == '12derniersmois') {
             $date = new DateTime();
             $date->modify('first day of this month');
             $date->modify('-1 year');
             $date = $date->format('Ymd');
-            $this->key = "12lastmonth";
+            $this->key = "12derniersmois";
         } else {
             $date .= '0101';
         }
@@ -32,7 +32,7 @@ class YearPeriod extends Period
     }
 
     public function getDateStartLabel() {
-        if($this->key == "12lastmonth") {
+        if($this->key == "12derniersmois") {
 
             return "12 dern mois";
         }

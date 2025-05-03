@@ -20,7 +20,7 @@ class View {
             $script = "year.php";
         }
 
-        if($matches[1] == "12lastmonth") {
+        if($matches[1] == "12derniersmois") {
             $script = "year.php";
         }
 
@@ -35,7 +35,7 @@ class View {
         $dates["Par jour"][$date->format('Ymd')] = "Hier";
         $date->modify('-1 day');
         $dates["Par jour"][$date->format('Ymd')] = "Avant hier";
-        $dates["Par année"]["12lastmonth"] = "12 derniers mois";
+        $dates["Par année"]["12derniersmois"] = "12 derniers mois";
         while($date->format('Ym') >= "202404") {
             $dates["Par année"][$date->format('Y')] = $date->format('Y');
             $dates["Par mois"][$date->format('Ym')] = self::displayDateMonthToFr($date).' '.$date->format('Y');
