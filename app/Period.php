@@ -18,7 +18,7 @@ abstract class Period
     public function getDateEnd() {
 
         $dateEnd = $this->getDateNext();
-        $dateEnd->modify('-1 second');
+        $dateEnd->modify('-1 day');
 
         return $dateEnd;
     }

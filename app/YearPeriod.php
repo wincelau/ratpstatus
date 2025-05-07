@@ -14,7 +14,7 @@ class YearPeriod extends Period
         } else {
             $date .= '0101';
         }
-        $this->dateStart = DateTime::createFromFormat("YmdHis", $date.'000000');
+        $this->dateStart = DateTime::createFromFormat("YmdHis", $date.'030000');
     }
 
     public function isToday() {
