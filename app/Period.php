@@ -39,7 +39,7 @@ abstract class Period
     public function getMotifs($mode) {
         $motifs = [];
         $handle = $this->fopenIncidentsCsvFile();
-        while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
+        while (($data = fgetcsv($handle, 5000, ";")) !== FALSE) {
             if(strpos($data[0], 'date') === 0) {
                 continue;
             }
@@ -53,20 +53,49 @@ abstract class Period
                 continue;
             }
 
+            if(!isset($motifs["TOTAL"]["TOTAL"]['count'])) {
+                $motifs["TOTAL"]["TOTAL"]['count'] = 0;
+            }
             $motifs["TOTAL"]["TOTAL"]['count']++;
+            if(!isset($motifs["TOTAL"][$data[9]]['count'])) {
+                $motifs["TOTAL"][$data[9]]['count'] = 0;
+            }
             $motifs["TOTAL"][$data[9]]['count']++;
+            if(!isset($motifs["TOTAL"][$data[9]]['total_duration'])) {
+                $motifs["TOTAL"][$data[9]]['total_duration'] = 0;
+            }
             $motifs["TOTAL"][$data[9]]['total_duration']+=floatval($data[5]);
+            if(!isset($motifs["TOTAL"][$data[9]]['total_duration_bloquant'])) {
+                $motifs["TOTAL"][$data[9]]['total_duration_bloquant'] = 0;
+            }
             $motifs["TOTAL"][$data[9]]['total_duration_bloquant']+=floatval($data[7]);
-
+            if(!isset($motifs[$data[2]]["TOTAL"]['count'])) {
+                $motifs[$data[2]]["TOTAL"]['count'] = 0;
+            }
             $motifs[$data[2]]["TOTAL"]['count']++;
+            if(!isset($motifs[$data[2]][$data[9]]['count'])) {
+                $motifs[$data[2]][$data[9]]['count'] = 0;
+            }
             $motifs[$data[2]][$data[9]]['count']++;
+            if(!isset($motifs[$data[2]][$data[9]]['total_duration'])) {
+                $motifs[$data[2]][$data[9]]['total_duration'] = 0;
+            }
             $motifs[$data[2]][$data[9]]['total_duration']+=floatval($data[5]);
+            if(!isset($motifs[$data[2]][$data[9]]['total_duration_bloquant'])) {
+                $motifs[$data[2]][$data[9]]['total_duration_bloquant'] = 0;
+            }
             $motifs[$data[2]][$data[9]]['total_duration_bloquant']+=floatval($data[7]);
         }
         fclose($handle);
         foreach($motifs as $ligne => $motifsLigne) {
             $motifs[$ligne] = array_map(function($a) {
+                if(!isset($a['total_duration'])) {
+                    $a['total_duration'] = 0;
+                }
                 $a['total_duration'] = round($a['total_duration']);
+                if(!isset($a['total_duration_bloquant'])) {
+                    $a['total_duration_bloquant'] = 0;
+                }
                 $a['total_duration_bloquant'] = round($a['total_duration_bloquant']);
                 $a['average_duration'] = round($a['total_duration'] / $a['count']);
                 $a['average_duration_bloquant'] = round($a['total_duration_bloquant'] / $a['count']);
@@ -94,9 +123,8 @@ abstract class Period
 
     public function getStatuts($mode) {
         $handle = $this->fopenStatutsCsvFile();
-
         $statuts = [];
-        while (($data = fgetcsv($handle, 1000, ";")) !== FALSE) {
+        while (($data = fgetcsv($handle, 5000, ";")) !== FALSE) {
             if(strpos($data[0], 'date') === 0) {
                 continue;
             }
