@@ -14,11 +14,9 @@ mkdir static/$currentdate 2> /dev/null
 USECACHE=1 RESETCACHE=1 php index.php $currentdate metros > static/$currentdate/metros.html.tmp
 USECACHE=1 php index.php $currentdate trains > static/$currentdate/trains.html.tmp
 USECACHE=1 php index.php $currentdate tramways > static/$currentdate/tramways.html.tmp
-USECACHE=1 php json.php $currentdate > static/$currentdate.json.tmp
 USECACHE=1 php csvincidents.php $currentdate > static/$currentdate/incidents.csv.tmp
 USECACHE=1 php csvtimeline.php $currentdate > static/$currentdate/timeline.csv.tmp
 
-mv static/$currentdate.json{.tmp,}
 mv static/$currentdate/metros.html{.tmp,}
 mv static/$currentdate/trains.html{.tmp,}
 mv static/$currentdate/tramways.html{.tmp,}

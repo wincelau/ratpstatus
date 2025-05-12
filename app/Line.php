@@ -131,6 +131,19 @@ class Line
         return $impacts;
     }
 
+    public function getDisruptionsInPeriod($date) {
+        $disruptions = [];
+
+        foreach($this->getDisruptions() as $disruption) {
+            $impacts = $disruption->getImpactsInPeriod($date);
+            if(count($impacts)) {
+                $disruptions[$disruption->getId()] = $disruption;
+            }
+        }
+
+        return $disruptions;
+    }
+
     public function getImpacts() {
         $impacts = [];
         foreach($this->disruptions as $disruption) {

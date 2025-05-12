@@ -1,11 +1,4 @@
-let disruptions = null;
-
 document.addEventListener('DOMContentLoaded', async function () {
-  if(typeof urlJson !== 'undefined') {
-    const response = await fetch(urlJson.replace('.json', '.json?'+Date.now()));
-    disruptions = await response.json();
-  }
-
   if(document.querySelector('.ligne .e')) {
       window.scrollTo({ left: document.querySelector('.ligne .e').offsetLeft - window.innerWidth + 66 });
   }
@@ -76,17 +69,6 @@ document.addEventListener('DOMContentLoaded', async function () {
       }
   })
 
-  document.querySelector('#lignes').addEventListener('mouseover', function(e) {
-      if(e.target.title) {
-          replaceMessage(e.target);
-      }
-  })
-  document.querySelector('#lignes').addEventListener('mouseout', function(e) {
-      if(e.target.title) {
-          e.target.title = e.target.dataset.title
-          delete e.target.dataset.title
-      }
-  })
   modalHelp.addEventListener('click', function(event) {
     if(event.target.nodeName != "A") {
       modalHelp.close();
@@ -118,24 +100,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
   }
 })
-
-function replaceMessage(item) {
-    item.dataset.title = item.title;
-    item.title = item.title.replace("%ok%", "\n\nRien à signaler");
-    item.title = item.title.replace("%no%", "\n\nLe service est terminé ou pas encore commencé");
-    let disruptionsMessages = [];
-    for(let disruptionId of item.title.split(";")) {
-        if(disruptionId.match(/^%/)) {
-            disruptionId=disruptionId.replace(/%/g, '')
-            if(!disruptionsMessages.includes(disruptions[disruptionId]) && disruptionId && disruptions[disruptionId]) {
-                item.title = item.title.replace(';%'+disruptionId+'%', "\n\n"+disruptions[disruptionId].replace(/[\n]+$/, ""))
-                disruptionsMessages.push(disruptions[disruptionId])
-            } else if(disruptionId) {
-                item.title = item.title.replace(';%'+disruptionId+'%', "")
-            }
-        }
-    }
-}
 
 function filtreListeDisruption(ligneId = null) {
   document.querySelectorAll('#listModal .disruption').forEach(function(item) {
