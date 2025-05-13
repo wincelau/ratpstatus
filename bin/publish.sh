@@ -7,7 +7,18 @@ if test $1; then
     currentdate=$1
 fi
 
-while test -f .git/info/sparse-checkout.lock; do sleep 1; done;
+if test -f /tmp/publish.lock && test "$(stat -c %Y /tmp/publish.lock)" -lt "$(($(date +%s) - 60))"; then
+    rm /tmp/publish.lock
+fi;
+
+if test -f /tmp/publish.lock; then
+    sleep 1;
+    echo "publish is locked"
+    bash bin/publish.sh $currentdate;
+    exit;
+fi
+
+touch /tmp/publish.lock
 
 git sparse-checkout set --no-cone '/*' '!/datas/json/' "/datas/json/$currentdate"
 
@@ -28,3 +39,5 @@ mv static/$currentdate/timeline.csv{.tmp,}
 ln -fs $todaydate/metros.html static/metros.html
 ln -fs $todaydate/tramways.html static/tramways.html
 ln -fs $todaydate/trains.html static/trains.html
+
+rm /tmp/publish.lock
