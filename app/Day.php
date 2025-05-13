@@ -123,6 +123,11 @@ class Day extends Period
         if(isset($file)) {
             $this->lastFile = $file;
         }
+        foreach($this->lignes as $ligne) {
+            foreach($ligne->getDisruptions() as $disruption) {
+                $disruption->getImpactsOptimized();
+            }
+        }
     }
 
     protected function getDistruptionsIds() {
