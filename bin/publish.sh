@@ -7,6 +7,8 @@ if test $1; then
     currentdate=$1
 fi
 
+while test -f .git/info/sparse-checkout.lock; do sleep 1; done;
+
 git sparse-checkout set --no-cone '/*' '!/datas/json/' "/datas/json/$currentdate"
 
 mkdir static/$currentdate 2> /dev/null
