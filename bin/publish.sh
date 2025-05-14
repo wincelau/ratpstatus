@@ -7,13 +7,13 @@ if test $1; then
     currentdate=$1
 fi
 
-if test -f /tmp/publish.lock && test "$(stat -c %Y /tmp/publish.lock)" -lt "$(($(date +%s) - 60))"; then
+if test -f /tmp/publish.lock && test "$(stat -c %Y /tmp/publish.lock)" -lt "$(($(date +%s) - 90))"; then
     rm /tmp/publish.lock
 fi;
 
 if test -f /tmp/publish.lock; then
-    sleep 1;
     echo "publish is locked"
+    sleep 1;
     bash bin/publish.sh $currentdate;
     exit;
 fi
