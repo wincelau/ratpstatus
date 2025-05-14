@@ -277,9 +277,43 @@ class Impact
             return preg_replace('/ - .*$/', '', preg_replace('/^[^:]*: /', '', $this->getTitle()));
         }
 
-        if(preg_match("/Motif[\s]*:[\s]*([^\n]*)(\n|$)/i", $this->getMessagePlainText(), $matches)) {
 
-            return ucfirst(trim(preg_replace('/(à|entre|aux?|à la)\s+[A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| dans un train à.*$| à bord du train.*$| aux abords d.*$| au garage de.*$| entre les gares de.*$| à hauteur de.*$|\(.*$|\..*$)/i", '', $matches[1]))));
+        if(preg_match("/Motif[\s]*:[\s]*([^\n]*)(\n|$)/i", $this->getMessagePlainText(), $matches)) {
+            if(preg_match("/accident routier/i", $matches[1])) {
+                return "Accident routier";
+            }
+            if(preg_match("/acte de vandalis?me/i", $matches[1])) {
+                return "Acte de vandalisme";
+            }
+            if(preg_match("/acte de malveillance/i", $matches[1])) {
+                return "Acte de malveillance";
+            }
+            if(preg_match("/affaires? oubli[eé]es?/i", $matches[1])) {
+                return "Affaires oubliées";
+            }
+            if(preg_match("/heurt d'un animal/i", $matches[1])) {
+                return "Heurt d'un animal";
+            }
+            if(preg_match("/animal sur .* voie/i", $matches[1])) {
+                return "Animal sur les voies";
+            }
+            if(preg_match("/alerte? de s[eé]curité/i", $matches[1])) {
+                return "Alerte de sécurité émise par le conducteur";
+            }
+            if(preg_match("/choc.*vérification/i", $matches[1])) {
+                return "Choc nécessitant une vérification technique sur le train";
+            }
+            if(preg_match("/panne d'un train/i", $matches[1])) {
+                return "Panne d'un train";
+            }
+            if(preg_match("/conditions? de départ non r[eé]unie/i", $matches[1])) {
+                return "Conditions de départ non réunies";
+            }
+            if(preg_match("/malaise.*voyageur/i", $matches[1])) {
+                return "Malaise voyageur";
+            }
+
+            return ucfirst(trim(preg_replace('/(à|entre|aux?|à la)\s+[A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| dans un train à.*$| à bord du train.*$| aux abords d.*$| au garage de.*$| entre les gares de.*$| à hauteur de.*$| sur un pont.*$| sur le pont.*$|\(.*$|\..*$)/i", '', $matches[1]))));
         }
 
         return null;
