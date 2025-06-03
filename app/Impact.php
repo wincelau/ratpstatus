@@ -279,6 +279,13 @@ class Impact
 
 
         if(preg_match("/Motif[\s]*:[\s]*([^\n]*)(\n|$)/i", $this->getMessagePlainText(), $matches)) {
+
+            if(preg_match("/accident à un passage à niveau/i", $matches[1])) {
+                return "Accident à un passage à niveau";
+            }
+            if(preg_match("/accident de personne/i", $matches[1])) {
+                return "Accident de personne";
+            }
             if(preg_match("/accident routier/i", $matches[1])) {
                 return "Accident routier";
             }
@@ -288,8 +295,20 @@ class Impact
             if(preg_match("/acte de malveillance/i", $matches[1])) {
                 return "Acte de malveillance";
             }
-            if(preg_match("/affaires? oubli[eé]es?/i", $matches[1])) {
+            if(preg_match("/affaires?\s*oubli[eé]es?/i", $matches[1])) {
                 return "Affaires oubliées";
+            }
+            if(preg_match("/accident à un passage à niveau/i", $matches[1])) {
+                return "Accident à un passage à niveau";
+            }
+            if(preg_match("/panne (d'un|du) passage à niveau/i", $matches[1])) {
+                return "Panne d'un passage à niveau";
+            }
+            if(preg_match("/altercation entre voyageurs/i", $matches[1])) {
+                return "Altercation entre voyageurs";
+            }
+            if(preg_match("/déclenchement du signal d'alarme/i", $matches[1])) {
+                return "Déclenchement du signal d'alarme";
             }
             if(preg_match("/heurt d'un animal/i", $matches[1])) {
                 return "Heurt d'un animal";
@@ -306,7 +325,10 @@ class Impact
             if(preg_match("/panne d'un train/i", $matches[1])) {
                 return "Panne d'un train";
             }
-            if(preg_match("/conditions? de départ non r[eé]unie/i", $matches[1])) {
+            if(preg_match("/pannes? (d'un|du|de) tram/i", $matches[1])) {
+                return "Panne d'un tramway";
+            }
+            if(preg_match("/conditions?\s*de\s*départ/i", $matches[1])) {
                 return "Conditions de départ non réunies";
             }
             if(preg_match("/malaise.*voyageur/i", $matches[1])) {
