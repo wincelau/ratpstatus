@@ -295,7 +295,7 @@ class Impact
             if(preg_match("/acte de malveillance/i", $matches[1])) {
                 return "Acte de malveillance";
             }
-            if(preg_match("/affaires?\s*oubli[eé]es?/i", $matches[1])) {
+            if(preg_match("/affaires?\s*oubli[ée]*s?/i", $matches[1])) {
                 return "Affaires oubliées";
             }
             if(preg_match("/accident à un passage à niveau/i", $matches[1])) {
@@ -316,13 +316,13 @@ class Impact
             if(preg_match("/animal sur .* voie/i", $matches[1])) {
                 return "Animal sur les voies";
             }
-            if(preg_match("/alerte? de s[eé]curité/i", $matches[1])) {
+            if(preg_match("/alerte? de s[eé]*curité/i", $matches[1])) {
                 return "Alerte de sécurité émise par le conducteur";
             }
             if(preg_match("/choc.*vérification/i", $matches[1])) {
                 return "Choc nécessitant une vérification technique sur le train";
             }
-            if(preg_match("/panne d'un train/i", $matches[1])) {
+            if(preg_match("/panne (d'un|sur le|du|d’un|de|des) train/i", $matches[1])) {
                 return "Panne d'un train";
             }
             if(preg_match("/pannes? (d'un|du|de) tram/i", $matches[1])) {
@@ -333,6 +333,18 @@ class Impact
             }
             if(preg_match("/malaise.*voyageur/i", $matches[1])) {
                 return "Malaise voyageur";
+            }
+            if(preg_match("/Attente d'autorisation d'accès au réseau/i", $matches[1])) {
+                return "Attente d'autorisation d'accès au réseau";
+            }
+            if(preg_match("/alerte.*mise*conducteur/i", $matches[1])) {
+                return "Alerte de sécurité émise par le conducteur";
+            }
+            if(preg_match("/individu.*voie/i", $matches[1])) {
+                return "Individus sur les voies";
+            }
+            if(preg_match("/Panne.*install.*gestion.*r/i", $matches[1])) {
+                return "Panne sur les installations du gestionnaire de réseau";
             }
 
             return ucfirst(trim(preg_replace('/(à|entre|aux?|à la)\s+[A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| dans un train à.*$| à bord du train.*$| aux abords d.*$| au garage de.*$| entre les gares de.*$| à hauteur de.*$| sur un pont.*$| sur le pont.*$|\(.*$|\..*$)/i", '', $matches[1]))));
