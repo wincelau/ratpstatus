@@ -313,7 +313,7 @@ class Impact
             if(preg_match("/heurt d'un animal/i", $matches[1])) {
                 return "Heurt d'un animal";
             }
-            if(preg_match("/animal sur .* voie/i", $matches[1])) {
+            if(preg_match("/anima* sur .* voie/i", $matches[1])) {
                 return "Animal sur les voies";
             }
             if(preg_match("/alerte? de s[eé]*curité/i", $matches[1])) {
@@ -346,7 +346,24 @@ class Impact
             if(preg_match("/Panne.*install.*gestion.*r/i", $matches[1])) {
                 return "Panne sur les installations du gestionnaire de réseau";
             }
-
+            if(preg_match("/condition*(météo|climatique)/i", $matches[1]) || preg_match("/(tempête|intempéries|dépression)/i", $matches[1])) {
+                return "Conditions météorologiques";
+            }
+            if(preg_match("personnel/i", $matches[1])) {
+                return "Difficultés liées à un manque de personnel";
+            }
+            if(preg_match("incident.*voyageur/i", $matches[1])) {
+                return "Incident voyageur";
+            }
+            if(preg_match("incident.*technique/i", $matches[1])) {
+                return "Incident technique";
+            }
+            if(preg_match("incident.*signalisation/i", $matches[1])) {
+                return "Incident affectant la signalisation";
+            }
+            if(preg_match("incident.*voie/i", $matches[1])) {
+                return "Incident affectant la voie";
+            }
             return ucfirst(trim(preg_replace('/(à|entre|aux?|à la)\s+[A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| dans un train à.*$| à bord du train.*$| aux abords d.*$| au garage de.*$| entre les gares de.*$| à hauteur de.*$| sur un pont.*$| sur le pont.*$|\(.*$|\..*$)/i", '', $matches[1]))));
         }
 
