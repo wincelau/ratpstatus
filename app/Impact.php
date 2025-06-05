@@ -301,6 +301,12 @@ class Impact
             if(preg_match("/accident à un passage à niveau/i", $matches[1])) {
                 return "Accident à un passage à niveau";
             }
+            if(preg_match("/^aggression.*(agent|conduct)/i", $matches[1])) {
+                return "Agression d'un agent";
+            }
+            if(preg_match("/^aggression.*(voyageu)/i", $matches[1])) {
+                return "Agression d'un voyageur";
+            }
             if(preg_match("/panne (d'un|du) passage à niveau/i", $matches[1])) {
                 return "Panne d'un passage à niveau";
             }
@@ -310,10 +316,13 @@ class Impact
             if(preg_match("/déclenchement du signal d'alarme/i", $matches[1])) {
                 return "Déclenchement du signal d'alarme";
             }
-            if(preg_match("/heurt d'un animal/i", $matches[1])) {
+            if(preg_match("/^heurt.*anima/i", $matches[1])) {
                 return "Heurt d'un animal";
             }
-            if(preg_match("/anima.*voie/i", $matches[1])) {
+            if(preg_match("/^heurt.*camion/i", $matches[1])) {
+                return "Heurt d'un véhicule";
+            }
+            if(preg_match("/(anima|mouton).*voie/i", $matches[1])) {
                 return "Animal sur la voie";
             }
             if(preg_match("/alerte? de s[eé]*curité/i", $matches[1])) {
@@ -322,7 +331,7 @@ class Impact
             if(preg_match("/choc.*vérification/i", $matches[1])) {
                 return "Choc nécessitant une vérification technique sur le train";
             }
-            if(preg_match("/panne (d'un|sur le|du|d’un|de|des) train/i", $matches[1])) {
+            if(preg_match("/pannes? (d'un|sur le|du|d’un|de|des) (train|TER)/i", $matches[1])) {
                 return "Panne d'un train";
             }
             if(preg_match("/pannes? (d'un|du|de) tram/i", $matches[1]) || preg_match("/Tram.* en panne/i", $matches[1])) {
@@ -342,6 +351,9 @@ class Impact
             }
             if(preg_match("/individu.*voie/i", $matches[1])) {
                 return "Individus sur les voies";
+            }
+            if(preg_match("/Panne.*install.*gestion.*r/i", $matches[1])) {
+                return "Panne sur les installations du gestionnaire de réseau";
             }
             if(preg_match("/Panne.*install.*gestion.*r/i", $matches[1])) {
                 return "Panne sur les installations du gestionnaire de réseau";
@@ -381,6 +393,33 @@ class Impact
             }
             if(preg_match("/mouvement.*social/i", $matches[1])) {
                 return "Mouvement social";
+            }
+            if(preg_match("/^mesure.*régulation/i", $matches[1])) {
+                return "Mesures de régulation";
+            }
+            if(preg_match("/^regulation.*trafic/i", $matches[1])) {
+                return "Régulation de trafic";
+            }
+            if(preg_match("/^panne.*passage.*niveau/i", $matches[1])) {
+                return "Panne d'un passage à niveau";
+            }
+            if(preg_match("/^obstacle.*passage.*niveau/i", $matches[1])) {
+                return "Obstacle sur un passage à niveau";
+            }
+            if(preg_match("/bagage.*oubli.*train/i", $matches[1])) {
+                return "Bagage oublié dans un train";
+            }
+            if(preg_match("/jeu.*paris.*2024/i", $matches[1])) {
+                return "Jeux de Paris 2024";
+            }
+            if(preg_match("/signal.*alarme/i", $matches[1])) {
+                return "Actionnement d'un signal d'alarme";
+            }
+            if(preg_match("/Indisponibilit.*mat/i", $matches[1])) {
+                return "Indisponibilité materiel";
+            }
+            if(preg_match("/Indisponibilit.*agent/i", $matches[1])) {
+                return "Indisponibilité d'agents";
             }
             if(preg_match("/^prolongation des travaux.*ferro/i", $matches[1])) {
                 return "Prolongation des travaux sur le réseau ferroviaire";
