@@ -301,10 +301,10 @@ class Impact
             if(preg_match("/accident à un passage à niveau/i", $matches[1])) {
                 return "Accident à un passage à niveau";
             }
-            if(preg_match("/^aggression.*(agent|conduct)/i", $matches[1])) {
+            if(preg_match("/^Aggression.*(agent|conduct)/i", $matches[1])) {
                 return "Agression d'un agent";
             }
-            if(preg_match("/^aggression.*(voyageu)/i", $matches[1])) {
+            if(preg_match("/^Aggression.*voyageu/i", $matches[1])) {
                 return "Agression d'un voyageur";
             }
             if(preg_match("/panne (d'un|du) passage à niveau/i", $matches[1])) {
@@ -376,13 +376,22 @@ class Impact
             if(preg_match("/incident.*voie/i", $matches[1])) {
                 return "Incident affectant la voie";
             }
-            if(preg_match("/panne de signalisation/i", $matches[1])) {
+            if(preg_match("/panne.*signalisation/i", $matches[1])) {
                 return "Panne de signalisation";
+            }
+            if(preg_match("/^Défaut de signalisation.*/i", $matches[1])) {
+                return "Défaut de signalisation";
             }
             if(preg_match("/respect.*distances/i", $matches[1])) {
                 return "Respect des distances de sécurité";
             }
-            if(preg_match("/panne.*électrique/i", $matches[1])) {
+            if(preg_match("/d*{1}faut.*lectrique/i", $matches[1])) {
+                return "Défaut d'alimentation électrique";
+            }
+            if(preg_match("/coupure.*lectrique/i", $matches[1])) {
+                return "Coupure d'alimentation électrique";
+            }
+            if(preg_match("/panne.*lectrique/i", $matches[1])) {
                 return "Panne électrique";
             }
             if(preg_match("/heurt.*obstacle/i", $matches[1])) {
@@ -394,10 +403,10 @@ class Impact
             if(preg_match("/mouvement.*social/i", $matches[1])) {
                 return "Mouvement social";
             }
-            if(preg_match("/^mesure.*régulation/i", $matches[1])) {
+            if(preg_match("/^mesure.*r*{1}gulation/i", $matches[1])) {
                 return "Mesures de régulation";
             }
-            if(preg_match("/^regulation.*trafic/i", $matches[1])) {
+            if(preg_match("/^R*{1}gulation.*trafic/i", $matches[1])) {
                 return "Régulation de trafic";
             }
             if(preg_match("/^panne.*passage.*niveau/i", $matches[1])) {
@@ -406,8 +415,14 @@ class Impact
             if(preg_match("/^obstacle.*passage.*niveau/i", $matches[1])) {
                 return "Obstacle sur un passage à niveau";
             }
-            if(preg_match("/bagage.*oubli.*train/i", $matches[1])) {
+            if(preg_match("/bagage.*(oubli|aband|délaissé).*train/i", $matches[1])) {
                 return "Bagage oublié dans un train";
+            }
+            if(preg_match("/bagage.*(oubli|aband|délaissé).*(quai|station)/i", $matches[1])) {
+                return "Bagage oublié sur un quai";
+            }
+            if(preg_match("/bagage.*(oubli|aband|délaissé)/i", $matches[1])) {
+                return "Bagage oublié";
             }
             if(preg_match("/jeu.*paris.*2024/i", $matches[1])) {
                 return "Jeux de Paris 2024";
@@ -435,6 +450,9 @@ class Impact
             }
             if(preg_match("/^travaux.*/i", $matches[1])) {
                 return "Travaux";
+            }
+            if(preg_match("/mesure.*sécu/i", $matches[1])) {
+                return "Mesures de sécurité";
             }
 
             return ucfirst(trim(preg_replace('/(à|entre|aux?|à la)\s+[A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| dans un train à.*$| à bord du train.*$| aux abords d.*$| au garage de.*$| entre les gares de.*$| à hauteur de.*$| sur un pont.*$| sur le pont.*$|\(.*$|\..*$)/i", '', $matches[1]))));
