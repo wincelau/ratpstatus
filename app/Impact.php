@@ -272,7 +272,7 @@ class Impact
     }
 
     public function getSuggestionOrigine() {
-        if(in_array($this->getMode(), [self::MODE_METRO, self::MODE_TRAMWAY]) && preg_match("/:[^:]* - /", $this->getTitle()) && !in_array($impact->getLigne()->getName(), ["T4", "T12", "T13"])) {
+        if(in_array($this->getMode(), [self::MODE_METRO, self::MODE_TRAMWAY]) && preg_match("/:[^:]* - /", $this->getTitle()) && !in_array($this->getLigne()->getName(), ["T4", "T12", "T13"])) {
 
             return preg_replace('/ - .*$/', '', preg_replace('/^[^:]*: /', '', $this->getTitle()));
         }
