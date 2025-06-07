@@ -336,7 +336,7 @@ class Impact
             if(preg_match("/pannes? (d'un|sur le|du|d’un|de|des) (train|TER)/i", $matches[1])) {
                 return "Panne d'un train";
             }
-            if(preg_match("/pannes? (d'un|du|de) tram/i", $matches[1]) || preg_match("/Tram.* en panne/i", $matches[1]) || preg_match("/rame en panne/i", $matches[1])) {
+            if(preg_match("/pannes? (d'un|du|de) tram/i", $matches[1]) || preg_match("/Tram.* en panne/i", $matches[1]) || preg_match("/rame en panne/i", $matches[1])) {
                 return "Tramway en panne";
             }
             if(preg_match("/conditions?\s*de\s*départ/i", $matches[1])) {
