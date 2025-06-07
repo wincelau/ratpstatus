@@ -37,6 +37,7 @@ class Impact
     protected $dateEnd = null;
     protected $type = null;
     protected $dateCreation = null;
+    protected $origine = null;
 
     public function __construct($data, File $file) {
         $this->data = $data;
@@ -267,8 +268,11 @@ class Impact
     }
 
     public function getOrigine() {
+        if(is_null($this->origine)) {
+            $this->origine = $this->getSuggestionOrigine();
+        }
 
-        return $this->getSuggestionOrigine();
+        return $this->origine;
     }
 
     public function getSuggestionOrigine() {
@@ -276,7 +280,6 @@ class Impact
 
             return preg_replace('/ - .*$/', '', preg_replace('/^[^:]*: /', '', $this->getTitle()));
         }
-
 
         if(preg_match("/Motif[\s]*:?[\s]*([^\n]*)(\n|$)/i", $this->getMessagePlainText(), $matches)) {
 
