@@ -272,13 +272,13 @@ class Impact
     }
 
     public function getSuggestionOrigine() {
-        if(in_array($this->getMode(), [self::MODE_METRO, self::MODE_TRAMWAY]) && preg_match("/:[^:]* - /", $this->getTitle())) {
+        if(in_array($this->getMode(), [self::MODE_METRO, self::MODE_TRAMWAY]) && preg_match("/:[^:]* - /", $this->getTitle()) && !in_array($this->getLigne(), ["T12"])) {
 
             return preg_replace('/ - .*$/', '', preg_replace('/^[^:]*: /', '', $this->getTitle()));
         }
 
 
-        if(preg_match("/Motif[\s]*:[\s]*([^\n]*)(\n|$)/i", $this->getMessagePlainText(), $matches)) {
+        if(preg_match("/Motif[\s]*:?[\s]*([^\n]*)(\n|$)/i", $this->getMessagePlainText(), $matches)) {
 
             if(preg_match("/accident à un passage à niveau/i", $matches[1])) {
                 return "Accident à un passage à niveau";
@@ -442,6 +442,12 @@ class Impact
             if(preg_match("/^prolongation des travaux/i", $matches[1])) {
                 return "Prolongation des travaux effectués par le gestionnaire de réseau";
             }
+            if(preg_match("/^difficult.*(transporteur|gestionnaire).*bus/i", $matches[1])) {
+                return "Difficultés liées au transporteur de bus";
+            }
+            if(preg_match("/^difficult.*(circulation).*bus/i", $matches[1])) {
+                return "Difficultés liées à la circulation des bus";
+            }
             if(preg_match("/^travaux.*maintenance/i", $matches[1])) {
                 return "Travaux de maintenance";
             }
@@ -455,7 +461,7 @@ class Impact
                 return "Mesures de sécurité";
             }
 
-            return ucfirst(trim(preg_replace('/(à|entre|aux?|à la)\s+[A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| dans un train à.*$| à bord du train.*$| aux abords d.*$| au garage de.*$| entre les gares de.*$| à hauteur de.*$| sur un pont.*$| sur le pont.*$|\(.*$|\..*$)/i", '', $matches[1]))));
+            return ucfirst(trim(preg_replace('/(à|entre|aux?|à la)\s+[A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| dans un train à.*$| à bord du train.*$| aux abords d.*$| au garage de.*$| entre les gares de.*$| à hauteur de.*$| sur un pont.*$| sur le pont.*$| au départ de.*$|\(.*$|\..*$)/i", '', $matches[1]))));
         }
 
         return null;
