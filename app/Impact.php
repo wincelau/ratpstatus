@@ -272,13 +272,15 @@ class Impact
     }
 
     public function getSuggestionOrigine() {
-        if(in_array($this->getMode(), [self::MODE_METRO, self::MODE_TRAMWAY]) && preg_match("/:[^:]* - /", $this->getTitle()) && !in_array($this->getLigne(), ["T12"])) {
+        if(in_array($this->getMode(), [self::MODE_METRO, self::MODE_TRAMWAY]) && preg_match("/:[^:]* - /", $this->getTitle()) && !in_array($impact->getLigne()->getName(), ["T4", "T12", "T13"])) {
 
             return preg_replace('/ - .*$/', '', preg_replace('/^[^:]*: /', '', $this->getTitle()));
         }
 
 
         if(preg_match("/Motif[\s]*:?[\s]*([^\n]*)(\n|$)/i", $this->getMessagePlainText(), $matches)) {
+
+            $matches[1] = preg_replace("/Motif[ ]*:?[ ]*/", '', $matches[1]);
 
             if(preg_match("/accident à un passage à niveau/i", $matches[1])) {
                 return "Accident à un passage à niveau";
@@ -301,10 +303,10 @@ class Impact
             if(preg_match("/accident à un passage à niveau/i", $matches[1])) {
                 return "Accident à un passage à niveau";
             }
-            if(preg_match("/^Aggression.*(agent|conduct)/i", $matches[1])) {
+            if(preg_match("/^agression.*(agent|conduct)/i", $matches[1])) {
                 return "Agression d'un agent";
             }
-            if(preg_match("/^Aggression.*voyageu/i", $matches[1])) {
+            if(preg_match("/^agression.*voyageu/i", $matches[1])) {
                 return "Agression d'un voyageur";
             }
             if(preg_match("/panne (d'un|du) passage à niveau/i", $matches[1])) {
@@ -334,7 +336,7 @@ class Impact
             if(preg_match("/pannes? (d'un|sur le|du|d’un|de|des) (train|TER)/i", $matches[1])) {
                 return "Panne d'un train";
             }
-            if(preg_match("/pannes? (d'un|du|de) tram/i", $matches[1]) || preg_match("/Tram.* en panne/i", $matches[1])) {
+            if(preg_match("/pannes? (d'un|du|de) tram/i", $matches[1]) || preg_match("/Tram.* en panne/i", $matches[1]) || preg_match("/rame en panne/i", $matches[1])) {
                 return "Tramway en panne";
             }
             if(preg_match("/conditions?\s*de\s*départ/i", $matches[1])) {
@@ -445,13 +447,16 @@ class Impact
             if(preg_match("/^difficult.*(transporteur|gestionnaire).*bus/i", $matches[1])) {
                 return "Difficultés liées au transporteur de bus";
             }
-            if(preg_match("/^difficult.*(circulation).*bus/i", $matches[1])) {
-                return "Difficultés liées à la circulation des bus";
+            if(preg_match("/^difficult.*circulation/i", $matches[1])) {
+                return "Difficultés de circulation";
+            }
+            if(preg_match("/^G.ne.*circulation/i", $matches[1])) {
+                return "Difficultés de circulation";
             }
             if(preg_match("/^travaux.*maintenance/i", $matches[1])) {
                 return "Travaux de maintenance";
             }
-            if(preg_match("/^travaux.*modernisation/i", $matches[1])) {
+            if(preg_match("/modernisation/i", $matches[1])) {
                 return "Travaux de modernisation";
             }
             if(preg_match("/^travaux.*/i", $matches[1])) {
@@ -460,8 +465,11 @@ class Impact
             if(preg_match("/mesure.*sécu/i", $matches[1])) {
                 return "Mesures de sécurité";
             }
+            if(preg_match("/trafic pertur.*gestionnaire/i", $matches[1])) {
+                return "Trafic perturbé du fait du gestionnaire de réseau";
+            }
 
-            return ucfirst(trim(preg_replace('/(à|entre|aux?|à la)\s+[A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| dans un train à.*$| à bord du train.*$| aux abords d.*$| au garage de.*$| entre les gares de.*$| à hauteur de.*$| sur un pont.*$| sur le pont.*$| au départ de.*$|\(.*$|\..*$)/i", '', $matches[1]))));
+            return ucfirst(trim(preg_replace('/(à|entre|aux?|à la)\s+[A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| dans un train à.*$| à bord .*$| aux abords d.*$| au garage de.*$| entre les gares de.*$| à hauteur de.*$| sur un pont.*$| sur le pont.*$| au départ de.*$| sur la ligne.*$|\(.*$|\..*$)/i", '', $matches[1]))));
         }
 
         return null;
