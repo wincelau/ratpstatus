@@ -385,7 +385,7 @@ class Impact
             if(preg_match("/respect.*distances/i", $matches[1])) {
                 return "Respect des distances de sécurité";
             }
-            if(preg_match("/d*{1}faut.*lectrique/i", $matches[1])) {
+            if(preg_match("/d.{1}faut.*lectrique/i", $matches[1])) {
                 return "Défaut d'alimentation électrique";
             }
             if(preg_match("/coupure.*lectrique/i", $matches[1])) {
@@ -403,10 +403,10 @@ class Impact
             if(preg_match("/mouvement.*social/i", $matches[1])) {
                 return "Mouvement social";
             }
-            if(preg_match("/^mesure.*r*{1}gulation/i", $matches[1])) {
+            if(preg_match("/^mesure.*r.{1}gulation/i", $matches[1])) {
                 return "Mesures de régulation";
             }
-            if(preg_match("/^R*{1}gulation.*trafic/i", $matches[1])) {
+            if(preg_match("/^R.{1}gulation.*trafic/i", $matches[1])) {
                 return "Régulation de trafic";
             }
             if(preg_match("/^panne.*passage.*niveau/i", $matches[1])) {
