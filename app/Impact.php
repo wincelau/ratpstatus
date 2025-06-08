@@ -483,6 +483,13 @@ class Impact
         return $this->data->message;
     }
 
+    public function setMessage($message) {
+        if($this->data->message != $message) {
+            $this->origine = null;
+        }
+        $this->data->message = $message;
+    }
+
     public function getCause() {
 
         return $this->data->cause;

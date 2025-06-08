@@ -229,7 +229,7 @@ class Disruption
                 }
                 if($otherImpact->isInPeriod($impact->getDateStart()) && $impact->getSeverity() == $otherImpact->getSeverity() && $impact->getTitle() == $otherImpact->getTitle()) {
                     $otherImpact->setDateEnd($impact->getDateEnd()->format('Ymd\THis'));
-                    $otherImpact->data->message = $impact->data->message;
+                    $otherImpact->setMessage($impact->data->message);
                     unset($this->impacts_optimized[$key]);
                 }
             }
