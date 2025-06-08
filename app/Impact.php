@@ -276,7 +276,7 @@ class Impact
     }
 
     public function getSuggestionOrigine() {
-        if(in_array($this->getMode(), [self::MODE_METRO, self::MODE_TRAMWAY]) && preg_match("/:[^:]* - /", $this->getTitle()) && !in_array($this->getLigneId(), ["T4", "T12", "T13"])) {
+        if(in_array($this->getMode(), [self::MODE_METRO, self::MODE_TRAMWAY]) && preg_match("/:[^:]* - /", $this->getTitle()) && !in_array($this->getLigneId(), ["T4", "T11", "T12", "T13"])) {
 
             return trim(preg_replace('/ - .*$/', '', preg_replace('/^[^:]*: /', '', $this->getTitle())));
         }
@@ -472,7 +472,7 @@ class Impact
                 return "Trafic perturbé du fait du gestionnaire de réseau";
             }
 
-            return ucfirst(trim(preg_replace('/(à|entre|aux?|à la)\s+[A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| à la gare d.*$| en sortie d.*$| entre la gare .*$| à la station .*$| dans un train à.*$| à bord .*$| aux abords d.*$| au garage de.*$| entre les gares de.*$| à hauteur de.*$| sur un pont.*$| sur le pont.*$| au départ de.*$| sur la ligne.*$| [0-9]+ train [A-Z]+| du RER$|\(.*$|\..*$)/i", '', $matches[1]))));
+            return ucfirst(trim(preg_replace('/(à|entre|aux?|à la)\s+[A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| à la gare d.*$| en sortie d.*$| entre la gare .*$| à la station .*$| dans un train à.*$| à bord .*$| aux abords d.*$| au garage de.*$| entre les gares de.*$| à hauteur de.*$| sur un pont.*$| sur le pont.*$| au départ de.*$| sur la ligne.*$| [0-9]+ train [A-Z]+| du RER.*$|\(.*$|\..*$)/i", '', $matches[1]))));
         }
 
         return null;
