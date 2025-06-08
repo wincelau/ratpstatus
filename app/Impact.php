@@ -278,7 +278,7 @@ class Impact
     public function getSuggestionOrigine() {
         if(in_array($this->getMode(), [self::MODE_METRO, self::MODE_TRAMWAY]) && preg_match("/:[^:]* - /", $this->getTitle()) && !in_array($this->getLigneId(), ["T4", "T12", "T13"])) {
 
-            return preg_replace('/ - .*$/', '', preg_replace('/^[^:]*: /', '', $this->getTitle()));
+            return trim(preg_replace('/ - .*$/', '', preg_replace('/^[^:]*: /', '', $this->getTitle())));
         }
 
         if(preg_match("/Motif[\s]*:?[\s]*([^\n]*)(\n|$)/i", $this->getMessagePlainText(), $matches)) {
@@ -390,7 +390,7 @@ class Impact
             if(preg_match("/respect.*distances/i", $matches[1])) {
                 return "Respect des distances de sécurité";
             }
-            if(preg_match("/d.{1}faut.*lectrique/i", $matches[1])) {
+            if(preg_match("/d.faut.*lectrique/i", $matches[1])) {
                 return "Défaut d'alimentation électrique";
             }
             if(preg_match("/coupure.*lectrique/i", $matches[1])) {
@@ -472,7 +472,7 @@ class Impact
                 return "Trafic perturbé du fait du gestionnaire de réseau";
             }
 
-            return ucfirst(trim(preg_replace('/(à|entre|aux?|à la)\s+[A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| dans un train à.*$| à bord .*$| aux abords d.*$| au garage de.*$| entre les gares de.*$| à hauteur de.*$| sur un pont.*$| sur le pont.*$| au départ de.*$| sur la ligne.*$|\(.*$|\..*$)/i", '', $matches[1]))));
+            return ucfirst(trim(preg_replace('/(à|entre|aux?|à la)\s+[A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| à la gare d.*$| en sortie d.*$| entre la gare .*$| à la station .*$| dans un train à.*$| à bord .*$| aux abords d.*$| au garage de.*$| entre les gares de.*$| à hauteur de.*$| sur un pont.*$| sur le pont.*$| au départ de.*$| sur la ligne.*$| [0-9]+ train [A-Z]+| du RER$|\(.*$|\..*$)/i", '', $matches[1]))));
         }
 
         return null;
