@@ -265,10 +265,10 @@ class Day extends Period
         $ids = [];
         $messages = [];
         for($i=1; $i <= $length; $i++) {
-            foreach($ligne->getDisruptionsInPeriod($date) as $disruption) {
-                $origine = $disruption->getOrigine();
+            foreach($ligne->getImpactsInPeriod($date) as $impact) {
+                $origine = $impact->getOrigine();
                 $messages[$origine] = $origine;
-                $id = explode(":", $disruption->getId())[1];
+                $id = explode(":", $impact->getDistruptionId())[1];
                 $ids[$id] = $id;
             }
             $date = $date->modify("+ 2 minutes");

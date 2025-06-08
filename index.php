@@ -6,9 +6,6 @@
 <head>
 <title><?php echo preg_replace("/^[^ ]+ /", "", strip_tags(Config::getModeLibelles()[$mode])) ?><?php if(!$day->isToday()): ?> le <?php echo $day->getDateStart()->format("d/m/Y"); ?><?php endif; ?> - Suivi de l'état du trafic - RATP Status</title>
 <?php include(__DIR__.'/templates/_header.php') ?>
-<script>
-    const urlJson = '/<?php echo ($GLOBALS['isStaticResponse']) ? $day->getDateStart()->format('Ymd').".json" : "json.php?".http_build_query(['date' => $day->getDateStart()->format('Y-m-d')]) ?>';
-</script>
 <style>
     .donutG:before {
         content: "<?php echo round($pourcentages[$mode]['OK']) ?>";
@@ -41,7 +38,7 @@
 <div id="lignes">
 <?php foreach(Config::getLignes()[$mode] as $ligne => $logo): ?>
 <div class="ligne" data-id="<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>"><div class="logo"><a href="#incidents_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" width="30" height="30"/></a></div>
-<?php for($i = 0; $i < 1380; $i = $i + 2): $isSameForFive = ($i % 10 == 0 && $day->isSameColorClassForFive($i, $ligne)); $info = $day->getInfo($i, $ligne, ($isSameForFive) ? 5 : 1); ?><i class="i <?php echo $day->getColorClass($i, $ligne) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?><?php if($isSameForFive): ?> i5sa<?php endif; ?>" <?php if(!is_null($info) && count($info[0])): ?>data-ids="<?php echo implode(";", $info[0]) ?>" title="<?php /*echo $ligne.' - ' ?><?php echo sprintf("%02d", (intval($i / 60) + 4) % 24) ?>h<?php echo sprintf("%02d", ($i % 60) ) ?><?php if($isSameForFive): ?> à <?php echo sprintf("%02d", (intval(($i+(5*2)) / 60) + 4) % 24) ?>h<?php echo sprintf("%02d", (($i+(5*2)) % 60)) ?><?php endif; ?><?php echo "\n\n"; */ ?><?php echo implode("\n", $info[1]) ?>"<?php endif; ?>></i>
+<?php for($i = 0; $i < 1380; $i = $i + 2): $isSameForFive = ($i % 10 == 0 && $day->isSameColorClassForFive($i, $ligne)); $info = $day->getInfo($i, $ligne, ($isSameForFive) ? 5 : 1); ?><i class="i <?php echo $day->getColorClass($i, $ligne) ?> <?php if($i % 60 == 0): ?>i1h<?php elseif($i % 10 == 0): ?>i10m<?php endif; ?><?php if($isSameForFive): ?> i5sa<?php endif; ?>" <?php if(!is_null($info) && count($info[0])): ?>data-id="<?php echo implode(";", $info[0]) ?>" title="<?php echo implode("\n", $info[1]) ?>"<?php endif; ?>></i>
 <?php if($isSameForFive): $i=$i+(4*2); endif;endfor; ?><span class="dispoligne" title="Aucune perturbation pour <?php echo $pourcentages[$ligne]['OK'] ?>% du trafic de toute la journée"><img alt="<?php echo $ligne ?>" title="<?php echo $ligne ?>" src="<?php echo $logo ?>" /><?php echo str_replace(" ", "&nbsp;", sprintf("% 3d", $pourcentages[$ligne]['OK'])) ?>%</span></div>
 
 <?php endforeach; ?>
