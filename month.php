@@ -111,8 +111,11 @@ $wblock = 4;
     <?php include(__DIR__.'/templates/_help.php') ?>
 </dialog>
 <dialog id="listModal">
-    <h2><span id="listModal_title_all"><?php echo Config::getModeLibelles()[$mode] ?></span> - Incidents du mois de <?php echo View::displayDateMonthToFr($period->getDateStart()); ?></h2>
+    <div class="modalHeader">
+    <span class="modalClose">X Fermer</span>
+    <h2><span id="listModal_title_all"><?php echo Config::getModeLibelles()[$mode] ?></span> - Incidents du mois de <?php echo View::displayDateMonthToFr($period->getDateStart()); ?> <?php echo $period->getDateStart()->format('Y') ?></h2>
     <?php include(__DIR__.'/templates/_navLignes.php') ?>
+    </div>
     <?php foreach($motifs as $ligne => $motifsLigne): ?>
     <div id="liste_<?php echo str_replace(["Métro ","Ligne "], "", $ligne) ?>" style="<?php if($ligne != "TOTAL"): ?>display: none;<?php endif; ?>" class="liste_ligne">
         <?php include(__DIR__.'/templates/_motifs.php') ?>

@@ -48,6 +48,16 @@ class YearPeriod extends Period
         return $this->getDateStart()->format('Y');
     }
 
+    public function getTitle() {
+        if($this->key == "12derniersmois") {
+
+            return "Incidents des 12 derniers mois";
+        }
+
+        return "Incidents de l'année " . $this->getDateStart()->format('Y');
+    }
+
+
     public function getDatePrevious() {
 
         return (clone $this->getDateStart())->modify('-1 year');
