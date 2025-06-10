@@ -31,14 +31,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         modalList.showModal();
         modalList.blur();
         document.querySelector('#tabLigne a').blur();
-        setTimeout(function() {  document.querySelector('#tabLigne a.active').scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }, 500);
+        setTimeout(function() {  document.querySelector('#tabLigne a.active').scrollIntoView({ behavior: 'instant', block: 'nearest', inline: 'center' }); document.querySelector('#tabLigne a').blur(); }, 200);
       }
       let disruptionId = null;
       if(document.location.hash.split(":")[1]) {
         disruptionId = document.location.hash.split(":")[1].split(";")[0];
       }
       if(disruptionId && document.getElementById('disruption_' + disruptionId)) {
-        document.getElementById('disruption_' + disruptionId).scrollIntoView();
+        document.getElementById('disruption_' + disruptionId).scrollIntoView(false);
       } else {
         modalList.scrollTo(0,0);
       }
