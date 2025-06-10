@@ -55,9 +55,12 @@
     <?php include(__DIR__.'/templates/_footer.php') ?>
 </footer>
 <dialog id="listModal">
+<div class="modalHeader">
+<span class="modalClose">X Fermer</span>
 <h2><?php echo Config::getModeLibelles()[$mode] ?> - Incidents du <?php echo $day->getDateStart()->format("d/m/Y"); ?></h2>
 <?php include(__DIR__.'/templates/_navLignes.php') ?>
 <?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isInProgress();}) ?>
+</div>
 <?php if($day->isToday()): ?>
 <h3 id="title_disruptions_inprogress">En cours <span class="badge hide">0 incidents</span></h3>
 <div id="disruptions_inprogress">

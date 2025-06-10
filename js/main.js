@@ -21,19 +21,27 @@ document.addEventListener('DOMContentLoaded', async function () {
       document.querySelectorAll('#tabLigne a').forEach(function(item) {
         item.classList.remove('active');
       });
-      if(document.querySelector('#liste_'+document.location.hash.split("_")[1])) {
-        document.querySelector('#liste_'+document.location.hash.split("_")[1]).style.display = 'block';
+      const line = document.location.hash.split(":")[0].split("_")[1];
+      if(document.querySelector('#liste_'+line)) {
+        document.querySelector('#liste_'+line).style.display = 'block';
       }
-      filtreListeDisruption(document.location.hash.split("_")[1]);
-      document.querySelector('#tabLigne a[href="'+document.location.hash+'"]').classList.add('active');
+      filtreListeDisruption(line);
+      document.querySelector('#tabLigne a[href="'+document.location.hash.split(":")[0]+'"]').classList.add('active');
       if(!modalList.open) {
         modalList.showModal();
         modalList.blur();
         document.querySelector('#tabLigne a').blur();
         setTimeout(function() {  document.querySelector('#tabLigne a.active').scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' }); }, 500);
       }
-      modalList.scrollTo(0,0);
-
+      let disruptionId = null;
+      if(document.location.hash.split(":")[1]) {
+        disruptionId = document.location.hash.split(":")[1].split(";")[0];
+      }
+      if(disruptionId && document.getElementById('disruption_' + disruptionId)) {
+        document.getElementById('disruption_' + disruptionId).scrollIntoView();
+      } else {
+        modalList.scrollTo(0,0);
+      }
     } else if(modalList && modalListTab && document.location.hash == '#incidents') {
       document.querySelectorAll('.liste_ligne').forEach(function(item) {
         item.style.display = 'none';
@@ -65,7 +73,11 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   document.querySelector('#lignes').addEventListener('click', function(e) {
       if((!e.target.closest('a') || !e.target.closest('a').href) && e.target.closest('.ligne')) {
-          document.location.hash = e.target.closest('.ligne').querySelector('.logo a').hash;
+          let hash = e.target.closest('.ligne').querySelector('.logo a').hash;
+          if(e.target.dataset.id) {
+              hash += ':' + e.target.dataset.id;
+          }
+          document.location.hash = hash;
       }
   })
 
