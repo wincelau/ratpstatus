@@ -56,7 +56,7 @@
 </footer>
 <dialog id="listModal">
 <div class="modalHeader">
-<span class="modalClose">X Fermer</span>
+<span class="modalClose">🞪</span>
 <h2><?php echo Config::getModeLibelles()[$mode] ?> - Incidents du <?php echo $day->getDateStart()->format("d/m/Y"); ?></h2>
 <?php include(__DIR__.'/templates/_navLignes.php') ?>
 <?php $disruptions = array_filter($day->getDisruptions($mode), function($d) { return $d->isInProgress();}) ?>
