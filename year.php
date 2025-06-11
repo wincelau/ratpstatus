@@ -112,7 +112,7 @@ $wblock = 7;
 </dialog>
 <dialog id="listModal">
     <div class="modalHeader">
-    <span class="modalClose">🞪</span>
+    <span class="modalClose"></span>
     <h2><span id="listModal_title_all"><?php echo Config::getModeLibelles()[$mode] ?></span> - <?php echo $period->getTitle(); ?></h2>
     <?php include(__DIR__.'/templates/_navLignes.php') ?>
     </div>
