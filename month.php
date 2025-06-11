@@ -112,7 +112,7 @@ $wblock = 4;
 </dialog>
 <dialog id="listModal">
     <div class="modalHeader">
-    <span class="modalClose">X Fermer</span>
+    <span class="modalClose">🞪</span>
     <h2><span id="listModal_title_all"><?php echo Config::getModeLibelles()[$mode] ?></span> - Incidents du mois de <?php echo View::displayDateMonthToFr($period->getDateStart()); ?> <?php echo $period->getDateStart()->format('Y') ?></h2>
     <?php include(__DIR__.'/templates/_navLignes.php') ?>
     </div>
