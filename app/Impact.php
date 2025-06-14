@@ -363,9 +363,6 @@ class Impact
             if(preg_match("/Panne.*install.*gestion.*r/i", $matches[1])) {
                 return "Panne sur les installations du gestionnaire de réseau";
             }
-            if(preg_match("/condition.*(météo|climatique)/i", $matches[1]) || preg_match("/(tempête|intempéries|dépression)/i", $matches[1])) {
-                return "Conditions météorologiques";
-            }
             if(preg_match("/personnel/i", $matches[1])) {
                 return "Difficultés liées à un manque de personnel";
             }
@@ -470,6 +467,9 @@ class Impact
             }
             if(preg_match("/trafic pertur.*gestionnaire/i", $matches[1])) {
                 return "Trafic perturbé du fait du gestionnaire de réseau";
+            }
+            if(preg_match("/condition.*(météo|climatique)/i", $matches[1]) || preg_match("/(tempête|intempéries|dépression)/i", $matches[1])) {
+                return "Conditions météorologiques";
             }
 
             return ucfirst(trim(preg_replace('/(à|entre|aux?|à la)\s+[A-Z]{1}.*$/', '', preg_replace("/( dans le secteur.*$| en gare d.*$| à la gare d.*$| en sortie d.*$| entre la gare .*$| à la station .*$| dans un train à.*$| à bord .*$| aux abords d.*$| au garage de.*$| entre les gares de.*$| à hauteur de.*$| sur un pont.*$| sur le pont.*$| au départ de.*$| sur la ligne.*$| [0-9]+ train [A-Z]+| du RER.*$|\(.*$|\..*$)/i", '', $matches[1]))));
