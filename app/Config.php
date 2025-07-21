@@ -68,6 +68,9 @@ class Config
             "Ligne U" => [
                 "FALLBACK"       => ["05:20:00", "01:01:30"],
             ],
+            "Ligne V" => [
+                "FALLBACK"       => ["05:16:00", "23:52:00"],
+            ],
             "tramways" => [
                 "*"       => ["API", "API"],
             ],
@@ -152,6 +155,7 @@ class Config
                 "Ligne P" => $baseUrlLogo."/p.svg",
                 "Ligne R" => $baseUrlLogo."/r.svg",
                 "Ligne U" => $baseUrlLogo."/u.svg",
+                "Ligne V" => $baseUrlLogo."/v.svg",
             ],
             "tramways" => [
                 "T1" => $baseUrlLogo."/t1.svg",
