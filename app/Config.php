@@ -116,6 +116,9 @@ class Config
             "T13" => [
                 "FALLBACK"       => ["05:59:00", "00:41:59"],
             ],
+            "T14" => [
+                "FALLBACK"       => ["05:12:00", "22:46:00"],
+            ],
         ];
     }
 
@@ -172,6 +175,7 @@ class Config
                 "T11" => $baseUrlLogo."/t11.svg",
                 "T12" => $baseUrlLogo."/t12.svg",
                 "T13" => $baseUrlLogo."/t13.svg",
+                "T14" => $baseUrlLogo."/t14.svg",
             ]
         ];
     }
