@@ -264,7 +264,7 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
-        if(preg_match("/(^| )test( |$)/i", $this->getTitle())) {
+        if($this->getTitle() == "test") {
 
             return self::TYPE_AUCUNE;
         }
