@@ -264,7 +264,7 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
-        if(preg_match("/Les horaires de départ ou de passage en gare de certains trains (de la ligne ? |)peuvent être avancés/", $this->getMessagePlainText())) {
+        if(preg_match("/Les horaires de départ ou de passage en gare de certains trains( de la ligne R | )peuvent être avancés/", $this->getMessagePlainText())) {
             return self::TYPE_AUCUNE;
         }
 
