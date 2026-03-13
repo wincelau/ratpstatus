@@ -264,6 +264,10 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
+        if(preg_match("/Les horaires de départ ou de passage en gare de certains trains peuvent être avancés/", $this->getMessagePlainText())) {
+            return self::TYPE_AUCUNE;
+        }
+        
         if($this->getTitle() == "test") {
 
             return self::TYPE_AUCUNE;
