@@ -147,7 +147,7 @@ function filtreListeDisruption(ligneId = null) {
     }
   }
 
-  let installPrompt = null;
+  /*let installPrompt = null;
   const installButton = document.querySelector("#install");
 
   window.addEventListener("beforeinstallprompt", (event) => {
@@ -163,6 +163,6 @@ function filtreListeDisruption(ligneId = null) {
   const result = await installPrompt.prompt();
   console.log(`Install prompt was: ${result.outcome}`);
   installPrompt = null;
-  installButton.setAttribute("hidden", "");
+  installButton.setAttribute("hidden", "");*/
   });
 }
