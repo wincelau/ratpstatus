@@ -20,4 +20,4 @@
 <p>Le projet initié par <a href="https://piaille.fr/@winy">winy</a> est publié sous licence libre AGPL-3.0 : <a href="https://github.com/wincelau/ratpstatus">https://github.com/wincelau/ratpstatus</a>.</p>
 <p>Ce site n'est pas un site officiel de la <a href="https://www.ratp.fr/">RATP</a>.</p>
 
-<p><button id="install" hidden>📱 Installer l'application</button></p>
+<p><button id="install">📱 Installer l'application</button></p>
