@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   })
 
   modalHelp.addEventListener('click', function(event) {
-    if(event.target.nodeName != "A") {
+    if(event.target.nodeName != "BUTTON" && event.target.nodeName != "A") {
       modalHelp.close();
     }
   });
