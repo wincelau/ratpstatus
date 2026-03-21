@@ -111,6 +111,24 @@ document.addEventListener('DOMContentLoaded', async function () {
         history.replaceState(null, null, ' ');
     });
   }
+  let installPrompt = null;
+  const installButton = document.querySelector("#install");
+
+  window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    installPrompt = event;
+    installButton.removeAttribute("hidden");
+  });
+
+  installButton.addEventListener("click", async () => {
+  if (!installPrompt) {
+    return;
+  }
+  const result = await installPrompt.prompt();
+  console.log(`Install prompt was: ${result.outcome}`);
+  installPrompt = null;
+  installButton.setAttribute("hidden", "");
+  });
 })
 
 function filtreListeDisruption(ligneId = null) {
@@ -146,23 +164,4 @@ function filtreListeDisruption(ligneId = null) {
       document.querySelector('#listModal #sentence_nothing_disruptions_finish').classList.remove('hide');
     }
   }
-
-  let installPrompt = null;
-  const installButton = document.querySelector("#install");
-
-  window.addEventListener("beforeinstallprompt", (event) => {
-    event.preventDefault();
-    installPrompt = event;
-    installButton.removeAttribute("hidden");
-  });
-
-  installButton.addEventListener("click", async () => {
-  if (!installPrompt) {
-    return;
-  }
-  const result = await installPrompt.prompt();
-  console.log(`Install prompt was: ${result.outcome}`);
-  installPrompt = null;
-  installButton.setAttribute("hidden", "");
-  });
 }
