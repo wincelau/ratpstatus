@@ -26,7 +26,7 @@
 </nav>
 <nav id="nav_liens_right">
     <?php if(count($statutsCount)): ?>
-    <a id="btn_list_now" class="badge openincident" href="#incidents" title="Voir la liste des incidents"><span class="picto">🔥</span><?php foreach($statutsCount as $statut => $count): ?><strong><?php echo $count ?></strong><span class="<?php echo $statut ?> barre">&nbsp;</span><?php endforeach ?></a>
+    <a id="btn_list_now" class="badge openincident" href="#incidents" title="Voir la liste des incidents"><span class="picto">🔥</span><?php foreach($statutsCount as $statut => $count): ?><span class="<?php echo $statut ?> barre">&nbsp;</span><strong><?php echo $count ?></strong><?php endforeach ?></a>
     <?php endif; ?>
     <a id="btn_list" class="badge openincident" href="#incidents" title="Voir la liste des incidents de la journée"><span title="Aucune perturbation pour <?php echo $pourcentages[$mode]['OK'] ?>% du trafic de tout la journée" class="donutG"></span><span class="picto">📅</span><span class="text_incidents"><?php echo count($day->getDisruptions($mode)) ?><span class="long"> incidents</span><span class="short">inc.</span></span></a>
 </nav>
