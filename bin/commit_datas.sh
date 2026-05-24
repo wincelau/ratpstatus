@@ -1,6 +1,10 @@
-    #!/bin/bash
+#!/bin/bash
 
-commitdate=$(date +%Y%m%d --date="-1 day")
+if test $1; then
+    commitdate=$1
+else
+    commitdate=$(date +%Y%m%d --date="-1 day")
+fi
 
 git sparse-checkout set --no-cone '/*' '!/datas/json/' "/datas/json/$commitdate"
 
