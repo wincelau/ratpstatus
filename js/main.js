@@ -37,11 +37,8 @@ document.addEventListener('DOMContentLoaded', async function () {
       if(document.location.hash.split(":")[1]) {
         disruptionId = document.location.hash.split(":")[1].split(";")[0];
       }
-      if(disruptionId && document.getElementById('disruption_' + disruptionId)) {
-        document.getElementById('disruption_' + disruptionId).scrollIntoView(false);
-      } else {
-        modalList.scrollTo(0,0);
-      }
+
+      modalList.scrollTo(0,0);
     } else if(modalList && modalListTab && document.location.hash == '#incidents') {
       document.querySelectorAll('.liste_ligne').forEach(function(item) {
         item.style.display = 'none';
