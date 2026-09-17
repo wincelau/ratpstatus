@@ -79,26 +79,14 @@ document.addEventListener('DOMContentLoaded', async function () {
   })
 
   modalHelp.addEventListener('click', function(event) {
-    if(event.target.nodeName != "BUTTON" && event.target.nodeName != "A") {
-      modalHelp.close();
-    }
+    closeModalIfPossible(modalHelp, event.target);
   });
   modalHelp.addEventListener("close", function(e) {
     history.replaceState(null, null, ' ');
   });
   if(modalList) {
     modalList.addEventListener('click', function(event) {
-        if(event.target.classList.contains('ellips')) {
-            let beforeheight = event.target.offsetHeight;
-            event.target.classList.remove('ellips');
-            if(beforeheight != event.target.offsetHeight) {
-                return;
-            }
-        }
-
-        if(event.target.nodeName != "A" && event.target.parentElement.nodeName != "A") {
-            modalList.close();
-        }
+      closeModalIfPossible(modalList, event.target);
     });
     modalList.addEventListener("close", function(e) {
         filtreListeDisruption();
@@ -127,6 +115,24 @@ document.addEventListener('DOMContentLoaded', async function () {
   installButton.setAttribute("hidden", "");
   });
 })
+
+function closeModalIfPossible(modal, target) {
+  if(target.classList.contains('ellips')) {
+      let beforeheight = target.offsetHeight;
+      target.classList.remove('ellips');
+      if(beforeheight != target.offsetHeight) {
+          return;
+      }
+  }
+
+  if(target.nodeName == "A" || target.parentElement.nodeName == "A") {
+    return;
+  }
+  if(document.getSelection().toString().length) {
+    return;
+  }
+  modal.close();
+}
 
 function filtreListeDisruption(ligneId = null) {
   document.querySelectorAll('#listModal .disruption').forEach(function(item) {
