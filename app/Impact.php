@@ -167,12 +167,7 @@ class Impact
             return self::TYPE_PERTURBATION_TOTALE;
         }
 
-        if(preg_match("/Le trafic est perturbé[àéèîếa-zA-z\ '0-9]*vers/i", $this->getMessagePlainText())) {
-
-            return self::TYPE_PERTURBATION_PARTIELLE;
-        }
-
-        if(preg_match("/Le trafic est perturbé[àéèîếa-zA-z\ '0-9]*entre/i", $this->getMessagePlainText())) {
+        if(preg_match("/Le trafic est perturbé[àéèîếa-zA-z\ '0-9]*(entre|vers)/i", $this->getMessagePlainText())) {
 
             return self::TYPE_PERTURBATION_PARTIELLE;
         }
