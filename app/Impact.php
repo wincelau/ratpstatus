@@ -138,7 +138,7 @@ class Impact
             return self::TYPE_AUCUNE;
         }
 
-        if(preg_match("/Le trafic est fortement perturbé[àéèîếa-zA-z\ '0-9]*entre/i", $this->getMessagePlainText())) {
+        if(preg_match("/Le trafic est fortement perturbé[àéèîếa-zA-z\ '0-9]*(entre|vers)/i", $this->getMessagePlainText())) {
 
             return self::TYPE_PERTURBATION_PARTIELLE_FORTE;
         }
@@ -152,7 +152,7 @@ class Impact
             return self::TYPE_PERTURBATION_TOTALE_REPRISE;
         }
 
-        if(preg_match('/Le trafic est interrompu entre/i', $this->getMessagePlainText())) {
+        if(preg_match('/Le trafic est interrompu (entre|vers)/i', $this->getMessagePlainText())) {
 
             return self::TYPE_INTERRUPTION_PARTIELLE;
         }
@@ -167,7 +167,7 @@ class Impact
             return self::TYPE_PERTURBATION_TOTALE;
         }
 
-        if(preg_match("/Le trafic est perturbé[àéèîếa-zA-z\ '0-9]*entre/i", $this->getMessagePlainText())) {
+        if(preg_match("/Le trafic est perturbé[àéèîếa-zA-z\ '0-9]*(entre|vers)/i", $this->getMessagePlainText())) {
 
             return self::TYPE_PERTURBATION_PARTIELLE;
         }
